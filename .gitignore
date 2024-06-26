@@ -11,5 +11,6 @@ fontes-*
 callgrind.*
 gmon.out
 Icon?
+venv
 material/aulas/01-introducao/legenda*
-Icon
+Icon

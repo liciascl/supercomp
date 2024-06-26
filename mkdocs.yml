@@ -1,10 +1,10 @@
-site_name: SuperComputação - 2023/2
+site_name: SuperComputação - 2024/2
 site_author: 
 
 extra:
     materia: SuperComputação
-    professor: Andre Filipe de M. Batista, Michel Fornaciali 
-    semestre: 2023/2
+    professor: Michel Fornaciali 
+    semestre: 2024/2
     url_acompanhamentos: http://localhost:8081
     id_curso: 1
 
@@ -72,6 +72,28 @@ nav:
         # - projetos/paralelismo-multicore.md
         # - projetos/paralelismo-gpu.md
 
+    - Teoria:
+         - Teoria/index.md
+         - Teoria/introducao/conceitos-basicos-hw.md  
+         - Teoria/conceitos-basicos-C++.md
+         - Teoria/compilar-executar-C++.md  
+         - Teoria/loops-e-laços.md
+         - Teoria/funcoes.md
+         - Teoria/uso-de-constantes.md
+         - Teoria/memoria-dinamica.md
+         - Teoria/sobrecarga-de-funcoes-C++.md
+         - Teoria/classes-e-objetos.md
+         - Teoria/manipulacao-vetores.md
+         - Teoria/contextualizando-hpc/contextualizando-HPC.md
+         - Teoria/cluster-Franky.md
+         - Teoria/flags-compilacao.md
+         - Teoria/slurm.md
+         - Teoria/profiling.md
+
+
+
+
+
 
 extra_javascript:
     - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML
@@ -82,6 +104,7 @@ extra_javascript:
 extra_css:
     - css/printing.css
     - css/extra.css
+    - equipe.css
 
 markdown_extensions:
   - markdown.extensions.tables
