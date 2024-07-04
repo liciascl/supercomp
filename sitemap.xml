@@ -231,6 +231,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://insper.github.io/supercomp/entregas/</loc>
+         <lastmod>2024-07-04</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://insper.github.io/supercomp/projetos/</loc>
          <lastmod>2024-07-04</lastmod>
          <changefreq>daily</changefreq>
