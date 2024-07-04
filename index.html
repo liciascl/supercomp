@@ -1249,48 +1249,56 @@
 </div>
 <h2 id="material">Material<a class="headerlink" href="#material" title="Permanent link">&para;</a></h2>
 <p>Os PowerPoints das aulas podem ser encontrados <a href="aulas">aqui</a>.</p>
-<p>Afim de deixar alinhado o que esperamos de você, atribuímos para cada semana de aula um objetivo mínimo e um objetivo esperado.</p>
-<div class="admonition summary">
-<p class="admonition-title">Objetivo Mínimo</p>
-<p><strong>Semana 1: Introdução ao Curso</strong>
-- Configurar o ambiente de desenvolvimento.</p>
-<p><strong>Semanas 2-3: Otimização Básica de Código</strong>
-- Utilizar ferramentas básicas de profiling, Realizar otimizações de loops, Usar as flags de compilação (-O1, -O2, -O3, -Ofast).</p>
-<p><strong>Semanas 4-5: Heurísticas</strong>
-- Implementar heurísticas para problemas de otimização, Executar e comparar o desempenho dos algoritmos no cluster, Gerar relatórios com profiling e comparação de desempenho com e sem otimizações (de compilador e de código).</p>
-<p><strong>Semana 6: Projeto</strong>
-- Instalar um sistema operacional, Montar um cluster, Interpretar e seguir uma documentação técnica.</p>
-<p><strong>Semanas 7-8: Programação Paralela com OpenMP</strong>
-- Solicitar recursos de hardware adequadamente via Slurm, Conhecer as diretivas OpenMP.</p>
-<p><strong>Semana 9: Programação Distribuída com MPI</strong>
-- Compreender o funcionamento do MPI (conceitos e comunicação entre processos),Executar código utilizando MPI.</p>
-<p><strong>Semana 10: Programação em GPU</strong>
-- Identificar quando faz sentido paralelizar usando GPU.</p>
-</div>
-<div class="admonition summary">
-<p class="admonition-title">Objetivo Esperado</p>
-<p><strong>Semana 1: Introdução ao Curso</strong>
-- Configurar o ambiente de desenvolvimento, Implementar funções básicas em C++,Compilar e executar o código.</p>
-<p><strong>Semanas 2-3: Otimização Básica de Código</strong>
-- Gerar relatórios com profiling e comparação de desempenho com e sem otimizações (de compilador e de código).</p>
-<p><strong>Semanas 4-5: Heurísticas</strong>
-- Utilizar profiling para identificar e otimizar gargalos de desempenho.</p>
-<p><strong>Semana 6: Projeto</strong>
-- Compreender o alocamento de recursos de hardware com o Slurm, Personalizar o Slurm, Utilizar os comandos do Slurm para entender o que está acontecendo no sistema.</p>
-<p><strong>Semanas 7-8: Programação Paralela com OpenMP</strong>
-- Submeter jobs para execução em paralelo utilizando OpenMP no cluster, Realizar relatórios com comparação de desempenho entre versões sequenciais e paralelas.</p>
-<p><strong>Semana 9: Programação Distribuída com MPI</strong>
-- Submeter jobs com comunicação entre nós utilizando MPI,Realizar análise de desempenho e escalabilidade.</p>
-<p><strong>Semana 10: Programação em GPU</strong>
-- Implementar um kernel CUDA simples,Comparar desempenho entre CPU e GPU.</p>
-</div>
+<p>Afim de deixar alinhado o que esperamos de você, atribuímos para cada aula, um objetivo atrelado a uma entrega, esses são os objetivos de aprendizagem esperados por aula e sua entrega respectiva:</p>
+<p><strong><a href="aulas/01-introducao/index.md">aula 1: Introdução ao Curso</a></strong>
+- Configurar o ambiente de desenvolvimento, submeter o primeiro job no Cluster Franky. <a href="guias/atividade-01/atividade-01.md">Guia para a Atividade - 1</a> </p>
+<p><strong><a href="aulas/02-03-implementacao-c%2B%2B/">aulas 2-3: Otimização Básica de Código</a></strong>
+- Desenvolver algoritmos em C++ com e sem otimizações (de compilador e de código). <a href="guias/atividade-02/atividade-02.md">Guia para a Atividade - 2</a>, <a href="guias/atividade-03/atividade-03.md">Guia para a Atividade - 3</a></p>
+<p><strong><a href="aulas/04-profiling/">aula 4: Profiling</a></strong>
+- Utilizar profiling para identificar os gargalos e os pontos de menor desempenho nos algoritmos apresentados. <a href="guias/atividade-04/atividade-04.md">Guia para a Atividade - 4</a></p>
+<p><strong><a href="aulas/05-heuristicas/">aula 5: Heurísticas</a></strong>
+- Analisar as heuristicas apresentadas e gerar um relatório apontando os gargalos e os pontos favoráveis para otimizações. <a href="guias/atividade-01/atividade-05.md">Guia para a Atividade - 5</a></p>
+<p><strong><a href="aulas/06-aleatorizacao/">aula 6: Aleatorização</a></strong>
+- Implementar o algoritmo de aleatorização da melhor forma (computacionalmente falando), utilizando os recursos do C++. <a href="guias/atividade-06/atividade-06.md">Guia para a Atividade - 6</a></p>
+<p><strong><a href="aulas/07-busca-local/">aula 7: Busca Local</a></strong>
+- Implementar o algoritmo de busca local da melhor forma (computacionalmente falando), utilizando os recursos do C++. <a href="guias/atividade-07/atividade-07.md">Guia para a Atividade - 7</a></p>
+<p><strong><a href="aulas/08-busca-global/">aula 8: Busca global</a></strong>
+- Implementar o algoritmo de busca global da melhor forma (computacionalmente falando), utilizando os recursos do C++. <a href="guias/atividade-08/atividade-08.md">Guia para a Atividade - 8</a></p>
+<p><strong><a href="aulas/09-busca-global-II/">aula 9: Busca global - II</a></strong>
+- Implementar o algoritmo de busca global da melhor forma (computacionalmente falando), utilizando os recursos do C++. <a href="guias/atividade-09/atividade-09.md">Guia para a Atividade - 9</a></p>
+<p><strong><a href="aulas/10-branch-and-bound/">aula 10: Branch and bound</a></strong>
+- Implementar o algoritmo branch and bound da melhor forma (computacionalmente falando), utilizando os recursos do C++. <a href="guias/atividade-10/atividade-10.md">Guia para a Atividade - 10</a></p>
+<p><strong><a href="aulas/11-paralelismo/">aula 11: paralelismo</a></strong>
+- Submeter jobs para execução em paralelo utilizando OpenMP no cluster, Realizar relatórios com comparação de desempenho entre versões sequenciais e paralelas. <a href="guias/atividade-11/atividade-11.md">Guia para a Atividade - 11</a></p>
+<p><strong><a href="aulas/12-efeitos-colaterais/">aula 12</a> e <a href="aulas/13-efeitos-colaterais-II/">13</a>: Efeitos colaterais</strong>
+- Realizar relatórios com comparação de desempenho apontando efeitos colaterais da paralelização e destacando os casos em que vale a pena implementar a técnica ou não. <a href="guias/atividade-12/atividade-12.md">Guia para a Atividade - 12</a>, <a href="guias/atividade-13/atividade-13.md">Guia para a Atividade - 13</a></p>
+<p><strong><a href="aulas/18-Introducao-mpi/">aula 14: Introdução a programação distribuída com MPI</a></strong>
+- Submeter jobs com comunicação entre nós utilizando MPI, Realizar análise de desempenho e escalabilidade. <a href="guias/atividade-14/atividade-14.md">Guia para a Atividade - 14</a></p>
+<p><strong><a href="aulas/19-MPI_REDUCE-mpi/">aula 15: MPI-Reduce</a></strong>
+- Submeter jobs com comunicação entre nós utilizando MPI, Realizar análise de desempenho e escalabilidade. <a href="guias/atividade-15/atividade-15.md">Guia para a Atividade - 15</a></p>
+<p><strong><a href="aulas/MPI-OpenMP/">aula 16: Programação paralela e Distribuida</a></strong>
+- Submeter jobs com programação paralela e distribuída Utilizando MPI e OpenMP, Realizar relatórios com comparação de desempenho e escalabilidade. <a href="guias/atividade-16/atividade-16.md">Guia para a Atividade - 16</a></p>
+<p><strong><a href="aulas/14-intro-gpu/">aula 17: Introdução a programação paralela em GPU</a></strong>
+- Submeter jobs com programação paralela em GPU, Realizar relatórios com comparação de desempenho e escalabilidade. <a href="guias/atividade-16/atividade-16.md">Guia para a Atividade - 16</a></p>
+<p><strong><a href="aulas/18-efeitos-colaterais/">aula 18: Efeitos colaterais</a></strong>
+- Realizar relatórios com comparação de desempenho apontando efeitos colaterais da paralelização em GPU x CPU. <a href="guias/atividade-18/atividade-18.md">Guia para a Atividade - 18</a></p>
+<p><strong><a href="aulas/19-HPC-python.md">aula 19: HPC em python?</a></strong>
+- Realizar relatórios com comparação de desempenho aplicando map reduce em python x C++. <a href="guias/atividade-19/atividade-19.md">Guia para a Atividade - 19</a></p>
+<p><strong><a href="aulas/20-Problemas-HPC.md">aula 20: Resolvendo problemas de HPC</a></strong>
+- Aplicar as técnicas aprendidas durante o curso para resolver problemas computacionalmente complexos. <a href="guias/atividade-18/atividade-20.md">Guia para a Atividade 20</a></p>
 <p>Cada entrega tem os seguintes pesos na nota final:</p>
 <ul>
-<li><strong>Cada entrega mínima vale 0.05 da nota de entregas</strong></li>
-<li><strong>Cada entrega esperada vale 0.25 da nota de entregas</strong></li>
-<li><strong>O Projeto vale 4</strong></li>
-<li><strong>A PI vale 2.5</strong></li>
-<li><strong>A PF vale 2.5</strong></li>
+<li><strong>Cada entrega vale 0.1 da nota final.</strong></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Atenção!</p>
+<p>A entrega só poderá ser realizada até as 23h59 do dia da respectiva aula. 
+A somatória de todas as entregas válidas atribui até 2 pontos na nota final.</p>
+</div>
+<ul>
+<li><strong>O Projeto vale 3</strong></li>
+<li><strong>A PI vale 2</strong></li>
+<li><strong>A PF vale 3</strong></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Condições de barreira</p>
