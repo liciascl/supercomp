@@ -26,7 +26,7 @@ O curso é estruturado em três unidades principais, e um projeto:
 
 ## Material
 
-Para alinhar o que esperamos de você, definimos um objetivo e uma entrega para cada aula. Você pode verificar os objetivos e as entregas para cada aula [aqui](entregas/index.md)
+Para alinhar o que esperamos de você, definimos um objetivo e uma entrega para cada aula. Você pode verificar os objetivos e as entregas para cada aula [aqui](aulas/index.md)
 
 
 
@@ -46,7 +46,6 @@ Para alinhar o que esperamos de você, definimos um objetivo e uma entrega para 
     * PI, PF >= 4,0
     * Projeto >= 5 (não serão aceitos projetos atrasados)
 
-    Caso estas condições não sejam cumpridas ver detalhes na [aula 01](aulas/01-introducao/slides.pdf)
 
 
 ## Equipe

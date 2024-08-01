@@ -31,6 +31,3 @@
 
     [Profiling](profiling.md)
 
-!!! summary "Guias práticos para estudo"
-
-!!! summary "Desafios!"

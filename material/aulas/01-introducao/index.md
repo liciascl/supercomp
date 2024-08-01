@@ -1,4 +1,4 @@
-# **Atividade 1: Implementando e Observando Ganhos de Desempenho no Cluster**
+# **Atividade 1: Acessando o Cluster Franky**
 
 Na Atividade 1, você irá executar as implementações que foram testadas na Atividade 0, mas agora no ambiente de um cluster HPC usando SLURM. O objetivo é observar como o ambiente de cluster, com sua capacidade de processamento paralelo, pode impactar o desempenho das operações computacionalmente intensivas que você já explorou.
 
@@ -6,34 +6,27 @@ Na Atividade 1, você irá executar as implementações que foram testadas na At
 
 Para ter acesso ao Cluster Franky você precisa configurar suas credenciais de acesso e realizar acesso remoto via SSH.
 
-Entre no Blackboard.
-
-Navegue até a seção de materiais do curso onde a pasta com o par de chaves foi disponibilizada.
-
-Localize a pasta nomeada com o seu usuário.
-
-Faça o download da pasta completa, que contém os arquivos `id_rsa` (chave privada) e `id_rsa.pub` (chave pública).
-
-
-Dependendo do sistema operacional que você utiliza, siga as instruções abaixo para configurar corretamente sua chave privada.
+Entre no Blackboard, navegue até a seção de materiais do curso onde a pasta com o par de chaves foi disponibilizada, Faça o download da pasta completa, que contém os arquivos `id_rsa` (chave privada) e `id_rsa.pub` (chave pública). Dependendo do sistema operacional que você utiliza, siga as instruções abaixo para configurar  corretamente sua chave privada.
 
 #### **Para Macbook ou Linux:**
 
-Abra o terminal.
+Abra o terminal, navegue até a pasta onde a chave privada (`id_rsa`) foi baixada, mova a chave para o diretório `.ssh` em sua home:
 
-Navegue até a pasta onde a chave privada (`id_rsa`) foi baixada.
-
-Mova a chave para o diretório `.ssh` em sua home:
 ```bash
 mv id_rsa ~/.ssh/
 ```
 
 Garanta que apenas você possa ler o arquivo:
+
 ```bash
 chmod 600 ~/.ssh/id_rsa
 ```
 
 Conecte-se ao cluster utilizando o comando SSH:
+
+Substitua `seu_usuario_insper` pelo seu nome de usuário Insper e `cluster_endereco` pelo endereço de IP fornecido durante a aula.
+
+
 ```bash
 ssh -i ~/.ssh/id_rsa seu_usuario_insper@ip_do_cluster
 ```
@@ -42,17 +35,13 @@ ou
 ```bash
 ssh seu_usuario_insper@ip_do_cluster
 ```
-Substitua `seu_usuario_insper` pelo seu nome de usuário Insper e `cluster_endereco` pelo endereço de IP fornecido durante a aula.
+
 
 #### **Para Windows:**
 
 **Usando OpenSSH :**
 
-Abra o PowerShell ou Windows Terminal.
-
-Navegue até a pasta onde a chave privada (`id_rsa`) foi baixada.
-
-Mova a chave para a pasta `.ssh` em seu diretório de usuário:
+Abra o PowerShell ou Windows Terminal. Navegue até a pasta onde a chave privada (`id_rsa`) foi baixada, mova a chave para a pasta `.ssh` em seu diretório de usuário:
 
 ```powershell
 mkdir $env:USERPROFILE\.ssh
@@ -72,11 +61,7 @@ ssh -i $env:USERPROFILE\.ssh\id_rsa seu_usuario_insper@ip_do_cluster
 
 **Instale a Extensão Remote - SSH**:
 
-Abra o VS Code.
-
-Vá para a aba de extensões (ícone de quadrado no lado esquerdo).
-
-Pesquise por "Remote - SSH" e instale a extensão oficial da Microsoft.
+Abra o VS Code, vá para a aba de extensões (ícone de quadrado no lado esquerdo). Pesquise por "Remote - SSH" e instale a extensão oficial da Microsoft.
 
 **Configurar o Acesso Remoto**:
 
@@ -90,11 +75,11 @@ ssh -i ~/.ssh/id_rsa seu_usuario@cluster_endereco
 ```
 Escolha o arquivo de configuração padrão (`~/.ssh/config` para Mac/Linux ou `C:\Users\seu_usuario\.ssh\config` para Windows).
 
-Pressione `Ctrl+Shift+P` (ou `Cmd+Shift+P` no Mac) novamente e digite `Remote-SSH: Connect to Host...`.
+Pressione `Ctrl+Shift+P` (ou `Cmd+Shift+P` no Mac) novamente e digite `Remote-SSH: Connect to Host...`. Selecione o host configurado.
 
- Selecione o host configurado no passo anterior.
+O VS Code abrirá uma nova janela conectada ao ambiente remoto do cluster.
 
- O VS Code abrirá uma nova janela conectada ao ambiente remoto do cluster.
+![ssh](imgs/RemoteSSHVsCode.png)
 
 **Gerenciar Projetos Remotamente**:
 
@@ -108,7 +93,11 @@ Pressione `Ctrl+Shift+P` (ou `Cmd+Shift+P` no Mac) novamente e digite `Remote-SS
 Crie um script de submissão .slurm para cada implementação utilizando o template abaixo. Esse script será utilizado para enviar o job ao cluster.
 
 !!! warning
-   As instruções #SBATCH são tecnicamente consideradas "comentários" pelo interpretador de comandos do shell (bash), mas não são realmente ignoradas. Quando você escreve um script para ser executado pelo SLURM, o bash interpreta as linhas #SBATCH como comentários normais, enquanto o gerenciador de jobs SLURM interpreta essas mesmas linhas como diretivas que definem como o job deve ser executado.
+      As instruções #SBATCH são tecnicamente consideradas "comentários" pelo interpretador de comandos do shell (bash), mas não são realmente ignoradas. Quando você escreve um script para ser executado pelo SLURM, o bash interpreta as linhas #SBATCH como comentários normais, enquanto o gerenciador de jobs SLURM interpreta essas mesmas linhas como diretivas que definem como o job deve ser executado.
+
+!!! tip 
+      Não é necessário neste momento, mas se você quiser transferir arquivos da sua máquina para o cluster e vice versa, você pode usar o comando scp [mais detalhes aqui](../../Teoria/comandos-ssh.md)
+
 
 
 **Exemplo de Script SLURM (Python):**
@@ -232,6 +221,11 @@ Após a execução dos jobs, os resultados estarão disponíveis nos arquivos `.
   - Compare os tempos de execução dos três métodos (Python, C++, C++ com OpenMP) no cluster.
 
    - Analise como o paralelismo afeta o desempenho no ambiente do cluster, em comparação com sua execução local.
+
+!!! tip 
+      Se quiser explorar mais os comandos do SLURM, [temos uma material aqui que pode te ajudar](../../Teoria/slurm.md)
+
+
 
 
 **Entrega Atividade 1 - Relatório de Desempenho:**

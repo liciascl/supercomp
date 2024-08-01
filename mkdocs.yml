@@ -33,6 +33,7 @@ nav:
     #- Burocracias: sobre.md
 
     - Aulas:
+        - "aulas/index.md"
         - "aulas/00-introducao/index.md"    
         - "aulas/01-introducao/index.md"
 #        - "02 e 03 - C++": aulas/02-03-implementacao-c++/index.md

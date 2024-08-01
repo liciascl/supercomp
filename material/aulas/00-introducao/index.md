@@ -1,13 +1,11 @@
-# Aula 0: Fundamentos de HPC 
+# Aula 0: A importância da linguagem 
 
-Nesta atividade, veremos como o processamento paralelo pode melhorar significativamente o desempenho de operações computacionalmente intensivas. Utilizaremos Python e C++ para implementar e otimizar a multiplicação de matrizes, uma operação comum em muitas aplicações de IA e visão computacional.
-
-Ao longo desta atividade, você entenderá as limitações do processamento em uma única thread e verá como o paralelismo pode ser aplicado para acelerar tarefas. 
+Nesta atividade, veremos como a escolha da linguagem de programação pode melhorar significativamente o desempenho de operações computacionalmente intensivas. Utilizaremos Python e C++ para implementar e comparar o desempenho na multiplicação de matrizes, uma operação comum em muitas aplicações de IA e visão computacional.
 
 
 ## Parte 1: Implementação Básica em Python 
 
-Execute o código abaixo e observe o tempo de execução. Essa é uma implementação sequencial que processa a multiplicação de matrizes usando uma única thread.
+Execute o código abaixo e observe o tempo de execução. Essa é uma implementação sequencial que processa a multiplicação de matrizes usando uma única thread em python.
 
 
 ```python
@@ -59,12 +57,12 @@ print(f"Tempo de execução para a multiplicação de matrizes: {end_time - star
 
 
 
-## Parte 2: Implementação em C++ e Otimização
+## Parte 2: Implementação em C++ 
 
 Compile e execute o código em C++. Compare o tempo de execução com o resultado obtido na Parte 1. Observe como C++ lida com operações computacionalmente intensivas de forma mais eficiente.
 
 !!! tip 
-      Se precisar de ajuda para instalar um compilador em C++ ou compilar e executar, [consulte o material disponível](../../Teoria/compilar-executar-C++.md).
+      Se precisar de ajuda para instalar um compilador em C++ ou compilar e executar códigos em c++, [consulte o material disponível](../../Teoria/compilar-executar-C++.md).
 
 
 ```cpp
@@ -129,7 +127,7 @@ int main() {
 ```
 
 
-## Parte 3: Paralelismo em C++ com OpenMP
+## Parte 3: Paralelismo em C++ 
 
 Compile e execute o código modificado. Observe a diferença no tempo de execução em comparação com as versões anteriores.
 
@@ -197,7 +195,10 @@ int main() {
 
 ```
 
-Esta atividade demonstrou como o paralelismo pode melhorar o desempenho de operações computacionalmente intensivas, como a multiplicação de matrizes. Você viu como Python e C++ lidam com essas operações e como o C++ com OpenMP pode levar a ganhos de desempenho ainda maiores. Na próxima atividade, você levará essas implementações para o cluster Franky e explorará técnicas avançadas de paralelismo.
+Esta atividade demonstrou como a escolha da linguagem de programação pode impactar no desempenho de operações computacionalmente intensivas, como a multiplicação de matrizes. Você viu como Python e C++ lidam com essas operações e como o paralelismo pode ser uma boa opção, dependendo da complexidade do problema. Na próxima atividade, você levará essas implementações para o cluster Franky e essas diferenças ficarão ainda mais visíveis.
+
+!!! tip 
+      Se quiser [saber um pouco mais sobre HPC](../../Teoria/contextualizando-hpc/contextualizando-HPC.md), [relembrar conceitos](../../Teoria/introducao/conceitos-basicos-hw.md) ou [aprofundar um pouco em C++](../../Teoria/conceitos-basicos-C++.md)
 
 
 ## Entrega - Atividade 0
