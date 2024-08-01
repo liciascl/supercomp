@@ -11,18 +11,14 @@
         <link rel="canonical" href="https://insper.github.io/supercomp/aulas/08-busca-global/">
       
       
-        <link rel="prev" href="../07-busca-local/">
-      
-      
-        <link rel="next" href="../11-paralelismo/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
     
     
       
-        <title>08 - Busca Exaustiva - SuperComputação - 2024/2</title>
+        <title>08 - Busca exaustiva - SuperComputação - 2024/2</title>
       
     
     
@@ -120,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              08 - Busca Exaustiva
+              08 - Busca exaustiva
             
           </span>
         </div>
@@ -254,19 +250,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -280,7 +274,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Aulas
@@ -294,393 +288,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../00-introducao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aula 0: Fundamentos de HPC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../01-introducao/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    01 - Introdução
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../02-03-implementacao-c%2B%2B/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    02 e 03 - C++
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../04-profiling/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    04 - Profiling
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05-heuristicas/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    05 - Heurísticas
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../06-aleatorizacao/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    06 - Aleatorização
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../07-busca-local/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    07 - Busca Local
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    08 - Busca Exaustiva
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    08 - Busca Exaustiva
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#pseudo-codigo" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pseudo-código
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#implementacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      Implementação
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fechamento" class="md-nav__link">
-    <span class="md-ellipsis">
-      Fechamento
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../11-paralelismo/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    09 - Paralelismo
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../12-efeitos-colaterais/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    10 - Paralelismo - Exercício / Efeitos Colaterais
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../13-efeitos-colaterais-II/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    12 - Paralelismo - Efeitos Colaterais II
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../14-intro-gpu/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    13 - GPU - Introdução
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../15-gpu-iteradores/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    14 - GPU - Iteradores
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../16-gpu-customizacao/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    15 - GPU - Customização
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../21-SLURM/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    16 - Clusters - Slurm
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../MPI/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    17 - MPI
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../MPI-OpenMP/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    18 - MPI e OpenMP
+    Atividade 1: Implementando e Observando Ganhos de Desempenho no Cluster
   </span>
   
 

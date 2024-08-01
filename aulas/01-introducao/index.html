@@ -11,18 +11,18 @@
         <link rel="canonical" href="https://insper.github.io/supercomp/aulas/01-introducao/">
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../00-introducao/">
       
       
-        <link rel="next" href="../02-03-implementacao-c%2B%2B/">
+        <link rel="next" href="../../projetos/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
     
     
       
-        <title>01 - Introdução - SuperComputação - 2024/2</title>
+        <title>Atividade 1: Implementando e Observando Ganhos de Desempenho no Cluster - SuperComputação - 2024/2</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#01-introducao-a-supercomputacao" class="md-skip">
+        <a href="#atividade-1-implementando-e-observando-ganhos-de-desempenho-no-cluster" class="md-skip">
           Skip to content
         </a>
       
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              01 - Introdução
+              Atividade 1: Implementando e Observando Ganhos de Desempenho no Cluster
             
           </span>
         </div>
@@ -291,6 +291,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-introducao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aula 0: Fundamentos de HPC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -307,7 +328,7 @@
           
   
   <span class="md-ellipsis">
-    01 - Introdução
+    Atividade 1: Implementando e Observando Ganhos de Desempenho no Cluster
   </span>
   
 
@@ -318,7 +339,7 @@
         
   
   <span class="md-ellipsis">
-    01 - Introdução
+    Atividade 1: Implementando e Observando Ganhos de Desempenho no Cluster
   </span>
   
 
@@ -340,36 +361,60 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#problemas-estudados-em-supercomputacao" class="md-nav__link">
+  <a href="#parte-0-configurando-seu-acesso-ao-cluster-franky" class="md-nav__link">
     <span class="md-ellipsis">
-      Problemas estudados em SuperComputação
+      Parte 0: Configurando seu acesso ao Cluster Franky
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parte 0: Configurando seu acesso ao Cluster Franky">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#para-macbook-ou-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Para Macbook ou Linux:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#para-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Para Windows:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configurar-o-vs-code-para-acesso-remoto-ao-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurar o VS Code para Acesso Remoto ao Cluster**
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ferramental" class="md-nav__link">
+  <a href="#executando-a-atividade-0-no-cluster-franky-usando-slurm" class="md-nav__link">
     <span class="md-ellipsis">
-      Ferramental
+      Executando a Atividade 0 no Cluster Franky usando SLURM
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#algoritmos-sequenciais" class="md-nav__link">
+  <a href="#parte-2-execucao-das-implementacoes-no-cluster" class="md-nav__link">
     <span class="md-ellipsis">
-      Algoritmos sequenciais
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#algoritmos-paralelos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Algoritmos paralelos
+      Parte 2: Execução das Implementações no Cluster
     </span>
   </a>
   
@@ -379,321 +424,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../02-03-implementacao-c%2B%2B/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    02 e 03 - C++
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../04-profiling/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    04 - Profiling
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05-heuristicas/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    05 - Heurísticas
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../06-aleatorizacao/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    06 - Aleatorização
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../07-busca-local/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    07 - Busca Local
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../08-busca-global/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    08 - Busca Exaustiva
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../11-paralelismo/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    09 - Paralelismo
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../12-efeitos-colaterais/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    10 - Paralelismo - Exercício / Efeitos Colaterais
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../13-efeitos-colaterais-II/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    12 - Paralelismo - Efeitos Colaterais II
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../14-intro-gpu/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    13 - GPU - Introdução
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../15-gpu-iteradores/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    14 - GPU - Iteradores
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../16-gpu-customizacao/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    15 - GPU - Customização
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../21-SLURM/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    16 - Clusters - Slurm
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../MPI/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    17 - MPI
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../MPI-OpenMP/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    18 - MPI e OpenMP
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1174,36 +904,60 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#problemas-estudados-em-supercomputacao" class="md-nav__link">
+  <a href="#parte-0-configurando-seu-acesso-ao-cluster-franky" class="md-nav__link">
     <span class="md-ellipsis">
-      Problemas estudados em SuperComputação
+      Parte 0: Configurando seu acesso ao Cluster Franky
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parte 0: Configurando seu acesso ao Cluster Franky">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#para-macbook-ou-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Para Macbook ou Linux:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#para-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Para Windows:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configurar-o-vs-code-para-acesso-remoto-ao-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurar o VS Code para Acesso Remoto ao Cluster**
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ferramental" class="md-nav__link">
+  <a href="#executando-a-atividade-0-no-cluster-franky-usando-slurm" class="md-nav__link">
     <span class="md-ellipsis">
-      Ferramental
+      Executando a Atividade 0 no Cluster Franky usando SLURM
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#algoritmos-sequenciais" class="md-nav__link">
+  <a href="#parte-2-execucao-das-implementacoes-no-cluster" class="md-nav__link">
     <span class="md-ellipsis">
-      Algoritmos sequenciais
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#algoritmos-paralelos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Algoritmos paralelos
+      Parte 2: Execução das Implementações no Cluster
     </span>
   </a>
   
@@ -1227,237 +981,180 @@
   
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script>
-(function() {
-  function addWidgetsRenderer() {
-    var requireJsScript = document.createElement('script');
-    requireJsScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js';
-
-    var mimeElement = document.querySelector('script[type="application/vnd.jupyter.widget-view+json"]');
-    var jupyterWidgetsScript = document.createElement('script');
-    var widgetRendererSrc = 'https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js';
-    var widgetState;
-
-    // Fallback for older version:
-    try {
-      widgetState = mimeElement && JSON.parse(mimeElement.innerHTML);
-
-      if (widgetState && (widgetState.version_major < 2 || !widgetState.version_major)) {
-        widgetRendererSrc = 'jupyter-js-widgets@*/dist/embed.js';
-      }
-    } catch(e) {}
-
-    jupyterWidgetsScript.src = widgetRendererSrc;
-
-    document.body.appendChild(requireJsScript);
-    document.body.appendChild(jupyterWidgetsScript);
-  }
-
-  document.addEventListener('DOMContentLoaded', addWidgetsRenderer);
-}());
-</script>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="01-introducao-a-supercomputacao">01 - Introdução a SuperComputação<a class="headerlink" href="#01-introducao-a-supercomputacao" title="Permanent link">&para;</a></h1>
-<p>Como vimos na expositiva, uma solução de alto desempenho depende de três partes:</p>
-<ol>
-<li>algoritmos eficientes</li>
-<li>implementações eficientes</li>
-<li>paralelismo</li>
-</ol>
-<p>Na atividade de hoje vamos estudar o primeiro ponto e quantificar o efeito de algoritmos eficientes na resolução de um problema complexo. </p>
-<h2 id="problemas-estudados-em-supercomputacao">Problemas estudados em SuperComputação<a class="headerlink" href="#problemas-estudados-em-supercomputacao" title="Permanent link">&para;</a></h2>
-<p>Em Desafios de Programação conhecemos a classe dos problemas NP-completo, que são aqueles que acreditamos não existir nenhum algoritmo determinístico que os resolvem em tempo polinomial. Ou seja, são problemas importantes cuja solução é difícil. Em geral temos classes de algoritmos para resolvê-los:</p>
-<ol>
-<li>ótimos globais: algoritmo que encontra a solução "correta" do problema. </li>
-<li>ótimos locais: algoritmo que encontra uma solução "boa" e que não pode ser melhorada por pequenas modificações. </li>
-<li>aproximação: algoritmos que garantem estar "perto o suficiente" da solução ótima. Este tipo de algoritmo não nos interessa em SuperComputação.</li>
-</ol>
-<p>Iremos analisar hoje 4 executáveis que resolvem o problema do <a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem">Caixeiro Viajante</a>. </p>
-<ol>
-<li><code>busca-local-1</code> - implementação de um método de busca rápida, porém não ótima.</li>
-<li><code>busca-local-1-par</code> - implementação paralela do programa acima.</li>
-<li><code>busca-local-2</code> - implementação alternativa do mesmo método acima. Os resultados de ambos são idênticos.</li>
-<li><code>busca-local-2-par</code> - implementação paralela do programa acima.</li>
-</ol>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Não estamos interessados no Caixeiro Viajante em si hoje. Queremos é comparar diferentes maneiras de resolvê-lo para entendermos o papel de técnicas de SuperComputação na velocidade de processamento e nos resultados obtidos. </p>
-</div>
-<h2 id="ferramental">Ferramental<a class="headerlink" href="#ferramental" title="Permanent link">&para;</a></h2>
-<p>Realizar testes de maneira automatizada é muito importante para quantificar os efeitos de diferentes algoritmos e técnicas de paralelismo. O snippet abaixo executa </p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_outputPrepend">
-<div class="input">
-
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">import</span> <span class="nn">time</span>
-
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;entradas-busca-local/in-0.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-    <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;./busca-local-1&#39;</span><span class="p">],</span> <span class="nb">input</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Saída:&#39;</span><span class="p">,</span> <span class="n">proc</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Stderr:&#39;</span><span class="p">,</span> <span class="n">proc</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Tempo total(s):&#39;</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+<h1 id="atividade-1-implementando-e-observando-ganhos-de-desempenho-no-cluster"><strong>Atividade 1: Implementando e Observando Ganhos de Desempenho no Cluster</strong><a class="headerlink" href="#atividade-1-implementando-e-observando-ganhos-de-desempenho-no-cluster" title="Permanent link">&para;</a></h1>
+<p>Na Atividade 1, você irá executar as implementações que foram testadas na Atividade 0, mas agora no ambiente de um cluster HPC usando SLURM. O objetivo é observar como o ambiente de cluster, com sua capacidade de processamento paralelo, pode impactar o desempenho das operações computacionalmente intensivas que você já explorou.</p>
+<h3 id="parte-0-configurando-seu-acesso-ao-cluster-franky"><strong>Parte 0: Configurando seu acesso ao Cluster Franky</strong><a class="headerlink" href="#parte-0-configurando-seu-acesso-ao-cluster-franky" title="Permanent link">&para;</a></h3>
+<p>Para ter acesso ao Cluster Franky você precisa configurar suas credenciais de acesso e realizar acesso remoto via SSH.</p>
+<p>Entre no Blackboard.</p>
+<p>Navegue até a seção de materiais do curso onde a pasta com o par de chaves foi disponibilizada.</p>
+<p>Localize a pasta nomeada com o seu usuário.</p>
+<p>Faça o download da pasta completa, que contém os arquivos <code>id_rsa</code> (chave privada) e <code>id_rsa.pub</code> (chave pública).</p>
+<p>Dependendo do sistema operacional que você utiliza, siga as instruções abaixo para configurar corretamente sua chave privada.</p>
+<h4 id="para-macbook-ou-linux"><strong>Para Macbook ou Linux:</strong><a class="headerlink" href="#para-macbook-ou-linux" title="Permanent link">&para;</a></h4>
+<p>Abra o terminal.</p>
+<p>Navegue até a pasta onde a chave privada (<code>id_rsa</code>) foi baixada.</p>
+<p>Mova a chave para o diretório <code>.ssh</code> em sua home:
+<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>id_rsa<span class="w"> </span>~/.ssh/
+</code></pre></div></p>
+<p>Garanta que apenas você possa ler o arquivo:
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/id_rsa
+</code></pre></div></p>
+<p>Conecte-se ao cluster utilizando o comando SSH:
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>seu_usuario_insper@ip_do_cluster
 </code></pre></div>
-
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Vamos agora praticar usar este snippet para executar nossos testes automaticamente. </p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Crie uma função <code>roda_com_entrada(executavel, arquivo_in)</code> que roda o primeiro argumento usando como entrada o conteúdo do segundo argumento. Teste seu código com o executável <code>busca-local-1</code> e com o arquivo de entrada <code>in-0.txt</code> usado no exemplo acima.</p>
-<p>Sua função deverá devolver uma tupla <code>(stdout,time)</code> com <code>stdout</code> sendo a saída do programa e <code>time</code> seu tempo de execução em segundos. </p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="highlight"><pre><span></span><code><span class="c1"># TODO: exercício aqui</span>
+ou</p>
+<p><div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>seu_usuario_insper@ip_do_cluster
 </code></pre></div>
-
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="algoritmos-sequenciais">Algoritmos sequenciais<a class="headerlink" href="#algoritmos-sequenciais" title="Permanent link">&para;</a></h2>
-<p>Com esse código, vamos criar um relatório interativo que roda nossos testes automaticamente e já plota informações prontas para nossas análises. Vamos começar examinando o desempenho do executável <code>busca-local-1</code>.</p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Rode o <code>busca-local</code> com os arquivos de entrada na pasta <code>entradas-busca-local</code>. Guarde os tempos em uma lista.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Leia o tamanho das entradas dos arquivos  na pasta <code>entradas-busca-local</code> e guarde em uma segunda lista.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Plote o tempo de execução pelo tamanho da entrada usando <code>matplotlib</code></p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="highlight"><pre><span></span><code><span class="c1"># TODO: exercício aqui</span>
+Substitua <code>seu_usuario_insper</code> pelo seu nome de usuário Insper e <code>cluster_endereco</code> pelo endereço de IP fornecido durante a aula.</p>
+<h4 id="para-windows"><strong>Para Windows:</strong><a class="headerlink" href="#para-windows" title="Permanent link">&para;</a></h4>
+<p><strong>Usando OpenSSH :</strong></p>
+<p>Abra o PowerShell ou Windows Terminal.</p>
+<p>Navegue até a pasta onde a chave privada (<code>id_rsa</code>) foi baixada.</p>
+<p>Mova a chave para a pasta <code>.ssh</code> em seu diretório de usuário:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mkdir</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span>
+<span class="nb">mv </span><span class="n">id_rsa</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span>
 </code></pre></div>
-
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Repita os três passos acima para o executável <code>busca-local-2</code>. Finalize plotando os tempos de execução de ambos os executáveis no mesmo gráfico.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="highlight"><pre><span></span><code><span class="c1">#TODO: seu código aqui</span>
+<p>Certifique-se de que as permissões estão corretas:
+<div class="highlight"><pre><span></span><code><span class="n">icacls</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span><span class="n">id_rsa</span> <span class="p">/</span><span class="n">inheritance</span><span class="p">:</span><span class="nb">r </span><span class="p">/</span><span class="n">grant</span><span class="p">:</span><span class="nb">r </span><span class="s2">&quot;</span><span class="p">$(</span><span class="nv">$env:USERNAME</span><span class="p">)</span><span class="s2">:(R)&quot;</span>
 </code></pre></div>
-
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Segundo uma coleta de dados informal e altamente confiável, 93,17% dos alunos não colocam legendas nem títulos nos gráficos gerados. Faça isso agora. </p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="admonition question medium">
-<p class="admonition-title">Question</p>
-<p>Interprete o gráfico que você gerou na linha de cima. </p>
-</div>
-<div class="admonition question medium">
-<p class="admonition-title">Question</p>
-<p>Compare manualmente a saída dos programas. Existe diferença em seus resultados?</p>
-</div>
-<div class="admonition question medium">
-<p class="admonition-title">Question</p>
-<p>Resgate seus conhecimentos de Desafios de Programação e explique a diferença entre os algoritmos.</p>
-</div>
-<h2 id="algoritmos-paralelos">Algoritmos paralelos<a class="headerlink" href="#algoritmos-paralelos" title="Permanent link">&para;</a></h2>
-<p>Na discussão inicial da expositiva chegamos à conclusão de que se conseguimos realizar <em>N</em> operações em paralelo teremos um ganho de no máximo <em>N</em> vezes no desempenho de nosso programa. Nesta parte iremos estudar esta afirmação usando implementações paralelas dos algoritmos da seção anterior. </p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Execute os algoritmos paralelos com as mesmas entradas e compare com suas versões paralelas. Use um gráfico para facilitar as comparações</p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="highlight"><pre><span></span><code>
+Conecte-se ao cluster usando o comando:
+<div class="highlight"><pre><span></span><code><span class="n">ssh</span> <span class="n">-i</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span><span class="n">id_rsa</span> <span class="n">seu_usuario_insper</span><span class="nv">@ip_do_cluster</span>
+</code></pre></div></p>
+<h3 id="configurar-o-vs-code-para-acesso-remoto-ao-cluster">Configurar o VS Code para Acesso Remoto ao Cluster**<a class="headerlink" href="#configurar-o-vs-code-para-acesso-remoto-ao-cluster" title="Permanent link">&para;</a></h3>
+<p><strong>Instale a Extensão Remote - SSH</strong>:</p>
+<p>Abra o VS Code.</p>
+<p>Vá para a aba de extensões (ícone de quadrado no lado esquerdo).</p>
+<p>Pesquise por "Remote - SSH" e instale a extensão oficial da Microsoft.</p>
+<p><strong>Configurar o Acesso Remoto</strong>:</p>
+<p>Pressione <code>Ctrl+Shift+P</code> (ou <code>Cmd+Shift+P</code> no Mac) para abrir o painel de comandos.</p>
+<p>Digite <code>Remote-SSH: Add New SSH Host...</code> e selecione a opção.</p>
+<p>Insira o comando SSH que você utilizou anteriormente:
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>seu_usuario@cluster_endereco
 </code></pre></div>
+Escolha o arquivo de configuração padrão (<code>~/.ssh/config</code> para Mac/Linux ou <code>C:\Users\seu_usuario\.ssh\config</code> para Windows).</p>
+<p>Pressione <code>Ctrl+Shift+P</code> (ou <code>Cmd+Shift+P</code> no Mac) novamente e digite <code>Remote-SSH: Connect to Host...</code>.</p>
+<p>Selecione o host configurado no passo anterior.</p>
+<p>O VS Code abrirá uma nova janela conectada ao ambiente remoto do cluster.</p>
+<p><strong>Gerenciar Projetos Remotamente</strong>:</p>
+<p>Após a conexão, você pode abrir pastas e arquivos no cluster diretamente pelo VS Code.</p>
+<p>Utilize os recursos do VS Code, como o terminal integrado e o depurador, para trabalhar eficientemente no ambiente remoto.</p>
+<h3 id="executando-a-atividade-0-no-cluster-franky-usando-slurm">Executando a Atividade 0 no Cluster Franky usando SLURM<a class="headerlink" href="#executando-a-atividade-0-no-cluster-franky-usando-slurm" title="Permanent link">&para;</a></h3>
+<p>Crie um script de submissão .slurm para cada implementação utilizando o template abaixo. Esse script será utilizado para enviar o job ao cluster.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+</div>
+<p>As instruções #SBATCH são tecnicamente consideradas "comentários" pelo interpretador de comandos do shell (bash), mas não são realmente ignoradas. Quando você escreve um script para ser executado pelo SLURM, o bash interpreta as linhas #SBATCH como comentários normais, enquanto o gerenciador de jobs SLURM interpreta essas mesmas linhas como diretivas que definem como o job deve ser executado.</p>
+<p><strong>Exemplo de Script SLURM (Python):</strong></p>
+<p>matriz_mult_python.slurm</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#As instruções SBATCH não devem ser descomentadas</span>
 
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="admonition question medium">
-<p class="admonition-title">Question</p>
-<p>Compare os tempos obtidos. Qual foi o ganho médio? Quantos <em>núcleos</em> a máquina que você está usando possui? Responda comparando cada algoritmo sequencial com sua versão paralela.</p>
-</div>
-<p>Já estabelecemos que <code>busca-local-2</code> é melhor que <code>busca-local-1</code> por ser utilizar um algoritmo mais eficiente e vimos na prática a diferença entre um algoritmo <span class="arithmatex"><span class="MathJax_Preview">O(n^3)</span><script type="math/tex">O(n^3)</script></span> e um algoritmo <span class="arithmatex"><span class="MathJax_Preview">O(n^2)</span><script type="math/tex">O(n^2)</script></span>. Vamos agora examinar a seguinte questão.</p>
-<div class="admonition cite">
-<p class="admonition-title">É possível usar paralelismo para tornar <code>busca-local-1-par</code> melhor que <code>busca-local-2</code>?</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Compare o desempenho de <code>busca-local-1-par</code> com <code>busca-local-2</code>. Faça um gráfico</p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<span class="c1">#SBATCH --job-name=mult_matriz_py</span>
+<span class="c1"># define o nome do job. Esse nome aparece nas listas de jobs e é útil para identificar o job.</span>
 
-<div class="highlight"><pre><span></span><code>
+<span class="c1">#SBATCH --output=mult_matriz_py.out</span>
+<span class="c1"># Especifica o arquivo onde a saída padrão (stdout) do job será salva.</span>
+
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1"># Define o número de tarefas que o job executará. Neste caso, o job executa uma única tarefa.</span>
+
+<span class="c1">#SBATCH --time=00:10:00</span>
+<span class="c1"># Define o tempo máximo de execução para o job. Neste caso, o job tem um tempo limite de 10 minutos. Se o job exceder esse tempo, ele será automaticamente encerrado.</span>
+
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1"># Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila &quot;normal&quot;.</span>
+
+python3<span class="w"> </span>mult_matriz_py.py
+<span class="c1">#Executa o programa python3 dentro do nó de computação.</span>
 </code></pre></div>
+<p><strong>Exemplo de Script SLURM (C++):</strong></p>
+<p>matriz_mult_cpp.slurm</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=matriz_mult_cpp</span>
+<span class="c1"># Define o nome do job como &quot;matrix_mult_openmp&quot;. Esse nome aparece nas listas de jobs e é útil para identificar o job.</span>
 
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="admonition question medium">
-<p class="admonition-title">Question</p>
-<p>Com base em seu gráfico acima, responda a pergunta: "É possível usar paralelismo para tornar busca-local-1-par melhor que busca-local-2?"</p>
-</div>
-<p>Vamos agora generalizar a pergunta:</p>
-<div class="admonition question medium">
-<p class="admonition-title">Question</p>
-<p>Dados dois algoritmos com complexidades computacionais diferentes, sendo que o primeiro é inferior ao segundo. É possível usar paralelismo para tornar o primeiro mais rápido que o segundo para todos tamanhos de entrada? Assuma que você possui um número fixo de <em>núcleos</em>. </p>
-</div>
-</div>
-</div>
-</div>
+<span class="c1">#SBATCH --output=matriz_mult_cpp.out</span>
+<span class="c1"># Especifica o arquivo onde a saída padrão (stdout) do job será salva.</span>
+
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1"># Define o número de tarefas que o job executará. Neste caso, o job executa uma única tarefa.</span>
+
+<span class="c1">#SBATCH --time=00:10:00</span>
+<span class="c1"># Define o tempo máximo de execução para o job. Neste caso, o job tem um tempo limite de 10 minutos. Se o job exceder esse tempo, ele será automaticamente encerrado.</span>
+
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1"># Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila &quot;normal&quot;.</span>
+
+g++<span class="w">  </span>mult_matriz_cpp.cpp<span class="w"> </span>-o<span class="w"> </span>mult_matriz_cpp<span class="w"> </span>
+<span class="c1"># Compila o código C++ usando o compilador `g++`</span>
+
+./mult_matriz_cpp
+<span class="c1"># Executa o programa compilado &quot;mult_matriz_cpp&quot; dentro do nó de computação.</span>
+</code></pre></div>
+<p><strong>Exemplo de Script SLURM (C++ com Paralelismo):</strong></p>
+<p>matriz_mult_paralelo.slurm</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#SBATCH --job-name=matriz_mult_paralelo</span>
+<span class="c1"># Define o nome do job como &quot;matrix_mult_paralelo&quot;. Esse nome aparece nas listas de jobs e é útil para identificar o job.</span>
+
+<span class="c1">#SBATCH --output=matriz_mult_paralelo.out</span>
+<span class="c1"># Especifica o arquivo onde a saída padrão (stdout) do job será salva.</span>
+
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1"># Define o número de tarefas que o job executará. Neste caso, o job executa uma única tarefa.</span>
+
+<span class="c1">#SBATCH --cpus-per-task=4</span>
+<span class="c1"># Especifica o número de CPUs que devem ser alocadas para esta tarefa.</span>
+
+<span class="c1">#SBATCH --time=00:10:00</span>
+<span class="c1"># Define o tempo máximo de execução para o job. Neste caso, o job tem um tempo limite de 10 minutos. Se o job exceder esse tempo, ele será automaticamente encerrado.</span>
+
+<span class="c1">#SBATCH --partition=normal</span>
+<span class="c1"># Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila &quot;normal&quot;.</span>
+
+g++<span class="w"> </span>-fopenmp<span class="w"> </span>mult_matriz_paralelo<span class="w"> </span>-o<span class="w"> </span>mult_matriz_paralelo.cpp
+<span class="c1"># Compila o código C++ usando o compilador `g++`, com a flag `-fopenmp`, que habilita o suporte a OpenMP para paralelismo. </span>
+
+./mult_matriz_paralelo
+<span class="c1"># Executa o programa compilado &quot;mult_matriz_paralelo&quot; dentro do nó de computação.</span>
+</code></pre></div>
+<h3 id="parte-2-execucao-das-implementacoes-no-cluster"><strong>Parte 2: Execução das Implementações no Cluster</strong><a class="headerlink" href="#parte-2-execucao-das-implementacoes-no-cluster" title="Permanent link">&para;</a></h3>
+<p><strong>Submissão dos Jobs:</strong></p>
+<p>Utilize o comando <code>sbatch</code> para submeter cada script SLURM ao cluster.</p>
+<p><strong>Exemplo:</strong></p>
+<div class="highlight"><pre><span></span><code>sbatch<span class="w"> </span>matriz_mult_python.slurm
+sbatch<span class="w"> </span>matriz_mult_cpp.slurm
+sbatch<span class="w"> </span>matriz_mult_paralelo.slurm
+</code></pre></div>
+<p><strong>Monitoramento dos Jobs:</strong></p>
+<p>Use o comando <code>squeue</code> para monitorar o status dos jobs.</p>
+<p><strong>Exemplo:</strong></p>
+<div class="highlight"><pre><span></span><code>squeue<span class="w"> </span>
+</code></pre></div>
+<p><strong>Análise dos Resultados:</strong></p>
+<p>Após a execução dos jobs, os resultados estarão disponíveis nos arquivos <code>.out</code>  especificados em cada script SLURM.</p>
+<ul>
+<li>
+<p>Compare os tempos de execução dos três métodos (Python, C++, C++ com OpenMP) no cluster.</p>
+</li>
+<li>
+<p>Analise como o paralelismo afeta o desempenho no ambiente do cluster, em comparação com sua execução local.</p>
+</li>
+</ul>
+<p><strong>Entrega Atividade 1 - Relatório de Desempenho:</strong></p>
+<ul>
+<li>
+<p>Prepare um relatório detalhado, incluindo gráficos que mostrem a relação entre o tamanho das matrizes e o tempo de execução para cada implementação.</p>
+</li>
+<li>
+<p>Discuta o impacto do ambiente HPC no desempenho das operações e como o paralelismo pode escalar em um cluster de múltiplos nós.</p>
+</li>
+<li>
+<p>Submeta seu relatório pelo Blackboard até as 23h59 do dia da aula.</p>
+</li>
+</ul>
+<p>Nesta atividade, você explorou como o ambiente de cluster, pode ser utilizado para otimizar e acelerar operações que são intensivas em termos computacionais. Isso oferece uma base sólida para entender como tarefas de grande escala, como o processamento de big data ou o treinamento de modelos de IA, podem ser significativamente aceleradas com HPC.</p>
 
 
 
