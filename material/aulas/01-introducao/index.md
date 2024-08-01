@@ -1,189 +1,261 @@
-### Aula 1: Escalando Processos de Big Data e IA com HPC no Cluster Franky
+# **Atividade 1: Implementando e Observando Ganhos de Desempenho no Cluster**
 
-Compreender as limitações do processamento de dados em um ambiente computacional tradicional é apenas o primeiro passo. Agora, é hora de explorar como HPC pode transformar essas limitações em vantagens. Nesta atividade, você fará o pré-processamento e o treinamento do modelo de IA utilizando Dask e Apache Spark no Cluster Franky, se você não tem ideia do que essas coisas significam, fique tranquilinho(a), vamos um passo de cada vez.
-
-O objetivo é demonstrar como técnicas de paralelismo e distribuição de carga podem melhorar drasticamente a eficiência computacional. Ao comparar os tempos de execução e a precisão do modelo entre os ambientes local e distribuído, você entenderá como o HPC pode ser utilizado para processar grandes volumes de dados de maneira rápida e eficaz.
-
-!!! warning "Atenção!"
-    A entrega da atividade só poderá ser realizada até as 23h59 do dia da respectiva aula. 
-    A somatória de todas as entregas válidas atribui até **2 pontos na nota final**.
-    A descrição da atividade está no final da página.
-
+Na Atividade 1, você irá executar as implementações que foram testadas na Atividade 0, mas agora no ambiente de um cluster HPC usando SLURM. O objetivo é observar como o ambiente de cluster, com sua capacidade de processamento paralelo, pode impactar o desempenho das operações computacionalmente intensivas que você já explorou.
 
 ### **Parte 0: Configurando seu acesso ao Cluster Franky**
 
 Para ter acesso ao Cluster Franky você precisa configurar suas credenciais de acesso e realizar acesso remoto via SSH.
 
-1. **Acesse o Blackboard**: 
-   - Entre no Blackboard.
-   - Navegue até a seção de materiais do curso onde a pasta com o par de chaves foi disponibilizada.
+Entre no Blackboard.
 
-2. **Baixe a Pasta**:
-   - Localize a pasta nomeada com o seu usuário.
-   - Faça o download da pasta completa, que contém os arquivos `id_rsa` (chave privada) e `id_rsa.pub` (chave pública).
+Navegue até a seção de materiais do curso onde a pasta com o par de chaves foi disponibilizada.
+
+Localize a pasta nomeada com o seu usuário.
+
+Faça o download da pasta completa, que contém os arquivos `id_rsa` (chave privada) e `id_rsa.pub` (chave pública).
 
 
 Dependendo do sistema operacional que você utiliza, siga as instruções abaixo para configurar corretamente sua chave privada.
 
 #### **Para Macbook ou Linux:**
 
-1. **Mova a Chave Privada**:
-   - Abra o terminal.
-   - Navegue até a pasta onde a chave privada (`id_rsa`) foi baixada.
-   - Mova a chave para o diretório `.ssh` em sua home:
-     ```bash
-     mv id_rsa ~/.ssh/
-     ```
+Abra o terminal.
 
-2. **Ajuste as Permissões da Chave Privada**:
-   - Garanta que apenas você possa ler o arquivo:
-     ```bash
-     chmod 600 ~/.ssh/id_rsa
-     ```
+Navegue até a pasta onde a chave privada (`id_rsa`) foi baixada.
 
-3. **Acessar o Cluster via SSH**:
-   - Conecte-se ao cluster utilizando o comando SSH:
-     ```bash
-     ssh -i ~/.ssh/id_rsa seu_usuario_insper@ip_do_cluster
-     ```
-   - Substitua `seu_usuario_insper` pelo seu nome de usuário Insper e `cluster_endereco` pelo endereço de IP fornecido durante a aula.
+Mova a chave para o diretório `.ssh` em sua home:
+```bash
+mv id_rsa ~/.ssh/
+```
+
+Garanta que apenas você possa ler o arquivo:
+```bash
+chmod 600 ~/.ssh/id_rsa
+```
+
+Conecte-se ao cluster utilizando o comando SSH:
+```bash
+ssh -i ~/.ssh/id_rsa seu_usuario_insper@ip_do_cluster
+```
+ou
+
+```bash
+ssh seu_usuario_insper@ip_do_cluster
+```
+Substitua `seu_usuario_insper` pelo seu nome de usuário Insper e `cluster_endereco` pelo endereço de IP fornecido durante a aula.
 
 #### **Para Windows:**
 
-1. **Usando OpenSSH :**
+**Usando OpenSSH :**
 
-   - **Mover a Chave Privada**:
-     - Abra o PowerShell ou Windows Terminal.
-     - Navegue até a pasta onde a chave privada (`id_rsa`) foi baixada.
-     - Mova a chave para a pasta `.ssh` em seu diretório de usuário:
-       ```powershell
-       mkdir $env:USERPROFILE\.ssh
-       mv id_rsa $env:USERPROFILE\.ssh\
-       ```
+Abra o PowerShell ou Windows Terminal.
 
-   - **Ajustar Permissões da Chave Privada**:
-     - Certifique-se de que as permissões estão corretas:
-       ```powershell
-       icacls $env:USERPROFILE\.ssh\id_rsa /inheritance:r /grant:r "$($env:USERNAME):(R)"
-       ```
+Navegue até a pasta onde a chave privada (`id_rsa`) foi baixada.
 
-   - **Acessar o Cluster via SSH**:
-     - Conecte-se ao cluster usando o comando:
-       ```powershell
-       ssh -i $env:USERPROFILE\.ssh\id_rsa seu_usuario_insper@ip_do_cluster
-       ```
+Mova a chave para a pasta `.ssh` em seu diretório de usuário:
 
-### **Passo 3: Configurar o VS Code para Acesso Remoto ao Cluster**
+```powershell
+mkdir $env:USERPROFILE\.ssh
+mv id_rsa $env:USERPROFILE\.ssh\
+```
 
-1. **Instale a Extensão Remote - SSH**:
-   - Abra o VS Code.
-   - Vá para a aba de extensões (ícone de quadrado no lado esquerdo).
-   - Pesquise por "Remote - SSH" e instale a extensão oficial da Microsoft.
+Certifique-se de que as permissões estão corretas:
+```powershell
+icacls $env:USERPROFILE\.ssh\id_rsa /inheritance:r /grant:r "$($env:USERNAME):(R)"
+```
+Conecte-se ao cluster usando o comando:
+```powershell
+ssh -i $env:USERPROFILE\.ssh\id_rsa seu_usuario_insper@ip_do_cluster
+```
 
-2. **Configurar o Acesso Remoto**:
+### Configurar o VS Code para Acesso Remoto ao Cluster**
 
-   - **Adicione uma Nova Configuração SSH**:
-     - Pressione `Ctrl+Shift+P` (ou `Cmd+Shift+P` no Mac) para abrir o painel de comandos.
-     - Digite `Remote-SSH: Add New SSH Host...` e selecione a opção.
-     - Insira o comando SSH que você utilizou anteriormente:
-       ```bash
-       ssh -i ~/.ssh/id_rsa seu_usuario@cluster_endereco
-       ```
-     - Escolha o arquivo de configuração padrão (`~/.ssh/config` para Mac/Linux ou `C:\Users\seu_usuario\.ssh\config` para Windows).
+**Instale a Extensão Remote - SSH**:
 
-   - **Conectar ao Cluster**:
-     - Pressione `Ctrl+Shift+P` (ou `Cmd+Shift+P` no Mac) novamente e digite `Remote-SSH: Connect to Host...`.
-     - Selecione o host configurado no passo anterior.
-     - O VS Code abrirá uma nova janela conectada ao ambiente remoto do cluster.
+Abra o VS Code.
 
-3. **Gerenciar Projetos Remotamente**:
-   - Após a conexão, você pode abrir pastas e arquivos no cluster diretamente pelo VS Code.
-   - Utilize os recursos do VS Code, como o terminal integrado e o depurador, para trabalhar eficientemente no ambiente remoto.
+Vá para a aba de extensões (ícone de quadrado no lado esquerdo).
+
+Pesquise por "Remote - SSH" e instale a extensão oficial da Microsoft.
+
+**Configurar o Acesso Remoto**:
+
+Pressione `Ctrl+Shift+P` (ou `Cmd+Shift+P` no Mac) para abrir o painel de comandos.
+
+Digite `Remote-SSH: Add New SSH Host...` e selecione a opção.
+
+Insira o comando SSH que você utilizou anteriormente:
+```bash
+ssh -i ~/.ssh/id_rsa seu_usuario@cluster_endereco
+```
+Escolha o arquivo de configuração padrão (`~/.ssh/config` para Mac/Linux ou `C:\Users\seu_usuario\.ssh\config` para Windows).
+
+Pressione `Ctrl+Shift+P` (ou `Cmd+Shift+P` no Mac) novamente e digite `Remote-SSH: Connect to Host...`.
+
+ Selecione o host configurado no passo anterior.
+
+ O VS Code abrirá uma nova janela conectada ao ambiente remoto do cluster.
+
+**Gerenciar Projetos Remotamente**:
+
+ Após a conexão, você pode abrir pastas e arquivos no cluster diretamente pelo VS Code.
+
+ Utilize os recursos do VS Code, como o terminal integrado e o depurador, para trabalhar eficientemente no ambiente remoto.
 
 
 ###  Executando a Atividade 0 no Cluster Franky usando SLURM
 
-Neste exercício, você irá colocar em prática os conceitos de HPC aprendidos, executando o código desenvolvido na aula anterior, utilizando o SLURM para gerenciamento de recursos. O objetivo é comparar o tempo de execução e a eficiência computacional entre o ambiente local e o ambiente de cluster.
+Crie um script de submissão .slurm para cada implementação utilizando o template abaixo. Esse script será utilizado para enviar o job ao cluster.
+
+!!! warning
+   As instruções #SBATCH são tecnicamente consideradas "comentários" pelo interpretador de comandos do shell (bash), mas não são realmente ignoradas. Quando você escreve um script para ser executado pelo SLURM, o bash interpreta as linhas #SBATCH como comentários normais, enquanto o gerenciador de jobs SLURM interpreta essas mesmas linhas como diretivas que definem como o job deve ser executado.
 
 
-#### **1. Preparar o Código para Execução no Cluster**
+**Exemplo de Script SLURM (Python):**
 
-1. **Verifique o Código da Atividade 0:**
-   - Certifique-se de que o código da Atividade 0 está funcionando corretamente no seu ambiente local.
-   - O código deve estar preparado para ser executado sem intervenção manual.
+matriz_mult_python.slurm
 
-2. **Criar um Script SLURM para Submeter o Job:**
+```bash
+#!/bin/bash
+#As instruções SBATCH não devem ser descomentadas
 
-   Crie um arquivo de script chamado `mnist_slurm_job.sh`, que será usado para submeter o seu código no cluster Franky através do SLURM.
+#SBATCH --job-name=mult_matriz_py
+# define o nome do job. Esse nome aparece nas listas de jobs e é útil para identificar o job.
 
-   ```bash
-   #!/bin/bash
-   # Nome do Job
-   #SBATCH --job-name=mnist_hpc
-   # Quantidade de nós e tasks por nó
-   #SBATCH --nodes=1
-   #SBATCH --ntasks-per-node=4
-   # Tempo máximo de execução
-   #SBATCH --time=01:00:00
-   # salvar a saída do job
-   #SBATCH --output=mnist_hpc_%j.out
+#SBATCH --output=mult_matriz_py.out
+# Especifica o arquivo onde a saída padrão (stdout) do job será salva.
 
-   # Carregar o módulo do Python
-   module load python/3.8  
+#SBATCH --ntasks=1
+# Define o número de tarefas que o job executará. Neste caso, o job executa uma única tarefa.
 
-   # Executar o código Python
-   srun python atividade_0.py
-   ```
+#SBATCH --time=00:10:00
+# Define o tempo máximo de execução para o job. Neste caso, o job tem um tempo limite de 10 minutos. Se o job exceder esse tempo, ele será automaticamente encerrado.
 
-   - **Explicação dos parâmetros:**
-     - `--job-name`: Nome do job 
-     - `--nodes` e `--ntasks-per-node`: Define o número de nós e tarefas por nó (threads/processos).
-     - `--time`: Tempo máximo de execução alocado para o job.
-     - `--output`: Arquivo onde será salva a saída do job.
-     - `module load python/3.8`: Carrega o módulo Python no ambiente do cluster.
-     - `srun python atividade_0.py`: Executa o script Python que você desenvolveu na Atividade 0.
+#SBATCH --partition=normal
+# Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila "normal".
 
-3. **Transferir o Código para o Cluster:**
+python3 mult_matriz_py.py
+#Executa o programa python3 dentro do nó de computação.
+```
 
-   - Utilize o comando `scp` ou o VS Code configurado para acesso remoto para transferir o script `mnist_slurm_job.sh` e o arquivo `atividade_0.py` para o cluster.
+**Exemplo de Script SLURM (C++):**
 
-   ```bash
-   scp mnist_slurm_job.sh atividade_0.py seu_usuario@cluster_ip:/caminho/desejado/no/cluster/Franky
-   ```
+matriz_mult_cpp.slurm
 
-#### **2. Executar o Código no Cluster Franky Usando SLURM**
+```bash
+#!/bin/bash
+#SBATCH --job-name=matriz_mult_cpp
+# Define o nome do job como "matrix_mult_openmp". Esse nome aparece nas listas de jobs e é útil para identificar o job.
 
-1. **Acessar o Cluster via SSH:**
+#SBATCH --output=matriz_mult_cpp.out
+# Especifica o arquivo onde a saída padrão (stdout) do job será salva.
 
-   - Conecte-se ao cluster utilizando o terminal ou VS Code configurado:
-     ```bash
-     ssh seu_usuario@cluster_ip
-     ```
+#SBATCH --ntasks=1
+# Define o número de tarefas que o job executará. Neste caso, o job executa uma única tarefa.
 
-2. **Submeter o Job SLURM:**
+#SBATCH --time=00:10:00
+# Define o tempo máximo de execução para o job. Neste caso, o job tem um tempo limite de 10 minutos. Se o job exceder esse tempo, ele será automaticamente encerrado.
 
-   - Vá até a pasta scratch dentro do seu usuário, o script SLURM e o código Python precisam estar lá para que sejam executados adequadamente.
+#SBATCH --partition=normal
+# Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila "normal".
 
-   - Submeta o job ao SLURM utilizando o comando `sbatch`:
-     ```bash
-     sbatch mnist_slurm_job.sh
-     ```
+g++  mult_matriz_cpp.cpp -o mult_matriz_cpp 
+# Compila o código C++ usando o compilador `g++`
 
-3. **Monitorar o Status do Job:**
+./mult_matriz_cpp
+# Executa o programa compilado "mult_matriz_cpp" dentro do nó de computação.
 
-   - Use o comando `squeue` para verificar o status do seu job:
-     ```bash
-     squeue 
-     ```
-   - Para visualizar a saída do job, consulte o arquivo `.out` gerado:
-     ```bash
-     cat mnist_hpc_<job_id>.out
-     ```
+```
 
-### Atividade 1: Testando diferentes ambientes (Sua máquina e o Cluster Franky)
 
-   - Compare o tempo de execução do código no cluster (registrado no arquivo `.out`) com o tempo de execução do mesmo código no ambiente local (obtido no relatório da Atividade 0).
-   - Registre os resultados obtidos no cluster em um novo relatório.
-   - Inclua comparações de tempo, uso de recursos e qualquer outra observação relevante sobre a eficiência computacional entre o ambiente local e o cluster.
-   - Discuta como o uso do cluster e SLURM impactou o desempenho do código.
-   - A atividade deverá ser entregue pelo Blackboard até as 23h59 do dia da aula.
+**Exemplo de Script SLURM (C++ com Paralelismo):**
+
+matriz_mult_paralelo.slurm
+
+```bash
+#!/bin/bash
+
+#SBATCH --job-name=matriz_mult_paralelo
+# Define o nome do job como "matrix_mult_paralelo". Esse nome aparece nas listas de jobs e é útil para identificar o job.
+
+#SBATCH --output=matriz_mult_paralelo.out
+# Especifica o arquivo onde a saída padrão (stdout) do job será salva.
+
+#SBATCH --ntasks=1
+# Define o número de tarefas que o job executará. Neste caso, o job executa uma única tarefa.
+
+#SBATCH --cpus-per-task=4
+# Especifica o número de CPUs que devem ser alocadas para esta tarefa.
+
+#SBATCH --time=00:10:00
+# Define o tempo máximo de execução para o job. Neste caso, o job tem um tempo limite de 10 minutos. Se o job exceder esse tempo, ele será automaticamente encerrado.
+
+#SBATCH --partition=normal
+# Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila "normal".
+
+g++ -fopenmp mult_matriz_paralelo -o mult_matriz_paralelo.cpp
+# Compila o código C++ usando o compilador `g++`, com a flag `-fopenmp`, que habilita o suporte a OpenMP para paralelismo. 
+
+./mult_matriz_paralelo
+# Executa o programa compilado "mult_matriz_paralelo" dentro do nó de computação.
+
+```
+
+### **Parte 2: Execução das Implementações no Cluster**
+
+**Submissão dos Jobs:**
+
+Utilize o comando `sbatch` para submeter cada script SLURM ao cluster.
+
+**Exemplo:**
+
+```bash
+sbatch matriz_mult_python.slurm
+sbatch matriz_mult_cpp.slurm
+sbatch matriz_mult_paralelo.slurm
+```
+
+**Monitoramento dos Jobs:**
+
+Use o comando `squeue` para monitorar o status dos jobs.
+
+**Exemplo:**
+
+```bash
+squeue 
+```
+
+**Análise dos Resultados:**
+
+Após a execução dos jobs, os resultados estarão disponíveis nos arquivos `.out`  especificados em cada script SLURM.
+
+  - Compare os tempos de execução dos três métodos (Python, C++, C++ com OpenMP) no cluster.
+
+   - Analise como o paralelismo afeta o desempenho no ambiente do cluster, em comparação com sua execução local.
+
+
+**Entrega Atividade 1 - Relatório de Desempenho:**
+   
+   - Prepare um relatório detalhado, incluindo gráficos que mostrem a relação entre o tamanho das matrizes e o tempo de execução para cada implementação.
+ 
+   - Discuta o impacto do ambiente HPC no desempenho das operações e como o paralelismo pode escalar em um cluster de múltiplos nós.
+
+   - Submeta seu relatório pelo Blackboard até as 23h59 do dia da aula.
+
+
+Nesta atividade, você explorou como o ambiente de cluster, pode ser utilizado para otimizar e acelerar operações que são intensivas em termos computacionais. Isso oferece uma base sólida para entender como tarefas de grande escala, como o processamento de big data ou o treinamento de modelos de IA, podem ser significativamente aceleradas com HPC.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

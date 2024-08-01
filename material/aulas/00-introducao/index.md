@@ -1,131 +1,215 @@
-### Aula 0: Fundamentos de HPC no Processamento de grandes dados
+# Aula 0: Fundamentos de HPC 
 
-A crescente disponibilidade de grandes volumes de dados e o avanço das aplicações de Inteligência Artificial colocam desafios significativos em termos de processamento e análise. Em cenários onde o tempo e a eficiência são críticos, HPC se torna uma ferramenta essencial para lidar com essas demandas. Ao explorar o potencial do paralelismo e da computação distribuída, o HPC permite que tarefas intensivas, como o treinamento de modelos de IA, sejam realizadas de maneira rápida e eficaz.
+Nesta atividade, veremos como o processamento paralelo pode melhorar significativamente o desempenho de operações computacionalmente intensivas. Utilizaremos Python e C++ para implementar e otimizar a multiplicação de matrizes, uma operação comum em muitas aplicações de IA e visão computacional.
 
-Utilizando o dataset MNIST, você executará o pré-processamento e o treinamento de um modelo de IA em um ambiente computacional tradicional (sua máquina). Esta experiência inicial proporcionará uma compreensão das limitações desse ambiente, num futuro não tão distante (próxima aula) faremos otimizações e utilizaremos técnicas de escalabilidade em ambientes de alta performance (O cluster Franky).
-
-
-1. **Preparação do Ambiente:**
-   - **Python 3.x** instalado.
-   - Bibliotecas necessárias: `pandas`, `scikit-learn`, `matplotlib`.
+Ao longo desta atividade, você entenderá as limitações do processamento em uma única thread e verá como o paralelismo pode ser aplicado para acelerar tarefas. 
 
 
-2. **Exploração Inicial dos Dados:**
-    ```python
-      import numpy as np
-      from sklearn.datasets import fetch_openml
-      import pandas as pd
-      import matplotlib.pyplot as plt
-      from sklearn.model_selection import train_test_split
-      from sklearn.preprocessing import StandardScaler
-      from sklearn.linear_model import LogisticRegression
-      from sklearn.metrics import accuracy_score
-      import time
+## Parte 1: Implementação Básica em Python 
 
-      # Carregando o dataset MNIST com parser='auto'
-      mnist = fetch_openml('mnist_784', parser='auto')
-
-      # Convertendo para DataFrame e convertendo os dados para tipo float
-      df = pd.DataFrame(mnist.data.astype(np.float32), columns=mnist.feature_names)
-      df['target'] = mnist.target.astype(int)  # Converter o target para int, se necessário
-
-      # Verificando o tipo de dados
-      print(df.dtypes)
-
-      # Visualizando algumas amostras
-      fig, axes = plt.subplots(1, 5, figsize=(10, 3))
-      for i, ax in enumerate(axes):
-         ax.imshow(df.iloc[i, :-1].values.reshape(28, 28), cmap='gray')
-         ax.set_title(f"Label: {df['target'][i]}")
-         ax.axis('off')
-      plt.show()
-
-    ```
-
-Vamos realizar um pré-processamento simples, incluindo normalização dos dados e divisão em conjuntos de treino e teste.
-
-    ```python
-   # Separando features e target
-   X = df.drop('target', axis=1)
-   y = df['target'].astype('int')
-
-   # Dividindo o dataset em treino e teste
-   X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-
-   # Normalizando os dados
-   scaler = StandardScaler()
-   X_train = scaler.fit_transform(X_train)
-   X_test = scaler.transform(X_test)
-
-   print(X_train.size, X_test.size)
-
-    ```
-
-Vamos agora treinar um modelo de classificação utilizando regressão logística e medir o tempo de execução.
+Execute o código abaixo e observe o tempo de execução. Essa é uma implementação sequencial que processa a multiplicação de matrizes usando uma única thread.
 
 
-    ```python
-      # Inicializando o modelo de Regressão Logística
-      model = LogisticRegression(max_iter=1000, solver='lbfgs')
+```python
 
-      # Medindo o tempo de execução
-      start_time = time.time()
-      model.fit(X_train, y_train)
-      end_time = time.time()
+import time  # Importa o módulo time, que fornece funções para medir o tempo de execução do código.
 
-      # Avaliando o modelo
-      y_pred = model.predict(X_test)
-      accuracy = accuracy_score(y_test, y_pred)
+def multiply_matrices(A, B):
+    # Define a função multiply_matrices, que realiza a multiplicação de duas matrizes A e B.
+    # O resultado é armazenado na matriz result.
+    result = [[0 for _ in range(len(B[0]))] for _ in range(len(A))]
+    # Cria uma matriz de zeros com o mesmo número de linhas que A e o mesmo número de colunas que B.
+    # Esta matriz armazenará os resultados da multiplicação.
 
-      print(f"Acurácia do modelo: {accuracy:.2f}")
-      print(f"Tempo de execução para treinamento: {end_time - start_time:.2f} segundos")
-    ```
+    for i in range(len(A)):
+        # Itera sobre as linhas da matriz A.
+        for j in range(len(B[0])):
+            # Itera sobre as colunas da matriz B.
+            for k in range(len(B)):
+                # Itera sobre as colunas de A e as linhas de B para calcular o produto escalar da linha i de A com a coluna j de B.
+                result[i][j] += A[i][k] * B[k][j]
+                # Realiza a multiplicação dos elementos correspondentes de A e B e soma o resultado ao elemento result[i][j].
+
+    return result
+    # Retorna a matriz result, que contém o produto das matrizes A e B.
+
+# Gerar duas matrizes de tamanho grande para o teste
+N = 200  # Define o tamanho N das matrizes quadradas (200x200).
+
+A = [[i + j for j in range(N)] for i in range(N)]
+# Gera a matriz A de tamanho N x N, onde cada elemento A[i][j] é a soma dos índices i e j.
+
+B = [[i * j for j in range(N)] for i in range(N)]
+# Gera a matriz B de tamanho N x N, onde cada elemento B[i][j] é o produto dos índices i e j.
+
+start_time = time.time()
+# Marca o tempo de início da multiplicação das matrizes usando a função time.time().
+
+result = multiply_matrices(A, B)
+# Chama a função multiply_matrices para multiplicar as matrizes A e B, armazenando o resultado em 'result'.
+
+end_time = time.time()
+# Marca o tempo de término da multiplicação usando a função time.time().
+
+print(f"Tempo de execução para a multiplicação de matrizes: {end_time - start_time:.2f} segundos")
+# Calcula e exibe o tempo de execução da multiplicação de matrizes, subtraindo start_time de end_time.
+# O tempo é formatado para mostrar duas casas decimais.
+
+```
 
 
-### Solucionadores Disponíveis no `LogisticRegression`
 
-O `scikit-learn` oferece vários tipos de solucionadores para a classe `LogisticRegression`. Cada um desses solucionadores pode ter um desempenho diferente dependendo da natureza dos dados, da escala do problema e dos recursos computacionais disponíveis.
+## Parte 2: Implementação em C++ e Otimização
 
-Essa é a lista dos solucionadores disponíveis:
+Compile e execute o código em C++. Compare o tempo de execução com o resultado obtido na Parte 1. Observe como C++ lida com operações computacionalmente intensivas de forma mais eficiente.
 
-1. **`liblinear`**:
-   - **Descrição**: Um solucionador baseado em abordagem de coordenação, bom para pequenos datasets ou quando há um pequeno número de features.
-   - **Vantagens**: Funciona bem para problemas binários e de múltiplas classes com regularização L1 ou L2.
-   - **Limitações**: Não escala bem com o número de dados ou features.
+!!! tip 
+      Se precisar de ajuda para instalar um compilador em C++ ou compilar e executar, [consulte o material disponível](../../Teoria/compilar-executar-C++.md).
 
-2. **`newton-cg`**:
-   - **Descrição**: Um solucionador que utiliza o método de Newton conjugado para otimização.
-   - **Vantagens**: Eficiente para problemas de regressão logística com grande número de features.
-   - **Limitações**: Pode ser mais lento que outros solucionadores para grandes datasets.
 
-3. **`lbfgs`**:
-   - **Descrição**: Um solucionador baseado no algoritmo de otimização BFGS limitado.
-   - **Vantagens**: Funciona bem para problemas de múltiplas classes e é eficiente em grandes datasets.
-   - **Limitações**: Pode não convergir para dados mal escalonados.
+```cpp
+#include <iostream>   // Inclui a biblioteca padrão de entrada e saída do C++ (necessária para usar std::cout).
+#include <vector>     // Inclui a biblioteca de vetores da STL (Standard Template Library) do C++, usada para criar matrizes dinâmicas.
+#include <chrono>     // Inclui a biblioteca de medição de tempo do C++ (necessária para medir o tempo de execução).
 
-4. **`sag`**:
-   - **Descrição**: Um solucionador que utiliza o método de gradiente estocástico agregado.
-   - **Vantagens**: Escala bem com grandes datasets e funciona bem para problemas com regularização L2.
-   - **Limitações**: Não suporta regularização L1.
+// Função para multiplicar duas matrizes A e B, armazenando o resultado na matriz 'result'.
+void multiply_matrices(const std::vector<std::vector<int>>& A, const std::vector<std::vector<int>>& B, std::vector<std::vector<int>>& result) {
+   // Loop para iterar sobre as linhas da matriz A.
+   for (size_t i = 0; i < A.size(); ++i) {
+      // Loop para iterar sobre as colunas da matriz B.
+      for (size_t j = 0; j < B[0].size(); ++j) {
+            result[i][j] = 0; // Inicializa o elemento result[i][j] com 0 antes de somar os produtos.
+            // Loop para calcular o produto escalar da linha i de A com a coluna j de B.
+            for (size_t k = 0; k < B.size(); ++k) {
+               result[i][j] += A[i][k] * B[k][j]; // Realiza a multiplicação e soma dos elementos correspondentes de A e B.
+            }
+      }
+   }
+}
 
-5. **`saga`**:
-   - **Descrição**: Uma versão aprimorada do `sag` que suporta regularização L1 e L2, além de ser eficaz para grandes datasets.
-   - **Vantagens**: Funciona bem para problemas de múltiplas classes, é robusto para diferentes tipos de regularização e escalável.
-   - **Limitações**: Pode ser mais lento que `lbfgs` para pequenos datasets.
+// Função principal do programa.
+int main() {
+   size_t N = 200; // Define o tamanho N das matrizes quadradas (200x200).
 
-### Atividade 0: Testando Diferentes Solucionadores
+   // Declara e inicializa a matriz A como uma matriz NxN preenchida com zeros.
+   std::vector<std::vector<int>> A(N, std::vector<int>(N));
 
-1. **Testar Diferentes Solucionadores:**
-   - treinar o modelo de regressão logística utilizando cada um dos solucionadores disponíveis.
-   - Para cada solucionador, medir o tempo de execução, verificar se o modelo convergiu e registrar a acurácia do modelo.
+   // Declara e inicializa a matriz B como uma matriz NxN preenchida com zeros.
+   std::vector<std::vector<int>> B(N, std::vector<int>(N));
 
-2. **Documentar os Resultados:**
-   - Crie um relatório que inclua:
-     - Acurácia do modelo para cada solucionador.
-     - Tempo de execução para o treinamento do modelo com cada solucionador.
+   // Declara e inicializa a matriz result como uma matriz NxN preenchida com zeros, que armazenará o resultado da multiplicação.
+   std::vector<std::vector<int>> result(N, std::vector<int>(N));
 
-3. **Análise Comparativa:**
-   - Faça uma análise comparativa para determinar qual solucionador foi mais eficiente em termos de tempo e qual proporcionou a melhor acurácia. 
+   // Loop para preencher as matrizes A e B com valores.
+   for (size_t i = 0; i < N; ++i) {
+      for (size_t j = 0; j < N; ++j) {
+            A[i][j] = i + j; // Preenche a matriz A com a soma dos índices i e j.
+            B[i][j] = i * j; // Preenche a matriz B com o produto dos índices i e j.
+      }
+   }
 
-4. **Entrega da atividade**
-   - A atividade deverá ser entregue pelo Blackboard até as 23h59 do dia da aula.
+   // Marca o tempo de início da multiplicação das matrizes usando o relógio de alta resolução.
+   auto start = std::chrono::high_resolution_clock::now();
+
+   // Chama a função multiply_matrices para multiplicar as matrizes A e B, armazenando o resultado em 'result'.
+   multiply_matrices(A, B, result);
+
+   // Marca o tempo de término da multiplicação.
+   auto end = std::chrono::high_resolution_clock::now();
+
+   // Calcula a duração da multiplicação subtraindo o tempo de início do tempo de término, armazenando o resultado em 'duration'.
+   std::chrono::duration<double> duration = end - start;
+
+   // Exibe o tempo de execução da multiplicação de matrizes no console.
+   std::cout << "Tempo de execução para a multiplicação de matrizes em C++: " << duration.count() << " segundos" << std::endl;
+
+   return 0; // Retorna 0, indicando que o programa foi executado com sucesso.
+}
+
+```
+
+
+## Parte 3: Paralelismo em C++ com OpenMP
+
+Compile e execute o código modificado. Observe a diferença no tempo de execução em comparação com as versões anteriores.
+
+```cpp
+#include <iostream>   // Inclui a biblioteca padrão de entrada e saída, usada para funções como std::cout.
+#include <vector>     // Inclui a biblioteca de vetores da STL (Standard Template Library) do C++.
+#include <chrono>     // Inclui a biblioteca para medição de tempo, utilizada para calcular a duração de execução.
+#include <omp.h>      // Inclui a biblioteca OpenMP, usada para paralelismo em C++.
+
+void multiply_matrices(const std::vector<std::vector<int>>& A, const std::vector<std::vector<int>>& B, std::vector<std::vector<int>>& result) {
+    // Define a função que realiza a multiplicação de duas matrizes A e B, armazenando o resultado na matriz 'result'.
+    #pragma omp parallel for
+    // Diretiva OpenMP que paraleliza o loop 'for' que segue. Cada iteração do loop externo será executada em paralelo.
+    for (size_t i = 0; i < A.size(); ++i) {
+        // Itera sobre as linhas da matriz A. 'size_t' é um tipo de dado usado para representar tamanhos e índices.
+        for (size_t j = 0; j < B[0].size(); ++j) {
+            // Itera sobre as colunas da matriz B.
+            result[i][j] = 0;
+            // Inicializa o elemento [i][j] da matriz result com 0 antes de somar os produtos.
+            for (size_t k = 0; k < B.size(); ++k) {
+                // Itera sobre as colunas de A e as linhas de B para calcular o produto escalar da linha i de A com a coluna j de B.
+                result[i][j] += A[i][k] * B[k][j];
+                // Realiza a multiplicação dos elementos correspondentes de A e B, somando o resultado ao elemento result[i][j].
+            }
+        }
+    }
+}
+
+int main() {
+    size_t N = 200;
+    // Define o tamanho N das matrizes quadradas (200x200).
+    std::vector<std::vector<int>> A(N, std::vector<int>(N));
+    // Declara e inicializa a matriz A como uma matriz NxN preenchida com zeros.
+    std::vector<std::vector<int>> B(N, std::vector<int>(N));
+    // Declara e inicializa a matriz B como uma matriz NxN preenchida com zeros.
+    std::vector<std::vector<int>> result(N, std::vector<int>(N));
+    // Declara e inicializa a matriz result como uma matriz NxN preenchida com zeros, que armazenará o resultado da multiplicação.
+
+    for (size_t i = 0; i < N; ++i) {
+        // Itera sobre as linhas da matriz A e B.
+        for (size_t j = 0; j < N; ++j) {
+            // Itera sobre as colunas da matriz A e B.
+            A[i][j] = i + j;
+            // Preenche a matriz A com valores como a soma dos índices i e j.
+            B[i][j] = i * j;
+            // Preenche a matriz B com valores como o produto dos índices i e j.
+        }
+    }
+
+    auto start = std::chrono::high_resolution_clock::now();
+    // Marca o tempo de início da multiplicação das matrizes usando o relógio de alta resolução.
+    multiply_matrices(A, B, result);
+    // Chama a função multiply_matrices para multiplicar as matrizes A e B, armazenando o resultado em 'result'.
+    auto end = std::chrono::high_resolution_clock::now();
+    // Marca o tempo de término da multiplicação.
+
+    std::chrono::duration<double> duration = end - start;
+    // Calcula a duração da multiplicação subtraindo o tempo de início do tempo de término, armazenando o resultado em 'duration'.
+    std::cout << "Tempo de execução para a multiplicação de matrizes em C++ com OpenMP: " << duration.count() << " segundos" << std::endl;
+    // Exibe o tempo de execução da multiplicação de matrizes no console.
+
+    return 0;
+    // Retorna 0, indicando que o programa foi executado com sucesso.
+}
+
+```
+
+Esta atividade demonstrou como o paralelismo pode melhorar o desempenho de operações computacionalmente intensivas, como a multiplicação de matrizes. Você viu como Python e C++ lidam com essas operações e como o C++ com OpenMP pode levar a ganhos de desempenho ainda maiores. Na próxima atividade, você levará essas implementações para o cluster Franky e explorará técnicas avançadas de paralelismo.
+
+
+## Entrega - Atividade 0
+
+- Aumente o tamanho das matrizes nos 3 exemplos para 300x300, 900x900 e 1300x1300 
+
+- Elabore um gráfico que relaciona a complexidade do problema (tamanho da matriz) com o tempo de execução para cada implementação.
+
+- Faça uma análise comparativa sobre o impacto do paralelismo no desempenho de acordo com a complexidade do problema.
+
+- Comente sobre como você acha que este problema pode ser abordado em um ambiente de HPC.
+
+
+Submeta seu relatório até as 23h59 do dia da aula pelo Blackboard.
+

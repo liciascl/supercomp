@@ -7,6 +7,8 @@
 ### Passos para Windows
 
 1. **Instalar o Compilador** 
+    [Siga este tutorial](https://code.visualstudio.com/docs/cpp/config-mingw)
+
 2. **Instalar Extensões Necessárias no VSCode:**
     - Abra o VSCode.
     - Vá para a aba de extensões (ícone de quadrado no lado esquerdo).
@@ -16,13 +18,7 @@
 ### Passos para Linux
 
 1. **Instalar o Compilador G++:**
-    - Abra o terminal e execute o seguinte comando para instalar o G++:
-        
-        ```
-        sudo apt-get update
-        sudo apt-get install g++
-        
-        ```
+    - Não precisa, já vem instalado <3
         
 2. **Instalar Extensões Necessárias no VSCode:**
     - Abra o VSCode.
@@ -33,6 +29,9 @@
 ### Passos para macOS
 
 1. **Instalar o compilador:**
+    - Não precisa, já vem instalado <3
+    - Mas se quiser saber mais detalhes sobre o Clang, sugiro [este material](https://code.visualstudio.com/docs/cpp/config-clang-mac)
+
 2. **Instalar Extensões Necessárias no VSCode:**
     - Abra o VSCode.
     - Vá para a aba de extensões (ícone de quadrado no lado esquerdo).
@@ -54,7 +53,7 @@ int main() {
 
 ```
 
-### Windows → Compilar e Executar
+### **Windows** → Compilar e Executar
 
 ```
 g++ main.cpp -o main.exe
@@ -70,10 +69,10 @@ g++ main.cpp -o main
 
 ```
 
-### **MacOS** → Compilar e Executar**:**
+### **MacOS** → Compilar e Executar
 
 ```
-g++ main.cpp -o main
+clang++ main.cpp -o main
 ./main
 
 ```
