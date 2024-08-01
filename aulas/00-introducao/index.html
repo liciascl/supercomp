@@ -349,18 +349,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#parte-2-implementacao-em-c-e-otimizacao" class="md-nav__link">
+  <a href="#parte-2-implementacao-em-c" class="md-nav__link">
     <span class="md-ellipsis">
-      Parte 2: Implementação em C++ e Otimização
+      Parte 2: Implementação em C++
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#parte-3-paralelismo-em-c-com-openmp" class="md-nav__link">
+  <a href="#parte-3-paralelismo-em-c" class="md-nav__link">
     <span class="md-ellipsis">
-      Parte 3: Paralelismo em C++ com OpenMP
+      Parte 3: Paralelismo em C++
     </span>
   </a>
   
@@ -889,18 +889,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#parte-2-implementacao-em-c-e-otimizacao" class="md-nav__link">
+  <a href="#parte-2-implementacao-em-c" class="md-nav__link">
     <span class="md-ellipsis">
-      Parte 2: Implementação em C++ e Otimização
+      Parte 2: Implementação em C++
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#parte-3-paralelismo-em-c-com-openmp" class="md-nav__link">
+  <a href="#parte-3-paralelismo-em-c" class="md-nav__link">
     <span class="md-ellipsis">
-      Parte 3: Paralelismo em C++ com OpenMP
+      Parte 3: Paralelismo em C++
     </span>
   </a>
   
@@ -934,10 +934,9 @@
 
 
 <h1 id="aula-0-fundamentos-de-hpc">Aula 0: Fundamentos de HPC<a class="headerlink" href="#aula-0-fundamentos-de-hpc" title="Permanent link">&para;</a></h1>
-<p>Nesta atividade, veremos como o processamento paralelo pode melhorar significativamente o desempenho de operações computacionalmente intensivas. Utilizaremos Python e C++ para implementar e otimizar a multiplicação de matrizes, uma operação comum em muitas aplicações de IA e visão computacional.</p>
-<p>Ao longo desta atividade, você entenderá as limitações do processamento em uma única thread e verá como o paralelismo pode ser aplicado para acelerar tarefas. </p>
+<p>Nesta atividade, veremos como a escolha da linguagem de programação pode melhorar significativamente o desempenho de operações computacionalmente intensivas. Utilizaremos Python e C++ para implementar e comparar o desempenho na multiplicação de matrizes, uma operação comum em muitas aplicações de IA e visão computacional.</p>
 <h2 id="parte-1-implementacao-basica-em-python">Parte 1: Implementação Básica em Python<a class="headerlink" href="#parte-1-implementacao-basica-em-python" title="Permanent link">&para;</a></h2>
-<p>Execute o código abaixo e observe o tempo de execução. Essa é uma implementação sequencial que processa a multiplicação de matrizes usando uma única thread.</p>
+<p>Execute o código abaixo e observe o tempo de execução. Essa é uma implementação sequencial que processa a multiplicação de matrizes usando uma única thread em python.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span>  <span class="c1"># Importa o módulo time, que fornece funções para medir o tempo de execução do código.</span>
 
 <span class="k">def</span> <span class="nf">multiply_matrices</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
@@ -981,7 +980,7 @@
 <span class="c1"># Calcula e exibe o tempo de execução da multiplicação de matrizes, subtraindo start_time de end_time.</span>
 <span class="c1"># O tempo é formatado para mostrar duas casas decimais.</span>
 </code></pre></div>
-<h2 id="parte-2-implementacao-em-c-e-otimizacao">Parte 2: Implementação em C++ e Otimização<a class="headerlink" href="#parte-2-implementacao-em-c-e-otimizacao" title="Permanent link">&para;</a></h2>
+<h2 id="parte-2-implementacao-em-c">Parte 2: Implementação em C++<a class="headerlink" href="#parte-2-implementacao-em-c" title="Permanent link">&para;</a></h2>
 <p>Compile e execute o código em C++. Compare o tempo de execução com o resultado obtido na Parte 1. Observe como C++ lida com operações computacionalmente intensivas de forma mais eficiente.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -1045,7 +1044,7 @@
 <span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Retorna 0, indicando que o programa foi executado com sucesso.</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="parte-3-paralelismo-em-c-com-openmp">Parte 3: Paralelismo em C++ com OpenMP<a class="headerlink" href="#parte-3-paralelismo-em-c-com-openmp" title="Permanent link">&para;</a></h2>
+<h2 id="parte-3-paralelismo-em-c">Parte 3: Paralelismo em C++<a class="headerlink" href="#parte-3-paralelismo-em-c" title="Permanent link">&para;</a></h2>
 <p>Compile e execute o código modificado. Observe a diferença no tempo de execução em comparação com as versões anteriores.</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="c1">   // Inclui a biblioteca padrão de entrada e saída, usada para funções como std::cout.</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="c1">     // Inclui a biblioteca de vetores da STL (Standard Template Library) do C++.</span>
@@ -1108,7 +1107,7 @@
 <span class="w">    </span><span class="c1">// Retorna 0, indicando que o programa foi executado com sucesso.</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Esta atividade demonstrou como o paralelismo pode melhorar o desempenho de operações computacionalmente intensivas, como a multiplicação de matrizes. Você viu como Python e C++ lidam com essas operações e como o C++ com OpenMP pode levar a ganhos de desempenho ainda maiores. Na próxima atividade, você levará essas implementações para o cluster Franky e explorará técnicas avançadas de paralelismo.</p>
+<p>Esta atividade demonstrou como a escolha da linguagem de programação pode impactar no desempenho de operações computacionalmente intensivas, como a multiplicação de matrizes. Você viu como Python e C++ lidam com essas operações e como o paralelismo pode ser uma boa opção, dependendo da complexidade do problema. Na próxima atividade, você levará essas implementações para o cluster Franky e essas diferenças ficarão ainda mais visíveis.</p>
 <h2 id="entrega-atividade-0">Entrega - Atividade 0<a class="headerlink" href="#entrega-atividade-0" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
