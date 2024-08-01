@@ -985,32 +985,24 @@
 <p>Na Atividade 1, você irá executar as implementações que foram testadas na Atividade 0, mas agora no ambiente de um cluster HPC usando SLURM. O objetivo é observar como o ambiente de cluster, com sua capacidade de processamento paralelo, pode impactar o desempenho das operações computacionalmente intensivas que você já explorou.</p>
 <h3 id="parte-0-configurando-seu-acesso-ao-cluster-franky"><strong>Parte 0: Configurando seu acesso ao Cluster Franky</strong><a class="headerlink" href="#parte-0-configurando-seu-acesso-ao-cluster-franky" title="Permanent link">&para;</a></h3>
 <p>Para ter acesso ao Cluster Franky você precisa configurar suas credenciais de acesso e realizar acesso remoto via SSH.</p>
-<p>Entre no Blackboard.</p>
-<p>Navegue até a seção de materiais do curso onde a pasta com o par de chaves foi disponibilizada.</p>
-<p>Localize a pasta nomeada com o seu usuário.</p>
-<p>Faça o download da pasta completa, que contém os arquivos <code>id_rsa</code> (chave privada) e <code>id_rsa.pub</code> (chave pública).</p>
-<p>Dependendo do sistema operacional que você utiliza, siga as instruções abaixo para configurar corretamente sua chave privada.</p>
+<p>Entre no Blackboard, navegue até a seção de materiais do curso onde a pasta com o par de chaves foi disponibilizada, Faça o download da pasta completa, que contém os arquivos <code>id_rsa</code> (chave privada) e <code>id_rsa.pub</code> (chave pública). Dependendo do sistema operacional que você utiliza, siga as instruções abaixo para configurar  corretamente sua chave privada.</p>
 <h4 id="para-macbook-ou-linux"><strong>Para Macbook ou Linux:</strong><a class="headerlink" href="#para-macbook-ou-linux" title="Permanent link">&para;</a></h4>
-<p>Abra o terminal.</p>
-<p>Navegue até a pasta onde a chave privada (<code>id_rsa</code>) foi baixada.</p>
-<p>Mova a chave para o diretório <code>.ssh</code> em sua home:
+<p>Abra o terminal, navegue até a pasta onde a chave privada (<code>id_rsa</code>) foi baixada, mova a chave para o diretório <code>.ssh</code> em sua home:</p>
 <div class="highlight"><pre><span></span><code>mv<span class="w"> </span>id_rsa<span class="w"> </span>~/.ssh/
-</code></pre></div></p>
-<p>Garanta que apenas você possa ler o arquivo:
+</code></pre></div>
+<p>Garanta que apenas você possa ler o arquivo:</p>
 <div class="highlight"><pre><span></span><code>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/id_rsa
-</code></pre></div></p>
-<p>Conecte-se ao cluster utilizando o comando SSH:
-<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>seu_usuario_insper@ip_do_cluster
+</code></pre></div>
+<p>Conecte-se ao cluster utilizando o comando SSH:</p>
+<p>Substitua <code>seu_usuario_insper</code> pelo seu nome de usuário Insper e <code>cluster_endereco</code> pelo endereço de IP fornecido durante a aula.</p>
+<p><div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>seu_usuario_insper@ip_do_cluster
 </code></pre></div>
 ou</p>
-<p><div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>seu_usuario_insper@ip_do_cluster
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>seu_usuario_insper@ip_do_cluster
 </code></pre></div>
-Substitua <code>seu_usuario_insper</code> pelo seu nome de usuário Insper e <code>cluster_endereco</code> pelo endereço de IP fornecido durante a aula.</p>
 <h4 id="para-windows"><strong>Para Windows:</strong><a class="headerlink" href="#para-windows" title="Permanent link">&para;</a></h4>
 <p><strong>Usando OpenSSH :</strong></p>
-<p>Abra o PowerShell ou Windows Terminal.</p>
-<p>Navegue até a pasta onde a chave privada (<code>id_rsa</code>) foi baixada.</p>
-<p>Mova a chave para a pasta <code>.ssh</code> em seu diretório de usuário:</p>
+<p>Abra o PowerShell ou Windows Terminal. Navegue até a pasta onde a chave privada (<code>id_rsa</code>) foi baixada, mova a chave para a pasta <code>.ssh</code> em seu diretório de usuário:</p>
 <div class="highlight"><pre><span></span><code><span class="n">mkdir</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span>
 <span class="nb">mv </span><span class="n">id_rsa</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span>
 </code></pre></div>
@@ -1022,9 +1014,7 @@ Conecte-se ao cluster usando o comando:
 </code></pre></div></p>
 <h3 id="configurar-o-vs-code-para-acesso-remoto-ao-cluster">Configurar o VS Code para Acesso Remoto ao Cluster**<a class="headerlink" href="#configurar-o-vs-code-para-acesso-remoto-ao-cluster" title="Permanent link">&para;</a></h3>
 <p><strong>Instale a Extensão Remote - SSH</strong>:</p>
-<p>Abra o VS Code.</p>
-<p>Vá para a aba de extensões (ícone de quadrado no lado esquerdo).</p>
-<p>Pesquise por "Remote - SSH" e instale a extensão oficial da Microsoft.</p>
+<p>Abra o VS Code, vá para a aba de extensões (ícone de quadrado no lado esquerdo). Pesquise por "Remote - SSH" e instale a extensão oficial da Microsoft.</p>
 <p><strong>Configurar o Acesso Remoto</strong>:</p>
 <p>Pressione <code>Ctrl+Shift+P</code> (ou <code>Cmd+Shift+P</code> no Mac) para abrir o painel de comandos.</p>
 <p>Digite <code>Remote-SSH: Add New SSH Host...</code> e selecione a opção.</p>
@@ -1032,9 +1022,9 @@ Conecte-se ao cluster usando o comando:
 <div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>seu_usuario@cluster_endereco
 </code></pre></div>
 Escolha o arquivo de configuração padrão (<code>~/.ssh/config</code> para Mac/Linux ou <code>C:\Users\seu_usuario\.ssh\config</code> para Windows).</p>
-<p>Pressione <code>Ctrl+Shift+P</code> (ou <code>Cmd+Shift+P</code> no Mac) novamente e digite <code>Remote-SSH: Connect to Host...</code>.</p>
-<p>Selecione o host configurado no passo anterior.</p>
+<p>Pressione <code>Ctrl+Shift+P</code> (ou <code>Cmd+Shift+P</code> no Mac) novamente e digite <code>Remote-SSH: Connect to Host...</code>. Selecione o host configurado.</p>
 <p>O VS Code abrirá uma nova janela conectada ao ambiente remoto do cluster.</p>
+<p><img alt="ssh" src="imgs/RemoteSSHVsCode.png" /></p>
 <p><strong>Gerenciar Projetos Remotamente</strong>:</p>
 <p>Após a conexão, você pode abrir pastas e arquivos no cluster diretamente pelo VS Code.</p>
 <p>Utilize os recursos do VS Code, como o terminal integrado e o depurador, para trabalhar eficientemente no ambiente remoto.</p>
@@ -1042,8 +1032,12 @@ Escolha o arquivo de configuração padrão (<code>~/.ssh/config</code> para Mac
 <p>Crie um script de submissão .slurm para cada implementação utilizando o template abaixo. Esse script será utilizado para enviar o job ao cluster.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-</div>
 <p>As instruções #SBATCH são tecnicamente consideradas "comentários" pelo interpretador de comandos do shell (bash), mas não são realmente ignoradas. Quando você escreve um script para ser executado pelo SLURM, o bash interpreta as linhas #SBATCH como comentários normais, enquanto o gerenciador de jobs SLURM interpreta essas mesmas linhas como diretivas que definem como o job deve ser executado.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Não é necessário neste momento, mas se você quiser transferir arquivos da sua máquina para o cluster e vice versa, você pode usar o comando scp <a href="../../Teoria/comandos-ssh/">mais detalhes aqui</a></p>
+</div>
 <p><strong>Exemplo de Script SLURM (Python):</strong></p>
 <p>matriz_mult_python.slurm</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>

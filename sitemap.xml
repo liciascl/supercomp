@@ -31,6 +31,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://insper.github.io/supercomp/Teoria/comandos-ssh/</loc>
+         <lastmod>2024-08-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://insper.github.io/supercomp/Teoria/compilar-executar-C%2B%2B/</loc>
          <lastmod>2024-08-01</lastmod>
          <changefreq>daily</changefreq>
