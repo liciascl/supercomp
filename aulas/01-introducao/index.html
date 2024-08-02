@@ -1048,9 +1048,9 @@ Escolha o arquivo de configuração padrão (<code>~/.ssh/config</code> para Mac
 <p><img alt="ssh" src="imgs/RemoteSSHVsCode.png" /></p>
 <p><strong>Gerenciar Projetos Remotamente</strong>:</p>
 <p>Após a conexão, você pode abrir pastas e arquivos no cluster diretamente pelo VS Code.</p>
-<p>Utilize os recursos do VS Code, como o terminal integrado e o depurador, para trabalhar eficientemente no ambiente remoto.</p>
+<p>Utilize os recursos do VS Code, como o terminal integrado e o debug para trabalhar no cluster Franky.</p>
 <h3 id="executando-a-atividade-0-no-cluster-franky-usando-slurm">Executando a Atividade 0 no Cluster Franky usando SLURM<a class="headerlink" href="#executando-a-atividade-0-no-cluster-franky-usando-slurm" title="Permanent link">&para;</a></h3>
-<p>Crie um script de submissão .slurm para cada implementação utilizando o template abaixo. Esse script será utilizado para enviar o job ao cluster.</p>
+<p>Um arquivo .slurm é usado para "lançar jobs" no sistema SLURM, especificando os recursos necessários para a execução, como memória, número de máquinas e núcleos. Nesse arquivo, também definimos como desejamos o output do executável e onde o sistema pode encontrar o arquivo a ser executado. Como a equipe que gerencia o Cluster definiu que os jobs sejam lançados apenas da pasta SCRATCH, podemos omitir o caminho do arquivo nos nossos arquivos .slurm.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>As instruções #SBATCH são tecnicamente consideradas "comentários" pelo interpretador de comandos do shell (bash), mas não são realmente ignoradas. Quando você escreve um script para ser executado pelo SLURM, o bash interpreta as linhas #SBATCH como comentários normais, enquanto o gerenciador de jobs SLURM interpreta essas mesmas linhas como diretivas que definem como o job deve ser executado.</p>
@@ -1059,7 +1059,8 @@ Escolha o arquivo de configuração padrão (<code>~/.ssh/config</code> para Mac
 <p class="admonition-title">Tip</p>
 <p>Não é necessário neste momento, mas se você quiser transferir arquivos da sua máquina para o cluster e vice versa, você pode usar o comando scp <a href="../../Teoria/comandos-ssh/">mais detalhes aqui</a></p>
 </div>
-<p><strong>Exemplo de Script SLURM (Python):</strong></p>
+<p>Crie um script de submissão .slurm para cada implementação utilizando os exemplos abaixo. Esse script será utilizado para enviar o job ao cluster.</p>
+<p><strong>Script SLURM para o código em Python:</strong></p>
 <p>matriz_mult_python.slurm</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="c1">#As instruções SBATCH não devem ser descomentadas</span>
@@ -1082,7 +1083,11 @@ Escolha o arquivo de configuração padrão (<code>~/.ssh/config</code> para Mac
 python3<span class="w"> </span>mult_matriz_py.py
 <span class="c1">#Executa o programa python3 dentro do nó de computação.</span>
 </code></pre></div>
-<p><strong>Exemplo de Script SLURM (C++):</strong></p>
+<p><strong>Script SLURM para arquivos C++:</strong></p>
+<p>Como o C++ é uma linguagem que requer compilação, precisamos gerar o executável antes de preparar o arquivo .slurm.</p>
+<p>Dentro da pasta SCRATCH, compile seu código .cpp para gerar o binário.</p>
+<div class="highlight"><pre><span></span><code><span class="n">g</span><span class="o">++</span><span class="w">  </span><span class="n">mult_matriz_cpp</span><span class="p">.</span><span class="n">cpp</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="n">mult_matriz_cpp</span><span class="w"> </span>
+</code></pre></div>
 <p>matriz_mult_cpp.slurm</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="c1">#SBATCH --job-name=matriz_mult_cpp</span>
@@ -1100,13 +1105,14 @@ python3<span class="w"> </span>mult_matriz_py.py
 <span class="c1">#SBATCH --partition=normal</span>
 <span class="c1"># Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila &quot;normal&quot;.</span>
 
-g++<span class="w">  </span>mult_matriz_cpp.cpp<span class="w"> </span>-o<span class="w"> </span>mult_matriz_cpp<span class="w"> </span>
-<span class="c1"># Compila o código C++ usando o compilador `g++`</span>
 
 ./mult_matriz_cpp
 <span class="c1"># Executa o programa compilado &quot;mult_matriz_cpp&quot; dentro do nó de computação.</span>
 </code></pre></div>
-<p><strong>Exemplo de Script SLURM (C++ com Paralelismo):</strong></p>
+<p><strong>Script SLURM para arquivos C++ com Paralelismo:</strong></p>
+<p>Ao utilizar o OpenMP para paralelizar códigos em C++, é necessário incluir a flag apropriada durante a compilação. Essa flag informa ao compilador para interpretar corretamente as diretivas OpenMP no código e gerar o binário de forma adequada.</p>
+<div class="highlight"><pre><span></span><code><span class="n">g</span><span class="o">++</span><span class="w"> </span><span class="o">-</span><span class="n">fopenmp</span><span class="w"> </span><span class="n">mult_matriz_paralelo</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="n">mult_matriz_paralelo</span><span class="p">.</span><span class="n">cpp</span>
+</code></pre></div>
 <p>matriz_mult_paralelo.slurm</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
@@ -1128,8 +1134,6 @@ g++<span class="w">  </span>mult_matriz_cpp.cpp<span class="w"> </span>-o<span c
 <span class="c1">#SBATCH --partition=normal</span>
 <span class="c1"># Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila &quot;normal&quot;.</span>
 
-g++<span class="w"> </span>-fopenmp<span class="w"> </span>mult_matriz_paralelo<span class="w"> </span>-o<span class="w"> </span>mult_matriz_paralelo.cpp
-<span class="c1"># Compila o código C++ usando o compilador `g++`, com a flag `-fopenmp`, que habilita o suporte a OpenMP para paralelismo. </span>
 
 ./mult_matriz_paralelo
 <span class="c1"># Executa o programa compilado &quot;mult_matriz_paralelo&quot; dentro do nó de computação.</span>
