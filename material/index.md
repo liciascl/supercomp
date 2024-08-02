@@ -32,15 +32,15 @@ Para alinhar o que esperamos de você, definimos um objetivo e uma entrega para 
 
 ## Notas
 
-- **Cada entrega de atividade da aula vale 0.1 da nota final.**
-- **O Projeto vale 3**
-- **A PI vale 2**
-- **A PF vale 3**
+- **Cada entrega de atividade da aula vale 0.1 da nota, A somatória de todas as entregas válidas atribui até 20% da nota final**.
+
+- **O Projeto vale 30%**
+- **A PI vale 20%**
+- **A PF vale 30%**
 
 !!! warning "Atenção!"
     A entrega só poderá ser realizada até as 23h59 do dia da respectiva aula. 
-    A somatória de todas as entregas válidas atribui até **2 pontos na nota final**.
-
+    
 !!! warning "Condições de barreira"
     * Média de provas >= 4,5
     * PI, PF >= 4,0
