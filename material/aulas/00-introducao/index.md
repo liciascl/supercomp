@@ -131,6 +131,10 @@ int main() {
 
 Compile e execute o código modificado. Observe a diferença no tempo de execução em comparação com as versões anteriores.
 
+!!! warning
+    Lembre-se! Sempre que fizer alterações no seu código em c++, é necessário gerar um novo binário.
+
+
 ```cpp
 #include <iostream>   // Inclui a biblioteca padrão de entrada e saída, usada para funções como std::cout.
 #include <vector>     // Inclui a biblioteca de vetores da STL (Standard Template Library) do C++.

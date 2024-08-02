@@ -85,12 +85,12 @@ O VS Code abrirá uma nova janela conectada ao ambiente remoto do cluster.
 
  Após a conexão, você pode abrir pastas e arquivos no cluster diretamente pelo VS Code.
 
- Utilize os recursos do VS Code, como o terminal integrado e o depurador, para trabalhar eficientemente no ambiente remoto.
+ Utilize os recursos do VS Code, como o terminal integrado e o debug para trabalhar no cluster Franky.
 
 
 ###  Executando a Atividade 0 no Cluster Franky usando SLURM
 
-Crie um script de submissão .slurm para cada implementação utilizando o template abaixo. Esse script será utilizado para enviar o job ao cluster.
+Um arquivo .slurm é usado para "lançar jobs" no sistema SLURM, especificando os recursos necessários para a execução, como memória, número de máquinas e núcleos. Nesse arquivo, também definimos como desejamos o output do executável e onde o sistema pode encontrar o arquivo a ser executado. Como a equipe que gerencia o Cluster definiu que os jobs sejam lançados apenas da pasta SCRATCH, podemos omitir o caminho do arquivo nos nossos arquivos .slurm.
 
 !!! warning
       As instruções #SBATCH são tecnicamente consideradas "comentários" pelo interpretador de comandos do shell (bash), mas não são realmente ignoradas. Quando você escreve um script para ser executado pelo SLURM, o bash interpreta as linhas #SBATCH como comentários normais, enquanto o gerenciador de jobs SLURM interpreta essas mesmas linhas como diretivas que definem como o job deve ser executado.
@@ -100,7 +100,9 @@ Crie um script de submissão .slurm para cada implementação utilizando o templ
 
 
 
-**Exemplo de Script SLURM (Python):**
+Crie um script de submissão .slurm para cada implementação utilizando os exemplos abaixo. Esse script será utilizado para enviar o job ao cluster.
+
+**Script SLURM para o código em Python:**
 
 matriz_mult_python.slurm
 
@@ -127,7 +129,16 @@ python3 mult_matriz_py.py
 #Executa o programa python3 dentro do nó de computação.
 ```
 
-**Exemplo de Script SLURM (C++):**
+**Script SLURM para arquivos C++:**
+
+Como o C++ é uma linguagem que requer compilação, precisamos gerar o executável antes de preparar o arquivo .slurm.
+
+Dentro da pasta SCRATCH, compile seu código .cpp para gerar o binário.
+
+```c++
+g++  mult_matriz_cpp.cpp -o mult_matriz_cpp 
+```
+
 
 matriz_mult_cpp.slurm
 
@@ -148,8 +159,6 @@ matriz_mult_cpp.slurm
 #SBATCH --partition=normal
 # Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila "normal".
 
-g++  mult_matriz_cpp.cpp -o mult_matriz_cpp 
-# Compila o código C++ usando o compilador `g++`
 
 ./mult_matriz_cpp
 # Executa o programa compilado "mult_matriz_cpp" dentro do nó de computação.
@@ -157,7 +166,13 @@ g++  mult_matriz_cpp.cpp -o mult_matriz_cpp
 ```
 
 
-**Exemplo de Script SLURM (C++ com Paralelismo):**
+**Script SLURM para arquivos C++ com Paralelismo:**
+
+Ao utilizar o OpenMP para paralelizar códigos em C++, é necessário incluir a flag apropriada durante a compilação. Essa flag informa ao compilador para interpretar corretamente as diretivas OpenMP no código e gerar o binário de forma adequada.
+
+```c++
+g++ -fopenmp mult_matriz_paralelo -o mult_matriz_paralelo.cpp
+```
 
 matriz_mult_paralelo.slurm
 
@@ -182,8 +197,6 @@ matriz_mult_paralelo.slurm
 #SBATCH --partition=normal
 # Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila "normal".
 
-g++ -fopenmp mult_matriz_paralelo -o mult_matriz_paralelo.cpp
-# Compila o código C++ usando o compilador `g++`, com a flag `-fopenmp`, que habilita o suporte a OpenMP para paralelismo. 
 
 ./mult_matriz_paralelo
 # Executa o programa compilado "mult_matriz_paralelo" dentro do nó de computação.
