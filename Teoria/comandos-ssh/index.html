@@ -18,7 +18,7 @@
     
     
       
-        <title>Comandos ssh - SuperComputação - 2024/2</title>
+        <title>Transferência de Arquivos usando SCP entre sua Máquina e o Cluster Franky - SuperComputação - 2024/2</title>
       
     
     
@@ -79,6 +79,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#transferencia-de-arquivos-usando-scp-entre-sua-maquina-e-o-cluster-franky" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -111,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Comandos ssh
+              Transferência de Arquivos usando SCP entre sua Máquina e o Cluster Franky
             
           </span>
         </div>
@@ -472,6 +477,69 @@
   
   
     <li class="md-nav__item">
+      <a href="../contextualizando-hpc/contextualizando-HPC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contextualizando o HPC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cluster-Franky/cluster-Franky/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cluster Franky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../slurm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SLURM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../introducao/conceitos-basicos-hw/" class="md-nav__link">
         
   
@@ -682,74 +750,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../contextualizando-hpc/contextualizando-HPC/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Contextualizando o HPC
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../cluster-Franky/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Cluster Franky
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../flags-compilacao/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Flags de compilação (-O1, -O2, -O3, -Ofast).
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../slurm/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    SLURM
   </span>
   
 
@@ -804,6 +809,73 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pré-requisitos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transferindo-um-arquivo-da-sua-maquina-para-o-cluster-franky" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transferindo um Arquivo da Sua Máquina para o Cluster Franky
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transferindo um Arquivo da Sua Máquina para o Cluster Franky">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explicacao-dos-parametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explicação dos Parâmetros:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transferindo-um-arquivo-do-cluster-franky-para-sua-maquina" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transferindo um Arquivo do Cluster Franky para sua Máquina
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transferindo um Arquivo do Cluster Franky para sua Máquina">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explicacao-dos-parametros_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explicação dos Parâmetros:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -821,9 +893,41 @@
   
 
 
-  <h1>Comandos ssh</h1>
-
-
+<h1 id="transferencia-de-arquivos-usando-scp-entre-sua-maquina-e-o-cluster-franky">Transferência de Arquivos usando SCP entre sua Máquina e o Cluster Franky<a class="headerlink" href="#transferencia-de-arquivos-usando-scp-entre-sua-maquina-e-o-cluster-franky" title="Permanent link">&para;</a></h1>
+<p>O comando <code>scp</code> (Secure Copy Protocol) é uma ferramenta segura e eficiente para transferir arquivos entre sua máquina local e um servidor remoto, como o cluster Franky. Ele utiliza o protocolo SSH para realizar a transferência de arquivos, garantindo a segurança dos dados durante o processo.</p>
+<h2 id="pre-requisitos">Pré-requisitos<a class="headerlink" href="#pre-requisitos" title="Permanent link">&para;</a></h2>
+<p>Antes de começar, certifique-se de que:
+- Você tenha acesso ao cluster Franky via SSH.
+- O comando <code>scp</code> esteja instalado em sua máquina (a maioria dos sistemas operacionais baseados em Unix/Linux já possuem o <code>scp</code> por padrão).</p>
+<h2 id="transferindo-um-arquivo-da-sua-maquina-para-o-cluster-franky">Transferindo um Arquivo da Sua Máquina para o Cluster Franky<a class="headerlink" href="#transferindo-um-arquivo-da-sua-maquina-para-o-cluster-franky" title="Permanent link">&para;</a></h2>
+<p>Para transferir um arquivo do seu computador para o cluster Franky, você pode usar o seguinte comando:</p>
+<p><div class="highlight"><pre><span></span><code>scp<span class="w"> </span>/caminho/local/do/arquivo.txt<span class="w"> </span>usuario@ip_do_cluster:/caminho/remoto/destino/
+</code></pre></div>
+Este comando copia o arquivo <code>meu_arquivo.txt</code> do diretório local <code>/home/user/</code> para o diretório <code>/home/usuario/destino/</code> no cluster Franky.</p>
+<h3 id="explicacao-dos-parametros">Explicação dos Parâmetros:<a class="headerlink" href="#explicacao-dos-parametros" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/caminho/local/do/arquivo.txt</code>: Caminho completo do arquivo na sua máquina local que você deseja transferir.</li>
+<li><code>usuario@ip_do_cluster</code>: Seu nome de usuário e o endereço de ip do cluster Franky.</li>
+<li><code>/caminho/remoto/destino/</code>: O diretório de destino no cluster Franky onde você deseja salvar o arquivo.</li>
+</ul>
+<h2 id="transferindo-um-arquivo-do-cluster-franky-para-sua-maquina">Transferindo um Arquivo do Cluster Franky para sua Máquina<a class="headerlink" href="#transferindo-um-arquivo-do-cluster-franky-para-sua-maquina" title="Permanent link">&para;</a></h2>
+<p>Para copiar um arquivo do cluster Franky para a sua máquina local, use o seguinte comando no seu terminal:</p>
+<p><div class="highlight"><pre><span></span><code>scp<span class="w"> </span>usuario@ip_do_cluster:/caminho/remoto/do/arquivo.txt<span class="w"> </span>/caminho/local/destino/
+</code></pre></div>
+Este comando copia o arquivo <code>arquivo_remoto.txt</code> do diretório <code>/home/usuario/</code> no cluster Franky para o diretório <code>/home/user/destino_local/</code> na sua máquina.</p>
+<h3 id="explicacao-dos-parametros_1">Explicação dos Parâmetros:<a class="headerlink" href="#explicacao-dos-parametros_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>usuario@franky.cluster:/caminho/remoto/do/arquivo.txt</code>: O caminho completo do arquivo no cluster Franky que você deseja transferir para sua máquina local.</li>
+<li>
+<p><code>/caminho/local/destino/</code>: O diretório de destino na sua máquina local onde você deseja salvar o arquivo.</p>
+</li>
+<li>
+<p><strong>Transferência Recursiva:</strong> Para transferir diretórios inteiros (incluindo subdiretórios e arquivos), use a opção <code>-r</code>:</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>-r<span class="w"> </span>/caminho/local/do/diretorio/<span class="w"> </span>usuario@ip_do_cluster:/caminho/remoto/destino/
+</code></pre></div>
+<p>O comando <code>scp</code> é uma ferramenta poderosa para transferir arquivos entre sua máquina e o cluster Franky de forma segura e eficiente. Com as instruções e exemplos fornecidos neste guia, você deve ser capaz de realizar transferências de arquivos com facilidade.</p>
 
 
 

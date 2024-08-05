@@ -11,10 +11,10 @@
         <link rel="canonical" href="https://insper.github.io/supercomp/Teoria/slurm/">
       
       
-        <link rel="prev" href="../flags-compilacao/">
+        <link rel="prev" href="../cluster-Franky/cluster-Franky/">
       
       
-        <link rel="next" href="../profiling/">
+        <link rel="next" href="../introducao/conceitos-basicos-hw/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -483,6 +483,235 @@
   
   
     <li class="md-nav__item">
+      <a href="../contextualizando-hpc/contextualizando-HPC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contextualizando o HPC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cluster-Franky/cluster-Franky/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cluster Franky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    SLURM
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    SLURM
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-e-slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      O que é SLURM?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#principais-funcionalidades-do-slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principais Funcionalidades do SLURM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comandos-principais-do-slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comandos Principais do SLURM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplos-de-uso-para-cada-comando-slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplos de Uso para Cada Comando SLURM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-sbatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. sbatch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-scancel" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. scancel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-scontrol" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. scontrol
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-sinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. sinfo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sprio" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. sprio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-squeue" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. squeue
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-srun" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. srun
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-sstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. sstat
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-strigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. strigger
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-sview" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. sview
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../introducao/conceitos-basicos-hw/" class="md-nav__link">
         
   
@@ -693,48 +922,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../contextualizando-hpc/contextualizando-HPC/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Contextualizando o HPC
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../cluster-Franky/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Cluster Franky
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../flags-compilacao/" class="md-nav__link">
         
   
@@ -744,202 +931,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    SLURM
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    SLURM
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#o-que-e-slurm" class="md-nav__link">
-    <span class="md-ellipsis">
-      O que é SLURM?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#principais-funcionalidades-do-slurm" class="md-nav__link">
-    <span class="md-ellipsis">
-      Principais Funcionalidades do SLURM
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comandos-principais-do-slurm" class="md-nav__link">
-    <span class="md-ellipsis">
-      Comandos Principais do SLURM
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exemplos-de-uso-para-cada-comando-slurm" class="md-nav__link">
-    <span class="md-ellipsis">
-      Exemplos de Uso para Cada Comando SLURM
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-sacct" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. sacct
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-sbatch" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. sbatch
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-scancel" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. scancel
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-scontrol" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. scontrol
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-sinfo" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. sinfo
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-sprio" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. sprio
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-squeue" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. squeue
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8-srun" class="md-nav__link">
-    <span class="md-ellipsis">
-      8. srun
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-sstat" class="md-nav__link">
-    <span class="md-ellipsis">
-      9. sstat
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#10-strigger" class="md-nav__link">
-    <span class="md-ellipsis">
-      10. strigger
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#11-sview" class="md-nav__link">
-    <span class="md-ellipsis">
-      11. sview
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1036,99 +1027,90 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-sacct" class="md-nav__link">
+  <a href="#1-sbatch" class="md-nav__link">
     <span class="md-ellipsis">
-      1. sacct
+      1. sbatch
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-sbatch" class="md-nav__link">
+  <a href="#2-scancel" class="md-nav__link">
     <span class="md-ellipsis">
-      2. sbatch
+      2. scancel
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-scancel" class="md-nav__link">
+  <a href="#3-scontrol" class="md-nav__link">
     <span class="md-ellipsis">
-      3. scancel
+      3. scontrol
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-scontrol" class="md-nav__link">
+  <a href="#4-sinfo" class="md-nav__link">
     <span class="md-ellipsis">
-      4. scontrol
+      4. sinfo
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-sinfo" class="md-nav__link">
+  <a href="#5-sprio" class="md-nav__link">
     <span class="md-ellipsis">
-      5. sinfo
+      5. sprio
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-sprio" class="md-nav__link">
+  <a href="#6-squeue" class="md-nav__link">
     <span class="md-ellipsis">
-      6. sprio
+      6. squeue
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-squeue" class="md-nav__link">
+  <a href="#7-srun" class="md-nav__link">
     <span class="md-ellipsis">
-      7. squeue
+      7. srun
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-srun" class="md-nav__link">
+  <a href="#8-sstat" class="md-nav__link">
     <span class="md-ellipsis">
-      8. srun
+      8. sstat
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#9-sstat" class="md-nav__link">
+  <a href="#9-strigger" class="md-nav__link">
     <span class="md-ellipsis">
-      9. sstat
+      9. strigger
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#10-strigger" class="md-nav__link">
+  <a href="#10-sview" class="md-nav__link">
     <span class="md-ellipsis">
-      10. strigger
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#11-sview" class="md-nav__link">
-    <span class="md-ellipsis">
-      11. sview
+      10. sview
     </span>
   </a>
   
@@ -1165,7 +1147,6 @@
 <h3 id="comandos-principais-do-slurm">Comandos Principais do SLURM<a class="headerlink" href="#comandos-principais-do-slurm" title="Permanent link">&para;</a></h3>
 <p>Alguns dos comandos principais usados no SLURM:</p>
 <ol>
-<li><strong>sacct</strong>: Ele fornece detalhes sobre jobs ativos e concluídos, como uso de CPU, memória, tempo de execução, status de conclusão, entre outros.</li>
 <li><strong>sbatch</strong>: É um comando do SLURM usado para submeter scripts de jobs para execução em um cluster. Esses scripts contêm instruções sobre como os recursos devem ser alocados e quais comandos devem ser executados</li>
 <li><strong>scancel</strong>: Cancela um job pendente ou em execução.</li>
 <li><strong>scontrol</strong>: Ferramenta administrativa usada para visualizar e/ou modificar o estado do SLURM. Muitos comandos <code>scontrol</code> só podem ser executados pelo adminstrador do sistema.</li>
@@ -1178,25 +1159,7 @@
 <li><strong>sview</strong>: Interface gráfica para obter e atualizar informações de estado para jobs, partições e nós gerenciados pelo SLURM.</li>
 </ol>
 <h3 id="exemplos-de-uso-para-cada-comando-slurm">Exemplos de Uso para Cada Comando SLURM<a class="headerlink" href="#exemplos-de-uso-para-cada-comando-slurm" title="Permanent link">&para;</a></h3>
-<h3 id="1-sacct">1. <strong>sacct</strong><a class="headerlink" href="#1-sacct" title="Permanent link">&para;</a></h3>
-<p><strong>Descrição:</strong> Fornece detalhes sobre jobs ativos e concluídos, como uso de CPU, memória, tempo de execução, status de conclusão, entre outros.</p>
-<p><strong>Exemplo:</strong></p>
-<div class="highlight"><pre><span></span><code>sacct<span class="w"> </span>-j<span class="w"> </span><span class="m">12345</span><span class="w"> </span>-o<span class="w"> </span>jobid,jobname,user,state,elapsed,MaxRSS
-</code></pre></div>
-<p><strong>Explicação das Flags:</strong></p>
-<ul>
-<li><strong><code>j 12345</code></strong>: Especifica o ID do job sobre o qual queremos informações. Neste caso, o ID é <code>12345</code>.</li>
-<li><strong><code>o jobid,jobname,user,state,elapsed,MaxRSS</code></strong>: Define os campos a serem exibidos na saída. Aqui, estamos solicitando os seguintes campos:<ul>
-<li><strong>jobid</strong>: ID do job.</li>
-<li><strong>jobname</strong>: Nome do job.</li>
-<li><strong>user</strong>: Usuário que submeteu o job.</li>
-<li><strong>state</strong>: Estado atual ou final do job (e.g., COMPLETED, FAILED).</li>
-<li><strong>elapsed</strong>: Tempo total de execução do job.</li>
-<li><strong>MaxRSS</strong>: Máximo de memória física utilizada pelo job.</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-sbatch">2. <strong>sbatch</strong><a class="headerlink" href="#2-sbatch" title="Permanent link">&para;</a></h3>
+<h3 id="1-sbatch">1. <strong>sbatch</strong><a class="headerlink" href="#1-sbatch" title="Permanent link">&para;</a></h3>
 <p><strong>Descrição:</strong> Submete scripts de jobs para execução em um cluster. Esses scripts contêm instruções sobre como os recursos devem ser alocados e quais comandos devem ser executados.</p>
 <p><strong>Exemplo de Script:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
@@ -1224,7 +1187,7 @@ sleep<span class="w"> </span><span class="m">60</span>
 <li><strong><code>-time=00:02:00</code></strong>: Define o tempo máximo de execução do job como 2 minutos.</li>
 <li><strong><code>-partition=normal</code></strong>: Especifica a fila do cluster onde o job será executado.</li>
 </ul>
-<h3 id="3-scancel">3. <strong>scancel</strong><a class="headerlink" href="#3-scancel" title="Permanent link">&para;</a></h3>
+<h3 id="2-scancel">2. <strong>scancel</strong><a class="headerlink" href="#2-scancel" title="Permanent link">&para;</a></h3>
 <p><strong>Descrição:</strong> Cancela um job pendente ou em execução.</p>
 <p><strong>Exemplo:</strong></p>
 <div class="highlight"><pre><span></span><code>scancel<span class="w"> </span><span class="m">12345</span>
@@ -1233,7 +1196,7 @@ sleep<span class="w"> </span><span class="m">60</span>
 <ul>
 <li><strong><code>12345</code></strong>: Especifica o ID do job que deve ser cancelado.</li>
 </ul>
-<h3 id="4-scontrol">4. <strong>scontrol</strong><a class="headerlink" href="#4-scontrol" title="Permanent link">&para;</a></h3>
+<h3 id="3-scontrol">3. <strong>scontrol</strong><a class="headerlink" href="#3-scontrol" title="Permanent link">&para;</a></h3>
 <p><strong>Descrição:</strong> Ferramenta administrativa usada para visualizar e/ou modificar o estado do SLURM. Muitos comandos <code>scontrol</code> só podem ser executados pelo administrador do sistema.</p>
 <p><strong>Exemplo:</strong></p>
 <div class="highlight"><pre><span></span><code>scontrol<span class="w"> </span>show<span class="w"> </span>job<span class="w"> </span><span class="m">12345</span>
@@ -1242,17 +1205,17 @@ sleep<span class="w"> </span><span class="m">60</span>
 <ul>
 <li><strong><code>show job 12345</code></strong>: Exibe informações detalhadas sobre o job com ID <code>12345</code>.</li>
 </ul>
-<h3 id="5-sinfo">5. <strong>sinfo</strong><a class="headerlink" href="#5-sinfo" title="Permanent link">&para;</a></h3>
+<h3 id="4-sinfo">4. <strong>sinfo</strong><a class="headerlink" href="#4-sinfo" title="Permanent link">&para;</a></h3>
 <p><strong>Descrição:</strong> Relata o estado das filas e nós gerenciados pelo SLURM.</p>
 <p><strong>Exemplo:</strong></p>
 <div class="highlight"><pre><span></span><code>sinfo
 </code></pre></div>
-<h3 id="6-sprio">6. <strong>sprio</strong><a class="headerlink" href="#6-sprio" title="Permanent link">&para;</a></h3>
+<h3 id="5-sprio">5. <strong>sprio</strong><a class="headerlink" href="#5-sprio" title="Permanent link">&para;</a></h3>
 <p><strong>Descrição:</strong> Exibe uma visão detalhada dos componentes que afetam a prioridade de um job.</p>
 <p><strong>Exemplo:</strong></p>
 <div class="highlight"><pre><span></span><code>sprio
 </code></pre></div>
-<h3 id="7-squeue">7. <strong>squeue</strong><a class="headerlink" href="#7-squeue" title="Permanent link">&para;</a></h3>
+<h3 id="6-squeue">6. <strong>squeue</strong><a class="headerlink" href="#6-squeue" title="Permanent link">&para;</a></h3>
 <p><strong>Descrição:</strong> Relata o estado dos jobs em execução em ordem de prioridade e depois os jobs pendentes em ordem de prioridade.</p>
 <p><strong>Exemplo:</strong></p>
 <div class="highlight"><pre><span></span><code>squeue<span class="w"> </span>-u<span class="w"> </span>username
@@ -1261,7 +1224,7 @@ sleep<span class="w"> </span><span class="m">60</span>
 <ul>
 <li><strong><code>u username</code></strong>: Filtra a saída para mostrar apenas os jobs do usuário <code>username</code>.</li>
 </ul>
-<h3 id="8-srun">8. <strong>srun</strong><a class="headerlink" href="#8-srun" title="Permanent link">&para;</a></h3>
+<h3 id="7-srun">7. <strong>srun</strong><a class="headerlink" href="#7-srun" title="Permanent link">&para;</a></h3>
 <p><strong>Descrição:</strong> Submete um job para execução e faz o pedido de alocação dos recursos da máquina.</p>
 <p><strong>Exemplo:</strong></p>
 <div class="highlight"><pre><span></span><code>srun<span class="w"> </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:01:00<span class="w"> </span>./meu_programa
@@ -1273,7 +1236,7 @@ sleep<span class="w"> </span><span class="m">60</span>
 <li><strong><code>-time=00:01:00</code></strong>: Define o tempo máximo de execução do job como 1 minuto.</li>
 <li><strong><code>./meu_programa</code></strong>: Especifica o programa a ser executado.</li>
 </ul>
-<h3 id="9-sstat">9. <strong>sstat</strong><a class="headerlink" href="#9-sstat" title="Permanent link">&para;</a></h3>
+<h3 id="8-sstat">8. <strong>sstat</strong><a class="headerlink" href="#8-sstat" title="Permanent link">&para;</a></h3>
 <p><strong>Descrição:</strong> Obtém informações sobre os recursos utilizados por um job em execução.</p>
 <p><strong>Exemplo:</strong></p>
 <div class="highlight"><pre><span></span><code>sstat<span class="w"> </span>-j<span class="w"> </span><span class="m">12345</span><span class="w"> </span>--format<span class="o">=</span>JobID,MaxRSS,AveCPU
@@ -1288,7 +1251,7 @@ sleep<span class="w"> </span><span class="m">60</span>
 </ul>
 </li>
 </ul>
-<h3 id="10-strigger">10. <strong>strigger</strong><a class="headerlink" href="#10-strigger" title="Permanent link">&para;</a></h3>
+<h3 id="9-strigger">9. <strong>strigger</strong><a class="headerlink" href="#9-strigger" title="Permanent link">&para;</a></h3>
 <p><strong>Descrição:</strong> Define, obtém ou visualiza gatilhos de eventos, como nós caindo ou jobs se aproximando do limite de tempo.</p>
 <p><strong>Exemplo:</strong></p>
 <div class="highlight"><pre><span></span><code>strigger<span class="w"> </span>--set<span class="w"> </span>--jobid<span class="o">=</span><span class="m">12345</span><span class="w"> </span>--signal<span class="o">=</span>SIGKILL<span class="w"> </span>--time<span class="o">=</span><span class="m">60</span>
@@ -1300,7 +1263,7 @@ sleep<span class="w"> </span><span class="m">60</span>
 <li><strong><code>-signal=SIGKILL</code></strong>: Define o sinal a ser enviado (SIGKILL).</li>
 <li><strong><code>-time=60</code></strong>: Define que o sinal deve ser enviado 60 segundos antes do término do job.</li>
 </ul>
-<h3 id="11-sview">11. <strong>sview</strong><a class="headerlink" href="#11-sview" title="Permanent link">&para;</a></h3>
+<h3 id="10-sview">10. <strong>sview</strong><a class="headerlink" href="#10-sview" title="Permanent link">&para;</a></h3>
 <p><strong>Descrição:</strong> Interface gráfica para obter e atualizar informações de estado para jobs, partições e nós gerenciados pelo SLURM.</p>
 <p><strong>Exemplo:</strong></p>
 <div class="highlight"><pre><span></span><code>sview
