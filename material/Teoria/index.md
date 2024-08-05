@@ -1,6 +1,12 @@
 # Materiais e Guias para estudo
 
 !!! summary "Material Teórico para estudo"
+    [Contextualizando HPC](contextualizando-hpc/contextualizando-HPC.md)
+
+    [Cluster Franky](cluster-Franky/cluster-Franky.md)
+
+    [SLURM](slurm.md)
+
     [Conceitos Básicos de HW](introducao/conceitos-basicos-hw.md)
 
     [Conceitos Básicos de C++](conceitos-basicos-C++.md)
@@ -21,13 +27,7 @@
 
     [Manipulação de Vetores](manipulacao-vetores.md)
 
-    [Contextualizando HPC](contextualizando-hpc/contextualizando-HPC.md)
-
-    [Cluster Franky](cluster-Franky.md)
-
     [Flags de compilação](flags-compilacao.md)
-
-    [SLURM](slurm.md)
 
     [Profiling](profiling.md)
 

@@ -76,6 +76,9 @@ nav:
 
     - Teoria:
          - Teoria/index.md
+         - Teoria/contextualizando-hpc/contextualizando-HPC.md
+         - Teoria/cluster-Franky/cluster-Franky.md
+         - Teoria/slurm.md         
          - Teoria/introducao/conceitos-basicos-hw.md  
          - Teoria/conceitos-basicos-C++.md
          - Teoria/compilar-executar-C++.md  
@@ -86,10 +89,7 @@ nav:
          - Teoria/sobrecarga-de-funcoes-C++.md
          - Teoria/classes-e-objetos.md
          - Teoria/manipulacao-vetores.md
-         - Teoria/contextualizando-hpc/contextualizando-HPC.md
-         - Teoria/cluster-Franky.md
-         - Teoria/flags-compilacao.md
-         - Teoria/slurm.md
+         - Teoria/flags-compilacao.md    
          - Teoria/profiling.md
 
 
