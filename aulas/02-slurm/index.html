@@ -412,9 +412,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#criacao-de-scripts-slurm-com-diferentes-recursos" class="md-nav__link">
+  <a href="#criacao-de-scripts-slurm" class="md-nav__link">
     <span class="md-ellipsis">
-      Criação de Scripts SLURM com Diferentes Recursos
+      Criação de Scripts SLURM
     </span>
   </a>
   
@@ -952,9 +952,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#criacao-de-scripts-slurm-com-diferentes-recursos" class="md-nav__link">
+  <a href="#criacao-de-scripts-slurm" class="md-nav__link">
     <span class="md-ellipsis">
-      Criação de Scripts SLURM com Diferentes Recursos
+      Criação de Scripts SLURM
     </span>
   </a>
   
@@ -1005,6 +1005,8 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="c1">     // Inclui a biblioteca de vetores (não usada diretamente neste código, mas útil para estruturas de dados).</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span><span class="c1">     // Inclui a biblioteca para medição de tempo (usada para cronometrar a execução do código).</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span><span class="c1">     // Inclui a biblioteca para trabalhar com threads e simular atrasos (usada para criar uma pausa no processamento).</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span><span class="c1">      // Inclui a biblioteca MPI para paralelismo entre múltiplos nós.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span><span class="c1">      // Inclui a biblioteca OpenMP para paralelismo com threads.</span>
 
 <span class="c1">// Define uma estrutura chamada Node que representa um nó em uma árvore binária.</span>
 <span class="k">struct</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
@@ -1034,84 +1036,121 @@
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w">  </span><span class="c1">// Se o nó for nulo, a função retorna (caso base da recursão).</span>
 
 <span class="w">    </span><span class="c1">// Imprime o nível atual da árvore.</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Nível da árvore: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Nível da árvore: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; - Processado por thread &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_thread_num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// Simula um pequeno atraso para representar o processamento do nó atual.</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
 
-<span class="w">    </span><span class="n">traverseTree</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// Percorre recursivamente a subárvore esquerda, aumentando o nível.</span>
-<span class="w">    </span><span class="n">traverseTree</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// Percorre recursivamente a subárvore direita, aumentando o nível.</span>
+<span class="w">    </span><span class="c1">// Paraleliza a travessia das subárvores esquerda e direita usando OpenMP.</span>
+<span class="w">    </span><span class="cp">#pragma omp parallel sections</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="cp">#pragma omp section</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">traverseTree</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// Percorre recursivamente a subárvore esquerda, aumentando o nível.</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="cp">#pragma omp section</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">traverseTree</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// Percorre recursivamente a subárvore direita, aumentando o nível.</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">// Função principal do programa.</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">MPI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span><span class="w">  </span><span class="c1">// Inicializa o ambiente MPI.</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">world_size</span><span class="p">;</span>
+<span class="w">    </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">world_size</span><span class="p">);</span><span class="w">  </span><span class="c1">// Obtém o número total de processos.</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">world_rank</span><span class="p">;</span>
+<span class="w">    </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">world_rank</span><span class="p">);</span><span class="w">  </span><span class="c1">// Obtém o identificador do processo atual.</span>
+
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"> </span><span class="c1">// Define a profundidade da árvore como 20.</span>
 
-<span class="w">    </span><span class="c1">// Cria uma árvore binária com a profundidade especificada.</span>
-<span class="w">    </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createTree</span><span class="p">(</span><span class="n">depth</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Apenas o processo mestre (rank 0) cria a árvore.</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">world_rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createTree</span><span class="p">(</span><span class="n">depth</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// Marca o tempo inicial antes de começar a percorrer a árvore.</span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
 
-<span class="w">    </span><span class="c1">// Percorre toda a árvore binária, começando do nível 0.</span>
-<span class="w">    </span><span class="n">traverseTree</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Distribui o trabalho para percorrer a árvore entre os processos usando MPI.</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">world_rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Processo mestre percorre a subárvore esquerda e envia a subárvore direita para outro processo.</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">right_process</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">world_size</span><span class="p">;</span><span class="w">  </span><span class="c1">// Atribui a subárvore direita ao próximo processo.</span>
+<span class="w">        </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">Node</span><span class="p">),</span><span class="w"> </span><span class="n">MPI_BYTE</span><span class="p">,</span><span class="w"> </span><span class="n">right_process</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+<span class="w">        </span><span class="n">traverseTree</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Outros processos recebem uma parte da árvore e a processam.</span>
+<span class="w">        </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">received_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">received_node</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">Node</span><span class="p">),</span><span class="w"> </span><span class="n">MPI_BYTE</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span>
+<span class="w">        </span><span class="n">traverseTree</span><span class="p">(</span><span class="n">received_node</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// Marca o tempo final após concluir a travessia da árvore.</span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
 
-<span class="w">    </span><span class="c1">// Calcula a duração total da travessia da árvore.</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Apenas o processo mestre calcula e exibe o tempo de execução.</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">world_rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Tempo de execução: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">duration</span><span class="p">.</span><span class="n">count</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; segundos&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// Imprime o tempo de execução em segundos.</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Tempo de execução: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">duration</span><span class="p">.</span><span class="n">count</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; segundos&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-
+<span class="w">    </span><span class="n">MPI_Finalize</span><span class="p">();</span><span class="w">  </span><span class="c1">// Finaliza o ambiente MPI.</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// Retorna 0, indicando que o programa terminou com sucesso.</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Compile o programa dentro do Cluster:</p>
-<div class="highlight"><pre><span></span><code>g++<span class="w"> </span>decision_tree.cpp<span class="w"> </span>-o<span class="w"> </span>decision_tree
+<div class="highlight"><pre><span></span><code>mpic++<span class="w"> </span>-fopenmp<span class="w"> </span>decision_tree.cpp<span class="w"> </span>-o<span class="w"> </span>decision_tree
 </code></pre></div>
-<h3 id="criacao-de-scripts-slurm-com-diferentes-recursos">Criação de Scripts SLURM com Diferentes Recursos<a class="headerlink" href="#criacao-de-scripts-slurm-com-diferentes-recursos" title="Permanent link">&para;</a></h3>
-<p>Crie um arquivo chamado <code>low_resources.slurm</code> com o seguinte conteúdo:</p>
+<h3 id="criacao-de-scripts-slurm">Criação de Scripts SLURM<a class="headerlink" href="#criacao-de-scripts-slurm" title="Permanent link">&para;</a></h3>
+<p>Crie um arquivo tree_limitado.slurm com a seguinte configuração:</p>
 <p><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="c1">#SBATCH --job-name=low_resources_job          # Define o nome do job como &#39;low_resources_job&#39;.</span>
-<span class="c1">#SBATCH --output=low_resources_output_%j.txt  # Especifica o arquivo de saída para o job, incluindo o ID do job (%j).</span>
-<span class="c1">#SBATCH --ntasks=1                            # Define o número de tarefas para o job como 1.</span>
-<span class="c1">#SBATCH --cpus-per-task=1                     # Aloca 1 CPU por tarefa.</span>
-<span class="c1">#SBATCH --mem=300M                            # Solicita 300 MB de memória.</span>
-<span class="c1">#SBATCH --time=00:10:00                       # Define o tempo máximo de execução do job como 10 minutos.</span>
+<span class="c1">#SBATCH --job-name=tree_limitado    # Nome do job</span>
+<span class="c1">#SBATCH --output=tree_limitado_output_%j.txt  # Nome do arquivo de saída</span>
+<span class="c1">#SBATCH --ntasks=2                               # Número de tarefas (apenas 2 processos)</span>
+<span class="c1">#SBATCH --cpus-per-task=1                        # Número de threads por tarefa (apenas 1 thread por processo)</span>
+<span class="c1">#SBATCH --mem=1024                               # Memória total alocada por nó (1024 MB = 1 GB)</span>
+<span class="c1">#SBATCH --time=00:30:00                          # Tempo máximo de execução (até meia hora)</span>
+<span class="c1">#SBATCH --partition=espec                       # Fila do cluster a ser utilizada</span>
 
-./decision_tree<span class="w">                               </span><span class="c1"># Executa o programa &#39;decision_tree&#39;.</span>
+<span class="c1"># Exporta a variável de ambiente para configurar o número de threads OpenMP</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="nv">$SLURM_CPUS_PER_TASK</span>
+
+<span class="c1"># Executa o programa usando MPI e OpenMP</span>
+mpirun<span class="w"> </span>./decision_tree
 </code></pre></div>
-Este .slurm submete um job que executa o programa decision_tree com 1 CPU, 300MB de memória, 10 minutos de tempo de execução.</p>
-<p>Vamos criar um arquivo solicitando mais recursos para ver o que acontece; Crie um arquivo chamado <code>high_resources.slurm</code> com o seguinte conteúdo:</p>
+Este .slurm submete um job que executa 2 tarefas simultaneamente, com 1 CPU por tarefa, 1024 MB (1 GB) de memória por nó, e um tempo máximo de execução de 30 minutos.</p>
+<p>Vamos solicitar mais recursos e ver o que acontece, crie um arquivo tree_buffado.slurm com a seguinte configuração:</p>
 <p><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="c1">#SBATCH --job-name=high_resources_job          # Define o nome do job como &#39;high_resources_job&#39;.</span>
-<span class="c1">#SBATCH --output=high_resources_output_%j.txt  # Especifica o arquivo de saída para o job, incluindo o ID do job (%j).</span>
-<span class="c1">#SBATCH --ntasks=2                             # Define o que cada job execute 2 tarefas.</span>
-<span class="c1">#SBATCH --cpus-per-task=2                      # Aloca 2 CPUs por tarefa.</span>
-<span class="c1">#SBATCH --mem=1000M                            # Solicita 1000 MB (1 GB) de memória.</span>
-<span class="c1">#SBATCH --time=00:10:00                        # Define o tempo máximo de execução do job como 10 minutos.</span>
+<span class="c1">#SBATCH --job-name=tree_buffado       # Nome do job</span>
+<span class="c1">#SBATCH --output=ttree_buffado_%j.txt  # Nome do arquivo de saída</span>
+<span class="c1">#SBATCH --ntasks=4                              # Número de tarefas (4 processos)</span>
+<span class="c1">#SBATCH --cpus-per-task=2                       # Número de threads por tarefa (2 threads por processo)</span>
+<span class="c1">#SBATCH --mem=2048                               # Memória total alocada por nó (2048 MB = 2 GB)</span>
+<span class="c1">#SBATCH --time=00:30:00                         # Tempo máximo de execução (30 minutos)</span>
+<span class="c1">#SBATCH --partition=espec                      # fila do cluster a ser utilizada</span>
 
-./decision_tree<span class="w">                                </span><span class="c1"># Executa o programa &#39;decision_tree&#39;.</span>
+<span class="c1"># Exporta a variável de ambiente para configurar o número de threads OpenMP</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="nv">$SLURM_CPUS_PER_TASK</span>
+
+
+<span class="c1"># Executa o programa usando MPI e OpenMP</span>
+mpirun<span class="w"> </span>./decision_tree
 </code></pre></div>
-Este .slurm submete um job que executa 2 tarefas ao mesmo tempo, com 2 CPU, 1GB de memória, 10 minutos de tempo de execução.</p>
+Este .slurm submete um job que executa tarefas simultaneamente, com 2 CPUs por tarefa, 2 GB de memória por nó, e um tempo máximo de execução de 30 minutos.</p>
 <h3 id="exploracao-dos-comandos-slurm">Exploração dos Comandos SLURM<a class="headerlink" href="#exploracao-dos-comandos-slurm" title="Permanent link">&para;</a></h3>
 <p>Submeta os jobs usando o comando <code>sbatch</code>:</p>
-<div class="highlight"><pre><span></span><code>sbatch<span class="w"> </span>low_resources.slurm
-sbatch<span class="w"> </span>high_resources.slurm
+<div class="highlight"><pre><span></span><code>sbatch<span class="w"> </span>tree_limitado.slurm
+sbatch<span class="w"> </span>tree_buffado.slurm
 </code></pre></div>
 <p>Execute o programa <code>decision_tree</code> usando <code>srun</code>:</p>
 <p><div class="highlight"><pre><span></span><code>srun<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>--mem<span class="o">=</span>500M<span class="w"> </span>./decision_tree
 </code></pre></div>
-O comando srun está solicitando ao SLURM que aloque os recursos necessários para executar o programa decision_tree diretamente via terminal.</p>
-<p>Especificamente:</p>
-<div class="codehilite"><pre><span></span><code>1. Ele solicita 1 tarefa para ser executada.
-2. A tarefa terá acesso a 2 CPUs (ou núcleos de processamento).
-3. A tarefa terá até 500 MB de memória disponível.
-4. Assim que os recursos estiverem disponíveis, o programa decision_tree será executado.
-</code></pre></div>
-
+O comando srun está solicitando ao SLURM que aloque os recursos necessários para executar o programa decision_tree diretamente via terminal. Ele solicita 1 tarefa para ser executada, a tarefa terá acesso a 2 CPUs (ou núcleos de processamento), terá até 500 MB de memória disponível. </p>
 <p>Esse comando permite testar ou rodar programas interativamente com os recursos solicitados, podendo observar em tempo real o comportamento do programa.</p>
 <p>Após iniciar o job com <code>srun</code>, use <code>sstat</code> para monitorar os recursos utilizados pelo job:</p>
 <div class="highlight"><pre><span></span><code>sstat<span class="w"> </span>--job<span class="w"> </span>&lt;JOB_ID&gt;
