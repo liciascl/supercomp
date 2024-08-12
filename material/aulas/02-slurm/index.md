@@ -191,14 +191,10 @@ Esse comando strigger define um gatilho que será acionado automaticamente quand
 
 ### Atividade 02: Explorando comandos SLURM
 
-1. **Modifique a Profundidade da Árvore**:
-   - Ajuste a profundidade da árvore no código `decision_tree.cpp` para 30, 60 e 90.
+1. Modifique a Profundidade da Árvore no código `decision_tree.cpp` para 30, 40 e 50.
 
-2. **Atualize o Arquivo .slurm**:
-   - Edite o arquivo `.slurm` para garantir que os recursos de hardware (CPUs, memória) e o tempo de execução sejam adequados para as diferentes profundidades da árvore.
+2. Edite o arquivo `.slurm` para garantir que os recursos de hardware (CPUs, memória) e o tempo de execução sejam adequados para as diferentes profundidades da árvore.
 
-3. **Crie e Analise um Gráfico**:
-   - Gere um gráfico comparando o tempo de execução do algoritmo para cada profundidade da árvore. Analise o impacto da alocação de mais recursos, como CPUs e memória, no tempo de execução.
+3. Gere um gráfico comparando o tempo de execução do algoritmo para cada profundidade da árvore. Analise o impacto da alocação de mais recursos, como CPUs e memória, no tempo de execução.
 
-4. **Discuta o Uso de Comandos SLURM**:
-   - Explore e explique como os comandos `sinfo`, `squeue`, `sprio`, `srun`, `sstat`, e `strigger` podem ser utilizados para monitorar e gerenciar jobs em um cluster.
+4. Explore e explique como os comandos `sinfo`, `squeue`, `sprio`, `srun`, `sstat`, e `strigger` podem ser utilizados para monitorar e gerenciar jobs em um cluster.
