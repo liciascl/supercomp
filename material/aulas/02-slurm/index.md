@@ -13,6 +13,8 @@ Crie um arquivo chamado `decision_tree.cpp` com o seguinte conteúdo:
 #include <vector>     // Inclui a biblioteca de vetores (não usada diretamente neste código, mas útil para estruturas de dados).
 #include <chrono>     // Inclui a biblioteca para medição de tempo (usada para cronometrar a execução do código).
 #include <thread>     // Inclui a biblioteca para trabalhar com threads e simular atrasos (usada para criar uma pausa no processamento).
+#include <mpi.h>      // Inclui a biblioteca MPI para paralelismo entre múltiplos nós.
+#include <omp.h>      // Inclui a biblioteca OpenMP para paralelismo com threads.
 
 // Define uma estrutura chamada Node que representa um nó em uma árvore binária.
 struct Node {
@@ -42,79 +44,128 @@ void traverseTree(Node* root, int level) {
     if (root == nullptr) return;  // Se o nó for nulo, a função retorna (caso base da recursão).
     
     // Imprime o nível atual da árvore.
-    std::cout << "Nível da árvore: " << level << std::endl;
+    std::cout << "Nível da árvore: " << level << " - Processado por thread " << omp_get_thread_num() << std::endl;
     
     // Simula um pequeno atraso para representar o processamento do nó atual.
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
     
-    traverseTree(root->left, level + 1);  // Percorre recursivamente a subárvore esquerda, aumentando o nível.
-    traverseTree(root->right, level + 1); // Percorre recursivamente a subárvore direita, aumentando o nível.
+    // Paraleliza a travessia das subárvores esquerda e direita usando OpenMP.
+    #pragma omp parallel sections
+    {
+        #pragma omp section
+        {
+            traverseTree(root->left, level + 1);  // Percorre recursivamente a subárvore esquerda, aumentando o nível.
+        }
+        #pragma omp section
+        {
+            traverseTree(root->right, level + 1); // Percorre recursivamente a subárvore direita, aumentando o nível.
+        }
+    }
 }
 
 // Função principal do programa.
-int main() {
+int main(int argc, char* argv[]) {
+    MPI_Init(&argc, &argv);  // Inicializa o ambiente MPI.
+
+    int world_size;
+    MPI_Comm_size(MPI_COMM_WORLD, &world_size);  // Obtém o número total de processos.
+    
+    int world_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);  // Obtém o identificador do processo atual.
+
     int depth = 20; // Define a profundidade da árvore como 20.
-    
-    // Cria uma árvore binária com a profundidade especificada.
-    Node* root = createTree(depth);
-    
+
+    Node* root = nullptr;
+
+    // Apenas o processo mestre (rank 0) cria a árvore.
+    if (world_rank == 0) {
+        root = createTree(depth);
+    }
+
     // Marca o tempo inicial antes de começar a percorrer a árvore.
     auto start = std::chrono::high_resolution_clock::now();
     
-    // Percorre toda a árvore binária, começando do nível 0.
-    traverseTree(root, 0);
-    
+    // Distribui o trabalho para percorrer a árvore entre os processos usando MPI.
+    if (world_rank == 0) {
+        // Processo mestre percorre a subárvore esquerda e envia a subárvore direita para outro processo.
+        int right_process = 1 % world_size;  // Atribui a subárvore direita ao próximo processo.
+        MPI_Send(root->right, sizeof(Node), MPI_BYTE, right_process, 0, MPI_COMM_WORLD);
+        traverseTree(root->left, 0);
+    } else {
+        // Outros processos recebem uma parte da árvore e a processam.
+        Node* received_node = new Node(0);
+        MPI_Recv(received_node, sizeof(Node), MPI_BYTE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        traverseTree(received_node, 0);
+    }
+
     // Marca o tempo final após concluir a travessia da árvore.
     auto end = std::chrono::high_resolution_clock::now();
     
-    // Calcula a duração total da travessia da árvore.
-    std::chrono::duration<double> duration = end - start;
-    
-    // Imprime o tempo de execução em segundos.
-    std::cout << "Tempo de execução: " << duration.count() << " segundos" << std::endl;
-    
+    // Apenas o processo mestre calcula e exibe o tempo de execução.
+    if (world_rank == 0) {
+        std::chrono::duration<double> duration = end - start;
+        std::cout << "Tempo de execução: " << duration.count() << " segundos" << std::endl;
+    }
+
+    MPI_Finalize();  // Finaliza o ambiente MPI.
     return 0;  // Retorna 0, indicando que o programa terminou com sucesso.
 }
+
 ```
 
 Compile o programa dentro do Cluster:
 
 ```bash
-g++ decision_tree.cpp -o decision_tree
+mpic++ -fopenmp decision_tree.cpp -o decision_tree
 ```
 
 
-### Criação de Scripts SLURM com Diferentes Recursos
+### Criação de Scripts SLURM 
 
-Crie um arquivo chamado `low_resources.slurm` com o seguinte conteúdo:
+Crie um arquivo tree_limitado.slurm com a seguinte configuração:
 
 ```bash
 #!/bin/bash
-#SBATCH --job-name=low_resources_job          # Define o nome do job como 'low_resources_job'.
-#SBATCH --output=low_resources_output_%j.txt  # Especifica o arquivo de saída para o job, incluindo o ID do job (%j).
-#SBATCH --ntasks=1                            # Define o número de tarefas para o job como 1.
-#SBATCH --cpus-per-task=1                     # Aloca 1 CPU por tarefa.
-#SBATCH --mem=300M                            # Solicita 300 MB de memória.
-#SBATCH --time=00:10:00                       # Define o tempo máximo de execução do job como 10 minutos.
+#SBATCH --job-name=tree_limitado    # Nome do job
+#SBATCH --output=tree_limitado_output_%j.txt  # Nome do arquivo de saída
+#SBATCH --ntasks=2                               # Número de tarefas (apenas 2 processos)
+#SBATCH --cpus-per-task=1                        # Número de threads por tarefa (apenas 1 thread por processo)
+#SBATCH --mem=1024                               # Memória total alocada por nó (1024 MB = 1 GB)
+#SBATCH --time=00:30:00                          # Tempo máximo de execução (até meia hora)
+#SBATCH --partition=espec                       # Fila do cluster a ser utilizada
 
-./decision_tree                               # Executa o programa 'decision_tree'.
+# Exporta a variável de ambiente para configurar o número de threads OpenMP
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+# Executa o programa usando MPI e OpenMP
+mpirun ./decision_tree
 ```
-Este .slurm submete um job que executa o programa decision_tree com 1 CPU, 300MB de memória, 10 minutos de tempo de execução.
+Este .slurm submete um job que executa 2 tarefas simultaneamente, com 1 CPU por tarefa, 1024 MB (1 GB) de memória por nó, e um tempo máximo de execução de 30 minutos.
 
-Vamos criar um arquivo solicitando mais recursos para ver o que acontece; Crie um arquivo chamado `high_resources.slurm` com o seguinte conteúdo:
+
+
+Vamos solicitar mais recursos e ver o que acontece, crie um arquivo tree_buffado.slurm com a seguinte configuração:
 
 ```bash
 #!/bin/bash
-#SBATCH --job-name=high_resources_job          # Define o nome do job como 'high_resources_job'.
-#SBATCH --output=high_resources_output_%j.txt  # Especifica o arquivo de saída para o job, incluindo o ID do job (%j).
-#SBATCH --ntasks=2                             # Define o que cada job execute 2 tarefas.
-#SBATCH --cpus-per-task=2                      # Aloca 2 CPUs por tarefa.
-#SBATCH --mem=1000M                            # Solicita 1000 MB (1 GB) de memória.
-#SBATCH --time=00:10:00                        # Define o tempo máximo de execução do job como 10 minutos.
+#SBATCH --job-name=tree_buffado       # Nome do job
+#SBATCH --output=ttree_buffado_%j.txt  # Nome do arquivo de saída
+#SBATCH --ntasks=4                              # Número de tarefas (4 processos)
+#SBATCH --cpus-per-task=2                       # Número de threads por tarefa (2 threads por processo)
+#SBATCH --mem=2048                               # Memória total alocada por nó (2048 MB = 2 GB)
+#SBATCH --time=00:30:00                         # Tempo máximo de execução (30 minutos)
+#SBATCH --partition=espec                      # fila do cluster a ser utilizada
 
-./decision_tree                                # Executa o programa 'decision_tree'.
+# Exporta a variável de ambiente para configurar o número de threads OpenMP
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+
+# Executa o programa usando MPI e OpenMP
+mpirun ./decision_tree
 ```
-Este .slurm submete um job que executa 2 tarefas ao mesmo tempo, com 2 CPU, 1GB de memória, 10 minutos de tempo de execução.
+Este .slurm submete um job que executa tarefas simultaneamente, com 2 CPUs por tarefa, 2 GB de memória por nó, e um tempo máximo de execução de 30 minutos.
+
+
 
 ### Exploração dos Comandos SLURM
 
@@ -122,8 +173,8 @@ Este .slurm submete um job que executa 2 tarefas ao mesmo tempo, com 2 CPU, 1GB 
 Submeta os jobs usando o comando `sbatch`:
 
 ```bash
-sbatch low_resources.slurm
-sbatch high_resources.slurm
+sbatch tree_limitado.slurm
+sbatch tree_buffado.slurm
 ```
 
 Execute o programa `decision_tree` usando `srun`:
@@ -131,14 +182,7 @@ Execute o programa `decision_tree` usando `srun`:
 ```bash
 srun --ntasks=1 --cpus-per-task=2 --mem=500M ./decision_tree
 ```
-O comando srun está solicitando ao SLURM que aloque os recursos necessários para executar o programa decision_tree diretamente via terminal.
-
-Especificamente:
-
-    1. Ele solicita 1 tarefa para ser executada.
-    2. A tarefa terá acesso a 2 CPUs (ou núcleos de processamento).
-    3. A tarefa terá até 500 MB de memória disponível.
-    4. Assim que os recursos estiverem disponíveis, o programa decision_tree será executado.
+O comando srun está solicitando ao SLURM que aloque os recursos necessários para executar o programa decision_tree diretamente via terminal. Ele solicita 1 tarefa para ser executada, a tarefa terá acesso a 2 CPUs (ou núcleos de processamento), terá até 500 MB de memória disponível. 
 
 Esse comando permite testar ou rodar programas interativamente com os recursos solicitados, podendo observar em tempo real o comportamento do programa.
 
