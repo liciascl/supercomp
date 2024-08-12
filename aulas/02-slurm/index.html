@@ -1,0 +1,1225 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/02-slurm/">
+      
+      
+        <link rel="prev" href="../01-introducao/">
+      
+      
+        <link rel="next" href="../../projetos/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+    
+    
+      
+        <title>Aula 02: Explorando Comandos SLURM - SuperComputação - 2024/2</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/printing.css">
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+      <link rel="stylesheet" href="../../equipe.css">
+    
+      <link rel="stylesheet" href="../../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../../css/pandas-dataframe.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aula-02-explorando-comandos-slurm" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SuperComputação - 2024/2" class="md-header__button md-logo" aria-label="SuperComputação - 2024/2" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SuperComputação - 2024/2
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Aula 02: Explorando Comandos SLURM
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/insper/supercomp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SuperComp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SuperComputação - 2024/2" class="md-nav__button md-logo" aria-label="SuperComputação - 2024/2" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    SuperComputação - 2024/2
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/insper/supercomp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SuperComp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Aulas
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Aulas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entregas e Objetivos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-introducao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aula 0: A importância da linguagem
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-introducao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aula 1: Acessando o Cluster Franky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Aula 02: Explorando Comandos SLURM
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Aula 02: Explorando Comandos SLURM
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parte-1-programa-c-para-percorrer-uma-arvore-de-decisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 1: Programa C++ para Percorrer uma Árvore de Decisão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criacao-de-scripts-slurm-com-diferentes-recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criação de Scripts SLURM com Diferentes Recursos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exploracao-dos-comandos-slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploração dos Comandos SLURM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-02-explorando-comandos-slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 02: Explorando comandos SLURM
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Projeto
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Projeto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projetos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Projeto da disciplina
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Teoria
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Teoria
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Materiais e Guias para estudo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/contextualizando-hpc/contextualizando-HPC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contextualizando o HPC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/cluster-Franky/cluster-Franky/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cluster Franky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/slurm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SLURM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/comandos-ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transferência de Arquivos usando SCP entre sua Máquina e o Cluster Franky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/introducao/conceitos-basicos-hw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Relembrando conceitos importantes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/conceitos-basicos-C%2B%2B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conceitos básicos de C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/compilar-executar-C%2B%2B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilar/Executar Códigos C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/loops-e-la%C3%A7os/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Loops e Laços
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/funcoes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Definição e Declaração de Funções
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/uso-de-constantes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uso de Constantes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/memoria-dinamica/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Alocação de Memória Dinâmica
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/sobrecarga-de-funcoes-C%2B%2B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sobrecarga de Funções em C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/classes-e-objetos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Classes e objetos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/manipulacao-vetores/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manipulação de Vetores
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/flags-compilacao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flags de compilação (-O1, -O2, -O3, -Ofast).
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/profiling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Profiling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parte-1-programa-c-para-percorrer-uma-arvore-de-decisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 1: Programa C++ para Percorrer uma Árvore de Decisão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criacao-de-scripts-slurm-com-diferentes-recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criação de Scripts SLURM com Diferentes Recursos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exploracao-dos-comandos-slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploração dos Comandos SLURM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-02-explorando-comandos-slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 02: Explorando comandos SLURM
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="aula-02-explorando-comandos-slurm">Aula 02: Explorando Comandos SLURM<a class="headerlink" href="#aula-02-explorando-comandos-slurm" title="Permanent link">&para;</a></h1>
+<p><strong>Objetivo:</strong> Entender como a solicitação recursos impacta o tempo de execução de uma tarefa e explorar a funcionalidade dos principais comandos SLURM.</p>
+<p><strong>Recursos Necessários:</strong> Acesso ao cluster Franky configurado.</p>
+<h3 id="parte-1-programa-c-para-percorrer-uma-arvore-de-decisao">Parte 1: Programa C++ para Percorrer uma Árvore de Decisão<a class="headerlink" href="#parte-1-programa-c-para-percorrer-uma-arvore-de-decisao" title="Permanent link">&para;</a></h3>
+<p>Crie um arquivo chamado <code>decision_tree.cpp</code> com o seguinte conteúdo:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="c1">   // Inclui a biblioteca de entrada e saída padrão (para usar std::cout).</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="c1">     // Inclui a biblioteca de vetores (não usada diretamente neste código, mas útil para estruturas de dados).</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span><span class="c1">     // Inclui a biblioteca para medição de tempo (usada para cronometrar a execução do código).</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span><span class="c1">     // Inclui a biblioteca para trabalhar com threads e simular atrasos (usada para criar uma pausa no processamento).</span>
+
+<span class="c1">// Define uma estrutura chamada Node que representa um nó em uma árvore binária.</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w">       </span><span class="c1">// Valor armazenado no nó.</span>
+<span class="w">    </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">left</span><span class="p">;</span><span class="w">      </span><span class="c1">// Ponteiro para o nó filho à esquerda.</span>
+<span class="w">    </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">right</span><span class="p">;</span><span class="w">     </span><span class="c1">// Ponteiro para o nó filho à direita.</span>
+
+<span class="w">    </span><span class="c1">// Construtor do nó, inicializa o valor e define os filhos como nulos.</span>
+<span class="w">    </span><span class="n">Node</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">value</span><span class="p">(</span><span class="n">val</span><span class="p">),</span><span class="w"> </span><span class="n">left</span><span class="p">(</span><span class="k">nullptr</span><span class="p">),</span><span class="w"> </span><span class="n">right</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="c1">// Função recursiva para criar uma árvore binária de determinada profundidade.</span>
+<span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="nf">createTree</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">depth</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">depth</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w">  </span><span class="c1">// Se a profundidade for 0, retorna nullptr (árvore vazia).</span>
+
+<span class="w">    </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="n">depth</span><span class="p">);</span><span class="w">    </span><span class="c1">// Cria um novo nó com o valor igual à profundidade atual.</span>
+
+<span class="w">    </span><span class="c1">// Cria recursivamente a subárvore esquerda e direita, diminuindo a profundidade em 1.</span>
+<span class="w">    </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createTree</span><span class="p">(</span><span class="n">depth</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createTree</span><span class="p">(</span><span class="n">depth</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span><span class="w">  </span><span class="c1">// Retorna o nó criado.</span>
+<span class="p">}</span>
+
+<span class="c1">// Função recursiva para percorrer a árvore binária (traversal) com print do nível atual.</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">traverseTree</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">level</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w">  </span><span class="c1">// Se o nó for nulo, a função retorna (caso base da recursão).</span>
+
+<span class="w">    </span><span class="c1">// Imprime o nível atual da árvore.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Nível da árvore: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Simula um pequeno atraso para representar o processamento do nó atual.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">traverseTree</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// Percorre recursivamente a subárvore esquerda, aumentando o nível.</span>
+<span class="w">    </span><span class="n">traverseTree</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// Percorre recursivamente a subárvore direita, aumentando o nível.</span>
+<span class="p">}</span>
+
+<span class="c1">// Função principal do programa.</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"> </span><span class="c1">// Define a profundidade da árvore como 20.</span>
+
+<span class="w">    </span><span class="c1">// Cria uma árvore binária com a profundidade especificada.</span>
+<span class="w">    </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createTree</span><span class="p">(</span><span class="n">depth</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Marca o tempo inicial antes de começar a percorrer a árvore.</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Percorre toda a árvore binária, começando do nível 0.</span>
+<span class="w">    </span><span class="n">traverseTree</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Marca o tempo final após concluir a travessia da árvore.</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Calcula a duração total da travessia da árvore.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Imprime o tempo de execução em segundos.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Tempo de execução: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">duration</span><span class="p">.</span><span class="n">count</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; segundos&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// Retorna 0, indicando que o programa terminou com sucesso.</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Compile o programa dentro do Cluster:</p>
+<div class="highlight"><pre><span></span><code>g++<span class="w"> </span>decision_tree.cpp<span class="w"> </span>-o<span class="w"> </span>decision_tree
+</code></pre></div>
+<h3 id="criacao-de-scripts-slurm-com-diferentes-recursos">Criação de Scripts SLURM com Diferentes Recursos<a class="headerlink" href="#criacao-de-scripts-slurm-com-diferentes-recursos" title="Permanent link">&para;</a></h3>
+<p>Crie um arquivo chamado <code>low_resources.slurm</code> com o seguinte conteúdo:</p>
+<p><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=low_resources_job          # Define o nome do job como &#39;low_resources_job&#39;.</span>
+<span class="c1">#SBATCH --output=low_resources_output_%j.txt  # Especifica o arquivo de saída para o job, incluindo o ID do job (%j).</span>
+<span class="c1">#SBATCH --ntasks=1                            # Define o número de tarefas para o job como 1.</span>
+<span class="c1">#SBATCH --cpus-per-task=1                     # Aloca 1 CPU por tarefa.</span>
+<span class="c1">#SBATCH --mem=300M                            # Solicita 300 MB de memória.</span>
+<span class="c1">#SBATCH --time=00:10:00                       # Define o tempo máximo de execução do job como 10 minutos.</span>
+
+./decision_tree<span class="w">                               </span><span class="c1"># Executa o programa &#39;decision_tree&#39;.</span>
+</code></pre></div>
+Este .slurm submete um job que executa o programa decision_tree com 1 CPU, 300MB de memória, 10 minutos de tempo de execução.</p>
+<p>Vamos criar um arquivo solicitando mais recursos para ver o que acontece; Crie um arquivo chamado <code>high_resources.slurm</code> com o seguinte conteúdo:</p>
+<p><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=high_resources_job          # Define o nome do job como &#39;high_resources_job&#39;.</span>
+<span class="c1">#SBATCH --output=high_resources_output_%j.txt  # Especifica o arquivo de saída para o job, incluindo o ID do job (%j).</span>
+<span class="c1">#SBATCH --ntasks=2                             # Define o que cada job execute 2 tarefas.</span>
+<span class="c1">#SBATCH --cpus-per-task=2                      # Aloca 2 CPUs por tarefa.</span>
+<span class="c1">#SBATCH --mem=1000M                            # Solicita 1000 MB (1 GB) de memória.</span>
+<span class="c1">#SBATCH --time=00:10:00                        # Define o tempo máximo de execução do job como 10 minutos.</span>
+
+./decision_tree<span class="w">                                </span><span class="c1"># Executa o programa &#39;decision_tree&#39;.</span>
+</code></pre></div>
+Este .slurm submete um job que executa 2 tarefas ao mesmo tempo, com 2 CPU, 1GB de memória, 10 minutos de tempo de execução.</p>
+<h3 id="exploracao-dos-comandos-slurm">Exploração dos Comandos SLURM<a class="headerlink" href="#exploracao-dos-comandos-slurm" title="Permanent link">&para;</a></h3>
+<p>Submeta os jobs usando o comando <code>sbatch</code>:</p>
+<div class="highlight"><pre><span></span><code>sbatch<span class="w"> </span>low_resources.slurm
+sbatch<span class="w"> </span>high_resources.slurm
+</code></pre></div>
+<p>Execute o programa <code>decision_tree</code> usando <code>srun</code>:</p>
+<p><div class="highlight"><pre><span></span><code>srun<span class="w"> </span>--ntasks<span class="o">=</span><span class="m">1</span><span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>--mem<span class="o">=</span>500M<span class="w"> </span>./decision_tree
+</code></pre></div>
+O comando srun está solicitando ao SLURM que aloque os recursos necessários para executar o programa decision_tree diretamente via terminal.</p>
+<p>Especificamente:</p>
+<div class="codehilite"><pre><span></span><code>1. Ele solicita 1 tarefa para ser executada.
+2. A tarefa terá acesso a 2 CPUs (ou núcleos de processamento).
+3. A tarefa terá até 500 MB de memória disponível.
+4. Assim que os recursos estiverem disponíveis, o programa decision_tree será executado.
+</code></pre></div>
+
+<p>Esse comando permite testar ou rodar programas interativamente com os recursos solicitados, podendo observar em tempo real o comportamento do programa.</p>
+<p>Após iniciar o job com <code>srun</code>, use <code>sstat</code> para monitorar os recursos utilizados pelo job:</p>
+<div class="highlight"><pre><span></span><code>sstat<span class="w"> </span>--job<span class="w"> </span>&lt;JOB_ID&gt;
+</code></pre></div>
+<p>Utilize o comando <code>sinfo</code> para observar o estado dos nós e das filas:</p>
+<div class="highlight"><pre><span></span><code>sinfo
+</code></pre></div>
+<p>Use o comando <code>squeue</code> para observar o estado dos jobs em execução no Cluster Franky:</p>
+<div class="highlight"><pre><span></span><code>squeue
+</code></pre></div>
+<p>Use o comando <code>sprio</code> para visualizar a prioridade dos jobs:</p>
+<div class="highlight"><pre><span></span><code>sprio
+</code></pre></div>
+<p>Use <code>strigger</code> para definir um gatilho que notifique quando o job se aproximar do limite de tempo:</p>
+<p><div class="highlight"><pre><span></span><code>strigger<span class="w"> </span>--set<span class="w"> </span>--jobid<span class="o">=</span>&lt;JOB_ID&gt;<span class="w"> </span>--threshold<span class="o">=</span><span class="m">60</span><span class="w"> </span>--action<span class="o">=</span><span class="s2">&quot;echo &#39;Job está próximo de atingir o limite de tempo!&#39;&quot;</span>
+</code></pre></div>
+<strong>Explicando as flags</strong></p>
+<p>--set: Indica que você está criando um novo gatilho. Este gatilho será ativado quando a condição especificada for atendida.</p>
+<p>--jobid=<JOB_ID>: Especifica o ID do job para o qual o gatilho será configurado. </p>
+<p>--threshold=60: Define o limiar (threshold) de tempo restante para o job. Neste caso, o gatilho será acionado quando o job tiver 60 segundos restantes antes de atingir seu limite de tempo de execução. Sempre configure o tempo em segundos. </p>
+<p>--action="echo 'Job está próximo de atingir o limite de tempo!'": Especifica a ação que será executada quando o gatilho for ativado. Neste exemplo, a ação é um simples comando echo que imprimirá a mensagem "Job está próximo de atingir o limite de tempo!" no terminal ou no arquivo de saída do job.</p>
+<p>Esse comando strigger define um gatilho que será acionado automaticamente quando o job especificado (<JOB_ID>) estiver a 60 segundos de atingir seu limite de tempo de execução. Quando o gatilho for ativado, ele executará o comando especificado na opção --action, que neste caso é imprimir uma mensagem de aviso. Se você tem um job que tem um tempo longo de execução e você não quer ficar monitorando, pode configurar esse gatilho para ser notificado quando o tempo do job estiver prestes a terminar.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Se quiser entender melhor sobre este comando e testar outros exemplos <a href="../../Teoria/slurm/">verifique o material disponível aqui</a></p>
+</div>
+<h3 id="atividade-02-explorando-comandos-slurm">Atividade 02: Explorando comandos SLURM<a class="headerlink" href="#atividade-02-explorando-comandos-slurm" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Modifique a Profundidade da Árvore</strong>:</li>
+<li>
+<p>Ajuste a profundidade da árvore no código <code>decision_tree.cpp</code> para 30, 60 e 90.</p>
+</li>
+<li>
+<p><strong>Atualize o Arquivo .slurm</strong>:</p>
+</li>
+<li>
+<p>Edite o arquivo <code>.slurm</code> para garantir que os recursos de hardware (CPUs, memória) e o tempo de execução sejam adequados para as diferentes profundidades da árvore.</p>
+</li>
+<li>
+<p><strong>Crie e Analise um Gráfico</strong>:</p>
+</li>
+<li>
+<p>Gere um gráfico comparando o tempo de execução do algoritmo para cada profundidade da árvore. Analise o impacto da alocação de mais recursos, como CPUs e memória, no tempo de execução.</p>
+</li>
+<li>
+<p><strong>Discuta o Uso de Comandos SLURM</strong>:</p>
+</li>
+<li>Explore e explique como os comandos <code>sinfo</code>, <code>squeue</code>, <code>sprio</code>, <code>srun</code>, <code>sstat</code>, e <code>strigger</code> podem ser utilizados para monitorar e gerenciar jobs em um cluster.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.0.0/js-yaml.min.js"></script>
+      
+        <script src="../../js/markdown-enhancer.js"></script>
+      
+        <script src="../../js/slides.js"></script>
+      
+    
+  </body>
+</html>

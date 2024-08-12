@@ -14,7 +14,7 @@
         <link rel="prev" href="../cluster-Franky/cluster-Franky/">
       
       
-        <link rel="next" href="../introducao/conceitos-basicos-hw/">
+        <link rel="next" href="../comandos-ssh/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -338,7 +338,28 @@
         
   
   <span class="md-ellipsis">
-    Atividade 1: Acessando o Cluster Franky
+    Aula 1: Acessando o Cluster Franky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aulas/02-slurm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aula 02: Explorando Comandos SLURM
   </span>
   
 
@@ -688,6 +709,105 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#explicacao-do-comando" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explicação do Comando:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-comuns-de-eventos-monitoraveis-pelo-strigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tipos Comuns de Eventos Monitoráveis pelo strigger:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-1-gatilho-de-tempo-restante" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 1: Gatilho de Tempo Restante
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-2-gatilho-de-falha-de-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 2: Gatilho de Falha de Job
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-3-gatilho-de-uso-de-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 3: Gatilho de Uso de CPU
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-4-gatilho-de-inicio-de-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 4: Gatilho de Início de Job
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-5-gatilho-de-finalizacao-de-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 5: Gatilho de Finalização de Job
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-6-gatilho-de-queda-de-particao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 6: Gatilho de Queda de Partição
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-7-gatilho-de-submissao-de-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 7: Gatilho de Submissão de Job
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-8-gatilho-de-falha-de-no" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 8: Gatilho de Falha de Nó
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-9-gatilho-de-uso-de-memoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 9: Gatilho de Uso de Memória
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#10-sview" class="md-nav__link">
     <span class="md-ellipsis">
       10. sview
@@ -700,6 +820,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comandos-ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transferência de Arquivos usando SCP entre sua Máquina e o Cluster Franky
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1108,6 +1249,105 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#explicacao-do-comando" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explicação do Comando:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-comuns-de-eventos-monitoraveis-pelo-strigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tipos Comuns de Eventos Monitoráveis pelo strigger:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-1-gatilho-de-tempo-restante" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 1: Gatilho de Tempo Restante
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-2-gatilho-de-falha-de-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 2: Gatilho de Falha de Job
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-3-gatilho-de-uso-de-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 3: Gatilho de Uso de CPU
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-4-gatilho-de-inicio-de-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 4: Gatilho de Início de Job
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-5-gatilho-de-finalizacao-de-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 5: Gatilho de Finalização de Job
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-6-gatilho-de-queda-de-particao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 6: Gatilho de Queda de Partição
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-7-gatilho-de-submissao-de-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 7: Gatilho de Submissão de Job
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-8-gatilho-de-falha-de-no" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 8: Gatilho de Falha de Nó
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-9-gatilho-de-uso-de-memoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo 9: Gatilho de Uso de Memória
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#10-sview" class="md-nav__link">
     <span class="md-ellipsis">
       10. sview
@@ -1253,16 +1493,178 @@ sleep<span class="w"> </span><span class="m">60</span>
 </ul>
 <h3 id="9-strigger">9. <strong>strigger</strong><a class="headerlink" href="#9-strigger" title="Permanent link">&para;</a></h3>
 <p><strong>Descrição:</strong> Define, obtém ou visualiza gatilhos de eventos, como nós caindo ou jobs se aproximando do limite de tempo.</p>
-<p><strong>Exemplo:</strong></p>
-<div class="highlight"><pre><span></span><code>strigger<span class="w"> </span>--set<span class="w"> </span>--jobid<span class="o">=</span><span class="m">12345</span><span class="w"> </span>--signal<span class="o">=</span>SIGKILL<span class="w"> </span>--time<span class="o">=</span><span class="m">60</span>
+<p><strong>Exemplo:</strong>
+Vamos supor que você queira configurar um gatilho (<code>strigger</code>) para monitorar o uso de memória de um job específico e enviar um alerta quando o uso de memória ultrapassar um certo limite. Aqui está um exemplo completo:</p>
+<div class="highlight"><pre><span></span><code>strigger<span class="w"> </span>--set<span class="w"> </span>--jobid<span class="o">=</span>&lt;JOB_ID&gt;<span class="w"> </span>--threshold<span class="o">=</span><span class="m">500</span><span class="w"> </span>--action<span class="o">=</span><span class="s2">&quot;echo &#39;Atenção: O uso de memória ultrapassou 500 MB!&#39;&quot;</span>
 </code></pre></div>
-<p><strong>Explicação das Flags:</strong></p>
+<h3 id="explicacao-do-comando">Explicação do Comando:<a class="headerlink" href="#explicacao-do-comando" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong><code>-set</code></strong>: Define um novo gatilho.</li>
-<li><strong><code>-jobid=12345</code></strong>: Especifica o ID do job para o qual o gatilho deve ser configurado.</li>
-<li><strong><code>-signal=SIGKILL</code></strong>: Define o sinal a ser enviado (SIGKILL).</li>
-<li><strong><code>-time=60</code></strong>: Define que o sinal deve ser enviado 60 segundos antes do término do job.</li>
+<li><strong><code>strigger</code></strong>: Comando para configurar um gatilho no SLURM.</li>
+<li><strong><code>--set</code></strong>: Indica que estamos criando um novo gatilho.</li>
+<li><strong><code>--jobid=&lt;JOB_ID&gt;</code></strong>: Especifica o ID do job que queremos monitorar. Substitua <code>&lt;JOB_ID&gt;</code> pelo ID real do job.</li>
+<li><strong><code>--threshold=500</code></strong>: Define o limiar de 500 MB de uso de memória. Quando o job usar mais de 500 MB, o gatilho será ativado.</li>
+<li><strong><code>--action="echo 'Atenção: O uso de memória ultrapassou 500 MB!'"</code></strong>: Define a ação que será executada quando o gatilho for ativado. Neste caso, a ação é um simples comando <code>echo</code> que imprime uma mensagem de alerta.</li>
 </ul>
+<p>Este gatilho será acionado quando o job especificado pelo <code>&lt;JOB_ID&gt;</code> ultrapassar 500 MB de uso de memória. A ação definida (<code>echo</code>) será executada, e você verá a mensagem "Atenção: O uso de memória ultrapassou 500 MB!" no terminal ou no arquivo de saída do job.</p>
+<p>Você pode personalizar o comando <code>strigger</code> para outras situações, como monitorar o tempo restante de um job, detectar falhas de nós, ou monitorar o uso de CPU, simplesmente ajustando os parâmetros e as ações conforme necessário.</p>
+<h3 id="tipos-comuns-de-eventos-monitoraveis-pelo-strigger">Tipos Comuns de Eventos Monitoráveis pelo <code>strigger</code>:<a class="headerlink" href="#tipos-comuns-de-eventos-monitoraveis-pelo-strigger" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Tempo Restante (<code>TIME_LIMIT</code>)</strong>:</li>
+<li><strong>Descrição</strong>: Aciona o gatilho quando um job se aproxima de seu limite de tempo de execução.</li>
+<li><strong>Uso do <code>--threshold</code></strong>: Especifica o tempo restante em segundos.</li>
+<li>
+<p><strong>Exemplo</strong>: <code>strigger --set --jobid=&lt;JOB_ID&gt; --threshold=60 --action="echo 'Job está a 60 segundos do limite de tempo!'"</code></p>
+</li>
+<li>
+<p><strong>Uso de Memória (<code>MEMORY</code>)</strong>:</p>
+</li>
+<li><strong>Descrição</strong>: Aciona o gatilho quando o uso de memória de um job ultrapassa um certo limite.</li>
+<li><strong>Uso do <code>--threshold</code></strong>: Especifica a quantidade de memória usada, geralmente em megabytes (MB).</li>
+<li>
+<p><strong>Exemplo</strong>: <code>strigger --set --jobid=&lt;JOB_ID&gt; --threshold=1024 --action="echo 'Job ultrapassou 1GB de memória!'"</code></p>
+</li>
+<li>
+<p><strong>Falha de Nó (<code>NODE_FAIL</code>)</strong>:</p>
+</li>
+<li><strong>Descrição</strong>: Aciona o gatilho quando um nó falha ou fica indisponível.</li>
+<li><strong>Uso do <code>--threshold</code></strong>: Não aplicável diretamente. O gatilho é acionado quando o evento de falha ocorre.</li>
+<li>
+<p><strong>Exemplo</strong>: <code>strigger --set --node=&lt;NODE_NAME&gt; --event=NODE_FAIL --action="echo 'Nó falhou!'"</code></p>
+</li>
+<li>
+<p><strong>Falha de Job (<code>JOB_FAIL</code>)</strong>:</p>
+</li>
+<li><strong>Descrição</strong>: Aciona o gatilho quando um job falha por qualquer motivo.</li>
+<li><strong>Uso do <code>--threshold</code></strong>: Não aplicável diretamente. O gatilho é acionado quando o evento de falha ocorre.</li>
+<li>
+<p><strong>Exemplo</strong>: <code>strigger --set --jobid=&lt;JOB_ID&gt; --event=JOB_FAIL --action="echo 'Job falhou!'"</code></p>
+</li>
+<li>
+<p><strong>Início de Job (<code>JOB_START</code>)</strong>:</p>
+</li>
+<li><strong>Descrição</strong>: Aciona o gatilho quando um job começa a ser executado.</li>
+<li><strong>Uso do <code>--threshold</code></strong>: Não aplicável diretamente. O gatilho é acionado quando o evento de início ocorre.</li>
+<li>
+<p><strong>Exemplo</strong>: <code>strigger --set --jobid=&lt;JOB_ID&gt; --event=JOB_START --action="echo 'Job iniciou!'"</code></p>
+</li>
+<li>
+<p><strong>Finalização de Job (<code>JOB_END</code>)</strong>:</p>
+</li>
+<li><strong>Descrição</strong>: Aciona o gatilho quando um job termina sua execução, independentemente de ter sido concluído com sucesso ou não.</li>
+<li><strong>Uso do <code>--threshold</code></strong>: Não aplicável diretamente. O gatilho é acionado quando o evento de finalização ocorre.</li>
+<li>
+<p><strong>Exemplo</strong>: <code>strigger --set --jobid=&lt;JOB_ID&gt; --event=JOB_END --action="echo 'Job terminou!'"</code></p>
+</li>
+<li>
+<p><strong>Limite de CPU (<code>CPU_LIMIT</code>)</strong>:</p>
+</li>
+<li><strong>Descrição</strong>: Aciona o gatilho quando o uso de CPU de um job ultrapassa um certo limite.</li>
+<li><strong>Uso do <code>--threshold</code></strong>: Especifica o uso de CPU em segundos de CPU ou em porcentagem.</li>
+<li>
+<p><strong>Exemplo</strong>: <code>strigger --set --jobid=&lt;JOB_ID&gt; --threshold=80 --action="echo 'Job ultrapassou 80% do uso de CPU!'"</code></p>
+</li>
+<li>
+<p><strong>Submissão de Job (<code>JOB_SUBMIT</code>)</strong>:</p>
+</li>
+<li><strong>Descrição</strong>: Aciona o gatilho quando um job é submetido para execução.</li>
+<li><strong>Uso do <code>--threshold</code></strong>: Não aplicável diretamente. O gatilho é acionado quando o evento de submissão ocorre.</li>
+<li>
+<p><strong>Exemplo</strong>: <code>strigger --set --user=&lt;USER_NAME&gt; --event=JOB_SUBMIT --action="echo 'Um job foi submetido!'"</code></p>
+</li>
+<li>
+<p><strong>Queda de Partição (<code>PARTITION_DOWN</code>)</strong>:</p>
+</li>
+<li><strong>Descrição</strong>: Aciona o gatilho quando uma partição inteira do cluster cai ou fica indisponível.</li>
+<li><strong>Uso do <code>--threshold</code></strong>: Não aplicável diretamente. O gatilho é acionado quando o evento de queda da partição ocorre.</li>
+<li>
+<p><strong>Exemplo</strong>: <code>strigger --set --partition=&lt;PARTITION_NAME&gt; --event=PARTITION_DOWN --action="echo 'Partição caiu!'"</code></p>
+</li>
+<li>
+<p><strong>Chegada de Job ao Limiar de Tempo (<code>TIME_LIM_REACHED</code>)</strong>:</p>
+<ul>
+<li><strong>Descrição</strong>: Similar ao <code>TIME_LIMIT</code>, mas pode ser mais específico para quando o tempo limite é alcançado, não apenas quando está próximo.</li>
+<li><strong>Uso do <code>--threshold</code></strong>: Especifica o tempo restante ou o evento do tempo limite.</li>
+<li><strong>Exemplo</strong>: <code>strigger --set --jobid=&lt;JOB_ID&gt; --event=TIME_LIM_REACHED --action="echo 'Tempo limite alcançado!'"</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="exemplo-1-gatilho-de-tempo-restante">Exemplo 1: Gatilho de Tempo Restante<a class="headerlink" href="#exemplo-1-gatilho-de-tempo-restante" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> Enviar uma notificação quando um job estiver a 120 segundos de atingir seu limite de tempo.</p>
+<div class="highlight"><pre><span></span><code>strigger<span class="w"> </span>--set<span class="w"> </span>--jobid<span class="o">=</span>&lt;JOB_ID&gt;<span class="w"> </span>--threshold<span class="o">=</span><span class="m">120</span><span class="w"> </span>--action<span class="o">=</span><span class="s2">&quot;echo &#39;Aviso: Job está a 120 segundos do limite de tempo!&#39;&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong><code>--jobid=&lt;JOB_ID&gt;</code></strong>: Substitua <code>&lt;JOB_ID&gt;</code> pelo ID real do job.</li>
+<li><strong><code>--threshold=120</code></strong>: O gatilho será acionado quando o job estiver a 120 segundos do limite de tempo.</li>
+<li><strong><code>--action="echo 'Aviso: Job está a 120 segundos do limite de tempo!'"</code></strong>: A ação que será executada é imprimir uma mensagem de aviso.</li>
+</ul>
+<h3 id="exemplo-2-gatilho-de-falha-de-job">Exemplo 2: Gatilho de Falha de Job<a class="headerlink" href="#exemplo-2-gatilho-de-falha-de-job" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> Notificar quando um job falhar.</p>
+<div class="highlight"><pre><span></span><code>strigger<span class="w"> </span>--set<span class="w"> </span>--jobid<span class="o">=</span>&lt;JOB_ID&gt;<span class="w"> </span>--event<span class="o">=</span>JOB_FAIL<span class="w"> </span>--action<span class="o">=</span><span class="s2">&quot;echo &#39;Alerta: Job falhou!&#39;&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong><code>--event=JOB_FAIL</code></strong>: Configura o gatilho para disparar quando o evento de falha do job ocorrer.</li>
+<li><strong><code>--action="echo 'Alerta: Job falhou!'"</code></strong>: A ação que será executada é imprimir uma mensagem de alerta.</li>
+</ul>
+<h3 id="exemplo-3-gatilho-de-uso-de-cpu">Exemplo 3: Gatilho de Uso de CPU<a class="headerlink" href="#exemplo-3-gatilho-de-uso-de-cpu" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> Enviar uma notificação quando o uso de CPU de um job ultrapassar 80%.</p>
+<div class="highlight"><pre><span></span><code>strigger<span class="w"> </span>--set<span class="w"> </span>--jobid<span class="o">=</span>&lt;JOB_ID&gt;<span class="w"> </span>--threshold<span class="o">=</span><span class="m">80</span><span class="w"> </span>--action<span class="o">=</span><span class="s2">&quot;echo &#39;Aviso: Uso de CPU ultrapassou 80%!&#39;&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong><code>--threshold=80</code></strong>: Define o limiar de 80% de uso de CPU. O gatilho será acionado quando o uso de CPU ultrapassar este valor.</li>
+<li><strong><code>--action="echo 'Aviso: Uso de CPU ultrapassou 80%!'"</code></strong>: A ação que será executada é imprimir uma mensagem de aviso.</li>
+</ul>
+<h3 id="exemplo-4-gatilho-de-inicio-de-job">Exemplo 4: Gatilho de Início de Job<a class="headerlink" href="#exemplo-4-gatilho-de-inicio-de-job" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> Notificar quando um job começar a ser executado.</p>
+<div class="highlight"><pre><span></span><code>strigger<span class="w"> </span>--set<span class="w"> </span>--jobid<span class="o">=</span>&lt;JOB_ID&gt;<span class="w"> </span>--event<span class="o">=</span>JOB_START<span class="w"> </span>--action<span class="o">=</span><span class="s2">&quot;echo &#39;Informação: Job iniciou!&#39;&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong><code>--event=JOB_START</code></strong>: Configura o gatilho para disparar quando o evento de início do job ocorrer.</li>
+<li><strong><code>--action="echo 'Informação: Job iniciou!'"</code></strong>: A ação que será executada é imprimir uma mensagem de informação.</li>
+</ul>
+<h3 id="exemplo-5-gatilho-de-finalizacao-de-job">Exemplo 5: Gatilho de Finalização de Job<a class="headerlink" href="#exemplo-5-gatilho-de-finalizacao-de-job" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> Notificar quando um job terminar sua execução.</p>
+<div class="highlight"><pre><span></span><code>strigger<span class="w"> </span>--set<span class="w"> </span>--jobid<span class="o">=</span>&lt;JOB_ID&gt;<span class="w"> </span>--event<span class="o">=</span>JOB_END<span class="w"> </span>--action<span class="o">=</span><span class="s2">&quot;echo &#39;Informação: Job terminou!&#39;&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong><code>--event=JOB_END</code></strong>: Configura o gatilho para disparar quando o evento de finalização do job ocorrer.</li>
+<li><strong><code>--action="echo 'Informação: Job terminou!'"</code></strong>: A ação que será executada é imprimir uma mensagem de informação.</li>
+</ul>
+<h3 id="exemplo-6-gatilho-de-queda-de-particao">Exemplo 6: Gatilho de Queda de Partição<a class="headerlink" href="#exemplo-6-gatilho-de-queda-de-particao" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> Notificar quando uma partição cair.</p>
+<div class="highlight"><pre><span></span><code>strigger<span class="w"> </span>--set<span class="w"> </span>--partition<span class="o">=</span>&lt;PARTITION_NAME&gt;<span class="w"> </span>--event<span class="o">=</span>PARTITION_DOWN<span class="w"> </span>--action<span class="o">=</span><span class="s2">&quot;echo &#39;Alerta: Partição &lt;PARTITION_NAME&gt; caiu!&#39;&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong><code>--partition=&lt;PARTITION_NAME&gt;</code></strong>: Substitua <code>&lt;PARTITION_NAME&gt;</code> pelo nome real da partição.</li>
+<li><strong><code>--event=PARTITION_DOWN</code></strong>: Configura o gatilho para disparar quando a partição ficar indisponível.</li>
+<li><strong><code>--action="echo 'Alerta: Partição &lt;PARTITION_NAME&gt; caiu!'"</code></strong>: A ação que será executada é imprimir uma mensagem de alerta.</li>
+</ul>
+<h3 id="exemplo-7-gatilho-de-submissao-de-job">Exemplo 7: Gatilho de Submissão de Job<a class="headerlink" href="#exemplo-7-gatilho-de-submissao-de-job" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> Notificar quando um job for submetido.</p>
+<div class="highlight"><pre><span></span><code>strigger<span class="w"> </span>--set<span class="w"> </span>--user<span class="o">=</span>&lt;USER_NAME&gt;<span class="w"> </span>--event<span class="o">=</span>JOB_SUBMIT<span class="w"> </span>--action<span class="o">=</span><span class="s2">&quot;echo &#39;Informação: Um job foi submetido pelo usuário &lt;USER_NAME&gt;!&#39;&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong><code>--user=&lt;USER_NAME&gt;</code></strong>: Substitua <code>&lt;USER_NAME&gt;</code> pelo nome real do usuário.</li>
+<li><strong><code>--event=JOB_SUBMIT</code></strong>: Configura o gatilho para disparar quando um job for submetido.</li>
+<li><strong><code>--action="echo 'Informação: Um job foi submetido pelo usuário &lt;USER_NAME&gt;!'"</code></strong>: A ação que será executada é imprimir uma mensagem de informação.</li>
+</ul>
+<h3 id="exemplo-8-gatilho-de-falha-de-no">Exemplo 8: Gatilho de Falha de Nó<a class="headerlink" href="#exemplo-8-gatilho-de-falha-de-no" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> Notificar quando um nó falhar.</p>
+<div class="highlight"><pre><span></span><code>strigger<span class="w"> </span>--set<span class="w"> </span>--event<span class="o">=</span>NODE_FAIL<span class="w"> </span>--node<span class="o">=</span>&lt;NODE_NAME&gt;<span class="w"> </span>--action<span class="o">=</span><span class="s2">&quot;echo &#39;Alerta: O nó &lt;NODE_NAME&gt; falhou!&#39;&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong><code>--node=&lt;NODE_NAME&gt;</code></strong>: Substitua <code>&lt;NODE_NAME&gt;</code> pelo nome real do nó.</li>
+<li><strong><code>--event=NODE_FAIL</code></strong>: Configura o gatilho para disparar quando o nó falhar.</li>
+<li><strong><code>--action="echo 'Alerta: O nó &lt;NODE_NAME&gt; falhou!'"</code></strong>: A ação que será executada é imprimir uma mensagem de alerta.</li>
+</ul>
+<h3 id="exemplo-9-gatilho-de-uso-de-memoria">Exemplo 9: Gatilho de Uso de Memória<a class="headerlink" href="#exemplo-9-gatilho-de-uso-de-memoria" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> Enviar uma notificação quando o uso de memória de um job ultrapassar 1 GB.</p>
+<div class="highlight"><pre><span></span><code>strigger<span class="w"> </span>--set<span class="w"> </span>--jobid<span class="o">=</span>&lt;JOB_ID&gt;<span class="w"> </span>--threshold<span class="o">=</span><span class="m">1024</span><span class="w"> </span>--action<span class="o">=</span><span class="s2">&quot;echo &#39;Aviso: O uso de memória ultrapassou 1 GB!&#39;&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong><code>--threshold=1024</code></strong>: Define o limiar de 1024 MB (1 GB) de uso de memória.</li>
+<li><strong><code>--action="echo 'Aviso: O uso de memória ultrapassou 1 GB!'"</code></strong>: A ação que será executada é imprimir uma mensagem de aviso.</li>
+</ul>
+<p>Esses exemplos mostram como configurar gatilhos (<code>strigger</code>) para monitorar diferentes eventos no SLURM e executar ações específicas quando esses eventos ocorrem. Você pode ajustar os parâmetros de acordo com suas necessidades específicas</p>
 <h3 id="10-sview">10. <strong>sview</strong><a class="headerlink" href="#10-sview" title="Permanent link">&para;</a></h3>
 <p><strong>Descrição:</strong> Interface gráfica para obter e atualizar informações de estado para jobs, partições e nós gerenciados pelo SLURM.</p>
 <p><strong>Exemplo:</strong></p>

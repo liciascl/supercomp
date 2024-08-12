@@ -14,7 +14,7 @@
         <link rel="prev" href="../00-introducao/">
       
       
-        <link rel="next" href="../../projetos/">
+        <link rel="next" href="../02-slurm/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Atividade 1: Acessando o Cluster Franky - SuperComputação - 2024/2</title>
+        <title>Aula 1: Acessando o Cluster Franky - SuperComputação - 2024/2</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#atividade-1-acessando-o-cluster-franky" class="md-skip">
+        <a href="#aula-1-acessando-o-cluster-franky" class="md-skip">
           Skip to content
         </a>
       
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Atividade 1: Acessando o Cluster Franky
+              Aula 1: Acessando o Cluster Franky
             
           </span>
         </div>
@@ -349,7 +349,7 @@
           
   
   <span class="md-ellipsis">
-    Atividade 1: Acessando o Cluster Franky
+    Aula 1: Acessando o Cluster Franky
   </span>
   
 
@@ -360,7 +360,7 @@
         
   
   <span class="md-ellipsis">
-    Atividade 1: Acessando o Cluster Franky
+    Aula 1: Acessando o Cluster Franky
   </span>
   
 
@@ -445,6 +445,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-slurm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aula 02: Explorando Comandos SLURM
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -630,6 +651,27 @@
   
   <span class="md-ellipsis">
     SLURM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Teoria/comandos-ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transferência de Arquivos usando SCP entre sua Máquina e o Cluster Franky
   </span>
   
 
@@ -1002,7 +1044,7 @@
   
 
 
-<h1 id="atividade-1-acessando-o-cluster-franky"><strong>Atividade 1: Acessando o Cluster Franky</strong><a class="headerlink" href="#atividade-1-acessando-o-cluster-franky" title="Permanent link">&para;</a></h1>
+<h1 id="aula-1-acessando-o-cluster-franky"><strong>Aula 1: Acessando o Cluster Franky</strong><a class="headerlink" href="#aula-1-acessando-o-cluster-franky" title="Permanent link">&para;</a></h1>
 <p>Na Atividade 1, você irá executar as implementações que foram testadas na Atividade 0, mas agora no ambiente de um cluster HPC usando SLURM. O objetivo é observar como o ambiente de cluster, com sua capacidade de processamento paralelo, pode impactar o desempenho das operações computacionalmente intensivas que você já explorou.</p>
 <h3 id="parte-0-configurando-seu-acesso-ao-cluster-franky"><strong>Parte 0: Configurando seu acesso ao Cluster Franky</strong><a class="headerlink" href="#parte-0-configurando-seu-acesso-ao-cluster-franky" title="Permanent link">&para;</a></h3>
 <p>Para ter acesso ao Cluster Franky você precisa configurar suas credenciais de acesso e realizar acesso remoto via SSH.</p>
@@ -1015,11 +1057,11 @@
 <div class="highlight"><pre><span></span><code>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/id_rsa
 </code></pre></div>
 <p>Conecte-se ao cluster utilizando o comando SSH:</p>
-<p>Substitua <code>seu_usuario_insper</code> pelo seu nome de usuário Insper e <code>cluster_endereco</code> pelo endereço de IP fornecido durante a aula.</p>
-<p><div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>seu_usuario_insper@ip_do_cluster
+<p>Substitua <code>nome_da_pasta</code> pelo nome que está na pasta com as chaves que você baixou no BlackBoard e <code>cluster_endereco</code> pelo endereço de IP fornecido durante a aula.</p>
+<p><div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>nome_da_pasta@ip_do_cluster
 </code></pre></div>
 ou</p>
-<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>seu_usuario_insper@ip_do_cluster
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>nome_da_pasta@ip_do_cluster
 </code></pre></div>
 <h4 id="para-windows"><strong>Para Windows:</strong><a class="headerlink" href="#para-windows" title="Permanent link">&para;</a></h4>
 <p><strong>Usando OpenSSH :</strong></p>
@@ -1040,7 +1082,7 @@ Conecte-se ao cluster usando o comando:
 <p>Pressione <code>Ctrl+Shift+P</code> (ou <code>Cmd+Shift+P</code> no Mac) para abrir o painel de comandos.</p>
 <p>Digite <code>Remote-SSH: Add New SSH Host...</code> e selecione a opção.</p>
 <p>Insira o comando SSH que você utilizou anteriormente:
-<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>seu_usuario@cluster_endereco
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>nome_da_pasta@ip_do_cluster
 </code></pre></div>
 Escolha o arquivo de configuração padrão (<code>~/.ssh/config</code> para Mac/Linux ou <code>C:\Users\seu_usuario\.ssh\config</code> para Windows).</p>
 <p>Pressione <code>Ctrl+Shift+P</code> (ou <code>Cmd+Shift+P</code> no Mac) novamente e digite <code>Remote-SSH: Connect to Host...</code>. Selecione o host configurado.</p>
