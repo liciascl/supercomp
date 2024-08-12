@@ -36,6 +36,8 @@ nav:
         - "aulas/index.md"
         - "aulas/00-introducao/index.md"    
         - "aulas/01-introducao/index.md"
+        - "aulas/02-slurm/index.md"
+                
 #        - "02 e 03 - C++": aulas/02-03-implementacao-c++/index.md
 #        - "04 - Profiling": aulas/04-profiling/index.md
 #        - "05 - Heurísticas": aulas/05-heuristicas/index.md
@@ -78,7 +80,8 @@ nav:
          - Teoria/index.md
          - Teoria/contextualizando-hpc/contextualizando-HPC.md
          - Teoria/cluster-Franky/cluster-Franky.md
-         - Teoria/slurm.md         
+         - Teoria/slurm.md 
+         - Teoria/comandos-ssh.md        
          - Teoria/introducao/conceitos-basicos-hw.md  
          - Teoria/conceitos-basicos-C++.md
          - Teoria/compilar-executar-C++.md  

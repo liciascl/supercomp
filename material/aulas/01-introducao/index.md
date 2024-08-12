@@ -1,4 +1,4 @@
-# **Atividade 1: Acessando o Cluster Franky**
+# **Aula 1: Acessando o Cluster Franky**
 
 Na Atividade 1, você irá executar as implementações que foram testadas na Atividade 0, mas agora no ambiente de um cluster HPC usando SLURM. O objetivo é observar como o ambiente de cluster, com sua capacidade de processamento paralelo, pode impactar o desempenho das operações computacionalmente intensivas que você já explorou.
 
@@ -24,16 +24,16 @@ chmod 600 ~/.ssh/id_rsa
 
 Conecte-se ao cluster utilizando o comando SSH:
 
-Substitua `seu_usuario_insper` pelo seu nome de usuário Insper e `cluster_endereco` pelo endereço de IP fornecido durante a aula.
+Substitua `nome_da_pasta` pelo nome que está na pasta com as chaves que você baixou no BlackBoard e `cluster_endereco` pelo endereço de IP fornecido durante a aula.
 
 
 ```bash
-ssh -i ~/.ssh/id_rsa seu_usuario_insper@ip_do_cluster
+ssh -i ~/.ssh/id_rsa nome_da_pasta@ip_do_cluster
 ```
 ou
 
 ```bash
-ssh seu_usuario_insper@ip_do_cluster
+ssh nome_da_pasta@ip_do_cluster
 ```
 
 
@@ -71,7 +71,7 @@ Digite `Remote-SSH: Add New SSH Host...` e selecione a opção.
 
 Insira o comando SSH que você utilizou anteriormente:
 ```bash
-ssh -i ~/.ssh/id_rsa seu_usuario@cluster_endereco
+ssh -i ~/.ssh/id_rsa nome_da_pasta@ip_do_cluster
 ```
 Escolha o arquivo de configuração padrão (`~/.ssh/config` para Mac/Linux ou `C:\Users\seu_usuario\.ssh\config` para Windows).
 
