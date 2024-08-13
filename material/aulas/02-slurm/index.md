@@ -12,6 +12,7 @@ Crie um arquivo chamado `soma_matriz.cpp` com o seguinte conteúdo:
 #include <iostream>   // Inclui a biblioteca padrão de entrada e saída.
 #include <mpi.h>      // Inclui a biblioteca MPI para paralelismo entre múltiplos processos.
 #include <omp.h>      // Inclui a biblioteca OpenMP para paralelismo com threads.
+#include <chrono>     // Inclui a biblioteca para medição de tempo.
 
 // Função principal do programa.
 int main(int argc, char *argv[]) {
@@ -21,8 +22,11 @@ int main(int argc, char *argv[]) {
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);  // Obtém o rank (identificador) do processo atual.
     MPI_Comm_size(MPI_COMM_WORLD, &size);  // Obtém o número total de processos.
 
-    const int N = 20;  // Define a dimensão da matriz NxN.
+    const int N = 200;  // Define a dimensão da matriz NxN.
     int data[N][N];    // Declara a matriz de dados a ser processada.
+
+    // Inicializa a medição de tempo
+    auto start = std::chrono::high_resolution_clock::now();
 
     // Inicialização da matriz pelo processo de rank 0 (processo mestre).
     if (rank == 0) {
@@ -60,7 +64,7 @@ int main(int argc, char *argv[]) {
     // Reúne os dados processados de todos os processos no processo 0.
     MPI_Gather(&local_data, chunk_size * N, MPI_INT, &data, chunk_size * N, MPI_INT, 0, MPI_COMM_WORLD);
 
-    // O processo 0 imprime a matriz final processada.
+    // O processo 0 imprime a matriz final processada e o tempo de execução.
     if (rank == 0) {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
@@ -68,6 +72,11 @@ int main(int argc, char *argv[]) {
             }
             std::cout << std::endl;
         }
+
+        // Calcula e imprime o tempo de execução
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> duration = end - start;
+        std::cout << "Tempo de execução: " << duration.count() << " segundos" << std::endl;
     }
 
     MPI_Finalize();  // Finaliza o ambiente MPI.
@@ -198,7 +207,7 @@ Esse comando strigger define um gatilho que será acionado automaticamente quand
 
 ### Atividade 02: Explorando comandos SLURM
 
-1. Modifique a dimensão da matriz no código `soma_matriz.cpp` para 30x30, 40x40 e 50x50.
+1. Modifique a dimensão da matriz no código `soma_matriz.cpp` para 300x300, 450x450 e 500x500.
 
 2. Modifique o arquivo .slurm para garantir que os recursos de hardware (número de tarefas MPI, CPUs por tarefa, e memória) e o tempo de execução sejam adequados para processar as diferentes dimensões da matriz.
 
