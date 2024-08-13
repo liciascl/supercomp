@@ -4,9 +4,9 @@
 
 **Recursos Necessários:** Acesso ao cluster Franky configurado.
 
-### Programa C++ para somar os valores de uma matriz
+### Programa C++ para realizar a convolução de uma matriz
 
-Crie um arquivo chamado `soma_matriz.cpp` com o seguinte conteúdo:
+Crie um arquivo chamado `convolucao.cpp` com o seguinte conteúdo:
 
 ```cpp
 #include <iostream>   // Inclui a biblioteca padrão de entrada e saída.
@@ -14,69 +14,100 @@ Crie um arquivo chamado `soma_matriz.cpp` com o seguinte conteúdo:
 #include <omp.h>      // Inclui a biblioteca OpenMP para paralelismo com threads.
 #include <chrono>     // Inclui a biblioteca para medição de tempo.
 
-// Função principal do programa.
+#define N 1000 // Define o tamanho da matriz NxN.
+#define FILTER_SIZE 5 // Define o tamanho do filtro 5x5.
+#define ITERATIONS 15 // Define o número de iterações de convolução.
+
+
+// Função para realizar a convolução em um elemento da matriz.
+int apply_filter(int x, int y, int matrix[N][N], int filter[FILTER_SIZE][FILTER_SIZE]) {
+    int result = 0;
+    int filter_offset = FILTER_SIZE / 2;  // Calcula o deslocamento do filtro para centralizar.
+
+    // Aplica o filtro 5x5 ao elemento (x, y) da matriz.
+    for (int i = -filter_offset; i <= filter_offset; i++) {
+        for (int j = -filter_offset; j <= filter_offset; j++) {
+            int xi = x + i;
+            int yj = y + j;
+            // Verifica se o índice está dentro dos limites da matriz.
+            if (xi >= 0 && xi < N && yj >= 0 && yj < N) {
+                result += matrix[xi][yj] * filter[i + filter_offset][j + filter_offset];
+            }
+        }
+    }
+    return result;  // Retorna o valor convoluído.
+}
+
 int main(int argc, char *argv[]) {
     MPI_Init(&argc, &argv);  // Inicializa o ambiente MPI.
 
     int rank, size;
-    MPI_Comm_rank(MPI_COMM_WORLD, &rank);  // Obtém o rank (identificador) do processo atual.
-    MPI_Comm_size(MPI_COMM_WORLD, &size);  // Obtém o número total de processos.
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank); // Obtém o rank (identificador) do processo atual.
+    MPI_Comm_size(MPI_COMM_WORLD, &size); // Obtém o número total de processos.
 
-    const int N = 200;  // Define a dimensão da matriz NxN.
-    int data[N][N];    // Declara a matriz de dados a ser processada.
+    int matrix[N][N]; // Declara a matriz original.
+    int filter[FILTER_SIZE][FILTER_SIZE] = {{1, 1, 1, 1, 1}, 
+                                            {1, 1, 1, 1, 1}, 
+                                            {1, 1, 1, 1, 1}, 
+                                            {1, 1, 1, 1, 1}, 
+                                            {1, 1, 1, 1, 1}}; // Define o filtro 5x5 (exemplo de suavização).
+    int result[N][N]; // Declara a matriz resultante após a convolução.
 
-    // Inicializa a medição de tempo
-    auto start = std::chrono::high_resolution_clock::now();
-
-    // Inicialização da matriz pelo processo de rank 0 (processo mestre).
+    // Inicialização da matriz pelo processo mestre (rank 0).
     if (rank == 0) {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                data[i][j] = i + j;  // Inicializa cada elemento com a soma dos índices.
+                matrix[i][j] = i + j; // Exemplo de inicialização: a soma dos índices.
             }
         }
-
-        // Imprime a matriz inicial no processo 0.
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                std::cout << data[i][j] << " ";
-            }
-            std::cout << std::endl;
-        }
-        std::cout << std::endl << std::endl;
     }
+
+    // Sincroniza todos os processos antes de começar a medir o tempo.
+    MPI_Barrier(MPI_COMM_WORLD);
+    auto start = std::chrono::high_resolution_clock::now(); // Inicia a medição de tempo.
+
+    // Broadcast da matriz original para todos os processos.
+    MPI_Bcast(matrix, N*N, MPI_INT, 0, MPI_COMM_WORLD);
 
     // Divide a matriz entre os processos.
-    int chunk_size = N / size;  // Calcula o número de linhas que cada processo receberá.
-    int local_data[chunk_size][N];  // Declara a matriz local para cada processo.
+    int rows_per_process = N / size; // Calcula o número de linhas que cada processo irá processar.
+    int start_row = rank * rows_per_process; // Determina a linha inicial que cada processo irá processar.
+    int end_row = (rank == size - 1) ? N : start_row + rows_per_process; // Determina a linha final (último processo pode pegar as linhas restantes).
 
-    // Distribui partes iguais da matriz original para todos os processos.
-    MPI_Scatter(&data, chunk_size * N, MPI_INT, &local_data, chunk_size * N, MPI_INT, 0, MPI_COMM_WORLD);
+    // Loop de múltiplas convoluções.
+    for (int iter = 0; iter < ITERATIONS; iter++) {
+        #pragma omp parallel for collapse(2) // Paraleliza a convolução usando OpenMP.
+        for (int i = start_row; i < end_row; i++) {
+            for (int j = 0; j < N; j++) {
+                result[i][j] = apply_filter(i, j, matrix, filter); // Aplica o filtro na matriz local.
+            }
+        }
+        // Sincroniza os processos MPI para garantir que a matriz esteja atualizada para a próxima iteração.
+        MPI_Allgather(MPI_IN_PLACE, 0, MPI_DATATYPE_NULL, result[start_row], rows_per_process*N, MPI_INT, MPI_COMM_WORLD);
 
-    // Paraleliza o processamento da matriz local com OpenMP.
-    #pragma omp parallel for collapse(2)
-    for (int i = 0; i < chunk_size; i++) {
-        for (int j = 0; j < N; j++) {
-            local_data[i][j] *= local_data[i][j];  // Eleva ao quadrado cada elemento da matriz local.
+        // Copia a matriz resultante para a matriz original para a próxima iteração.
+        #pragma omp parallel for collapse(2) // Paraleliza a cópia usando OpenMP.
+        for (int i = start_row; i < end_row; i++) {
+            for (int j = 0; j < N; j++) {
+                matrix[i][j] = result[i][j];
+            }
         }
     }
 
-    // Reúne os dados processados de todos os processos no processo 0.
-    MPI_Gather(&local_data, chunk_size * N, MPI_INT, &data, chunk_size * N, MPI_INT, 0, MPI_COMM_WORLD);
+    // Sincroniza todos os processos antes de finalizar a medição de tempo.
+    MPI_Barrier(MPI_COMM_WORLD);
+    auto end = std::chrono::high_resolution_clock::now(); // Finaliza a medição de tempo.
 
-    // O processo 0 imprime a matriz final processada e o tempo de execução.
-    if (rank == 0) {
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                std::cout << data[i][j] << " ";
-            }
-            std::cout << std::endl;
-        }
+    // Calcula o tempo de execução.
+    std::chrono::duration<double> duration = end - start;
+    double exec_time = duration.count(); // Tempo de execução em segundos.
 
-        // Calcula e imprime o tempo de execução
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration = end - start;
-        std::cout << "Tempo de execução: " << duration.count() << " segundos" << std::endl;
+    // Coleta os tempos de execução de todos os processos e exibe no processo mestre.
+    double max_exec_time;
+    MPI_Reduce(&exec_time, &max_exec_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+
+    if (rank == 0) { // Apenas o processo mestre imprime o tempo de execução.
+        std::cout << "A tarefa levou " << max_exec_time << " segundos para ser executado" << std::endl;
     }
 
     MPI_Finalize();  // Finaliza o ambiente MPI.
@@ -88,19 +119,19 @@ int main(int argc, char *argv[]) {
 Compile o programa dentro do Cluster:
 
 ```bash
-mpic++ -fopenmp soma_matriz.cpp -o soma_matriz
+mpic++ -fopenmp convolucao.cpp -o convolucao
 ```
 
 
 ### Criação de Scripts SLURM 
 
-Crie um arquivo soma_matriz_limitado.slurm com a seguinte configuração:
+Crie um arquivo convolucao_limitado.slurm com a seguinte configuração:
 
 ```bash
 #!/bin/bash
-#SBATCH --job-name=matriz_limitado    # Nome do job
-#SBATCH --output=matriz_limitado_output_%j.txt   # Gera um novo arquivo de saída a cada execução
-#SBATCH --ntasks=2                               # Número de tarefas (apenas 2 processos)
+#SBATCH --job-name=convolucao_limitado    # Nome do job
+#SBATCH --output=limitado_%j.txt   # Gera um novo arquivo de saída a cada execução
+#SBATCH --ntasks=1                               # Número de tarefas (apenas 1 processos)
 #SBATCH --cpus-per-task=1                        # Número de threads por tarefa (apenas 1 thread por processo)
 #SBATCH --mem=512MB                             # Memória total alocada por nó (512 MB)
 #SBATCH --time=00:10:00                          # Tempo máximo de execução (até 10 minutos)
@@ -110,20 +141,20 @@ Crie um arquivo soma_matriz_limitado.slurm com a seguinte configuração:
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 # Executa o programa usando MPI e OpenMP
-mpirun ./soma_matriz
+mpirun ./convolucao
 ```
-Este .slurm submete um job que executa 2 tarefas simultaneamente, com 1 CPU por tarefa, 512MB de memória por nó, e um tempo máximo de execução de 10 minutos.
+Este .slurm submete um job que executa 1 tarefas, com 1 CPU por tarefa, 512MB de memória por nó, e um tempo máximo de execução de 10 minutos.
 
 
 
-Vamos solicitar mais recursos e ver o que acontece, crie um arquivo matriz_buffado.slurm com a seguinte configuração:
+Vamos solicitar mais recursos e ver o que acontece, crie um arquivo convolucao_buffado.slurm com a seguinte configuração:
 
 ```bash
 #!/bin/bash
-#SBATCH --job-name=matriz_buffado             # Nome do job
-#SBATCH --output=ttree_buffado_%j.txt          # Nome do arquivo de saída
+#SBATCH --job-name=convolucao_buffado             # Nome do job
+#SBATCH --output=buffado_%j.txt          # Nome do arquivo de saída
 #SBATCH --ntasks=4                              # Número de tarefas (4 processos)
-#SBATCH --cpus-per-task=2                       # Número de threads por tarefa (2 threads por processo)
+#SBATCH --cpus-per-task=4                       # Número de threads por tarefa (2 threads por processo)
 #SBATCH --mem=1024                               # Memória total alocada por nó (1024 MB = 1 GB)
 #SBATCH --time=00:10:00                         # Tempo máximo de execução (10 minutos)
 #SBATCH --partition=espec                      # fila do cluster a ser utilizada
@@ -133,9 +164,9 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 
 # Executa o programa usando MPI e OpenMP
-mpirun ./soma_matriz
+mpirun ./convolucao
 ```
-Este .slurm submete um job que executa 4 tarefas simultaneamente, com 2 CPUs por tarefa, 1 GB de memória por nó, e um tempo máximo de execução de 10 minutos.
+Este .slurm submete um job que executa 4 tarefas simultaneamente, com 4 CPUs por tarefa, 1 GB de memória por nó, e um tempo máximo de execução de 10 minutos.
 
 
 
@@ -145,16 +176,16 @@ Este .slurm submete um job que executa 4 tarefas simultaneamente, com 2 CPUs por
 Submeta os jobs usando o comando `sbatch`:
 
 ```bash
-sbatch matriz_limitado.slurm
-sbatch matriz_buffado.slurm
+sbatch convolucao_limitado.slurm
+sbatch convolucao_buffado.slurm
 ```
 
-Execute o programa `soma_matriz` usando `srun`:
+Execute o programa `convolucao` usando `srun`:
 
 ```bash
-srun --ntasks=1 --cpus-per-task=2 --mem=500M ./soma_matriz
+srun --ntasks=2 --cpus-per-task=2 --mem=500M ./convolucao
 ```
-O comando srun está solicitando ao SLURM que aloque os recursos necessários para executar o programa decision_tree diretamente via terminal. Ele solicita 1 tarefa para ser executada, a tarefa terá acesso a 2 CPUs (ou núcleos de processamento), terá até 500 MB de memória disponível. 
+O comando srun está solicitando ao SLURM que aloque os recursos necessários para executar o programa convolucao diretamente via terminal. Ele solicita 2 tarefas para serem executadas, cada tarefa terá acesso a 2 CPUs (ou núcleos de processamento), e terá até 500 MB de memória disponível. 
 
 Esse comando permite testar ou rodar programas interativamente com os recursos solicitados, podendo observar em tempo real o comportamento do programa.
 
@@ -207,11 +238,11 @@ Esse comando strigger define um gatilho que será acionado automaticamente quand
 
 ### Atividade 02: Explorando comandos SLURM
 
-1. Modifique a dimensão da matriz no código `soma_matriz.cpp` para 300x300, 450x450 e 500x500.
+1. Modifique o Número de Iterações da Convolução no Código convolucao.cpp; Aumente o número de iterações de    convolução no código para 30, 50, e 100. Isso aumentará a complexidade computacional, observe como o desempenho do código é afetado por essa modificação.
 
-2. Modifique o arquivo .slurm para garantir que os recursos de hardware (número de tarefas MPI, CPUs por tarefa, e memória) e o tempo de execução sejam adequados para processar as diferentes dimensões da matriz.
+2. Ajuste o arquivo .slurm para garantir que os recursos de hardware (número de tarefas, CPUs por tarefa, e memória) e o tempo de execução sejam adequados para processar o aumento no número de iterações de convolução. Experimente diferentes configurações de recursos para observar como eles impactam o tempo de execução.
 
-3. Gere um gráfico comparando o tempo de execução do algoritmo para cada dimensão da matriz. Analise o impacto da alocação de mais recursos, como o número de CPUs e a quantidade de memória, no tempo de execução.
+3. Gere um gráfico comparando o tempo de execução do algoritmo para cada número de iterações. Analise o impacto da alocação de mais recursos, como o número de CPUs e a quantidade de memória, no tempo de execução. 
 
-4. Explore e explique como os comandos `sinfo`, `squeue`, `sprio`, `srun`, `sstat`, e `strigger` podem ser utilizados para monitorar e gerenciar jobs em um cluster.
+4. Explore e explique como os comandos `sinfo`, `squeue`, `sprio`, `srun`, `sstat`, e `strigger` podem ser utilizados para monitorar e gerenciar jobs no cluster.
 
