@@ -4,7 +4,7 @@
 
 **Recursos Necessários:** Acesso ao cluster Franky configurado.
 
-### Parte 1: Programa C++ para Percorrer uma Árvore de Decisão
+### Programa C++ para somar os valores de uma matriz
 
 Crie um arquivo chamado `soma_matriz.cpp` com o seguinte conteúdo:
 
