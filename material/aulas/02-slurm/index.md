@@ -1,6 +1,6 @@
 # Aula 02: Explorando Comandos SLURM
 
-**Objetivo:** Entender como a solicitação recursos impacta o tempo de execução de uma tarefa e explorar a funcionalidade dos principais comandos SLURM.
+**Objetivo:** Entender como a solicitação recursos impacta o tempo de execução de uma tarefa e compreender como pedir recursos ao SLURM.
 
 **Recursos Necessários:** Acesso ao cluster Franky configurado.
 
