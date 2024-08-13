@@ -7,4 +7,4 @@
 - Configurar o ambiente de desenvolvimento, submeter o primeiro job no Cluster Franky. 
 
 **[aula 02: SLURM](../aulas/02-slurn/index.md)**
-- Entender como a solicitação recursos impacta o tempo de execução de uma tarefa e compreender como pedir recursos ao SLURM.
+- Entender como a solicitação de recursos impacta o tempo de execução de uma tarefa e compreender como pedir recursos ao SLURM.
