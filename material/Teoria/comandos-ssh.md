@@ -1,4 +1,4 @@
-# Transferência de Arquivos usando SCP entre sua Máquina e o Cluster Franky
+# Transferência de Arquivos entre sua máquina e o Cluster Franky
 
 O comando `scp` (Secure Copy Protocol) é uma ferramenta segura e eficiente para transferir arquivos entre sua máquina local e um servidor remoto, como o cluster Franky. Ele utiliza o protocolo SSH para realizar a transferência de arquivos, garantindo a segurança dos dados durante o processo.
 
