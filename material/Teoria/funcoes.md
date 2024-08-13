@@ -1,29 +1,4 @@
-# Definição e Declaração de Funções
-
-Uma função em C++ é definida com um tipo de retorno, um nome, uma lista de parâmetros e um corpo.
-
-```cpp
-#include <iostream>
-
-// Declaração da função: indica que existe uma função chamada soma que retorna um int e recebe dois ints como parâmetros
-int soma(int a, int b);
-
-int main() {
-    // Chama a função soma com os argumentos 5 e 3 e armazena o resultado em resultado
-    int resultado = soma(5, 3);
-    // Imprime o resultado na tela
-    std::cout << "Resultado: " << resultado << std::endl;
-    return 0; // Indica que o programa terminou com sucesso
-}
-
-// Definição da função soma: recebe dois ints e retorna a soma deles
-int soma(int a, int b) {
-    return a + b; // Retorna a soma de a e b
-}
-
-```
-
-### Passagem de Parâmetros
+# Passagem de Parâmetros
 
 Parâmetros podem ser passados por valor, por referência ou por ponteiro. No contexto de HPC, passar parâmetros por referência ou ponteiro é geralmente preferível para evitar cópias desnecessárias de dados, que podem ser custosas em termos de tempo e memória.
 

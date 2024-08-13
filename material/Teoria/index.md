@@ -15,9 +15,9 @@
 
     [Loops e Laços](loops-e-laços.md)
 
-    [Definição e Declaração de Funções](funcoes.md)
+    [Passagens de parâmetros (por referência, por ponteiro)](funcoes.md)
 
-    [Uso de constantes em HPC](uso-de-constantes.md)
+    [Const Correctness em HPC](uso-de-constantes.md)
 
     [Alocação de memória dinâmica](memoria-dinamica.md)
 
