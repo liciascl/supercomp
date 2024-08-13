@@ -107,7 +107,7 @@ int main(int argc, char *argv[]) {
     MPI_Reduce(&exec_time, &max_exec_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
 
     if (rank == 0) { // Apenas o processo mestre imprime o tempo de execução.
-        std::cout << "A tarefa levou " << max_exec_time << " segundos para ser executado" << std::endl;
+        std::cout << "A tarefa levou " << max_exec_time << " segundos para ser executada" << std::endl;
     }
 
     MPI_Finalize();  // Finaliza o ambiente MPI.
