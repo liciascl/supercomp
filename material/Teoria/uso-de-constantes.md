@@ -1,4 +1,4 @@
-# Uso de Constantes
+# Const Correctness em HPC
 
 Const Correctness (uso de constantes) é um conceito em C++ que garante que os dados não sejam modificados quando não deveriam ser. Usar `const` corretamente pode melhorar a legibilidade do código, evitar erros e permitir otimizações pelo compilador. 
 
