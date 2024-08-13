@@ -169,7 +169,6 @@ mpirun ./convolucao
 Este .slurm submete um job que executa 4 tarefas simultaneamente, com 4 CPUs por tarefa, 1 GB de memória por nó, e um tempo máximo de execução de 10 minutos.
 
 
-
 ### Exploração dos Comandos SLURM
 
 
@@ -189,11 +188,6 @@ O comando srun está solicitando ao SLURM que aloque os recursos necessários pa
 
 Esse comando permite testar ou rodar programas interativamente com os recursos solicitados, podendo observar em tempo real o comportamento do programa.
 
-Após iniciar o job com `srun`, use `sstat` para monitorar os recursos utilizados pelo job:
-
-```bash
-sstat --job <JOB_ID>
-```
 
 Utilize o comando `sinfo` para observar o estado dos nós e das filas:
 
@@ -205,6 +199,12 @@ Use o comando `squeue` para observar o estado dos jobs em execução no Cluster 
 
 ```bash
 squeue
+```
+
+Utilize o comando `scancel` para cancelar um job:
+
+```bash
+scancel jobid
 ```
 
 Use o comando `sprio` para visualizar a prioridade dos jobs:

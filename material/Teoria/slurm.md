@@ -22,8 +22,7 @@ Alguns dos comandos principais usados no SLURM:
 5. sprio: Exibe uma visão detalhada dos componentes que afetam a prioridade de um job.
 6. squeue: Relata o estado dos jobs em execução em ordem de prioridade e depois os jobs pendentes em ordem de prioridade.
 7. srun: Submete um job para execução e faz o pedido de alocação dos recursos da maquina.
-8. sstat: Obtém informações sobre os recursos utilizados por um job em execução.
-9. strigger: Define, obtém ou visualiza gatilhos de eventos, como nós caindo ou jobs se aproximando do limite de tempo.
+8. strigger: Define, obtém ou visualiza gatilhos de eventos, como nós caindo ou jobs se aproximando do limite de tempo.
 
 ### Exemplos de Uso para Cada Comando SLURM
 
@@ -156,26 +155,6 @@ Explicação das Flags:
 
 `./meu_programa`: Especifica o programa a ser executado.
 
-### 8. sstat
-
-Obtém informações sobre os recursos utilizados por um job em execução.
-
-Exemplo:
-
-```bash
-sstat -j 12345 --format=JobID,MaxRSS,AveCPU
-
-```
-
-Explicação das Flags:
-
-`j 12345`: Especifica o ID do job para o qual queremos informações.
-
-`-format=JobID,MaxRSS,AveCPU`: Define os campos a serem exibidos na saída:
-
-    JobID: ID do job.
-    MaxRSS: Máximo de memória física utilizada.
-    AveCPU: Tempo médio de CPU utilizado.
 
 ### 9. strigger
 
