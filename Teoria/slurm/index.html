@@ -691,15 +691,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-sstat" class="md-nav__link">
-    <span class="md-ellipsis">
-      8. sstat
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#9-strigger" class="md-nav__link">
     <span class="md-ellipsis">
       9. strigger
@@ -1141,15 +1132,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-sstat" class="md-nav__link">
-    <span class="md-ellipsis">
-      8. sstat
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#9-strigger" class="md-nav__link">
     <span class="md-ellipsis">
       9. strigger
@@ -1214,7 +1196,6 @@
 <li>sprio: Exibe uma visão detalhada dos componentes que afetam a prioridade de um job.</li>
 <li>squeue: Relata o estado dos jobs em execução em ordem de prioridade e depois os jobs pendentes em ordem de prioridade.</li>
 <li>srun: Submete um job para execução e faz o pedido de alocação dos recursos da maquina.</li>
-<li>sstat: Obtém informações sobre os recursos utilizados por um job em execução.</li>
 <li>strigger: Define, obtém ou visualiza gatilhos de eventos, como nós caindo ou jobs se aproximando do limite de tempo.</li>
 </ol>
 <h3 id="exemplos-de-uso-para-cada-comando-slurm">Exemplos de Uso para Cada Comando SLURM<a class="headerlink" href="#exemplos-de-uso-para-cada-comando-slurm" title="Permanent link">&para;</a></h3>
@@ -1287,19 +1268,6 @@ sleep<span class="w"> </span><span class="m">60</span>
 <p><code>n 1</code>: Define que 1 tarefa deve ser executadas.</p>
 <p><code>-time=00:01:00</code>: Define o tempo máximo de execução do job como 1 minuto.</p>
 <p><code>./meu_programa</code>: Especifica o programa a ser executado.</p>
-<h3 id="8-sstat">8. sstat<a class="headerlink" href="#8-sstat" title="Permanent link">&para;</a></h3>
-<p>Obtém informações sobre os recursos utilizados por um job em execução.</p>
-<p>Exemplo:</p>
-<div class="highlight"><pre><span></span><code>sstat<span class="w"> </span>-j<span class="w"> </span><span class="m">12345</span><span class="w"> </span>--format<span class="o">=</span>JobID,MaxRSS,AveCPU
-</code></pre></div>
-<p>Explicação das Flags:</p>
-<p><code>j 12345</code>: Especifica o ID do job para o qual queremos informações.</p>
-<p><code>-format=JobID,MaxRSS,AveCPU</code>: Define os campos a serem exibidos na saída:</p>
-<div class="codehilite"><pre><span></span><code>JobID: ID do job.
-MaxRSS: Máximo de memória física utilizada.
-AveCPU: Tempo médio de CPU utilizado.
-</code></pre></div>
-
 <h3 id="9-strigger">9. strigger<a class="headerlink" href="#9-strigger" title="Permanent link">&para;</a></h3>
 <p>Define, obtém ou visualiza gatilhos de eventos, como nós caindo ou jobs se aproximando do limite de tempo.</p>
 <p>Exemplo:

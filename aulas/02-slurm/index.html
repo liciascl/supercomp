@@ -1155,14 +1155,14 @@ sbatch<span class="w"> </span>convolucao_buffado.slurm
 </code></pre></div>
 O comando srun está solicitando ao SLURM que aloque os recursos necessários para executar o programa convolucao diretamente via terminal. Ele solicita 2 tarefas para serem executadas, cada tarefa terá acesso a 2 CPUs (ou núcleos de processamento), e terá até 500 MB de memória disponível. </p>
 <p>Esse comando permite testar ou rodar programas interativamente com os recursos solicitados, podendo observar em tempo real o comportamento do programa.</p>
-<p>Após iniciar o job com <code>srun</code>, use <code>sstat</code> para monitorar os recursos utilizados pelo job:</p>
-<div class="highlight"><pre><span></span><code>sstat<span class="w"> </span>--job<span class="w"> </span>&lt;JOB_ID&gt;
-</code></pre></div>
 <p>Utilize o comando <code>sinfo</code> para observar o estado dos nós e das filas:</p>
 <div class="highlight"><pre><span></span><code>sinfo
 </code></pre></div>
 <p>Use o comando <code>squeue</code> para observar o estado dos jobs em execução no Cluster Franky:</p>
 <div class="highlight"><pre><span></span><code>squeue
+</code></pre></div>
+<p>Utilize o comando <code>scancel</code> para cancelar um job:</p>
+<div class="highlight"><pre><span></span><code>scancel<span class="w"> </span>jobid
 </code></pre></div>
 <p>Use o comando <code>sprio</code> para visualizar a prioridade dos jobs:</p>
 <div class="highlight"><pre><span></span><code>sprio
