@@ -1004,6 +1004,7 @@
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="c1">   // Inclui a biblioteca padrão de entrada e saída.</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span><span class="c1">      // Inclui a biblioteca MPI para paralelismo entre múltiplos processos.</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span><span class="c1">      // Inclui a biblioteca OpenMP para paralelismo com threads.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span><span class="c1">     // Inclui a biblioteca para medição de tempo.</span>
 
 <span class="c1">// Função principal do programa.</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
@@ -1013,8 +1014,11 @@
 <span class="w">    </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rank</span><span class="p">);</span><span class="w">  </span><span class="c1">// Obtém o rank (identificador) do processo atual.</span>
 <span class="w">    </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">size</span><span class="p">);</span><span class="w">  </span><span class="c1">// Obtém o número total de processos.</span>
 
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w">  </span><span class="c1">// Define a dimensão da matriz NxN.</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span><span class="p">;</span><span class="w">  </span><span class="c1">// Define a dimensão da matriz NxN.</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">N</span><span class="p">];</span><span class="w">    </span><span class="c1">// Declara a matriz de dados a ser processada.</span>
+
+<span class="w">    </span><span class="c1">// Inicializa a medição de tempo</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
 
 <span class="w">    </span><span class="c1">// Inicialização da matriz pelo processo de rank 0 (processo mestre).</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1052,7 +1056,7 @@
 <span class="w">    </span><span class="c1">// Reúne os dados processados de todos os processos no processo 0.</span>
 <span class="w">    </span><span class="n">MPI_Gather</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_data</span><span class="p">,</span><span class="w"> </span><span class="n">chunk_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">chunk_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
 
-<span class="w">    </span><span class="c1">// O processo 0 imprime a matriz final processada.</span>
+<span class="w">    </span><span class="c1">// O processo 0 imprime a matriz final processada e o tempo de execução.</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1060,6 +1064,11 @@
 <span class="w">            </span><span class="p">}</span>
 <span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Calcula e imprime o tempo de execução</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Tempo de execução: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">duration</span><span class="p">.</span><span class="n">count</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; segundos&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="n">MPI_Finalize</span><span class="p">();</span><span class="w">  </span><span class="c1">// Finaliza o ambiente MPI.</span>
@@ -1143,7 +1152,7 @@ O comando srun está solicitando ao SLURM que aloque os recursos necessários pa
 <h3 id="atividade-02-explorando-comandos-slurm">Atividade 02: Explorando comandos SLURM<a class="headerlink" href="#atividade-02-explorando-comandos-slurm" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p>Modifique a dimensão da matriz no código <code>soma_matriz.cpp</code> para 30x30, 40x40 e 50x50.</p>
+<p>Modifique a dimensão da matriz no código <code>soma_matriz.cpp</code> para 300x300, 450x450 e 500x500.</p>
 </li>
 <li>
 <p>Modifique o arquivo .slurm para garantir que os recursos de hardware (número de tarefas MPI, CPUs por tarefa, e memória) e o tempo de execução sejam adequados para processar as diferentes dimensões da matriz.</p>
