@@ -1,0 +1,216 @@
+# Aula 03 - Usando o C++ direito =D
+
+### 1. Passagem de Parâmetros e Manipulação de Arquivos
+
+**Objetivo:** Praticar a passagem de parâmetros por valor, referência e ponteiro em C++, além de trabalhar com leitura e escrita de arquivos.
+
+**Exercício:**
+- Implemente uma função que leia um arquivo de texto contendo números inteiros e armazene-os em um `std::vector<int>`. Use passagem por referência para garantir que o vetor seja preenchido corretamente.
+- Crie duas funções: uma que dobra os valores no vetor usando passagem por referência, e outra que faz o mesmo usando ponteiros.
+- Escreva os valores dobrados em um novo arquivo de texto.
+
+!!! tip
+    Não faz ideia de como começar? leia o [material disponível aqui](../Teoria/funcoes.md) ou consulte a [documentação oficial](https://en.cppreference.com/book/)
+
+
+**Pontapé Inicial:**
+
+```cpp
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+void lerArquivo(const std::string& nomeArquivo, std::vector<int>& numeros);
+void dobrarValoresReferencia(const std::vector<int>& numerosOriginais, std::vector<int>& numerosDobrados);
+void dobrarValoresPonteiro(const std::vector<int>* numerosOriginais, std::vector<int>* numerosDobrados);
+void escreverArquivo(const std::string& nomeArquivo, const std::vector<int>& numeros);
+
+// Implementação das funções...
+
+int main() {
+    std::vector<int> numeros, numerosDobrados;
+
+    lerArquivo("entrada.txt", numeros);
+    dobrarValoresReferencia(numeros, numerosDobrados);
+    escreverArquivo("saida_referencia.txt", numerosDobrados);
+
+    dobrarValoresPonteiro(&numeros, &numerosDobrados);
+    escreverArquivo("saida_ponteiro.txt", numerosDobrados);
+
+    return 0;
+}
+```
+
+### 2. Const Correctness
+
+**Objetivo:** Praticar o uso de `const` para garantir a imutabilidade de dados onde necessário, melhorando a segurança e otimizações de código.
+
+**Exercício:**
+- Implemente uma função para multiplicação de matrizes que utiliza `const` para garantir que as matrizes de entrada não sejam modificadas.
+- Crie uma classe `Matriz` que encapsule as operações básicas de uma matriz quadrada, utilizando métodos `const` para operações de leitura.
+
+
+!!! tip
+    Não faz ideia de como começar? leia o [material disponível aqui](../Teoria/uso-de-constantes.md) ou consulte a [documentação oficial](https://en.cppreference.com/book/)
+
+
+**Pontapé Inicial:**
+
+```cpp
+#include <iostream>
+#include <vector>
+
+void multiplicaMatriz(const std::vector<std::vector<int>>& A, const std::vector<std::vector<int>>& B, std::vector<std::vector<int>>& C);
+
+class Matriz {
+public:
+    Matriz(int N);
+    const std::vector<int>& operator[](int index) const;
+    std::vector<int>& operator[](int index);
+    void imprime() const;
+
+private:
+    std::vector<std::vector<int>> data;
+};
+
+// Implementação das funções...
+
+int main() {
+    int N = 3;
+    Matriz A(N), B(N), C(N);
+
+    // Preencher e multiplicar matrizes...
+
+    C.imprime();
+
+    return 0;
+}
+```
+
+### 3. Alocação de Memória Dinâmica
+
+**Objetivo:** Entender a alocação e liberação de memória dinâmica em C++, muito importante para gerenciar grandes volumes de dados em HPC.
+
+**Exercício:**
+- Implemente uma função que aloca dinamicamente uma matriz de inteiros de tamanho N x N e realiza uma soma simples de todos os seus elementos.
+- Em seguida, substitua a alocação dinâmica manual pela utilização de `std::vector` e compare o desempenho das duas abordagens.
+
+!!! tip
+    Não faz ideia de como começar? leia o [material disponível aqui](../Teoria/memoria-dinamica.md) ou consulte a [documentação oficial](https://en.cppreference.com/book/)
+
+
+**Pontapé Inicial:**
+
+```cpp
+#include <iostream>
+#include <chrono>
+
+int main() {
+    int N = 1000;
+    int** matriz = new int*[N];
+    for (int i = 0; i < N; ++i) {
+        matriz[i] = new int[N];
+    }
+
+    // Inicializar e somar elementos...
+
+    for (int i = 0; i < N; ++i) {
+        delete[] matriz[i];
+    }
+    delete[] matriz;
+
+    return 0;
+}
+```
+
+### 4. Manipulação de Vetores
+
+**Objetivo:** Trabalhar com `std::vector` para realizar operações comuns em HPC, como a inicialização, modificação, e iteração sobre grandes conjuntos de dados.
+
+**Exercício:**
+- Implemente uma função que inicializa um vetor com valores específicos e realiza operações matemáticas básicas, como multiplicação por um escalar.
+- Crie uma classe `Vector` que encapsule a lógica de manipulação de vetores, incluindo métodos para adicionar, remover e acessar elementos. Garanta que a classe seja eficiente usando alocação dinâmica e funções `inline`.
+
+!!! tip
+    Não faz ideia de como começar? leia o [material disponível aqui](../Teoria/manipulacao-vetores.md) ou consulte a [documentação oficial](https://en.cppreference.com/book/)
+
+
+**Pontapé Inicial:**
+
+```cpp
+#include <iostream>
+#include <vector>
+
+class Vector {
+public:
+    Vector(int tamanho);
+    ~Vector();
+    void inicializa(int valor);
+    int get(int index) const;
+    void set(int index, int valor);
+    void inserir(int index, int valor);
+    void remover(int index);
+    void imprime() const;
+
+private:
+    int* dados;
+    int tam;
+    int capacidade;
+    void redimensiona(int novaCapacidade);
+};
+
+// Implementação das funções...
+
+int main() {
+    Vector vec(5);
+    vec.inicializa(0);
+    vec.imprime();
+
+    return 0;
+}
+```
+
+### 5. Uso Avançado de Ponteiros e Referências
+
+**Objetivo:** Otimizar a gestão de memória e passagem de dados em C++ de maneira eficiente.
+
+**Exercício:**
+- Implemente uma função que recebe um ponteiro para uma matriz dinamicamente alocada, calcula o traço da matriz (soma dos elementos da diagonal principal) e retorna o valor.
+- Modifique a função para usar referências em vez de ponteiros, explique qual a diferença percebida no uso de ponteiros em vez de referência.
+
+!!! tip
+    Não faz ideia de como começar? leia o [material disponível aqui](../Teoria/funcoes.md) ou consulte a [documentação oficial](https://en.cppreference.com/book/)
+
+
+**Código Inicial:**
+
+```cpp
+#include <iostream>
+
+int calculaTraco(int** matriz, int N);
+int calculaTracoRef(const std::vector<std::vector<int>>& matriz);
+
+int main() {
+    int N = 3;
+    int** matriz = new int*[N];
+    for (int i = 0; i < N; ++i) {
+        matriz[i] = new int[N];
+    }
+
+    // Inicializar matriz...
+
+    int traco = calculaTraco(matriz, N);
+    std::cout << "Traco: " << traco << std::endl;
+
+    for (int i = 0; i < N; ++i) {
+        delete[] matriz[i];
+    }
+    delete[] matriz;
+
+    return 0;
+}
+```
+
+### ATIVIDADE 03
+
+Crie um repositório no GitHub com os seus códigos e análises, envie o link pelo BlackBoard
