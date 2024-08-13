@@ -22,7 +22,7 @@
     
     
       
-        <title>Definição e Declaração de Funções - SuperComputação - 2024/2</title>
+        <title>Passagem de Parâmetros - SuperComputação - 2024/2</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#definicao-e-declaracao-de-funcoes" class="md-skip">
+        <a href="#passagem-de-parametros" class="md-skip">
           Skip to content
         </a>
       
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Definição e Declaração de Funções
+              Passagem de Parâmetros
             
           </span>
         </div>
@@ -685,7 +685,7 @@
           
   
   <span class="md-ellipsis">
-    Definição e Declaração de Funções
+    Passagem de Parâmetros
   </span>
   
 
@@ -696,7 +696,7 @@
         
   
   <span class="md-ellipsis">
-    Definição e Declaração de Funções
+    Passagem de Parâmetros
   </span>
   
 
@@ -716,15 +716,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#passagem-de-parametros" class="md-nav__link">
-    <span class="md-ellipsis">
-      Passagem de Parâmetros
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#passagem-de-parametros-por-valor" class="md-nav__link">
@@ -1024,15 +1015,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#passagem-de-parametros" class="md-nav__link">
-    <span class="md-ellipsis">
-      Passagem de Parâmetros
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#passagem-de-parametros-por-valor" class="md-nav__link">
     <span class="md-ellipsis">
       Passagem de Parâmetros por Valor
@@ -1158,27 +1140,7 @@
   
 
 
-<h1 id="definicao-e-declaracao-de-funcoes">Definição e Declaração de Funções<a class="headerlink" href="#definicao-e-declaracao-de-funcoes" title="Permanent link">&para;</a></h1>
-<p>Uma função em C++ é definida com um tipo de retorno, um nome, uma lista de parâmetros e um corpo.</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-
-<span class="c1">// Declaração da função: indica que existe uma função chamada soma que retorna um int e recebe dois ints como parâmetros</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">soma</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Chama a função soma com os argumentos 5 e 3 e armazena o resultado em resultado</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">soma</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
-<span class="w">    </span><span class="c1">// Imprime o resultado na tela</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Resultado: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Indica que o programa terminou com sucesso</span>
-<span class="p">}</span>
-
-<span class="c1">// Definição da função soma: recebe dois ints e retorna a soma deles</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">soma</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// Retorna a soma de a e b</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="passagem-de-parametros">Passagem de Parâmetros<a class="headerlink" href="#passagem-de-parametros" title="Permanent link">&para;</a></h3>
+<h1 id="passagem-de-parametros">Passagem de Parâmetros<a class="headerlink" href="#passagem-de-parametros" title="Permanent link">&para;</a></h1>
 <p>Parâmetros podem ser passados por valor, por referência ou por ponteiro. No contexto de HPC, passar parâmetros por referência ou ponteiro é geralmente preferível para evitar cópias desnecessárias de dados, que podem ser custosas em termos de tempo e memória.</p>
 <h3 id="passagem-de-parametros-por-valor">Passagem de Parâmetros por Valor<a class="headerlink" href="#passagem-de-parametros-por-valor" title="Permanent link">&para;</a></h3>
 <p>Passar por valor significa que uma cópia do argumento é passada para a função. Qualquer modificação feita ao parâmetro dentro da função não afeta o argumento original.</p>
