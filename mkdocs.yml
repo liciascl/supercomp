@@ -37,6 +37,8 @@ nav:
         - "aulas/00-introducao/index.md"    
         - "aulas/01-introducao/index.md"
         - "aulas/02-slurm/index.md"
+        - "aulas/03-cpp/03-cpp.md"
+        - "aulas/04-Profiling/04-Profiling.md"
                 
 #        - "02 e 03 - C++": aulas/02-03-implementacao-c++/index.md
 #        - "04 - Profiling": aulas/04-profiling/index.md

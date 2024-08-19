@@ -1,19 +1,38 @@
-# Aula 03 - Usando o C++ direito =D
+# Aula 03: Usando o poder do C++ 
+
+Em programação de alto desempenho, pequenas otimizações podem resultar em grandes melhorias no tempo de execução e no uso de recursos. Nesta aula, vamos explorar técnicas avançadas de C++ que são essenciais para programar códigos eficientes, seguros e preparados para escalar em aplicações de alta performance.
+
+### Objetivos da Aula
+
+1. **Passagem de Parâmetros e Manipulação de Arquivos**: Entender como a passagem de parâmetros por valor, referência e ponteiro impacta o desempenho e a segurança do código. Além disso, vamos manipular arquivos para ler e escrever dados.
+
+2. **Const Correctness**: Aprender a usar o modificador `const` para garantir a imutabilidade de dados onde necessário, melhorando a robustez do código e permitindo otimizações automáticas pelo compilador.
+
+3. **Alocação de Memória Dinâmica**: Compreender a alocação e liberação de memória dinâmica em C++, o que é fundamental para gerenciar grandes volumes de dados em HPC. Exploraremos as diferenças entre alocação manual e a utilização de contêineres padrão do C++ como `std::vector`.
+
+4. **Manipulação de Vetores**: Trabalhar com `std::vector` e aprender a realizar operações comuns em HPC, como inicialização, modificação e iteração sobre grandes conjuntos de dados, além de encapsular essa lógica em classes eficientes.
+
+### Por que isso é Importante?
+
+A passagem correta de parâmetros pode evitar cópias desnecessárias de dados, melhorando a eficiência. A utilização do `const` não só previne modificações acidentais nos dados, mas também permite que o compilador faça otimizações mais agressivas. A alocação de memória dinâmica é importante para lidar com os grandes volumes de dados típicos de HPC, e a manipulação eficiente de vetores é essencial para o processamento rápido de dados.
+
 
 ### 1. Passagem de Parâmetros e Manipulação de Arquivos
 
 **Objetivo:** Praticar a passagem de parâmetros por valor, referência e ponteiro em C++, além de trabalhar com leitura e escrita de arquivos.
 
 **Exercício:**
-- Implemente uma função que leia um arquivo de texto contendo números inteiros e armazene-os em um `std::vector<int>`. Use passagem por referência para garantir que o vetor seja preenchido corretamente.
-- Crie duas funções: uma que dobra os valores no vetor usando passagem por referência, e outra que faz o mesmo usando ponteiros.
-- Escreva os valores dobrados em um novo arquivo de texto.
+Implemente uma função que leia um arquivo de texto contendo números inteiros e armazene-os em um `std::vector<int>`. Use passagem por referência para garantir que o vetor seja preenchido corretamente. 
+
+Crie duas funções: uma que dobra os valores no vetor usando passagem por referência, e outra que faz o mesmo usando ponteiros.
+
+Escreva os valores dobrados em um novo arquivo de texto.
 
 !!! tip
-    Não faz ideia de como começar? leia o [material disponível aqui](../Teoria/funcoes.md) ou consulte a [documentação oficial](https://en.cppreference.com/book/)
+    Não faz ideia de como começar? leia o [material disponível aqui](../../Teoria/funcoes.md) ou consulte a [documentação oficial](https://en.cppreference.com/book/)
 
 
-Os arquivos estão disponíveis em [entrada.txt](entrada.txt), [saida_ponteiro.txt](saida_ponteiro.txt), [saida_referencia.txt](saida_referencia.txt)
+O arquivo com os valores de entrada está disponível em [entrada.txt](entrada.txt).
 
 **Pontapé Inicial:**
 
@@ -68,12 +87,14 @@ int main() {
 **Objetivo:** Praticar o uso de `const` para garantir a imutabilidade de dados onde necessário, melhorando a segurança e otimizações de código.
 
 **Exercício:**
-- Implemente uma função para multiplicação de matrizes que utiliza `const` para garantir que as matrizes de entrada não sejam modificadas.
-- Crie uma classe `Matriz` que encapsule as operações básicas de uma matriz quadrada, utilizando métodos `const` para operações de leitura.
+
+Implemente uma função para multiplicação de matrizes que utiliza `const` para garantir que as matrizes de entrada não sejam modificadas.
+
+Crie uma classe `Matriz` que encapsule as operações básicas de uma matriz quadrada, utilizando métodos `const` para operações de leitura.
 
 
 !!! tip
-    Não faz ideia de como começar? leia o [material disponível aqui](../Teoria/uso-de-constantes.md) ou consulte a [documentação oficial](https://en.cppreference.com/book/)
+    Não faz ideia de como começar? leia o [material disponível aqui](../../Teoria/uso-de-constantes.md) ou consulte a [documentação oficial](https://en.cppreference.com/book/)
 
 
 **Pontapé Inicial:**
@@ -172,11 +193,12 @@ int main() {
 **Objetivo:** Entender a alocação e liberação de memória dinâmica em C++, muito importante para gerenciar grandes volumes de dados em HPC.
 
 **Exercício:**
-- Implemente uma função que aloca dinamicamente uma matriz de inteiros de tamanho N x N e realiza uma soma simples de todos os seus elementos.
-- Em seguida, substitua a alocação dinâmica manual pela utilização de `std::vector` e compare o desempenho das duas abordagens.
+Implemente uma função que aloca dinamicamente uma matriz de inteiros de tamanho N x N e realiza uma soma simples de todos os seus elementos.
+
+Em seguida, substitua a alocação dinâmica manual pela utilização de `std::vector` e compare o desempenho das duas abordagens.
 
 !!! tip
-    Não faz ideia de como começar? leia o [material disponível aqui](../Teoria/memoria-dinamica.md) ou consulte a [documentação oficial](https://en.cppreference.com/book/)
+    Não faz ideia de como começar? leia o [material disponível aqui](../../Teoria/memoria-dinamica.md) ou consulte a [documentação oficial](https://en.cppreference.com/book/)
 
 
 **Pontapé Inicial:**
@@ -241,7 +263,7 @@ Como a alocação automática e a liberação de memória pelo `std::vector` afe
 - Crie uma classe `Vector` que encapsule a lógica de manipulação de vetores, incluindo métodos para adicionar, remover e acessar elementos. Garanta que a classe seja eficiente usando alocação dinâmica e funções `inline`.
 
 !!! tip
-    Não faz ideia de como começar? leia o [material disponível aqui](../Teoria/manipulacao-vetores.md) ou consulte a [documentação oficial](https://en.cppreference.com/book/)
+    Não faz ideia de como começar? leia o [material disponível aqui](../../Teoria/manipulacao-vetores.md) ou consulte a [documentação oficial](https://en.cppreference.com/book/)
 
 
 **Pontapé Inicial:**
@@ -281,6 +303,6 @@ int main() {
 
 
 
-### Entrega da Atividade 03
+### Entrega da Atividade 3.2
 
-Crie um repositório no GitHub com os seus códigos e análises, envie o link pelo BlackBoard
+Crie um repositório no GitHub com os seus códigos e análises, envie o link pelo BlackBoard até sexta (23/08), as 23h59.
