@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://insper.github.io/supercomp/aulas/04-Profiling/04-Profiling/">
       
       
+        <link rel="prev" href="../../03-cpp/03-cpp/">
+      
+      
+        <link rel="next" href="../../../projetos/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>04 Profiling - SuperComputação - 2024/2</title>
+        <title>Aula 04: Otimização e Profiling - SuperComputação - 2024/2</title>
       
     
     
@@ -79,6 +83,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#aula-04-otimizacao-e-profiling" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -111,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              04 Profiling
+              Aula 04: Otimização e Profiling
             
           </span>
         </div>
@@ -245,17 +254,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -269,7 +280,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Aulas
@@ -355,6 +366,166 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-cpp/03-cpp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aula 03: Usando o poder do C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Aula 04: Otimização e Profiling
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Aula 04: Otimização e Profiling
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#flags-de-compilacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flags de Compilação
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compilacao-com-diferentes-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compilação com Diferentes Flags
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#medicao-de-desempenho" class="md-nav__link">
+    <span class="md-ellipsis">
+      Medição de Desempenho
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analise-dos-resultados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Análise dos Resultados
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profiling-com-gprof-e-valgrind" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profiling com Gprof e Valgrind
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profiling com Gprof e Valgrind">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usando-o-gprof" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando o Gprof
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usando-o-callgrind-valgrind" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando o Callgrind (Valgrind)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-04-profiling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 04 - Profiling
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -846,6 +1017,94 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#flags-de-compilacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flags de Compilação
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compilacao-com-diferentes-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compilação com Diferentes Flags
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#medicao-de-desempenho" class="md-nav__link">
+    <span class="md-ellipsis">
+      Medição de Desempenho
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analise-dos-resultados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Análise dos Resultados
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profiling-com-gprof-e-valgrind" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profiling com Gprof e Valgrind
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profiling com Gprof e Valgrind">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usando-o-gprof" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando o Gprof
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usando-o-callgrind-valgrind" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando o Callgrind (Valgrind)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-04-profiling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 04 - Profiling
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -863,9 +1122,86 @@
   
 
 
-  <h1>04 Profiling</h1>
-
-
+<h1 id="aula-04-otimizacao-e-profiling">Aula 04: Otimização e Profiling<a class="headerlink" href="#aula-04-otimizacao-e-profiling" title="Permanent link">&para;</a></h1>
+<p>Em ambientes de HPC, dominar técnicas de otimização e profiling pode fazer toda a diferença na execução de programas complexos. Nosso objetivo é capacitar você a identificar gargalos de desempenho em seu código. </p>
+<p>Começaremos explorando as flags de compilação que o GCC oferece para otimizar seu código. Desde ajustes básicos até transformações avançadas, você verá como as diferentes flags podem impactar o desempenho de seu programa.</p>
+<p>Após otimizar o código na compilação, vamos entender como as ferramentas de profiling Gprof e Valgrind funcionam. Essas ferramentas são úteis para identificar quais partes do código são as mais exigentes em termos de recursos e onde os maiores ganhos de desempenho podem ser alcançados.</p>
+<p><strong>Objetivo:</strong> Entender como utilizar as flags de compilação e ferramentas de profiling para encontrar gargalos e melhorar o desempenho do código.</p>
+<p><strong>Recursos Necessários:</strong></p>
+<ul>
+<li>
+<p>Código base do programa de convolução (<code>convolucao.cpp</code>) usado na <a href="../../02-slurm/">aula 02</a>.</p>
+</li>
+<li>
+<p>Ferramentas de profiling: <code>gprof</code>, <code>Valgrind</code>.</p>
+</li>
+</ul>
+<h4 id="flags-de-compilacao">Flags de Compilação<a class="headerlink" href="#flags-de-compilacao" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><code>-O1</code></strong>: Nível básico de otimização que aplica melhorias simples, mantendo o tempo de compilação rápido.</li>
+<li><strong><code>-O2</code></strong>: Aplicação de otimizações mais agressivas, incluindo inlining de funções simples, unrolling de loops, e remoção de código morto.</li>
+<li><strong><code>-O3</code></strong>: Nível mais alto de otimização, inclui todas as otimizações do <code>-O2</code> além de transformações adicionais que podem aumentar ainda mais o desempenho, como a vectorização de loops.</li>
+<li><strong><code>-march=native</code></strong>: Gera código otimizado para a arquitetura específica da máquina onde o programa está sendo compilado, aproveitando ao máximo as instruções da CPU disponível.</li>
+</ul>
+<h4 id="compilacao-com-diferentes-flags">Compilação com Diferentes Flags<a class="headerlink" href="#compilacao-com-diferentes-flags" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Compile o programa <code>convolucao.cpp</code> com diferentes níveis de otimização:</li>
+</ol>
+<p>Sem otimização:
+<div class="highlight"><pre><span></span><code>mpic++<span class="w"> </span>convolucao.cpp<span class="w"> </span>-o<span class="w"> </span>convolucao_basicao
+</code></pre></div></p>
+<p>Otimização básica (<code>-O1</code>):
+<div class="highlight"><pre><span></span><code>mpic++<span class="w"> </span>-O1<span class="w"> </span>convolucao.cpp<span class="w"> </span>-o<span class="w"> </span>convolucao_O1
+</code></pre></div>
+Otimização padrão (<code>-O2</code>):
+<div class="highlight"><pre><span></span><code>mpic++<span class="w"> </span>-O2<span class="w"> </span>convolucao.cpp<span class="w"> </span>-o<span class="w"> </span>convolucao_O2
+</code></pre></div>
+Otimização avançada (<code>-O3</code>):
+<div class="highlight"><pre><span></span><code>mpic++<span class="w"> </span>-O3<span class="w"> </span>-march<span class="o">=</span>native<span class="w"> </span>convolucao.cpp<span class="w"> </span>-o<span class="w"> </span>convolucao_O3
+</code></pre></div></p>
+<h4 id="medicao-de-desempenho">Medição de Desempenho<a class="headerlink" href="#medicao-de-desempenho" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Execute cada versão do programa no cluster usando um script SLURM similar ao usado na aula 02.</li>
+</ol>
+<p>Modifique o número de iterações para <strong>30, 50, e 100</strong> para avaliar o impacto da complexidade no tempo de execução, submeta os jobs via SLURM, verifique os tempos de execução e compare o impacto de cada nível de otimização.</p>
+<h4 id="analise-dos-resultados">Análise dos Resultados<a class="headerlink" href="#analise-dos-resultados" title="Permanent link">&para;</a></h4>
+<p><strong>Gráficos</strong>: Elabore gráficos que relacionam o tempo de execução com o número de iterações para cada nível de otimização.
+<strong>Discussão</strong>: Analise como as diferentes flags de otimização impactaram o desempenho. Identifique quais otimizações trouxeram maiores ganhos e em quais situações.</p>
+<h3 id="profiling-com-gprof-e-valgrind">Profiling com Gprof e Valgrind<a class="headerlink" href="#profiling-com-gprof-e-valgrind" title="Permanent link">&para;</a></h3>
+<h4 id="usando-o-gprof">Usando o Gprof<a class="headerlink" href="#usando-o-gprof" title="Permanent link">&para;</a></h4>
+<p>Compile o código com suporte ao Gprof:</p>
+<p><div class="highlight"><pre><span></span><code>mpic++<span class="w"> </span>-pg<span class="w"> </span>-O2<span class="w"> </span>convolucao.cpp<span class="w"> </span>-o<span class="w"> </span>convolucao_gprof
+</code></pre></div>
+Execute o programa e gere o perfil:</p>
+<p><div class="highlight"><pre><span></span><code>sbatch<span class="w"> </span>convolucao_gprof.slurm
+</code></pre></div>
+Analise o <code>gmon.out</code> gerado:</p>
+<div class="highlight"><pre><span></span><code>gprof<span class="w"> </span>convolucao_gprof<span class="w"> </span>gmon.out<span class="w"> </span>&gt;<span class="w"> </span>analysis_gprof.txt
+</code></pre></div>
+<p>Interprete o <strong>Flat Profile</strong> e o <strong>Call Graph</strong> gerados. Identifique as funções críticas e discuta possíveis otimizações com base nos resultados.</p>
+<h4 id="usando-o-callgrind-valgrind">Usando o Callgrind (Valgrind)<a class="headerlink" href="#usando-o-callgrind-valgrind" title="Permanent link">&para;</a></h4>
+<p>Execute o programa com o Callgrind:</p>
+<p><div class="highlight"><pre><span></span><code>valgrind<span class="w"> </span>--tool<span class="o">=</span>callgrind<span class="w"> </span>./convolucao_O2
+</code></pre></div>
+Visualize o Call Graph gerado:</p>
+<p><div class="highlight"><pre><span></span><code>kcachegrind<span class="w"> </span>callgrind.out.*
+</code></pre></div>
+Analise o uso de CPU e cache. Identifique funções e loops que são candidatos para otimização.
+Compare as saídas do <strong>gprof</strong> e <strong>Callgrind</strong>. </p>
+<h3 id="atividade-04-profiling">Atividade 04 - Profiling<a class="headerlink" href="#atividade-04-profiling" title="Permanent link">&para;</a></h3>
+<p><strong>Elabore um Relatório que inclua:</strong> </p>
+<ul>
+<li>
+<p>Gráficos e análise dos tempos de execução para diferentes otimizações.</p>
+</li>
+<li>
+<p>Discussão sobre os resultados obtidos com o <strong>gprof</strong> e <strong>Callgrind</strong>.</p>
+</li>
+<li>
+<p>Sugestões de otimizações adicionais baseadas nos resultados de profiling.</p>
+</li>
+</ul>
+<p><strong>Submissão</strong>: Envie o relatório pelo Blackboard até a próxima sexta 30/08, 23h59.</p>
 
 
 

@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://insper.github.io/supercomp/aulas/03-cpp/03-cpp/">
       
       
+        <link rel="prev" href="../../02-slurm/">
+      
+      
+        <link rel="next" href="../../04-Profiling/04-Profiling/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Aula 03 - Usando o C++ direito =D - SuperComputação - 2024/2</title>
+        <title>Aula 03: Usando o poder do C++ - SuperComputação - 2024/2</title>
       
     
     
@@ -80,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aula-03-usando-o-c-direito-d" class="md-skip">
+        <a href="#aula-03-usando-o-poder-do-c" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Aula 03 - Usando o C++ direito =D
+              Aula 03: Usando o poder do C++
             
           </span>
         </div>
@@ -250,17 +254,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -274,7 +280,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Aulas
@@ -356,6 +362,175 @@
   
   <span class="md-ellipsis">
     Aula 02: Explorando Comandos SLURM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Aula 03: Usando o poder do C++
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Aula 03: Usando o poder do C++
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos-da-aula" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos da Aula
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-isso-e-importante" class="md-nav__link">
+    <span class="md-ellipsis">
+      Por que isso é Importante?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-passagem-de-parametros-e-manipulacao-de-arquivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Passagem de Parâmetros e Manipulação de Arquivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-const-correctness" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Const Correctness
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-alocacao-de-memoria-dinamica" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Alocação de Memória Dinâmica
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algumas-dicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algumas dicas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algumas dicas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perguntas-para-reflexao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perguntas para Reflexão:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-manipulacao-de-vetores" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Manipulação de Vetores
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrega-da-atividade-32" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrega da Atividade 3.2
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-Profiling/04-Profiling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aula 04: Otimização e Profiling
   </span>
   
 
@@ -861,6 +1036,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#objetivos-da-aula" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos da Aula
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-isso-e-importante" class="md-nav__link">
+    <span class="md-ellipsis">
+      Por que isso é Importante?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-passagem-de-parametros-e-manipulacao-de-arquivos" class="md-nav__link">
     <span class="md-ellipsis">
       1. Passagem de Parâmetros e Manipulação de Arquivos
@@ -921,9 +1114,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#entrega-da-atividade-03" class="md-nav__link">
+  <a href="#entrega-da-atividade-32" class="md-nav__link">
     <span class="md-ellipsis">
-      Entrega da Atividade 03
+      Entrega da Atividade 3.2
     </span>
   </a>
   
@@ -947,18 +1140,36 @@
   
 
 
-<h1 id="aula-03-usando-o-c-direito-d">Aula 03 - Usando o C++ direito =D<a class="headerlink" href="#aula-03-usando-o-c-direito-d" title="Permanent link">&para;</a></h1>
+<h1 id="aula-03-usando-o-poder-do-c">Aula 03: Usando o poder do C++<a class="headerlink" href="#aula-03-usando-o-poder-do-c" title="Permanent link">&para;</a></h1>
+<p>Em programação de alto desempenho, pequenas otimizações podem resultar em grandes melhorias no tempo de execução e no uso de recursos. Nesta aula, vamos explorar técnicas avançadas de C++ que são essenciais para programar códigos eficientes, seguros e preparados para escalar em aplicações de alta performance.</p>
+<h3 id="objetivos-da-aula">Objetivos da Aula<a class="headerlink" href="#objetivos-da-aula" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Passagem de Parâmetros e Manipulação de Arquivos</strong>: Entender como a passagem de parâmetros por valor, referência e ponteiro impacta o desempenho e a segurança do código. Além disso, vamos manipular arquivos para ler e escrever dados.</p>
+</li>
+<li>
+<p><strong>Const Correctness</strong>: Aprender a usar o modificador <code>const</code> para garantir a imutabilidade de dados onde necessário, melhorando a robustez do código e permitindo otimizações automáticas pelo compilador.</p>
+</li>
+<li>
+<p><strong>Alocação de Memória Dinâmica</strong>: Compreender a alocação e liberação de memória dinâmica em C++, o que é fundamental para gerenciar grandes volumes de dados em HPC. Exploraremos as diferenças entre alocação manual e a utilização de contêineres padrão do C++ como <code>std::vector</code>.</p>
+</li>
+<li>
+<p><strong>Manipulação de Vetores</strong>: Trabalhar com <code>std::vector</code> e aprender a realizar operações comuns em HPC, como inicialização, modificação e iteração sobre grandes conjuntos de dados, além de encapsular essa lógica em classes eficientes.</p>
+</li>
+</ol>
+<h3 id="por-que-isso-e-importante">Por que isso é Importante?<a class="headerlink" href="#por-que-isso-e-importante" title="Permanent link">&para;</a></h3>
+<p>A passagem correta de parâmetros pode evitar cópias desnecessárias de dados, melhorando a eficiência. A utilização do <code>const</code> não só previne modificações acidentais nos dados, mas também permite que o compilador faça otimizações mais agressivas. A alocação de memória dinâmica é importante para lidar com os grandes volumes de dados típicos de HPC, e a manipulação eficiente de vetores é essencial para o processamento rápido de dados.</p>
 <h3 id="1-passagem-de-parametros-e-manipulacao-de-arquivos">1. Passagem de Parâmetros e Manipulação de Arquivos<a class="headerlink" href="#1-passagem-de-parametros-e-manipulacao-de-arquivos" title="Permanent link">&para;</a></h3>
 <p><strong>Objetivo:</strong> Praticar a passagem de parâmetros por valor, referência e ponteiro em C++, além de trabalhar com leitura e escrita de arquivos.</p>
 <p><strong>Exercício:</strong>
-- Implemente uma função que leia um arquivo de texto contendo números inteiros e armazene-os em um <code>std::vector&lt;int&gt;</code>. Use passagem por referência para garantir que o vetor seja preenchido corretamente.
-- Crie duas funções: uma que dobra os valores no vetor usando passagem por referência, e outra que faz o mesmo usando ponteiros.
-- Escreva os valores dobrados em um novo arquivo de texto.</p>
+Implemente uma função que leia um arquivo de texto contendo números inteiros e armazene-os em um <code>std::vector&lt;int&gt;</code>. Use passagem por referência para garantir que o vetor seja preenchido corretamente. </p>
+<p>Crie duas funções: uma que dobra os valores no vetor usando passagem por referência, e outra que faz o mesmo usando ponteiros.</p>
+<p>Escreva os valores dobrados em um novo arquivo de texto.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Não faz ideia de como começar? leia o <a href="../Teoria/funcoes.md">material disponível aqui</a> ou consulte a <a href="https://en.cppreference.com/book/">documentação oficial</a></p>
+<p>Não faz ideia de como começar? leia o <a href="../../../Teoria/funcoes/">material disponível aqui</a> ou consulte a <a href="https://en.cppreference.com/book/">documentação oficial</a></p>
 </div>
-<p>Os arquivos estão disponíveis em <a href="../entrada.txt">entrada.txt</a>, <a href="../saida_ponteiro.txt">saida_ponteiro.txt</a>, <a href="../saida_referencia.txt">saida_referencia.txt</a></p>
+<p>O arquivo com os valores de entrada está disponível em <a href="../entrada.txt">entrada.txt</a>.</p>
 <p><strong>Pontapé Inicial:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="c1">   // Inclui a biblioteca padrão de entrada e saída, usada para operações como std::cout.</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span><span class="c1">    // Inclui a biblioteca para manipulação de arquivos, usada para ler e escrever arquivos.</span>
@@ -1005,12 +1216,12 @@
 </code></pre></div>
 <h3 id="2-const-correctness">2. Const Correctness<a class="headerlink" href="#2-const-correctness" title="Permanent link">&para;</a></h3>
 <p><strong>Objetivo:</strong> Praticar o uso de <code>const</code> para garantir a imutabilidade de dados onde necessário, melhorando a segurança e otimizações de código.</p>
-<p><strong>Exercício:</strong>
-- Implemente uma função para multiplicação de matrizes que utiliza <code>const</code> para garantir que as matrizes de entrada não sejam modificadas.
-- Crie uma classe <code>Matriz</code> que encapsule as operações básicas de uma matriz quadrada, utilizando métodos <code>const</code> para operações de leitura.</p>
+<p><strong>Exercício:</strong></p>
+<p>Implemente uma função para multiplicação de matrizes que utiliza <code>const</code> para garantir que as matrizes de entrada não sejam modificadas.</p>
+<p>Crie uma classe <code>Matriz</code> que encapsule as operações básicas de uma matriz quadrada, utilizando métodos <code>const</code> para operações de leitura.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Não faz ideia de como começar? leia o <a href="../Teoria/uso-de-constantes.md">material disponível aqui</a> ou consulte a <a href="https://en.cppreference.com/book/">documentação oficial</a></p>
+<p>Não faz ideia de como começar? leia o <a href="../../../Teoria/uso-de-constantes/">material disponível aqui</a> ou consulte a <a href="https://en.cppreference.com/book/">documentação oficial</a></p>
 </div>
 <p><strong>Pontapé Inicial:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -1103,11 +1314,11 @@
 <h3 id="3-alocacao-de-memoria-dinamica">3. Alocação de Memória Dinâmica<a class="headerlink" href="#3-alocacao-de-memoria-dinamica" title="Permanent link">&para;</a></h3>
 <p><strong>Objetivo:</strong> Entender a alocação e liberação de memória dinâmica em C++, muito importante para gerenciar grandes volumes de dados em HPC.</p>
 <p><strong>Exercício:</strong>
-- Implemente uma função que aloca dinamicamente uma matriz de inteiros de tamanho N x N e realiza uma soma simples de todos os seus elementos.
-- Em seguida, substitua a alocação dinâmica manual pela utilização de <code>std::vector</code> e compare o desempenho das duas abordagens.</p>
+Implemente uma função que aloca dinamicamente uma matriz de inteiros de tamanho N x N e realiza uma soma simples de todos os seus elementos.</p>
+<p>Em seguida, substitua a alocação dinâmica manual pela utilização de <code>std::vector</code> e compare o desempenho das duas abordagens.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Não faz ideia de como começar? leia o <a href="../Teoria/memoria-dinamica.md">material disponível aqui</a> ou consulte a <a href="https://en.cppreference.com/book/">documentação oficial</a></p>
+<p>Não faz ideia de como começar? leia o <a href="../../../Teoria/memoria-dinamica/">material disponível aqui</a> ou consulte a <a href="https://en.cppreference.com/book/">documentação oficial</a></p>
 </div>
 <p><strong>Pontapé Inicial:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="c1">   // Inclui a biblioteca padrão de entrada e saída, usada para operações como std::cout.</span>
@@ -1156,7 +1367,7 @@ Como a alocação automática e a liberação de memória pelo <code>std::vector
 - Crie uma classe <code>Vector</code> que encapsule a lógica de manipulação de vetores, incluindo métodos para adicionar, remover e acessar elementos. Garanta que a classe seja eficiente usando alocação dinâmica e funções <code>inline</code>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Não faz ideia de como começar? leia o <a href="../Teoria/manipulacao-vetores.md">material disponível aqui</a> ou consulte a <a href="https://en.cppreference.com/book/">documentação oficial</a></p>
+<p>Não faz ideia de como começar? leia o <a href="../../../Teoria/manipulacao-vetores/">material disponível aqui</a> ou consulte a <a href="https://en.cppreference.com/book/">documentação oficial</a></p>
 </div>
 <p><strong>Pontapé Inicial:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -1190,8 +1401,8 @@ Como a alocação automática e a liberação de memória pelo <code>std::vector
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="entrega-da-atividade-03">Entrega da Atividade 03<a class="headerlink" href="#entrega-da-atividade-03" title="Permanent link">&para;</a></h3>
-<p>Crie um repositório no GitHub com os seus códigos e análises, envie o link pelo BlackBoard</p>
+<h3 id="entrega-da-atividade-32">Entrega da Atividade 3.2<a class="headerlink" href="#entrega-da-atividade-32" title="Permanent link">&para;</a></h3>
+<p>Crie um repositório no GitHub com os seus códigos e análises, envie o link pelo BlackBoard até sexta (23/08), as 23h59.</p>
 
 
 
