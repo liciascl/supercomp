@@ -87,7 +87,7 @@ kcachegrind callgrind.out.*
 Analise o uso de CPU e cache. Identifique funções e loops que são candidatos para otimização.
 Compare as saídas do **gprof** e **Callgrind**. 
 
-### Atividade 04 - Profiling
+### Atividade 05 - Profiling
 
 **Elabore um Relatório que inclua:** 
 
