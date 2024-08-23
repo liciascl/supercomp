@@ -7,9 +7,15 @@
 - Configurar o ambiente de desenvolvimento, submeter o primeiro job no Cluster Franky. 
 
 **[aula 02: SLURM](../aulas/02-slurn/index.md)**
-- Entender como a solicitação de recursos impacta o tempo de execução de uma tarefa e compreender como pedir recursos ao SLURM.
+- Entender como a solicitação de recursos impacta o tempo de execução de uma tarefa 
+e compreender como pedir recursos ao SLURM.
 
-**[aula 03: C++](../aulas/03-cpp/03-cpp.md)**
+
+**[aula 04: C++](../aulas/03-cpp/aula-4.pdf)**
+- Introdução a c++.
+
+
+**[aula 05: C++](../aulas/03-cpp/03-cpp.md)**
 - Conhecer técnicas avançadas de C++ que são essenciais para programar códigos eficientes, seguros e preparados para escalar em aplicações de alta performance.
 
 **[aula 04: profiling](../aulas/04-Profiling/04-Profiling.md)**

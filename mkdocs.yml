@@ -37,6 +37,7 @@ nav:
         - "aulas/00-introducao/index.md"    
         - "aulas/01-introducao/index.md"
         - "aulas/02-slurm/index.md"
+        - "aulas/03-cpp/aula-4.pdf"
         - "aulas/03-cpp/03-cpp.md"
         - "aulas/04-Profiling/04-Profiling.md"
                 
