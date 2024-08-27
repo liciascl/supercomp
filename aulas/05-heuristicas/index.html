@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://insper.github.io/supercomp/aulas/05-heuristicas/">
       
       
+        <link rel="prev" href="../04-Profiling/04-Profiling/">
+      
+      
+        <link rel="next" href="../../projetos/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>05 - Heurísticas - SuperComputação - 2024/2</title>
+        <title>Aula 06: Problema da Mochila com Busca Exaustiva - SuperComputação - 2024/2</title>
       
     
     
@@ -80,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#05-heuristicas" class="md-skip">
+        <a href="#aula-06-problema-da-mochila-com-busca-exaustiva" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              05 - Heurísticas
+              Aula 06: Problema da Mochila com Busca Exaustiva
             
           </span>
         </div>
@@ -250,17 +254,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -274,7 +280,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Aulas
@@ -376,7 +382,7 @@
         
   
   <span class="md-ellipsis">
-    Aula 03 
+    Aula 03 Introdução ao C++
   </span>
   
 
@@ -423,6 +429,103 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Aula 06: Problema da Mochila com Busca Exaustiva
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Aula 06: Problema da Mochila com Busca Exaustiva
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#desafios-do-problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desafios do Problema:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-e-recursao" class="md-nav__link">
+    <span class="md-ellipsis">
+      O que é Recursão?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recursao-no-problema-da-mochila" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursão no Problema da Mochila
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-06-problema-da-mochila-com-busca-exaustiva" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 06: Problema da Mochila com Busca Exaustiva
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -924,36 +1027,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#resumo-do-problema" class="md-nav__link">
+  <a href="#desafios-do-problema" class="md-nav__link">
     <span class="md-ellipsis">
-      Resumo do problema
+      Desafios do Problema:
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mais-caro-primeiro" class="md-nav__link">
+  <a href="#o-que-e-recursao" class="md-nav__link">
     <span class="md-ellipsis">
-      Mais caro primeiro
+      O que é Recursão?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mais-leve-primeiro" class="md-nav__link">
+  <a href="#recursao-no-problema-da-mochila" class="md-nav__link">
     <span class="md-ellipsis">
-      Mais leve primeiro
+      Recursão no Problema da Mochila
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#analisando-nossas-heuristicas" class="md-nav__link">
+  <a href="#atividade-06-problema-da-mochila-com-busca-exaustiva" class="md-nav__link">
     <span class="md-ellipsis">
-      Analisando nossas heurísticas
+      Atividade 06: Problema da Mochila com Busca Exaustiva
     </span>
   </a>
   
@@ -977,108 +1080,83 @@
   
 
 
-<h1 id="05-heuristicas">05 - Heurísticas<a class="headerlink" href="#05-heuristicas" title="Permanent link">&para;</a></h1>
-<p>A atividade prática de hoje consiste em implementar heurísticas para a solução do problema da <strong>Mochila binária</strong>.</p>
-<h2 id="resumo-do-problema">Resumo do problema<a class="headerlink" href="#resumo-do-problema" title="Permanent link">&para;</a></h2>
-<p>Dados <code>N</code> objetos e uma mochila que comporta até <code>W</code> quilos, cada um com peso <span class="arithmatex"><span class="MathJax_Preview">w_i</span><script type="math/tex">w_i</script></span> e valor <span class="arithmatex"><span class="MathJax_Preview">v_i</span><script type="math/tex">v_i</script></span>, selecionar objetos com o maior valor possível que caibam dentro da mochila.</p>
-<p><strong>Entrada</strong>:
-<div class="highlight"><pre><span></span><code>N W
+<h1 id="aula-06-problema-da-mochila-com-busca-exaustiva">Aula 06: Problema da Mochila com Busca Exaustiva<a class="headerlink" href="#aula-06-problema-da-mochila-com-busca-exaustiva" title="Permanent link">&para;</a></h1>
+<p>O problema da mochila é um dos problemas clássicos da computação e é amplamente estudado em otimização de algoritmos e computação. </p>
+<p>Imagine que você está se preparando para uma viagem e tem uma mochila com capacidade limitada de peso. Você tem vários itens à sua disposição, cada um com um peso específico e um valor associado. Seu objetivo é escolher quais itens colocar na mochila para maximizar o valor total, sem ultrapassar a capacidade máxima de peso que a mochila pode carregar.</p>
+<p>Suponha que você tenha os seguintes itens:</p>
+<p><strong>Item 1:</strong> Peso = 2 kg, Valor = <span class="arithmatex"><span class="MathJax_Preview">3</span><script type="math/tex">3</script></span></p>
+<p><strong>Item 2:</strong> Peso = 3 kg, Valor = <span class="arithmatex"><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span></p>
+<p><strong>Item 3:</strong> Peso = 4 kg, Valor = <span class="arithmatex"><span class="MathJax_Preview">5</span><script type="math/tex">5</script></span></p>
+<p><strong>Item 4:</strong> Peso = 5 kg, Valor = <span class="arithmatex"><span class="MathJax_Preview">8</span><script type="math/tex">8</script></span></p>
+<p>E sua mochila pode carregar até <strong>8 kg</strong>. A questão é: quais itens você deve escolher para maximizar o valor total na mochila, sem ultrapassar a capacidade de 8 kg?</p>
+<p>Se você tentar todas as combinações possíveis de itens, verá que algumas opções permitem carregar mais valor do que outras. Por exemplo:</p>
+<p>Se você escolher os itens 1 e 4, o peso total será 7 kg e o valor total será <span class="arithmatex"><span class="MathJax_Preview">11</span><script type="math/tex">11</script></span>.</p>
+<p>Se escolher os itens 2 e 3, o peso total será 7 kg e o valor total será <span class="arithmatex"><span class="MathJax_Preview">9</span><script type="math/tex">9</script></span>.</p>
+<p>Neste caso, a melhor combinação seria escolher os itens 1 e 4, que oferecem o maior valor total de <span class="arithmatex"><span class="MathJax_Preview">11</span><script type="math/tex">11</script></span> sem exceder o peso máximo de 8 kg.</p>
+<h4 id="desafios-do-problema">Desafios do Problema:<a class="headerlink" href="#desafios-do-problema" title="Permanent link">&para;</a></h4>
+<p>O problema da mochila torna-se cada vez mais complexo à medida que o número de itens aumenta. Com mais itens, o número de combinações possíveis cresce exponencialmente, tornando a busca pela solução ótima um desafio computacional significativo. Por isso, algoritmos eficientes são necessários para resolver o problema em casos de grande escala.</p>
+<p>A atividade desta aula consiste em implementar heurísticas para a solução do problema da <strong>Mochila binária</strong>. </p>
+<p>Abaixo você encontrará as listas contendo peso e valor dos itens para organizar na mochila.</p>
+<p><a href="itens/in1.txt">Entrada 1</a>, <a href="itens/in2.txt">Entrada 2</a>, <a href="itens/in3.txt">Entrada 3</a>, <a href="itens/in4.txt">Entrada 4</a> </p>
+<p>Neste exercício, você implementará uma solução para o problema da mochila usando a técnica de busca exaustiva em C++. O objetivo é maximizar o valor dos objetos dentro da mochila sem exceder sua capacidade. </p>
+<p><strong>Descrição do Problema:</strong><br />
+Dado um conjunto de N objetos, cada um com um peso <span class="arithmatex"><span class="MathJax_Preview"> w_i </span><script type="math/tex"> w_i </script></span> e um valor <span class="arithmatex"><span class="MathJax_Preview"> v_i </span><script type="math/tex"> v_i </script></span>, selecione uma combinação de objetos que maximize o valor total sem ultrapassar a capacidade W da mochila.</p>
+<ul>
+<li><strong>Entrada:</strong>
+  <div class="highlight"><pre><span></span><code>N W
 w1 v1
-....
+w2 v2
+...
 wN vN
-</code></pre></div></p>
-<p><strong>Saída</strong>:
-<div class="highlight"><pre><span></span><code>W V opt
-o1 ... oT
-</code></pre></div></p>
-<ul>
-<li><code>W</code> - peso dos objetos selecionados</li>
-<li><code>V</code> - valor dos objetos selecionados</li>
-<li><code>opt</code><ul>
-<li><code>0</code> se for usada uma heurística ou busca local</li>
-<li><code>1</code> se a solução for ótimo global</li>
+</code></pre></div></li>
 </ul>
+<p>Onde:
+<strong>N:</strong> Número de objetos</p>
+<p><strong>W:</strong> Capacidade da mochila </p>
+<p><strong>Wi:</strong> Peso do objeto</p>
+<p><strong>Vi:</strong> Valor do objeto.</p>
+<p>Para resolver o problema da mochila usando busca exaustiva, precisamos avaliar todas as combinações possíveis de itens. Uma abordagem comum é usar recursão para explorar todas as possibilidades.</p>
+<h4 id="o-que-e-recursao">O que é Recursão?<a class="headerlink" href="#o-que-e-recursao" title="Permanent link">&para;</a></h4>
+<p>Recursão é uma técnica fundamental na programação, onde uma função chama a si mesma para resolver subproblemas menores de uma tarefa maior. A ideia central é dividir um problema complexo em partes menores, que podem ser resolvidas de forma mais simples. Em um algoritmo recursivo, o problema é resolvido ao fazer chamadas sucessivas para a mesma função, mas com parâmetros ajustados que aproximam a solução a cada passo.</p>
+<p><strong>Exemplificando...</strong></p>
+<p>Considere a tarefa de calcular o fatorial de um número <span class="arithmatex"><span class="MathJax_Preview"> n </span><script type="math/tex"> n </script></span>. O fatorial de <span class="arithmatex"><span class="MathJax_Preview"> n </span><script type="math/tex"> n </script></span>, representado como <span class="arithmatex"><span class="MathJax_Preview"> n! </span><script type="math/tex"> n! </script></span>, é o produto de todos os números inteiros de 1 até <span class="arithmatex"><span class="MathJax_Preview"> n </span><script type="math/tex"> n </script></span>. Podemos definir isso de forma recursiva:
+- <span class="arithmatex"><span class="MathJax_Preview"> 0! = 1 </span><script type="math/tex"> 0! = 1 </script></span> (caso base)
+- <span class="arithmatex"><span class="MathJax_Preview"> n! = n \times (n-1)! </span><script type="math/tex"> n! = n \times (n-1)! </script></span> (caso recursivo)</p>
+<p>Usando recursão, a função que calcula o fatorial chama a si mesma com o valor <span class="arithmatex"><span class="MathJax_Preview"> n-1 </span><script type="math/tex"> n-1 </script></span>, até que atinge o caso base.</p>
+<h4 id="recursao-no-problema-da-mochila">Recursão no Problema da Mochila<a class="headerlink" href="#recursao-no-problema-da-mochila" title="Permanent link">&para;</a></h4>
+<p>No contexto do problema da mochila, a recursão é utilizada para explorar todas as combinações possíveis de itens que podem ser colocados na mochila. A ideia é considerar, para cada item, duas possibilidades: incluí-lo na mochila ou não incluí-lo. Para cada uma dessas escolhas, o problema é reduzido ao mesmo problema, mas com um item a menos e, no caso de inclusão, com uma capacidade reduzida na mochila.</p>
+<p>A estrutura recursiva para resolver o problema da mochila pode ser descrita da seguinte forma:</p>
+<ol>
+<li>
+<p><strong>Caso Base:</strong> Se não há mais itens a serem considerados ou se a capacidade 
+restante da mochila é zero, o valor total é zero.</p>
 </li>
-<li><code>oi</code> são os índices (<em>em ordem crescente</em>) dos objetos selecionados</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Arquivos para verificar a corretude das suas implementações estão disponíveis nesta pasta. Eles estão nomeados como <code>in-*.txt</code>, <code>mais-caro-out-*.txt</code> e <code>mais-leve-out-*.txt</code>.</p>
-</div>
-<h2 id="mais-caro-primeiro">Mais caro primeiro<a class="headerlink" href="#mais-caro-primeiro" title="Permanent link">&para;</a></h2>
-<p>A ideia desta heurística é não deixar nenhum objeto valioso para trás! Por isso vamos ser ganaciosos e pegar <strong>primeiro os objetos mais caros</strong>! Se um objeto valioso não couber passamos para os mais baratos e prosseguimos até examinar todos objetos.</p>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Escreva abaixo um algoritmo em pseudo-código para implementar a heurística descrita acima.</p>
-<details class="details">
-<summary>Resposta</summary>
-<div class="highlight"><pre><span></span><code>ids = // vetor inicializado com ids[i] = i
-ordene os vetores ids, v e w de acordo com o vetor de valores v
-peso = 0
-valor = 0
-resposta = //vetor inicializado com 0
-T = 0 // número de objetos selecionados
-para i=1..N
-    se peso + w[i] &lt; W então
-        resposta[T] = ids[i]
-        peso += w[i]
-        valor += v[i]
-        T += 1
+<li>
+<p><strong>Caso Recursivo:</strong> Para cada item <span class="arithmatex"><span class="MathJax_Preview"> i </span><script type="math/tex"> i </script></span>:</p>
+</li>
+</ol>
+<p>Se incluir o item <span class="arithmatex"><span class="MathJax_Preview"> i </span><script type="math/tex"> i </script></span>: resolva o problema para os itens restantes com a capacidade reduzida.</p>
+<p>Se não incluir o item <span class="arithmatex"><span class="MathJax_Preview"> i </span><script type="math/tex"> i </script></span>: resolva o problema para os itens restantes sem alterar a capacidade.</p>
+<p>Retorne a melhor das duas soluções.</p>
+<p><strong>Pseudocódigo:</strong></p>
+<div class="highlight"><pre><span></span><code>função Mochila(N, W, pesos[], valores[], i):
+    se i &gt;= N ou W == 0:
+        retornar 0
 
-print peso, valor, 0
-print resposta[0 .. T]
+    se peso[i] &gt; W:
+        retornar Mochila(N, W, pesos, valores, i+1)
+
+    valor_incluido = valores[i] + Mochila(N, W - pesos[i], pesos, valores, i+1)
+    valor_excluido = Mochila(N, W, pesos, valores, i+1)
+
+    retornar max(valor_incluido, valor_excluido)
 </code></pre></div>
-</details>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Qual é a complexidade computacional deste algoritmo? Ele é a melhor implementação possível?</p>
-<details class="details">
-<summary>Resposta</summary>
-<p>Se o algoritmo descrito em sua resposta anterior envolver ordenação, então ele tem complexidade <span class="arithmatex"><span class="MathJax_Preview">\mathcal{O}(n\log n)</span><script type="math/tex">\mathcal{O}(n\log n)</script></span> e é o melhor possível sim (você consegue explicar por que?). Se você fez um loop duplo que procura pelo maior a cada iteração então seu algoritmo é <span class="arithmatex"><span class="MathJax_Preview">\mathcal{O}(n^2)</span><script type="math/tex">\mathcal{O}(n^2)</script></span>.</p>
-</details>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Agora que temos um algoritmo, crie uma implementação do programa acima.</p>
-<p><strong>Dicas</strong>:</p>
-<ul>
-<li>C++ já possui um algoritmo de ordenação implementado no cabeçalho <a href="http://cplusplus.com/reference/algorithm/sort/"><code>&lt;algorithm&gt;</code></a>. Use-o.</li>
-<li>Busque por ordenação indireta para entender como ordenar os três vetores ao mesmo tempo.</li>
-<li>Pode ser conveniente organizar os dados usando <code>struct</code>.</li>
-</ul>
-</div>
-<h2 id="mais-leve-primeiro">Mais leve primeiro<a class="headerlink" href="#mais-leve-primeiro" title="Permanent link">&para;</a></h2>
-<p>Vamos testar uma abordagem oposta: <strong>quantidade agora é o foco</strong>. Por isso vamos ser práticos e pegar <strong>o maior número de objetos possível</strong>! Começaremos agora pelos objetos mais leves e vamos torcer para que a quantidade grande de objetos selecionados resulte em uma mochila com alto valor.</p>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Compare esta heurística com a da seção anterior levando em conta o algoritmo em pseudo-código e sua complexidade computacional.</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Quais partes do programa da heurística anterior podem ser aproveitadas para implementar a descrita acima?</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Implemente agora a heurística do mais leve. Chame seu programa de <code>mais_leve</code>, mantendo também o código do anterior.</p>
-</div>
-<h2 id="analisando-nossas-heuristicas">Analisando nossas heurísticas<a class="headerlink" href="#analisando-nossas-heuristicas" title="Permanent link">&para;</a></h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Crie uma entrada em que a heurística do mais valioso seja muito melhor que a do mais leve. Escreva abaixo as saídas de cada programa.</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Crie uma entrada em que a heurística do mais leve seja muito melhor que a do mais valioso. Escreva abaixo as saídas de cada programa.</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Com base nas suas respostas acima, em quais situações a heurística do mais valioso é melhor?</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Com base nas suas respostas acima, em quais situações a heurística do mais leve é melhor?</p>
-</div>
+<h3 id="atividade-06-problema-da-mochila-com-busca-exaustiva">Atividade 06: Problema da Mochila com Busca Exaustiva<a class="headerlink" href="#atividade-06-problema-da-mochila-com-busca-exaustiva" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong>
+Implemente uma solução para o problema da mochila usando a técnica de busca exaustiva através de recursão em C++. O objetivo é maximizar o valor dos objetos dentro da mochila sem exceder sua capacidade.</p>
+<p>Utilize os arquivos de entrada <a href="itens/in1.txt">Entrada 1</a>, <a href="itens/in2.txt">Entrada 2</a>, <a href="itens/in3.txt">Entrada 3</a> e <a href="itens/in4.txt">Entrada 4</a> para validar sua implementação. Verifique se o programa consegue determinar a combinação correta para maximizar o valor na mochila para cada arquivo de entrada.</p>
+<p>Compare o tempo de execução para os diferentes arquivos de entrada. Considerando que o algoritmo explora todas as combinações possíveis, discuta suas limitações em termos de tempo de execução e uso de memória.</p>
+<p>Submeta no BlackBoard o link do repositório com o código e as análises até as 23h59 de 30/08. </p>
 
 
 

@@ -378,7 +378,7 @@
         
   
   <span class="md-ellipsis">
-    Aula 03 
+    Aula 03 Introdução ao C++
   </span>
   
 
@@ -421,6 +421,27 @@
   
   <span class="md-ellipsis">
     Aula 05: Otimização e Profiling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aulas/05-heuristicas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aula 06: Problema da Mochila com Busca Exaustiva
   </span>
   
 
@@ -1466,9 +1487,9 @@
 <div class="highlight"><pre><span></span><code>g++<span class="w"> </span>mult_matriz.cpp<span class="w"> </span>-o<span class="w"> </span>mult_matriz
 </code></pre></div>
 <p>Agora, execute o programa usando o <strong>Valgrind</strong> para detectar problemas de memória:</p>
-<div class="highlight"><pre><span></span><code>valgrind<span class="w"> </span>--leak-check<span class="o">=</span>full<span class="w"> </span>./mult_matriz
+<div class="highlight"><pre><span></span><code>valgrind<span class="w"> </span>--leak-check<span class="o">=</span>full<span class="w"> </span>./mult_matriz<span class="w"> </span><span class="p">&amp;</span>&gt;leak-check.txt
 </code></pre></div>
-<p>O Valgrind irá executar o programa e relatar quaisquer vazamentos de memória ou acessos inválidos.</p>
+<p>O Valgrind irá executar o programa e relatar quaisquer vazamentos de memória ou acessos inválidos no arquivo leak-check.txt.</p>
 <p>No relatório obtido aqui nos meus testes eu tive os seguintes resultados:</p>
 <h3 id="interpretacao-do-relatorio-valgrind">Interpretação do Relatório Valgrind<a class="headerlink" href="#interpretacao-do-relatorio-valgrind" title="Permanent link">&para;</a></h3>
 <ol>
@@ -1492,7 +1513,7 @@
 </ol>
 <h4 id="usando-o-valgrind-para-profiling-de-cpu-com-callgrind">Usando o Valgrind para Profiling de CPU com <code>callgrind</code><a class="headerlink" href="#usando-o-valgrind-para-profiling-de-cpu-com-callgrind" title="Permanent link">&para;</a></h4>
 <p>O Valgrind também pode ser usado para profiling de CPU com a ferramenta <strong>Callgrind</strong>:</p>
-<div class="highlight"><pre><span></span><code>valgrind<span class="w"> </span>--tool<span class="o">=</span>callgrind<span class="w"> </span>./mult_matriz
+<div class="highlight"><pre><span></span><code>valgrind<span class="w"> </span>--tool<span class="o">=</span>callgrind<span class="w"> </span>./mult_matriz<span class="w"> </span>
 </code></pre></div>
 <p>Este comando vai resultar em um arquivo de saída <code>callgrind.out.&lt;PID&gt;</code>, que contém informações detalhadas sobre o uso da CPU por cada função do programa.</p>
 <p>O relatório que você executou com Callgrind fornece um resumo sobre o desempenho do programa em termos de <strong>instruções executadas</strong>. Os elementos principais do relatório são:</p>
