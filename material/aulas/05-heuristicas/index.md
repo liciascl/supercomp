@@ -98,4 +98,14 @@ Utilize os arquivos de entrada [Entrada 1](itens/in1.txt), [Entrada 2](itens/in2
 
 Compare o tempo de execução para os diferentes arquivos de entrada. Considerando que o algoritmo explora todas as combinações possíveis, discuta suas limitações em termos de tempo de execução e uso de memória.
 
+
+!!! tip "Gabarito"
+    **Entrada 1 ->** Peso ocupado: 8 Kg, Valor alcançado: 259 dinheiros
+    
+    **Entrada 2 ->** Peso ocupado: 2 Kg, Valor alcançado: 156 dinheiros
+    
+    **Entrada 3 ->** Peso ocupado: 74 Kg, Valor alcançado: 200 dinheiros
+    
+    **Entrada 4 ->** Peso ocupado: 10 Kg, Valor alcançado: 55 dinheiros
+
 Submeta no BlackBoard o link do repositório com o código e as análises até as 23h59 de 30/08. 
