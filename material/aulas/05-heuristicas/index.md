@@ -89,23 +89,6 @@ Se não incluir o item \( i \): resolva o problema para os itens restantes sem a
 
 Retorne a melhor das duas soluções.
 
-**Pseudocódigo:**
-
-```
-função Mochila(N, W, pesos[], valores[], i):
-    se i >= N ou W == 0:
-        retornar 0
-    
-    se peso[i] > W:
-        retornar Mochila(N, W, pesos, valores, i+1)
-    
-    valor_incluido = valores[i] + Mochila(N, W - pesos[i], pesos, valores, i+1)
-    valor_excluido = Mochila(N, W, pesos, valores, i+1)
-    
-    retornar max(valor_incluido, valor_excluido)
-```
-
-
 ### Atividade 06: Problema da Mochila com Busca Exaustiva
 
 **Objetivo:**
