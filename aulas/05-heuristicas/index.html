@@ -1138,19 +1138,6 @@ restante da mochila é zero, o valor total é zero.</p>
 <p>Se incluir o item <span class="arithmatex"><span class="MathJax_Preview"> i </span><script type="math/tex"> i </script></span>: resolva o problema para os itens restantes com a capacidade reduzida.</p>
 <p>Se não incluir o item <span class="arithmatex"><span class="MathJax_Preview"> i </span><script type="math/tex"> i </script></span>: resolva o problema para os itens restantes sem alterar a capacidade.</p>
 <p>Retorne a melhor das duas soluções.</p>
-<p><strong>Pseudocódigo:</strong></p>
-<div class="highlight"><pre><span></span><code>função Mochila(N, W, pesos[], valores[], i):
-    se i &gt;= N ou W == 0:
-        retornar 0
-
-    se peso[i] &gt; W:
-        retornar Mochila(N, W, pesos, valores, i+1)
-
-    valor_incluido = valores[i] + Mochila(N, W - pesos[i], pesos, valores, i+1)
-    valor_excluido = Mochila(N, W, pesos, valores, i+1)
-
-    retornar max(valor_incluido, valor_excluido)
-</code></pre></div>
 <h3 id="atividade-06-problema-da-mochila-com-busca-exaustiva">Atividade 06: Problema da Mochila com Busca Exaustiva<a class="headerlink" href="#atividade-06-problema-da-mochila-com-busca-exaustiva" title="Permanent link">&para;</a></h3>
 <p><strong>Objetivo:</strong>
 Implemente uma solução para o problema da mochila usando a técnica de busca exaustiva através de recursão em C++. O objetivo é maximizar o valor dos objetos dentro da mochila sem exceder sua capacidade.</p>
