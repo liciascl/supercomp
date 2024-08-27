@@ -10,13 +10,14 @@
 - Entender como a solicitação de recursos impacta o tempo de execução de uma tarefa 
 e compreender como pedir recursos ao SLURM.
 
-
-**[aula 04: C++](../aulas/03-cpp/aula-4.pdf)**
+**[aula 03: Introdução ao C++](../aulas/03-cpp/aula-4.pdf)**
 - Introdução a c++.
 
-
-**[aula 05: C++](../aulas/03-cpp/03-cpp.md)**
+**[aula 04: Usando o poder do C++](../aulas/03-cpp/03-cpp.md)**
 - Conhecer técnicas avançadas de C++ que são essenciais para programar códigos eficientes, seguros e preparados para escalar em aplicações de alta performance.
 
-**[aula 04: profiling](../aulas/04-Profiling/04-Profiling.md)**
+**[aula 05: Profiling](../aulas/04-Profiling/04-Profiling.md)**
 - Entender como utilizar as flags de compilação e ferramentas de profiling para encontrar gargalos e melhorar o desempenho do código.
+
+**[aula 06: Busca Exaustiva](../aulas/05-heuristicas/index.md)**
+- Entender como utilizar recursão para resolver o problema da mochila com busca exaustiva.  

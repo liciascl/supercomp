@@ -37,10 +37,10 @@ nav:
         - "aulas/00-introducao/index.md"    
         - "aulas/01-introducao/index.md"
         - "aulas/02-slurm/index.md"
-        - "Aula 03 ": aulas/03-cpp/aula-4.pdf
+        - "Aula 03 Introdução ao C++": aulas/03-cpp/aula-4.pdf
         - "aulas/03-cpp/03-cpp.md"
         - "aulas/04-Profiling/04-Profiling.md"
-                
+        - "Aula 06: Problema da Mochila com Busca Exaustiva": aulas/05-heuristicas/index.md               
 #        - "02 e 03 - C++": aulas/02-03-implementacao-c++/index.md
 #        - "04 - Profiling": aulas/04-profiling/index.md
 #        - "05 - Heurísticas": aulas/05-heuristicas/index.md

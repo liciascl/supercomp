@@ -139,10 +139,11 @@ g++ mult_matriz.cpp -o mult_matriz
 Agora, execute o programa usando o **Valgrind** para detectar problemas de memória:
 
 ```bash
-valgrind --leak-check=full ./mult_matriz
+valgrind --leak-check=full ./mult_matriz &>leak-check.txt
+
 ```
 
-O Valgrind irá executar o programa e relatar quaisquer vazamentos de memória ou acessos inválidos.
+O Valgrind irá executar o programa e relatar quaisquer vazamentos de memória ou acessos inválidos no arquivo leak-check.txt.
 
 No relatório obtido aqui nos meus testes eu tive os seguintes resultados:
 
@@ -165,7 +166,7 @@ No relatório obtido aqui nos meus testes eu tive os seguintes resultados:
 O Valgrind também pode ser usado para profiling de CPU com a ferramenta **Callgrind**:
 
 ```bash
-valgrind --tool=callgrind ./mult_matriz
+valgrind --tool=callgrind ./mult_matriz 
 ```
 
 Este comando vai resultar em um arquivo de saída `callgrind.out.<PID>`, que contém informações detalhadas sobre o uso da CPU por cada função do programa.
