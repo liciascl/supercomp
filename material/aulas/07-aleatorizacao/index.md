@@ -1,30 +1,6 @@
 # 07 - Heurísticas Aleatórias para o Problema da Mochila
 
-Nesta aula, vamos ajustar o algoritmo de busca exaustiva implementado na aula anterior para lidar com conjuntos de dados maiores e testar novas heurísticas baseadas em seleção aleatória. O objetivo é comparar a eficiência e a qualidade das soluções geradas pelos diferentes métodos.
-
-### Refinando a Busca Exaustiva
-
-O algoritmo de busca exaustiva da aula passada tinha a missão de encontrar a mochila mais valiosa possível considerando apenas a restrição de peso da mochila. Ou seja, o algoritmo seleciona a combinação de itens que maximiza o valor total, independentemente do peso do item, até que chegue na capacidade máxima da mochila. Vamos deixar o algoritmo mais interessante...
-   
-**Tarefa 1:** Faça ajustes no algoritmo para encontrar a mochila mais valiosa possível, levando em consideração o peso do item, de forma que a mochila seja a mais leve possível entre as combinações que proporcionam o valor máximo.
-
-
-**Teste com Novas Entradas:**
-As mochilas da atividade passada eram bem basiconas, vamos testar o código com mochilas computacionalmente mais desafiadoras:
-
-![MUHAHAHA](itens/devil-laugh.gif)
-
-[Entrada_1.txt](itens/Entrada_1.txt), [Entrada_2.txt](itens/Entrada_2.txt), [Entrada_3.txt](itens/Entrada_3.txt), [Entrada_4.txt](itens/Entrada_4.txt)
-
-Meça e registre o tempo necessário para cada solução:
-
-- Mochila com o maior valor possível atingindo o limite da capacidade de peso.
-    
-- Mochila com o maior valor possível e o menor peso total.
-
-!!! Tip
-    A busca exaustiva vai demorar horrores, você submeter o código no cluster e pegar o resultado um dia, quando a busca terminar <3
-
+Nesta aula, vamos experimentar um conjuntos de dados maiores e testar novas heurísticas baseadas em seleção aleatória. O objetivo é comparar a eficiência e a qualidade das soluções geradas pelos diferentes métodos.
 
 ### Implementação de Heurísticas Aleatórias
 
@@ -33,7 +9,7 @@ Meça e registre o tempo necessário para cada solução:
 
 Implemente duas novas heurísticas aleatórias para selecionar os itens da mochila:
 
-### Tarefa 2: Embaralhar e Preencher a Mochila:
+### Tarefa 1: Embaralhar e Preencher a Mochila:
 
 **1.** Embaralhe o vetor de itens (peso e valor).
 
@@ -43,7 +19,7 @@ Implemente duas novas heurísticas aleatórias para selecionar os itens da mochi
 
 Execute a heurística e compare o resultado obtido e o tempo de execução com o método de busca exaustiva.
 
-### Tarefa 3: Seleção Aleatória Baseada em Probabilidade:
+### Tarefa 2: Seleção Aleatória Baseada em Probabilidade:
 
 **1.** Percorra os itens sem alterar a ordem.
 
@@ -54,10 +30,22 @@ Execute a heurística e compare o resultado obtido e o tempo de execução com o
 
 ### Atividade 07 - Heurísticas Aleatórias par ao Problema da Mochila
 
-   - Execute cada algorítimo aleatório 5 vezes para cada entrada ([Entrada_1.txt](itens/Entrada_1.txt), [Entrada_2.txt](itens/Entrada_2.txt), [Entrada_3.txt](itens/Entrada_3.txt), [Entrada_4.txt](itens/Entrada_4.txt)).
+**Teste com Novas Entradas:**
+As mochilas da atividade passada eram bem basiconas, vamos testar o código com mochilas computacionalmente mais desafiadoras:
 
-   - Compare o desempenho das heurísticas aleatórias com os algoritmos de busca exaustiva.
+![MUHAHAHA](itens/devil-laugh.gif)
 
-   - Analise as diferenças nos tempos de execução e na qualidade das soluções encontradas (valores obtidos e pesos das mochilas).
+[Entrada_1.txt](itens/Entrada_1.txt), [Entrada_2.txt](itens/Entrada_2.txt), [Entrada_3.txt](itens/Entrada_3.txt), [Entrada_4.txt](itens/Entrada_4.txt)
+
+**1** Registre o tempo necessário para o algoritmo de busca exaustiva resolver cada Entrada.
+
+!!! Tip
+    A busca exaustiva vai demorar horrores, você pode submeter o código no cluster e pegar o resultado um dia, quando a busca terminar <3
+
+**2** Execute o algorítimo embaralhado da Tarefa 1 pelo menos 5 vezes para cada entrada.
+
+**3** Execute o algorítimo probabilítico da Tarefa 2 pelo menos 5 vezes para cada entrada.
+
+**4** Analise as diferenças nos tempos de execução e na qualidade das soluções encontradas (valores obtidos e pesos das mochilas) das heurísticas aleatórias e da busca exaustiva.
 
 **Submeta no BlackBoard o link do GitHub contendo os códigos e um relatório com suas análises até as 23h59 de 02/09**
