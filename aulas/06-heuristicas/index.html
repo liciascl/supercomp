@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/06-aleatorizacao/">
+        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/06-heuristicas/">
       
       
+        <link rel="prev" href="../04-Profiling/04-Profiling/">
+      
+      
+        <link rel="next" href="../07-aleatorizacao/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>06 - Algoritmos Aleatorizados - SuperComputação - 2024/2</title>
+        <title>Aula 06: Problema da Mochila com Busca Exaustiva - SuperComputação - 2024/2</title>
       
     
     
@@ -80,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#06-algoritmos-aleatorizados" class="md-skip">
+        <a href="#aula-06-problema-da-mochila-com-busca-exaustiva" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              06 - Algoritmos Aleatorizados
+              Aula 06: Problema da Mochila com Busca Exaustiva
             
           </span>
         </div>
@@ -250,17 +254,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -274,7 +280,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Aulas
@@ -432,14 +438,111 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../05-heuristicas/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Aula 06: Problema da Mochila com Busca Exaustiva
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
     Aula 06: Problema da Mochila com Busca Exaustiva
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#desafios-do-problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desafios do Problema:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-e-recursao" class="md-nav__link">
+    <span class="md-ellipsis">
+      O que é Recursão?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recursao-no-problema-da-mochila" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursão no Problema da Mochila
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-06-problema-da-mochila-com-busca-exaustiva" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 06: Problema da Mochila com Busca Exaustiva
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-aleatorizacao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aula 07: Problema da Mochila com Heurística Aleatória
   </span>
   
 
@@ -945,27 +1048,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#iniciando-com-rngs" class="md-nav__link">
+  <a href="#desafios-do-problema" class="md-nav__link">
     <span class="md-ellipsis">
-      Iniciando com RNGs
+      Desafios do Problema:
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#construindo-uma-solucao-inteira-aleatoria" class="md-nav__link">
+  <a href="#o-que-e-recursao" class="md-nav__link">
     <span class="md-ellipsis">
-      Construindo uma solução inteira aleatória
+      O que é Recursão?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#algoritmos-geneticos" class="md-nav__link">
+  <a href="#recursao-no-problema-da-mochila" class="md-nav__link">
     <span class="md-ellipsis">
-      Algoritmos Genéticos
+      Recursão no Problema da Mochila
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-06-problema-da-mochila-com-busca-exaustiva" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 06: Problema da Mochila com Busca Exaustiva
     </span>
   </a>
   
@@ -989,117 +1101,77 @@
   
 
 
-<h1 id="06-algoritmos-aleatorizados">06 - Algoritmos Aleatorizados<a class="headerlink" href="#06-algoritmos-aleatorizados" title="Permanent link">&para;</a></h1>
-<p>Um gerador de números pseudo-aleatórios (RNG) é um algoritmo <strong>determinístico</strong> que gera uma sequência de números que <strong>parece</strong> aleatória. Essa frase possui dois termos importantes que precisamos destrinchar:</p>
+<h1 id="aula-06-problema-da-mochila-com-busca-exaustiva">Aula 06: Problema da Mochila com Busca Exaustiva<a class="headerlink" href="#aula-06-problema-da-mochila-com-busca-exaustiva" title="Permanent link">&para;</a></h1>
+<p>O problema da mochila é um dos problemas clássicos da computação e é amplamente estudado em otimização de algoritmos e computação. </p>
+<p>Imagine que você está se preparando para uma viagem e tem uma mochila com capacidade limitada de peso. Você tem vários itens à sua disposição, cada um com um peso específico e um valor associado. Seu objetivo é escolher quais itens colocar na mochila para maximizar o valor total, sem ultrapassar a capacidade máxima de peso que a mochila pode carregar.</p>
+<p>Suponha que você tenha os seguintes itens:</p>
+<p><strong>Item 1:</strong> Peso = 2 kg, Valor = <span class="arithmatex"><span class="MathJax_Preview">3</span><script type="math/tex">3</script></span></p>
+<p><strong>Item 2:</strong> Peso = 3 kg, Valor = <span class="arithmatex"><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span></p>
+<p><strong>Item 3:</strong> Peso = 4 kg, Valor = <span class="arithmatex"><span class="MathJax_Preview">5</span><script type="math/tex">5</script></span></p>
+<p><strong>Item 4:</strong> Peso = 5 kg, Valor = <span class="arithmatex"><span class="MathJax_Preview">8</span><script type="math/tex">8</script></span></p>
+<p>E sua mochila pode carregar até <strong>8 kg</strong>. A questão é: quais itens você deve escolher para maximizar o valor total na mochila, sem ultrapassar a capacidade de 8 kg?</p>
+<p>Se você tentar todas as combinações possíveis de itens, verá que algumas opções permitem carregar mais valor do que outras. Por exemplo:</p>
+<p>Se você escolher os itens 1 e 4, o peso total será 7 kg e o valor total será <span class="arithmatex"><span class="MathJax_Preview">11</span><script type="math/tex">11</script></span>.</p>
+<p>Se escolher os itens 2 e 3, o peso total será 7 kg e o valor total será <span class="arithmatex"><span class="MathJax_Preview">9</span><script type="math/tex">9</script></span>.</p>
+<p>Neste caso, a melhor combinação seria escolher os itens 1 e 4, que oferecem o maior valor total de <span class="arithmatex"><span class="MathJax_Preview">11</span><script type="math/tex">11</script></span> sem exceder o peso máximo de 8 kg.</p>
+<h4 id="desafios-do-problema">Desafios do Problema:<a class="headerlink" href="#desafios-do-problema" title="Permanent link">&para;</a></h4>
+<p>O problema da mochila torna-se cada vez mais complexo à medida que o número de itens aumenta. Com mais itens, o número de combinações possíveis cresce exponencialmente, tornando a busca pela solução ótima um desafio computacional significativo. Por isso, algoritmos eficientes são necessários para resolver o problema em casos de grande escala.</p>
+<p>A atividade desta aula consiste em implementar heurísticas para a solução do problema da <strong>Mochila binária</strong>. </p>
+<p>Abaixo você encontrará as listas contendo peso e valor dos itens para organizar na mochila.</p>
+<p><a href="itens/in1.txt">Entrada 1</a>, <a href="itens/in2.txt">Entrada 2</a>, <a href="itens/in3.txt">Entrada 3</a>, <a href="itens/in4.txt">Entrada 4</a> </p>
+<p>Neste exercício, você implementará uma solução para o problema da mochila usando a técnica de busca exaustiva em C++. O objetivo é maximizar o valor dos objetos dentro da mochila sem exceder sua capacidade. </p>
+<p><strong>Descrição do Problema:</strong><br />
+Dado um conjunto de N objetos, cada um com um peso <span class="arithmatex"><span class="MathJax_Preview"> w_i </span><script type="math/tex"> w_i </script></span> e um valor <span class="arithmatex"><span class="MathJax_Preview"> v_i </span><script type="math/tex"> v_i </script></span>, selecione uma combinação de objetos que maximize o valor total sem ultrapassar a capacidade W da mochila.</p>
 <ul>
-<li><strong>determinístico</strong>: Um <em>RNG</em> tipicamente recebe como entrada um inteiro <em>seed</em> (que representa uma sequência de bits "aleatória") e gera uma sequência de números baseada no <em>seed</em>. Ou seja, o algoritmo é <strong>determinístico</strong> pois gera sempre a mesma sequência para uma determinada entrada (<em>seed</em>).</li>
-<li><strong>parece aleatória</strong>: Se compararmos duas sequências de números, uma gerada por um <em>RNG</em> e outra por uma distribuição uniforme de verdade, não conseguimos dizer qual sequência foi gerada pelo <em>RNG</em>.</li>
+<li><strong>Entrada:</strong>
+  <div class="highlight"><pre><span></span><code>N W
+w1 v1
+w2 v2
+...
+wN vN
+</code></pre></div></li>
 </ul>
-<p>Ou seja, ao escolhermos um <em>seed</em> a sequência gerada será sempre a mesma, mesmo se executarmos o programa em outras máquinas. Isso torna a utilização de <em>RNGs</em> para experimentos bastante interessante: é possível <strong>reproduzir</strong> os resultados feitos por outros desenvolvedores/cientistas. Para isto é necessário</p>
+<p>Onde:
+<strong>N:</strong> Número de objetos</p>
+<p><strong>W:</strong> Capacidade da mochila </p>
+<p><strong>Wi:</strong> Peso do objeto</p>
+<p><strong>Vi:</strong> Valor do objeto.</p>
+<p>Para resolver o problema da mochila usando busca exaustiva, precisamos avaliar todas as combinações possíveis de itens. Uma abordagem comum é usar recursão para explorar todas as possibilidades.</p>
+<h4 id="o-que-e-recursao">O que é Recursão?<a class="headerlink" href="#o-que-e-recursao" title="Permanent link">&para;</a></h4>
+<p>Recursão é uma técnica fundamental na programação, onde uma função chama a si mesma para resolver subproblemas menores de uma tarefa maior. A ideia central é dividir um problema complexo em partes menores, que podem ser resolvidas de forma mais simples. Em um algoritmo recursivo, o problema é resolvido ao fazer chamadas sucessivas para a mesma função, mas com parâmetros ajustados que aproximam a solução a cada passo.</p>
+<p><strong>Exemplificando...</strong></p>
+<p>Considere a tarefa de calcular o fatorial de um número <span class="arithmatex"><span class="MathJax_Preview"> n </span><script type="math/tex"> n </script></span>. O fatorial de <span class="arithmatex"><span class="MathJax_Preview"> n </span><script type="math/tex"> n </script></span>, representado como <span class="arithmatex"><span class="MathJax_Preview"> n! </span><script type="math/tex"> n! </script></span>, é o produto de todos os números inteiros de 1 até <span class="arithmatex"><span class="MathJax_Preview"> n </span><script type="math/tex"> n </script></span>. Podemos definir isso de forma recursiva:
+- <span class="arithmatex"><span class="MathJax_Preview"> 0! = 1 </span><script type="math/tex"> 0! = 1 </script></span> (caso base)
+- <span class="arithmatex"><span class="MathJax_Preview"> n! = n \times (n-1)! </span><script type="math/tex"> n! = n \times (n-1)! </script></span> (caso recursivo)</p>
+<p>Usando recursão, a função que calcula o fatorial chama a si mesma com o valor <span class="arithmatex"><span class="MathJax_Preview"> n-1 </span><script type="math/tex"> n-1 </script></span>, até que atinge o caso base.</p>
+<h4 id="recursao-no-problema-da-mochila">Recursão no Problema da Mochila<a class="headerlink" href="#recursao-no-problema-da-mochila" title="Permanent link">&para;</a></h4>
+<p>No contexto do problema da mochila, a recursão é utilizada para explorar todas as combinações possíveis de itens que podem ser colocados na mochila. A ideia é considerar, para cada item, duas possibilidades: incluí-lo na mochila ou não incluí-lo. Para cada uma dessas escolhas, o problema é reduzido ao mesmo problema, mas com um item a menos e, no caso de inclusão, com uma capacidade reduzida na mochila.</p>
+<p>A estrutura recursiva para resolver o problema da mochila pode ser descrita da seguinte forma:</p>
 <ol>
-<li>que o programa permita escolher o <em>seed</em> da simulação;</li>
-<li>que o <em>seed</em> usado seja publicado junto com os resultados.</li>
+<li>
+<p><strong>Caso Base:</strong> Se não há mais itens a serem considerados ou se a capacidade 
+restante da mochila é zero, o valor total é zero.</p>
+</li>
+<li>
+<p><strong>Caso Recursivo:</strong> Para cada item <span class="arithmatex"><span class="MathJax_Preview"> i </span><script type="math/tex"> i </script></span>:</p>
+</li>
 </ol>
-<div class="admonition question short">
-<p class="admonition-title">Question</p>
-<p>E se quisermos gerar uma sequência diferente a cada execução do programa? Como poderíamos configurar o <em>seed</em> para que isto aconteça?</p>
+<p>Se incluir o item <span class="arithmatex"><span class="MathJax_Preview"> i </span><script type="math/tex"> i </script></span>: resolva o problema para os itens restantes com a capacidade reduzida.</p>
+<p>Se não incluir o item <span class="arithmatex"><span class="MathJax_Preview"> i </span><script type="math/tex"> i </script></span>: resolva o problema para os itens restantes sem alterar a capacidade.</p>
+<p>Retorne a melhor das duas soluções.</p>
+<h3 id="atividade-06-problema-da-mochila-com-busca-exaustiva">Atividade 06: Problema da Mochila com Busca Exaustiva<a class="headerlink" href="#atividade-06-problema-da-mochila-com-busca-exaustiva" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong>
+Implemente uma solução para o problema da mochila usando a técnica de busca exaustiva através de recursão em C++. O objetivo é maximizar o valor dos objetos dentro da mochila sem exceder sua capacidade.</p>
+<p>Utilize os arquivos de entrada <a href="itens/in1.txt">Entrada 1</a>, <a href="itens/in2.txt">Entrada 2</a>, <a href="itens/in3.txt">Entrada 3</a> e <a href="itens/in4.txt">Entrada 4</a> para validar sua implementação. Verifique se o programa consegue determinar a combinação correta para maximizar o valor na mochila para cada arquivo de entrada.</p>
+<p>Compare o tempo de execução para os diferentes arquivos de entrada. Considerando que o algoritmo explora todas as combinações possíveis, discuta suas limitações em termos de tempo de execução e uso de memória.</p>
+<div class="admonition tip">
+<p class="admonition-title">Gabarito</p>
+<p><strong>Entrada 1 -&gt;</strong> Peso ocupado: 10 Kg, Valor alcançado: 266 dinheiros</p>
+<p><strong>Entrada 2 -&gt;</strong> Peso ocupado: 2 Kg, Valor alcançado: 156 dinheiros</p>
+<p><strong>Entrada 3 -&gt;</strong> Peso ocupado: 95 Kg, Valor alcançado: 236 dinheiros</p>
+<p><strong>Entrada 4 -&gt;</strong> Peso ocupado: 10 Kg, Valor alcançado: 55 dinheiros</p>
 </div>
-<h2 id="iniciando-com-rngs">Iniciando com RNGs<a class="headerlink" href="#iniciando-com-rngs" title="Permanent link">&para;</a></h2>
-<p>Muitas implementações de <em>RNGs</em>  são divididas em duas partes:</p>
-<ol>
-<li><strong>engine</strong>/<strong>random state</strong>: algoritmo que gera um inteiro cujos bits formam uma sequência pseudo-aleatória.</li>
-<li><strong>distribution</strong>: utiliza os bits acima para retornar números que sigam alguma distribuição estatística (como normal ou uniforme).</li>
-</ol>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>A biblioteca padrão de <em>C++</em> disponibiliza diversas funções para utilização de *RNG*s (cabeçalho <code>&lt;random&gt;</code> - documentação <a href="http://cplusplus.com/reference/random/">neste link</a>). Se você quisesse sortear números aleatórios inteiros entre <code>-2</code> e <code>5</code> quais funções usaria?</p>
-<details class="details">
-<summary>Resposta</summary>
-<div class="highlight"><pre><span></span><code>#include &lt;random&gt;
-
-...
-
-std::default_random_engine generator;
-std::uniform_int_distribution&lt;int&gt; distribution(-2,5);
-distribution(generator); // gera número
-</code></pre></div>
-</details>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>E se você quisesse sortear um número real entre <code>0</code> e <code>1</code>?</p>
-<details class="details">
-<summary>Resposta</summary>
-<div class="highlight"><pre><span></span><code>#include &lt;random&gt;
-
-...
-
-std::default_random_engine generator;
-std::uniform_real_distribution&lt;double&gt; distribution(0.0, 1.0);
-distribution(generator); // gera número
-</code></pre></div>
-</details>
-</div>
-<p>Agora que você já consegue gerar números aleatórios, vamos implementar nossa primeira versão de uma heurística aleatorizada.</p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Adicionaremos a seguinte variação na nossa heurística: a cada passo de seleção temos <code>25%</code> de chance de selecionar um objeto aleatório que ainda não foi utilizado. Ou seja, cada passo do algoritmo segue a seguinte regra</p>
-<ol>
-<li>Faça um sorteio aleatório</li>
-<li>Com probabilidade <code>75%</code> pegue o próximo objeto não selecionado de acordo com a heurística (mais leve ou mais caro)</li>
-<li>Com probabilidade <code>25%</code> selecione um objeto qualquer dos que não foram analisados ainda.</li>
-</ol>
-<p>Note que não mudamos o próximo elemento ao fazer a seleção aleatória. Adote <code>seed=10</code> nesta tarefa.</p>
-<p><strong>Dica</strong>: agora é possível que eu olhe um produto mais de uma vez. Você precisará checar isso no seu programa!</p>
-<details class="details">
-<summary>Resposta</summary>
-<p>Os arquivos <code>in-*.txt</code> contém entradas para teste. Os arquivos <code>out-caro-(rand-?)*.txt</code> contém as saídas esperadas para as heurísticas do mais caro. Note que como estamos falando de uma probabilidade, o sorteio deverá ser feito no intervalo <code>[0, 1]</code>.</p>
-</details>
-</div>
-<div class="admonition question short">
-<p class="admonition-title">Question</p>
-<p>Rode a heurística aleatorizada 10 vezes (como fazer isso?) e anote os valores das mochilas obtidas. Em média, é melhor ou pior que a heuristca sem aleatorização?</p>
-</div>
-<h2 id="construindo-uma-solucao-inteira-aleatoria">Construindo uma solução inteira aleatória<a class="headerlink" href="#construindo-uma-solucao-inteira-aleatoria" title="Permanent link">&para;</a></h2>
-<p>Vamos agora fazer algo mais absurdo: e se criarmos uma solução toda aleatória?</p>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Como você criaria uma solução aleatoriamente?</p>
-<details class="details">
-<summary>Resposta</summary>
-<p>Não existe uma resposta certa aqui. Duas soluções são mais comuns:</p>
-<ol>
-<li>passando por cada objeto, pegue-o com probabilidade <code>50%</code>.</li>
-<li>percorra a lista em ordem aleatória, fazendo o mesmo algoritmo do mais caro/leve.</li>
-</ol>
-</details>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Tente implementar a abordagem 1 da resposta acima.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Tente implementar a abordagem 2 da resposta acima.</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Rode ambos programas acima com vários seeds diferentes e anote abaixo os resultados.</p>
-</div>
-<div class="admonition question medium">
-<p class="admonition-title">Question</p>
-<p>Anote aqui comentários sobre a qualidade das soluções aleatórias. Considere tanto o valor dos objetos selecionados quanto o peso.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Iremos discutir esses resultados na próxima aula.</p>
-</div>
-<h2 id="algoritmos-geneticos">Algoritmos Genéticos<a class="headerlink" href="#algoritmos-geneticos" title="Permanent link">&para;</a></h2>
-<p>Nesta aula também abordamos o trade-off entre exploration e exploitation. Para isso, foi possível conhecer uma implementação por algoritmos genéticos para o problema da Mochila Binária em Python. Caso queira executar essa solução, acesse esse <a href="https://colab.research.google.com/drive/1MTY0mbwvULHcHUMMi-5FunB0R9jHj9QP?usp=sharing">link</a>. </p>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Implemente essa solução em C++. Explore as taxas de seleção, cross-over e mutação. Escreva um pequeno relatório (de até 1 página) e comente os principais pontos observados. A entrega desse exercício pode lhe render 0,5 ponto extra, a ser computado ao final da disciplina. </p>
-</div>
+<p>Submeta no BlackBoard o link do repositório com o código e as análises até as 23h59 de 30/08. </p>
 
 
 
