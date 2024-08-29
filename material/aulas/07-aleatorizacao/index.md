@@ -44,7 +44,7 @@ As mochilas da atividade passada eram bem basiconas, vamos testar o código com 
 
 **2.** Execute o algorítimo embaralhado da Tarefa 1 pelo menos 5 vezes para cada entrada.
 
-**3.** Execute o algorítimo probabilítico da Tarefa 2 pelo menos 5 vezes para cada entrada.
+**3.** Execute o algorítimo probabilístico da Tarefa 2 pelo menos 5 vezes para cada entrada.
 
 **4.** Analise as diferenças nos tempos de execução e na qualidade das soluções encontradas (valores obtidos e pesos das mochilas) das heurísticas aleatórias e da busca exaustiva.
 
