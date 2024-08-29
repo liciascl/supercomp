@@ -6,7 +6,7 @@ Nesta aula, vamos ajustar o algoritmo de busca exaustiva implementado na aula an
 
 O algoritmo de busca exaustiva da aula passada tinha a missão de encontrar a mochila mais valiosa possível considerando apenas a restrição de peso da mochila. Ou seja, o algoritmo seleciona a combinação de itens que maximiza o valor total, independentemente do peso do item, até que chegue na capacidade máxima da mochila. Vamos deixar o algoritmo mais interessante...
    
-**Tarefa 1:** Ajuste o algoritmo para encontrar a mochila mais valiosa possível, levando em consideração o peso do item, de forma que a mochila seja a mais leve possível entre as combinações que proporcionam o valor máximo.
+**Tarefa 1:** Faça ajustes no algoritmo para encontrar a mochila mais valiosa possível, levando em consideração o peso do item, de forma que a mochila seja a mais leve possível entre as combinações que proporcionam o valor máximo.
 
 
 **Teste com Novas Entradas:**
