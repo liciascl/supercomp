@@ -100,11 +100,11 @@ Compare o tempo de execução para os diferentes arquivos de entrada. Consideran
 
 
 !!! tip "Gabarito"
-    **Entrada 1 ->** Peso ocupado: 8 Kg, Valor alcançado: 259 dinheiros
+    **Entrada 1 ->** Peso ocupado: 10 Kg, Valor alcançado: 266 dinheiros
     
     **Entrada 2 ->** Peso ocupado: 2 Kg, Valor alcançado: 156 dinheiros
     
-    **Entrada 3 ->** Peso ocupado: 74 Kg, Valor alcançado: 200 dinheiros
+    **Entrada 3 ->** Peso ocupado: 95 Kg, Valor alcançado: 236 dinheiros
     
     **Entrada 4 ->** Peso ocupado: 10 Kg, Valor alcançado: 55 dinheiros
 

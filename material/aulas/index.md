@@ -19,5 +19,8 @@ e compreender como pedir recursos ao SLURM.
 **[aula 05: Profiling](../aulas/04-Profiling/04-Profiling.md)**
 - Entender como utilizar as flags de compilação e ferramentas de profiling para encontrar gargalos e melhorar o desempenho do código.
 
-**[aula 06: Busca Exaustiva](../aulas/05-heuristicas/index.md)**
+**[aula 06: Busca Exaustiva](../aulas/06-heuristicas/index.md)**
 - Entender como utilizar recursão para resolver o problema da mochila com busca exaustiva.  
+
+**[aula 07: Heurística Aleatória](../aulas/07-aleatorizacao/index.md)**
+- Explorar heurísticas aleatórias para resolver o problema da mochila. 
