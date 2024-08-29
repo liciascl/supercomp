@@ -508,15 +508,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#refinando-a-busca-exaustiva" class="md-nav__link">
-    <span class="md-ellipsis">
-      Refinando a Busca Exaustiva
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#implementacao-de-heuristicas-aleatorias" class="md-nav__link">
     <span class="md-ellipsis">
       Implementação de Heurísticas Aleatórias
@@ -526,18 +517,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tarefa-2-embaralhar-e-preencher-a-mochila" class="md-nav__link">
+  <a href="#tarefa-1-embaralhar-e-preencher-a-mochila" class="md-nav__link">
     <span class="md-ellipsis">
-      Tarefa 2: Embaralhar e Preencher a Mochila:
+      Tarefa 1: Embaralhar e Preencher a Mochila:
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tarefa-3-selecao-aleatoria-baseada-em-probabilidade" class="md-nav__link">
+  <a href="#tarefa-2-selecao-aleatoria-baseada-em-probabilidade" class="md-nav__link">
     <span class="md-ellipsis">
-      Tarefa 3: Seleção Aleatória Baseada em Probabilidade:
+      Tarefa 2: Seleção Aleatória Baseada em Probabilidade:
     </span>
   </a>
   
@@ -1057,15 +1048,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#refinando-a-busca-exaustiva" class="md-nav__link">
-    <span class="md-ellipsis">
-      Refinando a Busca Exaustiva
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#implementacao-de-heuristicas-aleatorias" class="md-nav__link">
     <span class="md-ellipsis">
       Implementação de Heurísticas Aleatórias
@@ -1075,18 +1057,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tarefa-2-embaralhar-e-preencher-a-mochila" class="md-nav__link">
+  <a href="#tarefa-1-embaralhar-e-preencher-a-mochila" class="md-nav__link">
     <span class="md-ellipsis">
-      Tarefa 2: Embaralhar e Preencher a Mochila:
+      Tarefa 1: Embaralhar e Preencher a Mochila:
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tarefa-3-selecao-aleatoria-baseada-em-probabilidade" class="md-nav__link">
+  <a href="#tarefa-2-selecao-aleatoria-baseada-em-probabilidade" class="md-nav__link">
     <span class="md-ellipsis">
-      Tarefa 3: Seleção Aleatória Baseada em Probabilidade:
+      Tarefa 2: Seleção Aleatória Baseada em Probabilidade:
     </span>
   </a>
   
@@ -1120,54 +1102,35 @@
 
 
 <h1 id="07-heuristicas-aleatorias-para-o-problema-da-mochila">07 - Heurísticas Aleatórias para o Problema da Mochila<a class="headerlink" href="#07-heuristicas-aleatorias-para-o-problema-da-mochila" title="Permanent link">&para;</a></h1>
-<p>Nesta aula, vamos ajustar o algoritmo de busca exaustiva implementado na aula anterior para lidar com conjuntos de dados maiores e testar novas heurísticas baseadas em seleção aleatória. O objetivo é comparar a eficiência e a qualidade das soluções geradas pelos diferentes métodos.</p>
-<h3 id="refinando-a-busca-exaustiva">Refinando a Busca Exaustiva<a class="headerlink" href="#refinando-a-busca-exaustiva" title="Permanent link">&para;</a></h3>
-<p>O algoritmo de busca exaustiva da aula passada tinha a missão de encontrar a mochila mais valiosa possível considerando apenas a restrição de peso da mochila. Ou seja, o algoritmo seleciona a combinação de itens que maximiza o valor total, independentemente do peso do item, até que chegue na capacidade máxima da mochila. Vamos deixar o algoritmo mais interessante...</p>
-<p><strong>Tarefa 1:</strong> Faça ajustes no algoritmo para encontrar a mochila mais valiosa possível, levando em consideração o peso do item, de forma que a mochila seja a mais leve possível entre as combinações que proporcionam o valor máximo.</p>
-<p><strong>Teste com Novas Entradas:</strong>
-As mochilas da atividade passada eram bem basiconas, vamos testar o código com mochilas computacionalmente mais desafiadoras:</p>
-<p><img alt="MUHAHAHA" src="itens/devil-laugh.gif" /></p>
-<p><a href="itens/Entrada_1.txt">Entrada_1.txt</a>, <a href="itens/Entrada_2.txt">Entrada_2.txt</a>, <a href="itens/Entrada_3.txt">Entrada_3.txt</a>, <a href="itens/Entrada_4.txt">Entrada_4.txt</a></p>
-<p>Meça e registre o tempo necessário para cada solução:</p>
-<ul>
-<li>
-<p>Mochila com o maior valor possível atingindo o limite da capacidade de peso.</p>
-</li>
-<li>
-<p>Mochila com o maior valor possível e o menor peso total.</p>
-</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>A busca exaustiva vai demorar horrores, você submeter o código no cluster e pegar o resultado um dia, quando a busca terminar &lt;3</p>
-</div>
+<p>Nesta aula, vamos experimentar um conjuntos de dados maiores e testar novas heurísticas baseadas em seleção aleatória. O objetivo é comparar a eficiência e a qualidade das soluções geradas pelos diferentes métodos.</p>
 <h3 id="implementacao-de-heuristicas-aleatorias">Implementação de Heurísticas Aleatórias<a class="headerlink" href="#implementacao-de-heuristicas-aleatorias" title="Permanent link">&para;</a></h3>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>documentação da biblioteca random <a href="http://cplusplus.com/reference/random/">neste link</a></p>
 </div>
 <p>Implemente duas novas heurísticas aleatórias para selecionar os itens da mochila:</p>
-<h3 id="tarefa-2-embaralhar-e-preencher-a-mochila">Tarefa 2: Embaralhar e Preencher a Mochila:<a class="headerlink" href="#tarefa-2-embaralhar-e-preencher-a-mochila" title="Permanent link">&para;</a></h3>
+<h3 id="tarefa-1-embaralhar-e-preencher-a-mochila">Tarefa 1: Embaralhar e Preencher a Mochila:<a class="headerlink" href="#tarefa-1-embaralhar-e-preencher-a-mochila" title="Permanent link">&para;</a></h3>
 <p><strong>1.</strong> Embaralhe o vetor de itens (peso e valor).</p>
 <p><strong>2.</strong> Percorra o vetor do primeiro ao último item e, se o item couber na mochila, coloca ele lá sem pensar.</p>
 <p><strong>3.</strong> Continue até que a mochila esteja cheia ou até que os itens acabem.</p>
 <p>Execute a heurística e compare o resultado obtido e o tempo de execução com o método de busca exaustiva.</p>
-<h3 id="tarefa-3-selecao-aleatoria-baseada-em-probabilidade">Tarefa 3: Seleção Aleatória Baseada em Probabilidade:<a class="headerlink" href="#tarefa-3-selecao-aleatoria-baseada-em-probabilidade" title="Permanent link">&para;</a></h3>
+<h3 id="tarefa-2-selecao-aleatoria-baseada-em-probabilidade">Tarefa 2: Seleção Aleatória Baseada em Probabilidade:<a class="headerlink" href="#tarefa-2-selecao-aleatoria-baseada-em-probabilidade" title="Permanent link">&para;</a></h3>
 <p><strong>1.</strong> Percorra os itens sem alterar a ordem.</p>
 <p><strong>2.</strong> Para cada item, gere um número aleatório de probabilidade (entre 0 e 1).</p>
 <p><strong>3.</strong> Se a probabilidade for maior que um valor limiar definido (por exemplo, 0.5), adicione o item à mochila se ele couber; caso contrário, ignore-o, mesmo que caiba.</p>
 <h3 id="atividade-07-heuristicas-aleatorias-par-ao-problema-da-mochila">Atividade 07 - Heurísticas Aleatórias par ao Problema da Mochila<a class="headerlink" href="#atividade-07-heuristicas-aleatorias-par-ao-problema-da-mochila" title="Permanent link">&para;</a></h3>
-<ul>
-<li>
-<p>Execute cada algorítimo aleatório 5 vezes para cada entrada (<a href="itens/Entrada_1.txt">Entrada_1.txt</a>, <a href="itens/Entrada_2.txt">Entrada_2.txt</a>, <a href="itens/Entrada_3.txt">Entrada_3.txt</a>, <a href="itens/Entrada_4.txt">Entrada_4.txt</a>).</p>
-</li>
-<li>
-<p>Compare o desempenho das heurísticas aleatórias com os algoritmos de busca exaustiva.</p>
-</li>
-<li>
-<p>Analise as diferenças nos tempos de execução e na qualidade das soluções encontradas (valores obtidos e pesos das mochilas).</p>
-</li>
-</ul>
+<p><strong>Teste com Novas Entradas:</strong>
+As mochilas da atividade passada eram bem basiconas, vamos testar o código com mochilas computacionalmente mais desafiadoras:</p>
+<p><img alt="MUHAHAHA" src="itens/devil-laugh.gif" /></p>
+<p><a href="itens/Entrada_1.txt">Entrada_1.txt</a>, <a href="itens/Entrada_2.txt">Entrada_2.txt</a>, <a href="itens/Entrada_3.txt">Entrada_3.txt</a>, <a href="itens/Entrada_4.txt">Entrada_4.txt</a></p>
+<p><strong>1</strong> Registre o tempo necessário para o algoritmo de busca exaustiva resolver cada Entrada.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A busca exaustiva vai demorar horrores, você pode submeter o código no cluster e pegar o resultado um dia, quando a busca terminar &lt;3</p>
+</div>
+<p><strong>2</strong> Execute o algorítimo embaralhado da Tarefa 1 pelo menos 5 vezes para cada entrada.</p>
+<p><strong>3</strong> Execute o algorítimo probabilítico da Tarefa 2 pelo menos 5 vezes para cada entrada.</p>
+<p><strong>4</strong> Analise as diferenças nos tempos de execução e na qualidade das soluções encontradas (valores obtidos e pesos das mochilas) das heurísticas aleatórias e da busca exaustiva.</p>
 <p><strong>Submeta no BlackBoard o link do GitHub contendo os códigos e um relatório com suas análises até as 23h59 de 02/09</strong></p>
 
 
