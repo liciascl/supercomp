@@ -79,7 +79,12 @@ Execute o programa com o Callgrind:
 ```bash
 valgrind --tool=callgrind ./convolucao_O2
 ```
-Visualize o Call Graph gerado:
+
+Para visualizar o relatório via terminal use o comando:
+
+```bash
+callgrind_annotate callgrind.out.<pid>
+```
 
 ```bash
 kcachegrind callgrind.out.*
