@@ -1244,9 +1244,11 @@ Analise o <code>gmon.out</code> gerado:</p>
 <p>Interprete o <strong>Flat Profile</strong> e o <strong>Call Graph</strong> gerados. Identifique as funções críticas e discuta possíveis otimizações com base nos resultados.</p>
 <h4 id="usando-o-callgrind-valgrind">Usando o Callgrind (Valgrind)<a class="headerlink" href="#usando-o-callgrind-valgrind" title="Permanent link">&para;</a></h4>
 <p>Execute o programa com o Callgrind:</p>
-<p><div class="highlight"><pre><span></span><code>valgrind<span class="w"> </span>--tool<span class="o">=</span>callgrind<span class="w"> </span>./convolucao_O2
+<div class="highlight"><pre><span></span><code>valgrind<span class="w"> </span>--tool<span class="o">=</span>callgrind<span class="w"> </span>./convolucao_O2
 </code></pre></div>
-Visualize o Call Graph gerado:</p>
+<p>Para visualizar o relatório via terminal use o comando:</p>
+<div class="highlight"><pre><span></span><code>callgrind_annotate<span class="w"> </span>callgrind.out.&lt;pid&gt;
+</code></pre></div>
 <p><div class="highlight"><pre><span></span><code>kcachegrind<span class="w"> </span>callgrind.out.*
 </code></pre></div>
 Analise o uso de CPU e cache. Identifique funções e loops que são candidatos para otimização.
