@@ -48,7 +48,7 @@ As mochilas da atividade passada eram bem basiconas, vamos testar o código com 
 
 **4.** Analise as diferenças nos tempos de execução e na qualidade das soluções encontradas (valores obtidos e pesos das mochilas) das heurísticas aleatórias e da busca exaustiva.
 
-**Submeta no BlackBoard o link do GitHub contendo os códigos e um relatório com suas análises até as 23h59 de 02/09**
+**Submeta no BlackBoard o link do GitHub contendo os códigos e um relatório com suas análises até as 23h59 de 03/09**
 
 !!! tip "Gabarito"
     **Entrada 1 ->** Peso ocupado: 373 Kg, Valor alcançado: 601 dinheiros em 27 segundos
