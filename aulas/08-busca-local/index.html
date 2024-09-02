@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/07-busca-local/">
+        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/08-busca-local/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>07 - Busca local - SuperComputação - 2024/2</title>
+        <title>07 - Busca local e Hill Climb - SuperComputação - 2024/2</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#07-busca-local" class="md-skip">
+        <a href="#07-busca-local-e-hill-climb" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              07 - Busca local
+              07 - Busca local e Hill Climb
             
           </span>
         </div>
@@ -966,15 +966,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#solucao-aleatorizada" class="md-nav__link">
-    <span class="md-ellipsis">
-      Solução aleatorizada
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#busca-local" class="md-nav__link">
     <span class="md-ellipsis">
       Busca local
@@ -993,17 +984,26 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fechamento" class="md-nav__link">
+          <li class="md-nav__item">
+  <a href="#substituicao-de-objeto" class="md-nav__link">
     <span class="md-ellipsis">
-      Fechamento
+      Substituição de objeto
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hill-climbing-para-a-mochila" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hill Climbing para a Mochila
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1025,83 +1025,49 @@
   
 
 
-<h1 id="07-busca-local">07 - Busca local<a class="headerlink" href="#07-busca-local" title="Permanent link">&para;</a></h1>
+<h1 id="07-busca-local-e-hill-climb">07 - Busca local e Hill Climb<a class="headerlink" href="#07-busca-local-e-hill-climb" title="Permanent link">&para;</a></h1>
 <p>Nesta aula trabalharemos com um algoritmo chamado "Busca local", que consiste basicamente em fazer pequenas atualizações que melhoram sucessivamente uma solução.</p>
-<h2 id="solucao-aleatorizada">Solução aleatorizada<a class="headerlink" href="#solucao-aleatorizada" title="Permanent link">&para;</a></h2>
-<p>Vamos iniciar criando soluções aleatórias. Isto nos permitiria criar uma grande quantidade de soluções e, eventualmente, pegar a melhor delas. Apesar de ser muito mais simples que a busca heurística, a quantidade massiva de soluções geradas tem potencial de encontrar boas soluções.</p>
-<p>Vamos trabalhar com um algoritmo bem simples para gerar soluções aleatórias:</p>
-<ul>
-<li>Para cada objeto, selecione-o com probabilidade <code>0.5</code>.</li>
-<li>Se o objeto for selecionado, coloque-o na mochila se couber.</li>
-</ul>
-<div class="admonition question short">
-<p class="admonition-title">Question</p>
-<p>Supondo que só existe uma solução ótima global, qual é a chance de a encontrarmos repetindo o algoritmo acima?</p>
-</div>
-<div class="admonition question short">
-<p class="admonition-title">Question</p>
-<p>Supondo que todos os objetos caibam na mochila, quantos são selecionados em média?</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Implemente o algoritmo acima. Use <code>seed=10</code>.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Repita o algoritmo 10 vezes e pegue somente a melhor solução.</p>
-</div>
+<h2 id="busca-local">Busca local<a class="headerlink" href="#busca-local" title="Permanent link">&para;</a></h2>
+<p>Vamos implementar uma busca local para a Mochila seguindo os três algoritmos vistos na aula.</p>
+<h3 id="mochila-cheia">Mochila cheia<a class="headerlink" href="#mochila-cheia" title="Permanent link">&para;</a></h3>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Use os arquivos de entrada/saída disponibilizados nas aulas passadas.</p>
+<p>você pode utilizar o código embaralhado da <a href="../07-aleatorizacao/">da aula 07</a></p>
 </div>
-<h2 id="busca-local">Busca local<a class="headerlink" href="#busca-local" title="Permanent link">&para;</a></h2>
-<p>Vamos agora implementar uma busca local para a Mochila Binária seguindo os dois algoritmos vistos na expositiva.</p>
-<h3 id="mochila-cheia">Mochila cheia<a class="headerlink" href="#mochila-cheia" title="Permanent link">&para;</a></h3>
 <p>Para implementar a <em>Mochila cheia</em> iremos adotar a seguinte estratégia:</p>
 <ol>
 <li>Gere uma solução aleatória.</li>
-<li>Percorra novamente todos os objetos (na ordem da entrada)</li>
+<li>Percorra novamente todos os objetos (na ordem da entrada).</li>
 <li>Se um objeto couber na mochila, inclua-o.</li>
 </ol>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Implemente o algoritmo acima.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Rode a <em>Mochila cheia</em> 10 vezes e retorne a melhor solução.</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Houve melhoria em relação ao aleatório sozinho? Foi significativa?</p>
-</div>
-<!--
-### Substituição de objeto
-
-Para implementar a *Substituição de objeto* iremos adotar a seguinte estratégia:
-
-1. Gere uma solução aleatória.
-2. Execute *Mochila Cheia*
-3. Para cada objeto (em ordem da entrada):
-    1. Verifique, para cada objeto não usado, se uma troca aumentaria o valor da mochila
-    2. Em caso positivo, faça a troca e volte para o início do passo 2.
-3. Repita enquanto for possível.
-
-!!! example
-    Implemente o algoritmo acima.
-
-!!! example
-    Rode a *Substituição de objeto* 10 vezes e retorne a melhor solução.
-
-!!! question
-    Houve melhoria em relação ao aleatório sozinho? E a *Mochila Cheia*? Foi significativa?
--->
-
-<h2 id="fechamento">Fechamento<a class="headerlink" href="#fechamento" title="Permanent link">&para;</a></h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Como você avalia os ganhos obtidos pela busca local em relação ao aleatório? E em relação a heurística?</p>
-</div>
+<h3 id="substituicao-de-objeto">Substituição de objeto<a class="headerlink" href="#substituicao-de-objeto" title="Permanent link">&para;</a></h3>
+<p>Para implementar a <em>Substituição de objeto</em> iremos adotar a seguinte estratégia:</p>
+<ol>
+<li>Gere uma solução aleatória.</li>
+<li>Execute <em>Mochila Cheia</em>.</li>
+<li>Para cada objeto (em ordem da entrada):</li>
+<li>Verifique, para cada objeto não usado, se uma troca aumentaria o valor da mochila.</li>
+<li>Em caso positivo, faça a troca e volte para o início do passo 2.</li>
+<li>Repita enquanto for possível.</li>
+</ol>
+<h3 id="hill-climbing-para-a-mochila">Hill Climbing para a Mochila<a class="headerlink" href="#hill-climbing-para-a-mochila" title="Permanent link">&para;</a></h3>
+<p>Para implementar o <em>Hill Climbing</em> na Mochila, seguimos o método abaixo:</p>
+<ol>
+<li>
+<p>Para uma mochila com capacidade <span class="arithmatex"><span class="MathJax_Preview"> C </span><script type="math/tex"> C </script></span> e diversos itens, com seus respectivos pesos (W) e valores (V). Nosso objetivo é maximizar <span class="arithmatex"><span class="MathJax_Preview"> \sum V </span><script type="math/tex"> \sum V </script></span>, respeitando a restrição <span class="arithmatex"><span class="MathJax_Preview"> W \leq C </span><script type="math/tex"> W \leq C </script></span>.</p>
+</li>
+<li>
+<p>Podemos codificar nosso problema como uma string binária. 0 significa que o item <span class="arithmatex"><span class="MathJax_Preview"> i </span><script type="math/tex"> i </script></span> não foi incluído, enquanto que 1 significa que <span class="arithmatex"><span class="MathJax_Preview"> i </span><script type="math/tex"> i </script></span> foi incluído.</p>
+</li>
+<li>Supondo 10 objetos, nossa string poderia ser: <code>0010010000</code>.</li>
+<li>Para este exemplo, vamos gerar 10 possíveis vizinhos a partir da modificação de um bit: <code>1010010000</code>, <code>0110010000</code>, etc.</li>
+<li>Vamos computar a qualidade desses 10 vizinhos. Se houver um melhor, ele é a nova solução e repetimos o processo, até que nenhum vizinho melhor seja encontrado.</li>
+</ol>
+<p>Rode os algoritmos implementados, incluindo a <em>Substituição de objeto</em> e o <em>Hill Climbing</em>, 10 vezes e retorne a melhor solução.</p>
+<p>Houve melhoria em relação ao algoritmo embaralhado e ao probabilístico <a href="../07-aleatorizacao/">da aula 07</a>? Como você avalia os ganhos obtidos pelas diferentes estratégias vistas para resolver o problema da mochila?</p>
+<p>Analise as diferenças nos tempos de execução e na qualidade das soluções nas diferentes estratégias vistas para resolver o problema da mochila.</p>
+<p>Utilize as entradas <a href="itens/Entrada_1.txt">Entrada_1.txt</a>, <a href="itens/Entrada_2.txt">Entrada_2.txt</a> e <a href="itens/Entrada_3.txt">Entrada_3.txt</a></p>
+<p><strong>Submeta no BlackBoard o link do GitHub contendo os códigos e um relatório com suas análises até as 23h59 de 06/09</strong></p>
 
 
 
