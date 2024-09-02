@@ -42,6 +42,7 @@ nav:
         - "aulas/04-Profiling/04-Profiling.md"
         - "Aula 06: Problema da Mochila com Busca Exaustiva": aulas/06-heuristicas/index.md
         - "Aula 07: Problema da Mochila com Heurística Aleatória": aulas/07-aleatorizacao/index.md               
+        - "Aula 08: Problema da Mochila com Busca Local e Hill Climb": aulas/08-busca-local/index.md               
                
 
 #        - "02 e 03 - C++": aulas/02-03-implementacao-c++/index.md

@@ -24,3 +24,6 @@ e compreender como pedir recursos ao SLURM.
 
 **[aula 07: Heurística Aleatória](../aulas/07-aleatorizacao/index.md)**
 - Explorar heurísticas aleatórias para resolver o problema da mochila. 
+
+**[aula 08: Busca Local Hill Climb](../aulas/08-busca-local/index.md)**
+- Entender como utilizar busca local e Hill Climb para resolver o problema da mochila. 
