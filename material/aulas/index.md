@@ -27,3 +27,6 @@ e compreender como pedir recursos ao SLURM.
 
 **[aula 08: Busca Local Hill Climb](../aulas/08-busca-local/index.md)**
 - Entender como utilizar busca local e Hill Climb para resolver o problema da mochila. 
+
+**[aula 09: Problema da Mochila com Heurísticas](../aulas/09-heuristica/index.md)**
+- Entender como utilizar diferentes heurísticas para resolver o problema da mochila. 
