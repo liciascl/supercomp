@@ -1130,29 +1130,6 @@
 <p>A ideia desta heurística é não deixar nenhum objeto valioso para trás! Por isso vamos ser ganaciosos e pegar <strong>primeiro os objetos mais caros</strong>! Se um objeto valioso não couber passamos para os mais baratos e prosseguimos até examinar todos objetos.</p>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
-<p>Escreva abaixo um algoritmo em pseudo-código para implementar a heurística descrita acima.</p>
-<details class="details">
-<summary>Resposta</summary>
-<div class="highlight"><pre><span></span><code>ids = // vetor inicializado com ids[i] = i
-ordene os vetores ids, v e w de acordo com o vetor de valores v
-peso = 0
-valor = 0
-resposta = //vetor inicializado com 0
-T = 0 // número de objetos selecionados
-para i=1..N
-    se peso + w[i] &lt; W então
-        resposta[T] = ids[i]
-        peso += w[i]
-        valor += v[i]
-        T += 1
-
-print peso, valor, 0
-print resposta[0 .. T]
-</code></pre></div>
-</details>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
 <p>Qual é a complexidade computacional deste algoritmo? Ele é a melhor implementação possível?</p>
 <details class="details">
 <summary>Resposta</summary>
@@ -1173,7 +1150,7 @@ print resposta[0 .. T]
 <p>Vamos testar uma abordagem oposta: <strong>quantidade agora é o foco</strong>. Por isso vamos ser práticos e pegar <strong>o maior número de objetos possível</strong>! Começaremos agora pelos objetos mais leves e vamos torcer para que a quantidade grande de objetos selecionados resulte em uma mochila com alto valor.</p>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
-<p>Compare esta heurística com a da seção anterior levando em conta o algoritmo em pseudo-código e sua complexidade computacional.</p>
+<p>Compare esta heurística com a da seção anterior levando em conta a complexidade computacional.</p>
 </div>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
