@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/09-busca-global-II/">
+        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/09-heuristica/">
       
       
+        <link rel="prev" href="../08-busca-local/">
+      
+      
+        <link rel="next" href="../../projetos/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>09 - Comparação de resultados - SuperComputação - 2024/2</title>
+        <title>Aula 09: Problema da Mochila com Heurísticas - SuperComputação - 2024/2</title>
       
     
     
@@ -80,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#09-comparacao-de-resultados" class="md-skip">
+        <a href="#aula-09-heuristicas" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              09 - Comparação de resultados
+              Aula 09: Problema da Mochila com Heurísticas
             
           </span>
         </div>
@@ -250,17 +254,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -274,7 +280,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Aulas
@@ -486,6 +492,94 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Aula 09: Problema da Mochila com Heurísticas
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Aula 09: Problema da Mochila com Heurísticas
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mais-caro-primeiro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mais caro primeiro
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mais-leve-primeiro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mais leve primeiro
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analisando-nossas-heuristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analisando nossas heurísticas
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -987,45 +1081,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ate-qual-tamanho-de-mochila-a-busca-global-resolve-rapido" class="md-nav__link">
+  <a href="#mais-caro-primeiro" class="md-nav__link">
     <span class="md-ellipsis">
-      Até qual tamanho de mochila a busca global resolve rápido?
+      Mais caro primeiro
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-algoritmo-de-busca-local-e-melhor-que-as-heuristicas" class="md-nav__link">
+  <a href="#mais-leve-primeiro" class="md-nav__link">
     <span class="md-ellipsis">
-      O algoritmo de busca local é melhor que as heurísticas?
+      Mais leve primeiro
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#vale-a-pena-esperar-pela-busca-global-ate-que-ponto" class="md-nav__link">
+  <a href="#analisando-nossas-heuristicas" class="md-nav__link">
     <span class="md-ellipsis">
-      Vale a pena esperar pela busca global? Até que ponto?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#formulando-a-pergunta-com-precisao" class="md-nav__link">
-    <span class="md-ellipsis">
-      Formulando a pergunta com precisão
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#implementando-de-maneira-reprodutivel" class="md-nav__link">
-    <span class="md-ellipsis">
-      Implementando de maneira reprodutível
+      Analisando nossas heurísticas
     </span>
   </a>
   
@@ -1049,76 +1125,94 @@
   
 
 
-<h1 id="09-comparacao-de-resultados">09 - Comparação de resultados<a class="headerlink" href="#09-comparacao-de-resultados" title="Permanent link">&para;</a></h1>
-<p>Já implementamos diversos algoritmos para o problema da mochila binária e chegou a hora de compararmos os resultados por eles obtidos. Nossa ideia aqui é exercitar nossa capacidade de responder perguntas abertas com base em dados.</p>
-<h4 id="ate-qual-tamanho-de-mochila-a-busca-global-resolve-rapido">Até qual tamanho de mochila a busca global resolve rápido?<a class="headerlink" href="#ate-qual-tamanho-de-mochila-a-busca-global-resolve-rapido" title="Permanent link">&para;</a></h4>
-<h4 id="o-algoritmo-de-busca-local-e-melhor-que-as-heuristicas">O algoritmo de busca local é melhor que as heurísticas?<a class="headerlink" href="#o-algoritmo-de-busca-local-e-melhor-que-as-heuristicas" title="Permanent link">&para;</a></h4>
-<h4 id="vale-a-pena-esperar-pela-busca-global-ate-que-ponto">Vale a pena esperar pela busca global? Até que ponto?<a class="headerlink" href="#vale-a-pena-esperar-pela-busca-global-ate-que-ponto" title="Permanent link">&para;</a></h4>
-<h2 id="formulando-a-pergunta-com-precisao">Formulando a pergunta com precisão<a class="headerlink" href="#formulando-a-pergunta-com-precisao" title="Permanent link">&para;</a></h2>
-<p>Todas as perguntas acima são abertas. Elas admitem diferentes respostas dependendo de nossa interpretação. Nesta seção iremos aprender a reformulá-las de maneira (mais) precisa e a planejar uma série de experimentos que possam apoiar nossa resposta.</p>
-<div class="admonition question short">
+<h1 id="aula-09-heuristicas">Aula 09 - Heurísticas<a class="headerlink" href="#aula-09-heuristicas" title="Permanent link">&para;</a></h1>
+<h2 id="mais-caro-primeiro">Mais caro primeiro<a class="headerlink" href="#mais-caro-primeiro" title="Permanent link">&para;</a></h2>
+<p>A ideia desta heurística é não deixar nenhum objeto valioso para trás! Por isso vamos ser ganaciosos e pegar <strong>primeiro os objetos mais caros</strong>! Se um objeto valioso não couber passamos para os mais baratos e prosseguimos até examinar todos objetos.</p>
+<div class="admonition question">
 <p class="admonition-title">Question</p>
-<p>Escolha uma das questões acima para trabalhar nesta questão.</p>
+<p>Escreva abaixo um algoritmo em pseudo-código para implementar a heurística descrita acima.</p>
+<details class="details">
+<summary>Resposta</summary>
+<div class="highlight"><pre><span></span><code>ids = // vetor inicializado com ids[i] = i
+ordene os vetores ids, v e w de acordo com o vetor de valores v
+peso = 0
+valor = 0
+resposta = //vetor inicializado com 0
+T = 0 // número de objetos selecionados
+para i=1..N
+    se peso + w[i] &lt; W então
+        resposta[T] = ids[i]
+        peso += w[i]
+        valor += v[i]
+        T += 1
+
+print peso, valor, 0
+print resposta[0 .. T]
+</code></pre></div>
+</details>
 </div>
-<div class="admonition question medium">
+<div class="admonition question">
 <p class="admonition-title">Question</p>
-<p>Alguns qualificadores comumente usados em discursos informais são considerados "vazios" quanto usados em um contexto mais científico, onde é importante ser preciso nas mensagens. Expressões como</p>
-<ul>
-<li>"A melhor que B"</li>
-<li>"rápido, devagar, significativo"</li>
-<li>"vale a pena"</li>
-</ul>
-<p>são ruins pois não deixam explícito as expectativas de quem as escreveu. Por exemplo, poderíamos ainda perguntar:</p>
-<ul>
-<li>"A é melhor que B"** sob qual métrica**?</li>
-<li><strong>O que é considerado</strong> "rápido, devagar ou significativo"? <strong>1 minuto é rápido ou devagar</strong> (depende da aplicação)</li>
-<li><strong>Qual é o critério usado para</strong> "valer a pena"? Tempo? Valor da mochila? O quão próximo do ótimo vale a pena?</li>
-</ul>
-<p>Reescreva a pergunta escolhida agora especificando exatamente o que você gostaria de responder.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Importante</p>
-<p>Não existe resposta certa para a pergunta acima. Desde que você seja preciso em sua formulação a resposta está correta. Ou seja, <strong>neste momento não estamos questionando se a pergunta faz sentido</strong>, somente <strong>se ela está bem formulada</strong>.</p>
-</div>
-<p>Agora que temos uma pergunta mais precisamente formulada, vamos planejar</p>
-<div class="admonition question medium">
-<p class="admonition-title">Question</p>
-<p>Como você usaria um gerador para gerar dados que te ajudem a responder a pergunta escolhida? Especifique tamanhos de entrada e comente por que você faria estes testes.</p>
-</div>
-<div class="admonition question medium">
-<p class="admonition-title">Question</p>
-<p>Com os dados da questão acima em mãos, que ferramentas visuais você usaria para facilitar a comunicação dos resultados?</p>
-<ul>
-<li>Se sua resposta incluir tabelas, diga o que será mostrado em cada eixo e qual sua interpretação dos dados.</li>
-<li>Se sua resposta incluir gráficos, explique qual tipo e qual informação você estaria colocando em evidência.</li>
-</ul>
-</div>
-<h2 id="implementando-de-maneira-reprodutivel">Implementando de maneira reprodutível<a class="headerlink" href="#implementando-de-maneira-reprodutivel" title="Permanent link">&para;</a></h2>
-<p>Vamos agora tentar implementar seu plano acima de maneira reprodutível. Ou seja, qualquer pessoa com a infra necessária poderia reexecutar seus experimentos e obter os mesmos dados que você.</p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Reúna todos os arquivos de entrada usados em uma pasta <em>in</em>.</p>
+<p>Qual é a complexidade computacional deste algoritmo? Ele é a melhor implementação possível?</p>
+<details class="details">
+<summary>Resposta</summary>
+<p>Se o algoritmo descrito em sua resposta anterior envolver ordenação, então ele tem complexidade <span class="arithmatex"><span class="MathJax_Preview">\mathcal{O}(n\log n)</span><script type="math/tex">\mathcal{O}(n\log n)</script></span> e é o melhor possível sim (você consegue explicar por que?). Se você fez um loop duplo que procura pelo maior a cada iteração então seu algoritmo é <span class="arithmatex"><span class="MathJax_Preview">\mathcal{O}(n^2)</span><script type="math/tex">\mathcal{O}(n^2)</script></span>.</p>
+</details>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<p>Crie um script python que executa seu programa para todas as entradas acima.</p>
+<p>Agora que temos um algoritmo, crie uma implementação do programa acima.</p>
 <p><strong>Dicas</strong>:</p>
 <ul>
-<li>reveja a nossa <a href="https://insper.github.io/supercomp/aulas/01-introducao/">aula 01</a> e relembre como criar testes reprodutíveis.</li>
+<li>C++ já possui um algoritmo de ordenação implementado no cabeçalho <a href="http://cplusplus.com/reference/algorithm/sort/"><code>&lt;algorithm&gt;</code></a>. Use-o.</li>
+<li>Busque por ordenação indireta para entender como ordenar os três vetores ao mesmo tempo.</li>
+<li>Pode ser conveniente organizar os dados usando <code>struct</code>.</li>
 </ul>
 </div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Salve os resultados acima em um dataframe do <em>Pandas</em>. Se quiser, salve seus resultados correntes para um arquivo <em>CSV</em>.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Crie tabelas ou gráficos a partir do dataframe criado.</p>
-</div>
-<div class="admonition question medium">
+<h2 id="mais-leve-primeiro">Mais leve primeiro<a class="headerlink" href="#mais-leve-primeiro" title="Permanent link">&para;</a></h2>
+<p>Vamos testar uma abordagem oposta: <strong>quantidade agora é o foco</strong>. Por isso vamos ser práticos e pegar <strong>o maior número de objetos possível</strong>! Começaremos agora pelos objetos mais leves e vamos torcer para que a quantidade grande de objetos selecionados resulte em uma mochila com alto valor.</p>
+<div class="admonition question">
 <p class="admonition-title">Question</p>
-<p>Usando as tabelas e gráficos criados, responda à pergunta escolhida no início do handout.</p>
+<p>Compare esta heurística com a da seção anterior levando em conta o algoritmo em pseudo-código e sua complexidade computacional.</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Quais partes do programa da heurística anterior podem ser aproveitadas para implementar a descrita acima?</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Implemente agora a heurística do mais leve. Chame seu programa de <code>mais_leve</code>, mantendo também o código do anterior.</p>
+</div>
+<h2 id="analisando-nossas-heuristicas">Analisando nossas heurísticas<a class="headerlink" href="#analisando-nossas-heuristicas" title="Permanent link">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Crie uma entrada em que a heurística do mais valioso seja muito melhor que a do mais leve. Coloque no relatório as saídas de cada programa.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Crie uma entrada em que a heurística do mais leve seja muito melhor que a do mais valioso. Coloque no relatório as saídas de cada programa.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Com base nas suas respostas acima, em quais situações a heurística do mais valioso é melhor?</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Com base nas suas respostas acima, em quais situações a heurística do mais leve é melhor?</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Qual a complexidade computacional das abordagens?</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Quando uma é melhor que a outra?</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Alguma consegue obter o melhor valor possível?</p>
+</div>
+<p><strong>Entrega do relatório para 17/09 as 23h59</strong></p>
 
 
 
