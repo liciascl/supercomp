@@ -57,4 +57,4 @@ Vamos testar uma abordagem oposta: **quantidade agora é o foco**. Por isso vamo
 
 
 
-**Entrega do relatório para 17/09 as 23h59**
+**Entrega do relatório para 10/09 as 23h59**
