@@ -1,80 +1,200 @@
-# 10 - Branch and Bound
+# Aula 10 - Thrust para programação paralela em GPU
 
-Vamos começar nossa atividade instrumentando nossa busca exaustiva. Dado que a promessa do nosso algoritmo *Branch and Bound* é evitar chegar até o fim de uma solução parcial que não tem chance de ser ótima, faz todo sentido então contarmos quantas vezes chegamos até o fim.
+### O que é Thrust?
 
-!!! example
-    Vamos adicionar dois contadores ao nosso programa
+Thrust é uma biblioteca desenvolvida pela Nvidia para facilitar a programação de GPUs. Ela é inspirada na biblioteca da STL (Standard Template Library) do C++, mas com um foco em operações paralelas, tanto na GPU quanto na CPU. Thrust permite que o codigo seja executado de forma eficiente em paralelo, sem a complexidade de escrever kernels CUDA explícitos, que são necessários para programar diretamente em CUDA.
 
-    1. `num_leaf` conta quantas vezes uma solução completa foi comparada com a melhor possível
-    2. `num_copy` conta quantas vezes foi encontrada uma solução melhor que a atual.
+### Como Thrust Funciona?
 
-!!! question short
-    Rode para o exemplo `in150.txt` e anote os valores obtidos abaixo.
+Thrust fornece uma série de algoritmos e estruturas de dados otimizadas para execução em paralelo. Isso inclui:
 
-## Um bound simples: ignorar peso
+- **Vetores**: `thrust::host_vector` e `thrust::device_vector` são vetores que gerenciam memória na CPU e GPU, respectivamente.
+- **Algoritmos**: Thrust oferece uma variedade de algoritmos paralelos prontos para uso, como `thrust::sort`, `thrust::reduce`, `thrust::transform`, entre outros.
+- **Iteradores**: Assim como a STL, Thrust usa iteradores para percorrer elementos de vetores, permitindo aplicar algoritmos de maneira eficiente.
 
-Nesta seção implementaremos um *Branch and Bound* simples com a seguinte ideia:
+Por exemplo, em vez de escrever um kernel CUDA manualmente para somar os elementos de um vetor, você pode usar a função `thrust::reduce`, que faz isso de forma otimizada e em paralelo na GPU.
 
-!!! quote "BOUND"
-    Complete uma solução parcial incluindo na mochila todos os objetos não selecionados. Isto é equivalente a **relaxar a restrição do peso**.
+### Vantagens de Usar Thrust
 
-!!! question short
-    Os contadores `num_leaf` e `num_copy` se modificariam ao implementar o *Branch and Bound*? Se sim, quais deles?
+**1. Simplicidade:**
+Thrust abstrai a complexidade da programação paralela em CUDA. 
 
-    ??? tip "Resposta"
-        Somente `num_leaf`, já que deixamos de chegar em folhas que não tem chance de serem ótimos globais. `num_copy` continua igual, já que conta o número de vezes que o melhor foi atualizado.
+**2. Portabilidade:**
+Um dos grandes benefícios da Thrust é que o mesmo código pode ser compilado para rodar tanto na CPU quanto na GPU. Isso é possível porque Thrust permite escolher o backend de execução: você pode usar OpenMP, TBB (Threading Building Blocks) ou a própria GPU, dependendo do hardware disponível. Isso torna seu código mais flexível e portátil.
 
-!!! example
-    Implemente no seu código o *Branch and Bound* usando o *Bound* acima. Ou seja, você deverá, ao chegar em um objeto
+**3. Desempenho:**
+Thrust é otimizada para aproveitar ao máximo a capacidade de processamento paralelo das GPUs da Nvidia. Como muitos dos algoritmos oferecidos pela Thrust são implementados diretamente em CUDA, eles podem ser significativamente mais rápidos que implementações sequenciais tradicionais, especialmente em operações que envolvem grandes volumes de dados.
 
-    1. Checar se a soma da solução atual mais o bound é melhor que o melhor possível.
-    2. Se não for retorna
-    3. Se for prossegue fazendo a escolha para o objeto atual.
+**4. Reuso de Código:**
+Assim como a STL, Thrust permite reutilizar muito código. Como ela é baseada em templates, você pode aplicar os mesmos algoritmos em diferentes tipos de dados e vetores, sem precisar reescrever a lógica para cada caso.
 
-!!! example
-    Adicione ao seu programa um contador `num_bounds` que conta o número de vezes em que evitamos de testar uma solução parcial até o fim.
+### **Usando o Google Colab**
 
-!!! question short
-    Teste seu programa novamente com a entrada `in150.txt`. Anote abaixo os contadores e interprete seu resultado.
+Primeiro, acesse o [Google Colab](https://colab.research.google.com/) e criem um novo notebook. No Colab, podemos escolher o tipo de hardware que o nosso código vai usar. Para isso, vá no menu "Ambiente de Execução" e clique em "Alterar tipo de ambiente de execução". Na seção “Acelerador de hardware”, selecione "GPU". Para que possamos executar o nosso código diretamente na GPU.
 
-## Analisando nosso bound
+Para verificar se a GPU está ativa, rode o seguinte comando na célula do Colab:
 
-Conseguimos algum ganho de desempenho ao criar o último bound. Vamos agora descobrir se ele é bom mesmo.
+```python
+!nvidia-smi
+```
 
-!!! question short
-Como você mediria a altura em que o bound agiu? Seria melhor cortar mais para cima ou mais para baixo?
+Este comando vai mostrar informações sobre a GPU que estamos usando, como o modelo e o uso de memória. Se tudo estiver certo, você verá a GPU listada, o que confirma que o ambiente está pronto.
 
-O valor `num_bound` não ajuda muito a entender se o bound é bom, já que cortar muito pode significar fazê-lo próximo das folhas (e isto gera ganho pequeno de desempenho).
+### **Compilação com NVCC**
 
-!!! example
-Faça seu programa contar o número de vezes em que o bound é ativado em cada nível da recursão. Mostre esses valores no terminal.
+Agora que o Colab está configurado, precisamos entender como compilar nosso código para rodar na GPU. O compilador que usamos para isso é o `nvcc`, que faz parte do pacote de ferramentas da Nvidia do CUDA Toolkit.
 
-!!! question short
-Interprete os resultados acima.
+O `nvcc` é um compilador que identifica quais partes do código devem rodar na GPU e quais partes ficam na CPU. A grande vantagem dele é que, no final, tudo é combinado em um único executável que gerencia automaticamente quando a GPU ou CPU devem ser usadas.
 
-## Implementação eficiente do bound
+Vamos compilar um exemplo simples para testar o `nvcc`. Carreque o arquivo [exemplo1-criacao-iteracao.cu](files/exemplo1-criacao-iteracao.cu) no colab, compile e crie um executável, usando o comando:
 
-!!! question short
-    O bound *Ignorar peso* depende das escolhas feitas até o momento? Ou seja, se tenho 4 objetos, o bound da solução parcial `(1, 0, -, -)` é igual ou diferente do bound da solução parcial `(1, 1, -, -)`?
 
-!!! question short
-    Como você poderia economizar trabalho ao calcular o bound? É possível pré-calcular algo?
+```bash
+!nvcc -arch=sm_70 -std=c++14 exemplo1-criacao-iteracao.cu -o exemplo1
+```
 
-!!! example
-    Reimplemente seu bound, desta vez pré-calculando tudo antes de iniciar a busca_exaustiva.
+Se tudo funcionar corretamente, este comando vai gerar um executável chamado `exemplo1`, que podemos rodar para ver os resultados.
 
-!!! question short
-    Rode novamente com a entrada `in150.txt` e verifique se houve ganho de tempo de execução.
+### **Transferência de Dados entre CPU e GPU**
 
-## Avançado: o quão justo é um bound?
+Agora, vamos entender como os dados são transferidos entre CPU e GPU usando a biblioteca Thrust. A CPU e a GPU têm memórias separadas, o que significa que para processar dados na GPU, precisamos transferi-los da CPU para a GPU.
 
-Podemos medir quão justo é um bound verificando a diferença entre seu valor e o valor *real* da melhor solução da subárvore de recursão atual. Ou seja, comparamos nossa estimativa otimista com o que aconteceu de verdade ao examinar todas essas soluções.
+Com a Thrust, temos dois tipos de vetores: `host_vector`, que armazena dados na memória da CPU, e `device_vector`, que armazena dados na memória da GPU. Veja este exemplo de código:
 
-!!! example
-    Faça seu programa guardar a diferença média entre o valor do bound (que é uma estimativa da qualidade final de uma solução) e o melhor valor encontrado para aquele ramo da recursão.
+```cpp
+// exemplo1-criacao-iteracao.cu
+#include <thrust/host_vector.h>
+#include <thrust/device_vector.h>
+#include <thrust/sequence.h>
+#include <thrust/fill.h>
+#include <iostream>
 
-    **Dica**: você vai precisar retornar o valor da melhor mochila encontrada em cada parte.
+int main() {
+    // Criação de um vetor na CPU (host)
+    thrust::host_vector<int> host_vec(5, 0); // Inicia com {0, 0, 0, 0, 0}
+    std::cout << "Host vector: ";
+    for (int i = 0; i < host_vec.size(); i++) {
+        std::cout << host_vec[i] << " ";
+    }
+    std::cout << std::endl;
 
-!!! question
-    Interprete os resultados acima.
+    // Preenchendo o vetor com uma sequência: {0, 1, 2, 3, 4}
+    thrust::sequence(host_vec.begin(), host_vec.end());
 
+    // Criação de um vetor na GPU (device) e transferência dos dados da CPU para a GPU
+    thrust::device_vector<int> device_vec = host_vec;
+
+    // Modificando os dois primeiros elementos na GPU
+    thrust::fill(device_vec.begin(), device_vec.begin() + 2, 13); // {13, 13, 2, 3, 4}
+
+    // Transferindo os dados de volta da GPU para a CPU
+    host_vec = device_vec;
+
+    // Mostrando o resultado
+    std::cout << "Device vector after modifications: ";
+    for (int i = 0; i < host_vec.size(); i++) {
+        std::cout << host_vec[i] << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+
+```
+
+### **Operações de Redução e Transformações**
+
+Além de gerenciar a transferência de dados, a Thrust também facilita operações complexas como reduções (soma, máximo, mínimo) e transformações entre vetores. Esses tipos de operações são muito úteis em cálculos intensivos, como análise de séries temporais de preços de ações.
+
+**Reduções com Thrust:**
+
+Reduções são operações que reduzem um vetor a um único valor. Por exemplo, podemos calcular a soma, o máximo ou a média dos elementos de um vetor. A função `thrust::reduce` é usada para esse tipo de operação.
+
+Um exemplo para calcular a soma dos elementos de um vetor:
+
+```cpp
+#include <thrust/device_vector.h>
+#include <thrust/reduce.h>
+#include <iostream>
+
+int main() {
+    // Criando um vetor na GPU com 5 elementos: {10, 20, 30, 40, 50}
+    thrust::device_vector<int> vec_gpu(5);
+    thrust::sequence(vec_gpu.begin(), vec_gpu.end(), 10, 10);
+
+    // Calculando a soma dos elementos
+    int soma = thrust::reduce(vec_gpu.begin(), vec_gpu.end(), 0, thrust::plus<int>());
+
+    std::cout << "Soma dos elementos: " << soma << std::endl; // Saída: 150
+
+    return 0;
+}
+```
+
+Aqui, usamos `thrust::sequence` para preencher o vetor e `thrust::reduce` para somar todos os elementos. O valor `0` é o valor inicial da soma e `thrust::plus<int>` é a operação de adição.
+
+**Transformações entre Vetores:**
+
+Além das reduções, podemos realizar transformações entre vetores, que envolvem modificar um vetor com base em operações ponto a ponto, ou até mesmo combinar dois vetores em um.
+
+Por exemplo, vamos calcular a diferença ponto a ponto entre os preços das ações da Apple e da Microsoft usando `thrust::transform`:
+
+```cpp
+#include <thrust/device_vector.h>
+#include <thrust/transform.h>
+#include <iostream>
+
+int main() {
+    // Criando vetores de preços na GPU
+    thrust::device_vector<double> AAPL(5, 150.0);  // Exemplo com preço fixo
+    thrust::device_vector<double> MSFT(5, 140.0);  // Exemplo com preço fixo
+    thrust::device_vector<double> diff(5);         // Para armazenar as diferenças
+
+    // Calculando a diferença ponto a ponto entre os preços
+    thrust::transform(AAPL.begin(), AAPL.end(), MSFT.begin(), diff.begin(), thrust::minus<double>());
+
+    // Exibindo as diferenças
+    for (int i = 0; i < diff.size(); i++) {
+        std::cout << "Diferença " << i << ": " << diff[i] << std::endl;
+    }
+
+    return 0;
+}
+```
+
+Neste exemplo, `thrust::minus<double>` é a operação usada para calcular a diferença entre os elementos correspondentes dos dois vetores.
+
+
+### **Explorando a Documentação da Thrust**
+
+Para entender mais sobre as funcionalidades da Thrust, verifique a documentação oficial disponível no [site da Thrust](https://thrust.github.io/doc/modules.html). 
+
+
+
+### Atividade 10
+
+Vamos trabalhar com um arquivo que contém os preços das ações do Google nos últimos 10 anos, [stocks-google.txt](files/stocks-google.txt). A ideia é ler esses dados com um `thrust::host_vector`, transferir para a GPU e, em seguida, processá-los. 
+
+**Exercício 1: Leitura e Transferência de Dados**
+
+1. Leiam os preços das ações de [stocks-google.txt](files/stocks-google.txt) e armazenem em um `host_vector`.
+2. Criem um `device_vector` e transfiram os dados do `host_vector` para ele.
+3. Meçam o tempo de alocação e cópia dos dados usando a biblioteca `std::chrono` e imprimam esse tempo para ver quanto tempo a operação leva.
+
+**Exercício 2: Cálculo de Médias e Extremos**
+
+Agora que os dados estão na GPU, vamos realizar algumas operações de redução. As operações de redução são aquelas que transformam um vetor em um único valor, como calcular a soma ou o máximo dos elementos.
+
+1. Calculem o preço médio das ações do Google nos últimos 10 anos.
+2. Calculem o preço médio das ações nos últimos 365 dias.
+3. Encontrem o maior e o menor preço do período total e do último ano.
+
+**Exercício 3: Transformações entre Vetores**
+
+Vamos trabalhar com outro arquivo, [stocks2.csv](files/stock2.csv), que contém os preços das ações da Apple e Microsoft. O objetivo é calcular a diferença média entre os preços das ações das duas empresas.
+
+1. Leiam os preços das ações de ambas as empresas e armazenem em dois `device_vectors`.
+2. Calculem a diferença ponto a ponto entre os dois vetores e armazenem as diferenças em um terceiro vetor.
+3. Calculem a média das diferenças para entender qual empresa teve, em média, um preço maior.
+
+**Submeta o link do seu repositório no BlackBoard até 17/09 as 23h59**
