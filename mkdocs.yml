@@ -43,7 +43,8 @@ nav:
         - "Aula 06: Problema da Mochila com Busca Exaustiva": aulas/06-heuristicas/index.md
         - "Aula 07: Problema da Mochila com Heurística Aleatória": aulas/07-aleatorizacao/index.md               
         - "Aula 08: Problema da Mochila com Busca Local e Hill Climb": aulas/08-busca-local/index.md
-        - "Aula 09: Problema da Mochila com Heurísticas": aulas/09-heuristica/index.md                            
+        - "Aula 09: Problema da Mochila com Heurísticas": aulas/09-heuristica/index.md 
+        - "Aula 10 - Thrust para programação paralela em GPU": aulas/10-thrust/index.md                           
                
 
 #        - "02 e 03 - C++": aulas/02-03-implementacao-c++/index.md

@@ -30,3 +30,6 @@ e compreender como pedir recursos ao SLURM.
 
 **[aula 09: Problema da Mochila com Heurísticas](../aulas/09-heuristica/index.md)**
 - Entender como utilizar diferentes heurísticas para resolver o problema da mochila. 
+
+**[aula 10: Thrust para programação paralela em GPU](../aulas/10-thrust/index.md)**
+- Introdução a Thrust. 
