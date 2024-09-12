@@ -310,6 +310,9 @@ Agora que os dados estão na GPU, vamos realizar algumas operações de reduçã
 
 Vamos trabalhar com outro arquivo, [stocks2.txt](files/stocks2.txt), que contém os preços das ações da Apple e Microsoft. O objetivo é calcular a diferença média entre os preços das ações das duas empresas.
 
+O dataset contém preços simulados das ações da Apple (AAPL) e da Microsoft (MSFT) ao longo dos últimos 10 anos, com cerca de 3520 registros, representando aproximadamente 352 dias de negociação por ano. Cada linha do arquivo tem dois valores separados por vírgula: o primeiro é o preço da ação da Apple e o segundo é o preço da ação da Microsoft.
+
+
 1. Leiam os preços das ações de ambas as empresas e armazenem em dois `device_vectors`.
 2. Calculem a diferença ponto a ponto entre os dois vetores e armazenem as diferenças em um terceiro vetor.
 3. Calculem a média das diferenças para entender qual empresa teve, em média, um preço maior.
