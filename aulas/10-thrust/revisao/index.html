@@ -8,24 +8,24 @@
       
       
       
-        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/10-branch-and-bound/">
+        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/10-thrust/revisao/">
       
       
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
     
     
       
-        <title>10 - Branch and Bound - SuperComputação - 2024/2</title>
+        <title>Revisão para P1 - SuperComputação - 2024/2</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -44,19 +44,19 @@
       
     
     
-      <link rel="stylesheet" href="../../css/printing.css">
+      <link rel="stylesheet" href="../../../css/printing.css">
     
-      <link rel="stylesheet" href="../../css/extra.css">
+      <link rel="stylesheet" href="../../../css/extra.css">
     
-      <link rel="stylesheet" href="../../equipe.css">
+      <link rel="stylesheet" href="../../../equipe.css">
     
-      <link rel="stylesheet" href="../../css/ansi-colours.css">
+      <link rel="stylesheet" href="../../../css/ansi-colours.css">
     
-      <link rel="stylesheet" href="../../css/jupyter-cells.css">
+      <link rel="stylesheet" href="../../../css/jupyter-cells.css">
     
-      <link rel="stylesheet" href="../../css/pandas-dataframe.css">
+      <link rel="stylesheet" href="../../../css/pandas-dataframe.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#10-branch-and-bound" class="md-skip">
+        <a href="#revisao-para-p1" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="SuperComputação - 2024/2" class="md-header__button md-logo" aria-label="SuperComputação - 2024/2" data-md-component="logo">
+    <a href="../../.." title="SuperComputação - 2024/2" class="md-header__button md-logo" aria-label="SuperComputação - 2024/2" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              10 - Branch and Bound
+              Revisão para P1
             
           </span>
         </div>
@@ -203,7 +203,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="SuperComputação - 2024/2" class="md-nav__button md-logo" aria-label="SuperComputação - 2024/2" data-md-component="logo">
+    <a href="../../.." title="SuperComputação - 2024/2" class="md-nav__button md-logo" aria-label="SuperComputação - 2024/2" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -233,7 +233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -288,7 +288,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -309,7 +309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../00-introducao/" class="md-nav__link">
+      <a href="../../00-introducao/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -330,7 +330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../01-introducao/" class="md-nav__link">
+      <a href="../../01-introducao/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -351,7 +351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../02-slurm/" class="md-nav__link">
+      <a href="../../02-slurm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -372,7 +372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../03-cpp/aula-4.pdf" class="md-nav__link">
+      <a href="../../03-cpp/aula-4.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -393,7 +393,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../03-cpp/03-cpp/" class="md-nav__link">
+      <a href="../../03-cpp/03-cpp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -414,7 +414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../04-Profiling/04-Profiling/" class="md-nav__link">
+      <a href="../../04-Profiling/04-Profiling/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -435,7 +435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../06-heuristicas/" class="md-nav__link">
+      <a href="../../06-heuristicas/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -456,7 +456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../07-aleatorizacao/" class="md-nav__link">
+      <a href="../../07-aleatorizacao/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -477,7 +477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../08-busca-local/" class="md-nav__link">
+      <a href="../../08-busca-local/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -498,11 +498,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../09-heuristica/" class="md-nav__link">
+      <a href="../../09-heuristica/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Aula 09: Problema da Mochila com Heurísticas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aula 10 - Thrust para programação paralela em GPU
   </span>
   
 
@@ -561,7 +582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../projetos/" class="md-nav__link">
+      <a href="../../../projetos/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -624,7 +645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/" class="md-nav__link">
+      <a href="../../../Teoria/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -645,7 +666,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/contextualizando-hpc/contextualizando-HPC/" class="md-nav__link">
+      <a href="../../../Teoria/contextualizando-hpc/contextualizando-HPC/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -666,7 +687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/cluster-Franky/cluster-Franky/" class="md-nav__link">
+      <a href="../../../Teoria/cluster-Franky/cluster-Franky/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -687,7 +708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/slurm/" class="md-nav__link">
+      <a href="../../../Teoria/slurm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -708,7 +729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/comandos-ssh/" class="md-nav__link">
+      <a href="../../../Teoria/comandos-ssh/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -729,7 +750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/introducao/conceitos-basicos-hw/" class="md-nav__link">
+      <a href="../../../Teoria/introducao/conceitos-basicos-hw/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -750,7 +771,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/conceitos-basicos-C%2B%2B/" class="md-nav__link">
+      <a href="../../../Teoria/conceitos-basicos-C%2B%2B/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -771,7 +792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/compilar-executar-C%2B%2B/" class="md-nav__link">
+      <a href="../../../Teoria/compilar-executar-C%2B%2B/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -792,7 +813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/loops-e-la%C3%A7os/" class="md-nav__link">
+      <a href="../../../Teoria/loops-e-la%C3%A7os/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -813,7 +834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/funcoes/" class="md-nav__link">
+      <a href="../../../Teoria/funcoes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -834,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/uso-de-constantes/" class="md-nav__link">
+      <a href="../../../Teoria/uso-de-constantes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -855,7 +876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/memoria-dinamica/" class="md-nav__link">
+      <a href="../../../Teoria/memoria-dinamica/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -876,7 +897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/sobrecarga-de-funcoes-C%2B%2B/" class="md-nav__link">
+      <a href="../../../Teoria/sobrecarga-de-funcoes-C%2B%2B/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -897,7 +918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/classes-e-objetos/" class="md-nav__link">
+      <a href="../../../Teoria/classes-e-objetos/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -918,7 +939,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/manipulacao-vetores/" class="md-nav__link">
+      <a href="../../../Teoria/manipulacao-vetores/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -939,7 +960,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/flags-compilacao/" class="md-nav__link">
+      <a href="../../../Teoria/flags-compilacao/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -960,7 +981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Teoria/profiling/" class="md-nav__link">
+      <a href="../../../Teoria/profiling/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1001,50 +1022,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#um-bound-simples-ignorar-peso" class="md-nav__link">
-    <span class="md-ellipsis">
-      Um bound simples: ignorar peso
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#analisando-nosso-bound" class="md-nav__link">
-    <span class="md-ellipsis">
-      Analisando nosso bound
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#implementacao-eficiente-do-bound" class="md-nav__link">
-    <span class="md-ellipsis">
-      Implementação eficiente do bound
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#avancado-o-quao-justo-e-um-bound" class="md-nav__link">
-    <span class="md-ellipsis">
-      Avançado: o quão justo é um bound?
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1061,94 +1038,53 @@
   
 
 
-<h1 id="10-branch-and-bound">10 - Branch and Bound<a class="headerlink" href="#10-branch-and-bound" title="Permanent link">&para;</a></h1>
-<p>Vamos começar nossa atividade instrumentando nossa busca exaustiva. Dado que a promessa do nosso algoritmo <em>Branch and Bound</em> é evitar chegar até o fim de uma solução parcial que não tem chance de ser ótima, faz todo sentido então contarmos quantas vezes chegamos até o fim.</p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Vamos adicionar dois contadores ao nosso programa</p>
+<h1 id="revisao-para-p1">Revisão para P1<a class="headerlink" href="#revisao-para-p1" title="Permanent link">&para;</a></h1>
+<p>Um investidor possui um orçamento de R$ 100.000,00 para aplicar no mercado de ações. Uma instituição financeira lhe dá as seguintes opções para construir o seu portifólio de investimentos, a ser composto por lotes de ações:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>AÇÃO</strong></th>
+<th style="text-align: center;"><strong>VALOR DO LOTE</strong></th>
+<th style="text-align: center;"><strong>RETORNO DO LOTE</strong></th>
+<th style="text-align: center;"><strong>IMPOSTO A PAGAR</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">PETR4</td>
+<td style="text-align: center;">R$ 30.000,00</td>
+<td style="text-align: center;">R$ 2.700,00</td>
+<td style="text-align: center;">R$ 640,00</td>
+</tr>
+<tr>
+<td style="text-align: center;">DELL6</td>
+<td style="text-align: center;">R$ 60.000,00</td>
+<td style="text-align: center;">R$ 4.500,00</td>
+<td style="text-align: center;">R$ 900,00</td>
+</tr>
+<tr>
+<td style="text-align: center;">MICR7</td>
+<td style="text-align: center;">R$ 30.000,00</td>
+<td style="text-align: center;">R$ 6.400,00</td>
+<td style="text-align: center;">R$ 1.200,00</td>
+</tr>
+<tr>
+<td style="text-align: center;">IBMC3</td>
+<td style="text-align: center;">R$ 40.000,00</td>
+<td style="text-align: center;">R$ 4.600,00</td>
+<td style="text-align: center;">R$ 940,00</td>
+</tr>
+</tbody>
+</table>
+<p>Não é possível comprar ações fracionadas, somente o lote inteiro. Com base neste cenário:</p>
 <ol>
-<li><code>num_leaf</code> conta quantas vezes uma solução completa foi comparada com a melhor possível</li>
-<li><code>num_copy</code> conta quantas vezes foi encontrada uma solução melhor que a atual.</li>
+<li>Modele este problema como um problema de otimização.</li>
+<li>Crie uma entrada de dados para a instância do problema como mostrado acima.</li>
+<li>Implemente em C++ uma busca exaustiva para montar uma proposta de portifólio para o cliente.</li>
+<li>Implemente uma estratégia do tipo branch-and-bound em C++ para a busca exaustiva da questão 3.</li>
+<li>Implemente em C++ uma heurística para acelerar a busca exaustiva da questão 3.</li>
+<li>Obtenha e compare os tempos de execução das três implementações anteriores.</li>
 </ol>
-</div>
-<div class="admonition question short">
-<p class="admonition-title">Question</p>
-<p>Rode para o exemplo <code>in150.txt</code> e anote os valores obtidos abaixo.</p>
-</div>
-<h2 id="um-bound-simples-ignorar-peso">Um bound simples: ignorar peso<a class="headerlink" href="#um-bound-simples-ignorar-peso" title="Permanent link">&para;</a></h2>
-<p>Nesta seção implementaremos um <em>Branch and Bound</em> simples com a seguinte ideia:</p>
-<div class="admonition quote">
-<p class="admonition-title">BOUND</p>
-<p>Complete uma solução parcial incluindo na mochila todos os objetos não selecionados. Isto é equivalente a <strong>relaxar a restrição do peso</strong>.</p>
-</div>
-<div class="admonition question short">
-<p class="admonition-title">Question</p>
-<p>Os contadores <code>num_leaf</code> e <code>num_copy</code> se modificariam ao implementar o <em>Branch and Bound</em>? Se sim, quais deles?</p>
-<details class="tip">
-<summary>Resposta</summary>
-<p>Somente <code>num_leaf</code>, já que deixamos de chegar em folhas que não tem chance de serem ótimos globais. <code>num_copy</code> continua igual, já que conta o número de vezes que o melhor foi atualizado.</p>
-</details>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Implemente no seu código o <em>Branch and Bound</em> usando o <em>Bound</em> acima. Ou seja, você deverá, ao chegar em um objeto</p>
-<ol>
-<li>Checar se a soma da solução atual mais o bound é melhor que o melhor possível.</li>
-<li>Se não for retorna</li>
-<li>Se for prossegue fazendo a escolha para o objeto atual.</li>
-</ol>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Adicione ao seu programa um contador <code>num_bounds</code> que conta o número de vezes em que evitamos de testar uma solução parcial até o fim.</p>
-</div>
-<div class="admonition question short">
-<p class="admonition-title">Question</p>
-<p>Teste seu programa novamente com a entrada <code>in150.txt</code>. Anote abaixo os contadores e interprete seu resultado.</p>
-</div>
-<h2 id="analisando-nosso-bound">Analisando nosso bound<a class="headerlink" href="#analisando-nosso-bound" title="Permanent link">&para;</a></h2>
-<p>Conseguimos algum ganho de desempenho ao criar o último bound. Vamos agora descobrir se ele é bom mesmo.</p>
-<div class="admonition question short">
-<p class="admonition-title">Question</p>
-</div>
-<p>Como você mediria a altura em que o bound agiu? Seria melhor cortar mais para cima ou mais para baixo?</p>
-<p>O valor <code>num_bound</code> não ajuda muito a entender se o bound é bom, já que cortar muito pode significar fazê-lo próximo das folhas (e isto gera ganho pequeno de desempenho).</p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-</div>
-<p>Faça seu programa contar o número de vezes em que o bound é ativado em cada nível da recursão. Mostre esses valores no terminal.</p>
-<div class="admonition question short">
-<p class="admonition-title">Question</p>
-</div>
-<p>Interprete os resultados acima.</p>
-<h2 id="implementacao-eficiente-do-bound">Implementação eficiente do bound<a class="headerlink" href="#implementacao-eficiente-do-bound" title="Permanent link">&para;</a></h2>
-<div class="admonition question short">
-<p class="admonition-title">Question</p>
-<p>O bound <em>Ignorar peso</em> depende das escolhas feitas até o momento? Ou seja, se tenho 4 objetos, o bound da solução parcial <code>(1, 0, -, -)</code> é igual ou diferente do bound da solução parcial <code>(1, 1, -, -)</code>?</p>
-</div>
-<div class="admonition question short">
-<p class="admonition-title">Question</p>
-<p>Como você poderia economizar trabalho ao calcular o bound? É possível pré-calcular algo?</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Reimplemente seu bound, desta vez pré-calculando tudo antes de iniciar a busca_exaustiva.</p>
-</div>
-<div class="admonition question short">
-<p class="admonition-title">Question</p>
-<p>Rode novamente com a entrada <code>in150.txt</code> e verifique se houve ganho de tempo de execução.</p>
-</div>
-<h2 id="avancado-o-quao-justo-e-um-bound">Avançado: o quão justo é um bound?<a class="headerlink" href="#avancado-o-quao-justo-e-um-bound" title="Permanent link">&para;</a></h2>
-<p>Podemos medir quão justo é um bound verificando a diferença entre seu valor e o valor <em>real</em> da melhor solução da subárvore de recursão atual. Ou seja, comparamos nossa estimativa otimista com o que aconteceu de verdade ao examinar todas essas soluções.</p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Faça seu programa guardar a diferença média entre o valor do bound (que é uma estimativa da qualidade final de uma solução) e o melhor valor encontrado para aquele ramo da recursão.</p>
-<p><strong>Dica</strong>: você vai precisar retornar o valor da melhor mochila encontrada em cada parte.</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Interprete os resultados acima.</p>
-</div>
 
 
 
@@ -1195,18 +1131,18 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.0.0/js-yaml.min.js"></script>
       
-        <script src="../../js/markdown-enhancer.js"></script>
+        <script src="../../../js/markdown-enhancer.js"></script>
       
-        <script src="../../js/slides.js"></script>
+        <script src="../../../js/slides.js"></script>
       
     
   </body>
