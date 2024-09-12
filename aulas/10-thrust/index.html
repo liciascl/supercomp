@@ -1478,24 +1478,24 @@ Faça upload <a href="files/stocks-google.txt">deste arquivo</a> no seu colab pa
 <p>Vamos trabalhar com um arquivo que contém os preços das ações do Google nos últimos 10 anos, <a href="files/stocks-google.txt">stocks-google.txt</a>. A ideia é ler esses dados com um <code>thrust::host_vector</code>, transferir para a GPU e, em seguida, processá-los. </p>
 <p><strong>Exercício 1: Leitura e Transferência de Dados</strong></p>
 <ol>
-<li>Leiam os preços das ações de <a href="files/stocks-google.txt">stocks-google.txt</a> e armazenem em um <code>host_vector</code>.</li>
-<li>Criem um <code>device_vector</code> e transfiram os dados do <code>host_vector</code> para ele.</li>
-<li>Meçam o tempo de alocação e cópia dos dados usando a biblioteca <code>std::chrono</code> e imprimam esse tempo para ver quanto tempo a operação leva.</li>
+<li>Leia os preços das ações de <a href="files/stocks-google.txt">stocks-google.txt</a> e armazenem em um <code>host_vector</code>.</li>
+<li>Crie um <code>device_vector</code> e transfiram os dados do <code>host_vector</code> para ele.</li>
+<li>Meça o tempo de alocação e cópia dos dados usando a biblioteca <code>std::chrono</code> e imprimam esse tempo para ver quanto tempo a operação leva.</li>
 </ol>
 <p><strong>Exercício 2: Cálculo de Médias e Extremos</strong></p>
 <p>Agora que os dados estão na GPU, vamos realizar algumas operações de redução. As operações de redução são aquelas que transformam um vetor em um único valor, como calcular a soma ou o máximo dos elementos.</p>
 <ol>
-<li>Calculem o preço médio das ações do Google nos últimos 10 anos.</li>
-<li>Calculem o preço médio das ações nos últimos 365 dias.</li>
-<li>Encontrem o maior e o menor preço do período total e do último ano.</li>
+<li>Calcule o preço médio das ações do Google nos últimos 10 anos.</li>
+<li>Calcule o preço médio das ações nos últimos 365 dias.</li>
+<li>Encontre o maior e o menor preço do período total e do último ano.</li>
 </ol>
 <p><strong>Exercício 3: Transformações entre Vetores</strong></p>
 <p>Vamos trabalhar com outro arquivo, <a href="files/stocks2.txt">stocks2.txt</a>, que contém os preços das ações da Apple e Microsoft. O objetivo é calcular a diferença média entre os preços das ações das duas empresas.</p>
 <p>O dataset contém preços simulados das ações da Apple (AAPL) e da Microsoft (MSFT) ao longo dos últimos 10 anos, com cerca de 3520 registros, representando aproximadamente 352 dias de negociação por ano. Cada linha do arquivo tem dois valores separados por vírgula: o primeiro é o preço da ação da Apple e o segundo é o preço da ação da Microsoft.</p>
 <ol>
-<li>Leiam os preços das ações de ambas as empresas e armazenem em dois <code>device_vectors</code>.</li>
-<li>Calculem a diferença ponto a ponto entre os dois vetores e armazenem as diferenças em um terceiro vetor.</li>
-<li>Calculem a média das diferenças para entender qual empresa teve, em média, um preço maior.</li>
+<li>Leia os preços das ações de ambas as empresas e armazenem em dois <code>device_vectors</code>.</li>
+<li>Calcule a diferença ponto a ponto entre os dois vetores e armazenem as diferenças em um terceiro vetor.</li>
+<li>Calcule a média das diferenças para entender qual empresa teve, em média, um preço maior.</li>
 </ol>
 <p><strong>Submeta o link do seu repositório no BlackBoard até 17/09 as 23h59</strong></p>
 
