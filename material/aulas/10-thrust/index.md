@@ -294,17 +294,17 @@ Vamos trabalhar com um arquivo que contém os preços das ações do Google nos 
 
 **Exercício 1: Leitura e Transferência de Dados**
 
-1. Leiam os preços das ações de [stocks-google.txt](files/stocks-google.txt) e armazenem em um `host_vector`.
-2. Criem um `device_vector` e transfiram os dados do `host_vector` para ele.
-3. Meçam o tempo de alocação e cópia dos dados usando a biblioteca `std::chrono` e imprimam esse tempo para ver quanto tempo a operação leva.
+1. Leia os preços das ações de [stocks-google.txt](files/stocks-google.txt) e armazenem em um `host_vector`.
+2. Crie um `device_vector` e transfiram os dados do `host_vector` para ele.
+3. Meça o tempo de alocação e cópia dos dados usando a biblioteca `std::chrono` e imprimam esse tempo para ver quanto tempo a operação leva.
 
 **Exercício 2: Cálculo de Médias e Extremos**
 
 Agora que os dados estão na GPU, vamos realizar algumas operações de redução. As operações de redução são aquelas que transformam um vetor em um único valor, como calcular a soma ou o máximo dos elementos.
 
-1. Calculem o preço médio das ações do Google nos últimos 10 anos.
-2. Calculem o preço médio das ações nos últimos 365 dias.
-3. Encontrem o maior e o menor preço do período total e do último ano.
+1. Calcule o preço médio das ações do Google nos últimos 10 anos.
+2. Calcule o preço médio das ações nos últimos 365 dias.
+3. Encontre o maior e o menor preço do período total e do último ano.
 
 **Exercício 3: Transformações entre Vetores**
 
@@ -313,8 +313,8 @@ Vamos trabalhar com outro arquivo, [stocks2.txt](files/stocks2.txt), que contém
 O dataset contém preços simulados das ações da Apple (AAPL) e da Microsoft (MSFT) ao longo dos últimos 10 anos, com cerca de 3520 registros, representando aproximadamente 352 dias de negociação por ano. Cada linha do arquivo tem dois valores separados por vírgula: o primeiro é o preço da ação da Apple e o segundo é o preço da ação da Microsoft.
 
 
-1. Leiam os preços das ações de ambas as empresas e armazenem em dois `device_vectors`.
-2. Calculem a diferença ponto a ponto entre os dois vetores e armazenem as diferenças em um terceiro vetor.
-3. Calculem a média das diferenças para entender qual empresa teve, em média, um preço maior.
+1. Leia os preços das ações de ambas as empresas e armazenem em dois `device_vectors`.
+2. Calcule a diferença ponto a ponto entre os dois vetores e armazenem as diferenças em um terceiro vetor.
+3. Calcule a média das diferenças para entender qual empresa teve, em média, um preço maior.
 
 **Submeta o link do seu repositório no BlackBoard até 17/09 as 23h59**
