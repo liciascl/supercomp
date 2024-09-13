@@ -1283,7 +1283,40 @@ Assim como a STL, Thrust permite reutilizar muito código. Como ela é baseada e
 <h3 id="compilacao-com-nvcc"><strong>Compilação com NVCC</strong><a class="headerlink" href="#compilacao-com-nvcc" title="Permanent link">&para;</a></h3>
 <p>Agora que o Colab está configurado, precisamos entender como compilar nosso código para rodar na GPU. O compilador que usamos para isso é o <code>nvcc</code>, que faz parte do pacote de ferramentas da Nvidia do CUDA Toolkit.</p>
 <p>O <code>nvcc</code> é um compilador que identifica quais partes do código devem rodar na GPU e quais partes ficam na CPU. A grande vantagem dele é que, no final, tudo é combinado em um único executável que gerencia automaticamente quando a GPU ou CPU devem ser usadas.</p>
-<p>Vamos compilar um exemplo simples para testar o <code>nvcc</code>. Carreque o arquivo <a href="files/exemplo1-criacao-iteracao.cu">exemplo1.cu</a> no colab, compile e crie um executável, usando o comando:</p>
+<p>Vamos compilar um exemplo simples para testar o <code>nvcc</code>. Carreque o arquivo <a href="files/exemplo1.cu">exemplo1.cu</a> no colab, compile e crie um executável, usando o comando:</p>
+<div class="highlight"><pre><span></span><code>%%writefile<span class="w"> </span>exemplo1.cu
+<span class="c1">#include &lt;thrust/device_vector.h&gt; // Inclui a biblioteca para vetores na GPU (device)</span>
+<span class="c1">#include &lt;thrust/host_vector.h&gt;   // Inclui a biblioteca para vetores na CPU (host)</span>
+<span class="c1">#include &lt;iostream&gt;               // Biblioteca padrão para entrada e saída de dados</span>
+
+int<span class="w"> </span>main<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>//<span class="w"> </span>Cria<span class="w"> </span>um<span class="w"> </span>vetor<span class="w"> </span>na<span class="w"> </span>CPU<span class="w"> </span><span class="o">(</span>host<span class="o">)</span><span class="w"> </span>com<span class="w"> </span><span class="m">5</span><span class="w"> </span>elementos,<span class="w"> </span>todos<span class="w"> </span>inicializados<span class="w"> </span>com<span class="w"> </span><span class="m">0</span>
+<span class="w">    </span>thrust::host_vector&lt;double&gt;<span class="w"> </span>host<span class="o">(</span><span class="m">5</span>,<span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="p">;</span>
+<span class="w">    </span>host<span class="o">[</span><span class="m">4</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">35</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>Altera<span class="w"> </span>o<span class="w"> </span>último<span class="w"> </span>elemento<span class="w"> </span><span class="k">do</span><span class="w"> </span>vetor<span class="w"> </span>para<span class="w"> </span><span class="m">35</span>
+
+<span class="w">    </span>/*<span class="w"> </span>Os<span class="w"> </span>dados<span class="w"> </span><span class="k">do</span><span class="w"> </span>vetor<span class="w"> </span><span class="s1">&#39;host&#39;</span><span class="w"> </span>são<span class="w"> </span>copiados<span class="w"> </span>para<span class="w"> </span>a<span class="w"> </span>GPU,
+<span class="w">       </span>criando<span class="w"> </span>um<span class="w"> </span>vetor<span class="w"> </span>equivalente<span class="w"> </span>na<span class="w"> </span>GPU<span class="w"> </span><span class="o">(</span>device<span class="o">)</span><span class="w"> </span>*/
+<span class="w">    </span>thrust::device_vector&lt;double&gt;<span class="w"> </span>dev<span class="o">(</span>host<span class="o">)</span><span class="p">;</span>
+
+<span class="w">    </span>/*<span class="w"> </span>Altera<span class="w"> </span>o<span class="w"> </span>vetor<span class="w"> </span>na<span class="w"> </span>CPU,<span class="w"> </span>mas<span class="w"> </span>não<span class="w"> </span>afeta<span class="w"> </span>o<span class="w"> </span>vetor<span class="w"> </span>na<span class="w"> </span>GPU,
+<span class="w">       </span>pois<span class="w"> </span>a<span class="w"> </span>cópia<span class="w"> </span>já<span class="w"> </span>foi<span class="w"> </span>feita<span class="w"> </span>anteriormente<span class="w"> </span>*/
+<span class="w">    </span>host<span class="o">[</span><span class="m">2</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>Altera<span class="w"> </span>o<span class="w"> </span>terceiro<span class="w"> </span>elemento<span class="w"> </span><span class="k">do</span><span class="w"> </span>vetor<span class="w"> </span>na<span class="w"> </span>CPU<span class="w"> </span>para<span class="w"> </span><span class="m">12</span>
+
+<span class="w">    </span>//<span class="w"> </span>Exibe<span class="w"> </span>os<span class="w"> </span>elementos<span class="w"> </span><span class="k">do</span><span class="w"> </span>vetor<span class="w"> </span>na<span class="w"> </span>CPU
+<span class="w">    </span>printf<span class="o">(</span><span class="s2">&quot;Host vector: &quot;</span><span class="o">)</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="o">(</span>auto<span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>host.begin<span class="o">()</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>!<span class="o">=</span><span class="w"> </span>host.end<span class="o">()</span><span class="p">;</span><span class="w"> </span>i++<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span>std::cout<span class="w"> </span>&lt;&lt;<span class="w"> </span>*i<span class="w"> </span>&lt;&lt;<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>Acesso<span class="w"> </span>rápido<span class="w"> </span>aos<span class="w"> </span>elementos<span class="w"> </span>na<span class="w"> </span>CPU
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span>printf<span class="o">(</span><span class="s2">&quot;\n&quot;</span><span class="o">)</span><span class="p">;</span>
+
+<span class="w">    </span>//<span class="w"> </span>Exibe<span class="w"> </span>os<span class="w"> </span>elementos<span class="w"> </span><span class="k">do</span><span class="w"> </span>vetor<span class="w"> </span>na<span class="w"> </span>GPU
+<span class="w">    </span>printf<span class="o">(</span><span class="s2">&quot;Device vector: &quot;</span><span class="o">)</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="o">(</span>auto<span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>dev.begin<span class="o">()</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>!<span class="o">=</span><span class="w"> </span>dev.end<span class="o">()</span><span class="p">;</span><span class="w"> </span>i++<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span>std::cout<span class="w"> </span>&lt;&lt;<span class="w"> </span>*i<span class="w"> </span>&lt;&lt;<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>Acesso<span class="w"> </span>aos<span class="w"> </span>elementos<span class="w"> </span>na<span class="w"> </span>GPU<span class="w"> </span>é<span class="w"> </span>lento,<span class="w"> </span>pois<span class="w"> </span>os<span class="w"> </span>dados<span class="w"> </span>estão<span class="w"> </span>na<span class="w"> </span>GPU
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span>printf<span class="o">(</span><span class="s2">&quot;\n&quot;</span><span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+</code></pre></div>
 <div class="highlight"><pre><span></span><code>!nvcc<span class="w"> </span>-arch<span class="o">=</span>sm_75<span class="w"> </span>-std<span class="o">=</span>c++14<span class="w"> </span>exemplo1.cu<span class="w"> </span>-o<span class="w"> </span>exemplo1
 </code></pre></div>
 <p>Se tudo funcionar corretamente, este comando vai gerar um executável chamado <code>exemplo1</code>, que podemos rodar para ver os resultados.</p>
@@ -1293,7 +1326,7 @@ Assim como a STL, Thrust permite reutilizar muito código. Como ela é baseada e
 <p>Uma das grandes vantagens de Thrust é a capacidade de aplicar transformações e operações ponto a ponto de forma eficiente, diretamente na GPU. Isso é extremamente útil para manipulações de vetores, onde queremos aplicar operações como soma, multiplicação, etc, de forma paralela.</p>
 <p>Com Thrust, podemos facilmente realizar essas transformações entre vetores, utilizando funções como <code>thrust::transform</code>, que permite aplicar uma operação matemática entre os elementos de dois vetores ou transformar um vetor usando um valor constante. </p>
 <p>Neste exemplo, vamos criar dois vetores na GPU e aplicar transformações entre eles, demonstrando como podemos somar os elementos de um vetor com outro e preencher vetores com valores específicos. Essas operações são realizadas de maneira otimizada na GPU, aproveitando o paralelismo do hardware para acelerar o processamento.</p>
-<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">writefile</span><span class="w"> </span><span class="n">exemplo2</span><span class="p">.</span><span class="n">cu</span>
+<p><div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">writefile</span><span class="w"> </span><span class="n">exemplo2</span><span class="p">.</span><span class="n">cu</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thrust/device_vector.h&gt;</span><span class="c1">              // Inclui a biblioteca para vetores na GPU</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thrust/host_vector.h&gt;</span><span class="c1">                // Inclui a biblioteca para vetores na CPU</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thrust/sequence.h&gt;</span><span class="c1">                   // Inclui a função para preencher vetores com uma sequência de números</span>
@@ -1359,7 +1392,7 @@ Assim como a STL, Thrust permite reutilizar muito código. Como ela é baseada e
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Para compilar o exemplo2 no colab</p>
+Para compilar o exemplo2 no colab</p>
 <div class="highlight"><pre><span></span><code>!nvcc -arch=sm_75 -std=c++14 exemplo2.cu -o exemplo2
 </code></pre></div>
 <p>Para executar o binário</p>
