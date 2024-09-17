@@ -18,7 +18,7 @@
     
     
       
-        <title>10 - Introdução a paralelismo - SuperComputação - 2024/2</title>
+        <title>Aula 11: Iteradores e funções customizadas - SuperComputação - 2024/2</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#10-introducao-a-paralelismo" class="md-skip">
+        <a href="#aula-11-iteradores-e-funcoes-customizadas" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              10 - Introdução a paralelismo
+              Aula 11: Iteradores e funções customizadas
             
           </span>
         </div>
@@ -523,7 +523,28 @@
         
   
   <span class="md-ellipsis">
-    Aula 10 - Thrust para programação paralela em GPU
+    Aula 10: Thrust para programação paralela em GPU
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-iteradores/index.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aula 11: Iteradores e funções customizadas
   </span>
   
 
@@ -1029,33 +1050,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#calculo-do-pi-por-meio-de-uma-serie-infinita-de-leibniz" class="md-nav__link">
+  <a href="#calculo-da-variancia-usando-iteradores-dinamicos" class="md-nav__link">
     <span class="md-ellipsis">
-      Cálculo do PI por meio de uma série infinita de Leibniz
+      Cálculo da Variância usando Iteradores Dinâmicos
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Cálculo do PI por meio de uma série infinita de Leibniz">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sua-tarefa" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sua tarefa
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tasks-tarefas-em-openmp" class="md-nav__link">
+  <a href="#analise-de-variacao-diaria-dos-precos-de-acoes" class="md-nav__link">
     <span class="md-ellipsis">
-      Tasks (tarefas) em OpenMP
+      Análise de Variação Diária dos Preços de Ações
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contagem-de-dias-com-aumento-no-preco-das-acoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contagem de Dias com Aumento no Preço das Ações
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculo-do-aumento-medio-nos-dias-em-que-o-preco-subiu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cálculo do Aumento Médio nos Dias em que o Preço Subiu
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discussao-de-resultados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discussão de Resultados
     </span>
   </a>
   
@@ -1079,99 +1112,37 @@
   
 
 
-<h1 id="10-introducao-a-paralelismo">10 - Introdução a paralelismo<a class="headerlink" href="#10-introducao-a-paralelismo" title="Permanent link">&para;</a></h1>
-<p>OpenMP é uma tecnologia de computação multi-core usada para paralelizar programas. Sua principal vantagem é oferecer uma transição suave entre código sequencial e código paralelo.</p>
-<p>Fizemos em sala de aula uma série de programas básicos no OpenMP e agora é a hora de praticar.</p>
-<h2 id="calculo-do-pi-por-meio-de-uma-serie-infinita-de-leibniz">Cálculo do PI por meio de uma série infinita de Leibniz<a class="headerlink" href="#calculo-do-pi-por-meio-de-uma-serie-infinita-de-leibniz" title="Permanent link">&para;</a></h2>
-<p>Você sabia que é possível calcular o valor do PI por meio de uma série infinita de Leibniz? Veja abaixo:</p>
+<h1 id="aula-11-iteradores-e-funcoes-customizadas">Aula 11: Iteradores e funções customizadas<a class="headerlink" href="#aula-11-iteradores-e-funcoes-customizadas" title="Permanent link">&para;</a></h1>
+<p>Já vimos que, para valer a pena usar a GPU, precisamos tratar grandes volumes de dados ou realizar cálculos complexos. Hoje, nosso foco será calcular a variância e analisar as variações diárias de ações de maneira otimizada, usando iteradores dinâmicos e funções customizadas.</p>
+<h2 id="calculo-da-variancia-usando-iteradores-dinamicos">Cálculo da Variância usando Iteradores Dinâmicos<a class="headerlink" href="#calculo-da-variancia-usando-iteradores-dinamicos" title="Permanent link">&para;</a></h2>
+<p>Vamos calcular a variância das diferenças entre os preços de ações. A fórmula da variância é dada por:</p>
 <div class="arithmatex">
-<div class="MathJax_Preview"> 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \dots  = \frac{\pi}{4} </div>
-<script type="math/tex; mode=display"> 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \dots  = \frac{\pi}{4} </script>
+<div class="MathJax_Preview">
+\text{Variância} = \frac{1}{n} \sum_{i=0}^{n} (x_i - \mu)^2
 </div>
+<script type="math/tex; mode=display">
+\text{Variância} = \frac{1}{n} \sum_{i=0}^{n} (x_i - \mu)^2
+</script>
+</div>
+<p>onde <span class="arithmatex"><span class="MathJax_Preview"> \mu </span><script type="math/tex"> \mu </script></span> é a média. Sugerimos que você consulte a documentação de <a href="https://docs.nvidia.com/cuda/archive/10.1/pdf/Thrust_Quick_Start_Guide.pdf">thrust::constant_iterator</a> e utilize este iterador para gerar dinamicamente o vetor de médias durante o cálculo, evitando assim o uso excessivo de memória. Isso permite calcular a variância sem precisar alocar espaço adicional na GPU.</p>
+<h2 id="analise-de-variacao-diaria-dos-precos-de-acoes">Análise de Variação Diária dos Preços de Ações<a class="headerlink" href="#analise-de-variacao-diaria-dos-precos-de-acoes" title="Permanent link">&para;</a></h2>
+<p>Em seguida, vamos trabalhar com o arquivo <a href="../10-thrust/files/stocks-google.txt">stocks-google.txt</a>. A ideia é criar um vetor que contenha a diferença diária entre o preço de um dia e o anterior. Se o vetor original se chama <code>stocks</code>, o vetor de saída <code>ganho_diario</code> será calculado de forma que:</p>
 <div class="arithmatex">
-<div class="MathJax_Preview">  \sum_{0}^{\infty} = \frac{(-1)^n}{2n + 1} = \frac{\pi}{4} </div>
-<script type="math/tex; mode=display">  \sum_{0}^{\infty} = \frac{(-1)^n}{2n + 1} = \frac{\pi}{4} </script>
+<div class="MathJax_Preview">
+\text{ganho\_diario}[i] = \text{stocks}[i+1] - \text{stocks}[i]
 </div>
-<p>Essa série converge muito lentamente, o que é bom para nós. </p>
-<h3 id="sua-tarefa">Sua tarefa<a class="headerlink" href="#sua-tarefa" title="Permanent link">&para;</a></h3>
-<p>Implemente a versão serial do cálculo do PI a partir da série infinita de Leibniz. Faça <code>n = 1000000000</code>. </p>
-<p>Após implementar a versão serial e calcular o tempo de sua execução, implemente a versão em <code>openmp</code>. Você deve fazer sua implementação de duas formas:</p>
-<p>a) A primeira implementação você deve trabalhar com <code>2</code> threads e a partir do <code>id</code> da thread, você deve dividir a soma em duas partes, cada thread executando a sua porção.</p>
-<p>b) A segunda implementação você deve trabalhar com <code>for</code> do openmp e tratar como uma <code>redução</code> do valor de PI. Calcule o tempo de execução.  </p>
-<p>O speedup é uma métrica que representa a razão entre o tempo de execução de um programa sequencial e o tempo de execução de sua versão paralela. Por isso, trata-se de uma boa medida para avaliarmos quantitativamente a melhoria trazida pela versão paralela de um programa paralelo em relação à sua versão sequencial. Calcule também o speed up de cada uma das soluções.</p>
-<h2 id="tasks-tarefas-em-openmp">Tasks (tarefas) em OpenMP<a class="headerlink" href="#tasks-tarefas-em-openmp" title="Permanent link">&para;</a></h2>
-<p>Vamos agora criar <em>tarefas</em> que podem ser executadas em paralelo.</p>
-<div class="admonition tip">
-<p class="admonition-title">Definição</p>
-<p>Uma <strong>tarefa</strong> é um bloco de código que é rodado de maneira paralela usando OpenMP. <em>Tarefas</em> são agendadas para cada uma das <em>threads</em> criadas em um região paralela. Não existe uma associação <strong>1-1</strong> entre <em>threads</em> e <em>tarefas</em>. Posso ter mais <em>tarefas</em> que <em>threads</em> e mais <em>threads</em> que <em>tarefas</em>.</p>
+<script type="math/tex; mode=display">
+\text{ganho\_diario}[i] = \text{stocks}[i+1] - \text{stocks}[i]
+</script>
 </div>
-<p>Veja abaixo um exemplo de criação de tarefas.</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#pragma omp parallel</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="cp">#pragma omp task</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Estou rodando na tarefa &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_thread_num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;eu só rodo quanto TODAS tarefas acabarem.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-</code></pre></div>
-<div class="admonition question choice">
-<p class="admonition-title">Question</p>
-<p>O exemplo acima cria quantas tarefas, supondo que <code>OMP_NUM_THREADS=4</code>?</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 1</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 4, uma para cada thread</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Nenhuma das anteriores</li>
-</ul>
-<div class="admonition details">
-<p class="admonition-title">Details</p>
-<p>Como cada thread roda o código da região paralela, cada uma cria exatamente um tarefa.</p>
-</div>
-</div>
-<p>Para controlar a criação de tarefas em geral usamos a diretiva <code>master</code>, que executa somente na thread de índice <code>0</code>. Assim conseguimos criar código legível e que deixa bem claro quantas e quais tarefas são criadas.</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#pragma omp parallel</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="cp">#pragma omp master</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;só roda uma vez na thread:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_thread_num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="w">        </span><span class="cp">#pragma omp task</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Estou rodando na thread:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_thread_num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Somente lendo o código acima, responda as questões abaixo.</p>
-<div class="admonition question choice">
-<p class="admonition-title">Question</p>
-<p>Quantas tarefas são criadas no exemplo acima?</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 1</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> N, uma para cada thread</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Nenhuma das anteriores</li>
-</ul>
-</div>
-<div class="admonition question choice">
-<p class="admonition-title">Question</p>
-<p>A(s) tarefa(s) criada(s) roda(m) em qual thread?</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 0</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 1</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Impossível dizer. Em cada execução rodará em uma thread diferente.</li>
-</ul>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Complete <em>exercicio1.cpp</em> criando duas tarefas. A primeira deverá rodar <code>funcao1</code> e a segunda <code>funcao2</code>. Salve seus resultados nas variáveis indicadas no código.</p>
-</div>
-<div class="admonition question short">
-<p class="admonition-title">Question</p>
-<p>Leia o código e responda. Quanto tempo o código sequencial demora? E o paralelo? Verifique que sua implementação está de acordo com suas expectativas.</p>
-<div class="admonition details">
-<p class="admonition-title">Details</p>
-<p>Sequencial demora a soma dos tempos das duas funções. Paralelo demora o tempo da maior delas.</p>
-</div>
-</div>
+<p>Lembre-se que o tamanho de <code>ganho_diario</code> será um elemento a menos que <code>stocks</code>. Utilize a operação <a href="https://docs.nvidia.com/cuda/archive/10.1/pdf/Thrust_Quick_Start_Guide.pdf">thrust::transform</a> para calcular essas diferenças, prestando atenção nas condições de tamanho dos vetores.</p>
+<h2 id="contagem-de-dias-com-aumento-no-preco-das-acoes">Contagem de Dias com Aumento no Preço das Ações<a class="headerlink" href="#contagem-de-dias-com-aumento-no-preco-das-acoes" title="Permanent link">&para;</a></h2>
+<p>Após calcular as diferenças diárias, vamos descobrir quantas vezes o preço das ações subiu. Para isso, utilize a função <a href="https://nvidia.github.io/cccl/thrust/api/function_group__counting_1gae2f8874093d33f3f0f49b51d8b26438c.html">thrust::count_if</a> com uma função customizada para contar apenas os elementos positivos de <code>ganho_diario</code>. </p>
+<h2 id="calculo-do-aumento-medio-nos-dias-em-que-o-preco-subiu">Cálculo do Aumento Médio nos Dias em que o Preço Subiu<a class="headerlink" href="#calculo-do-aumento-medio-nos-dias-em-que-o-preco-subiu" title="Permanent link">&para;</a></h2>
+<p>Com a contagem em mãos, vamos calcular o aumento médio, mas apenas nos dias em que o preço subiu. Primeiro, você deve substituir todos os valores negativos de <code>ganho_diario</code> por zero, usando a função <a href="https://nvidia.github.io/cccl/thrust/api/function_group__replacing_1ga1e1d314818b9b40f1275b5f55c63c051.html">thrust::replace_if</a>. Depois, calcule a soma desses valores para obter o total dos aumentos, e divida pelo número de aumentos, obtido anteriormente com <code>count_if</code>. Isso permitirá calcular a média apenas dos valores positivos, filtrando os dias em que o preço das ações realmente aumentou.</p>
+<h2 id="discussao-de-resultados">Discussão de Resultados<a class="headerlink" href="#discussao-de-resultados" title="Permanent link">&para;</a></h2>
+<p>Ao longo desses exercícios, queremos que você reflita sobre a eficiência de usar a GPU para esses cálculos. Observe o tempo de execução e o uso de memória, e considere como iteradores dinâmicos e funções de transformação ajudam a otimizar o processamento. </p>
+<p><strong>A atividade deve ser entregue via BlackBoard até as 23h59 de 20/09</strong> </p>
 
 
 
