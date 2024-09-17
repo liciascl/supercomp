@@ -32,4 +32,7 @@ e compreender como pedir recursos ao SLURM.
 - Entender como utilizar diferentes heurísticas para resolver o problema da mochila. 
 
 **[aula 10: Thrust para programação paralela em GPU](../aulas/10-thrust/index.md)**
-- Introdução a Thrust. 
+- Introdução a Thrust.
+
+**[aula 11: Iteradores e funções customizadas](../aulas/11-iteradores/index.md)** 
+

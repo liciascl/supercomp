@@ -1,103 +1,37 @@
-# 10 - Introdução a paralelismo
+# Aula 11: Iteradores e funções customizadas 
 
-OpenMP é uma tecnologia de computação multi-core usada para paralelizar programas. Sua principal vantagem é oferecer uma transição suave entre código sequencial e código paralelo.
+Já vimos que, para valer a pena usar a GPU, precisamos tratar grandes volumes de dados ou realizar cálculos complexos. Hoje, nosso foco será calcular a variância e analisar as variações diárias de ações de maneira otimizada, usando iteradores dinâmicos e funções customizadas.
 
-Fizemos em sala de aula uma série de programas básicos no OpenMP e agora é a hora de praticar.
+## Cálculo da Variância usando Iteradores Dinâmicos
 
-## Cálculo do PI por meio de uma série infinita de Leibniz
+Vamos calcular a variância das diferenças entre os preços de ações. A fórmula da variância é dada por:
 
-Você sabia que é possível calcular o valor do PI por meio de uma série infinita de Leibniz? Veja abaixo:
+\[
+\text{Variância} = \frac{1}{n} \sum_{i=0}^{n} (x_i - \mu)^2
+\]
 
-$$ 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \dots  = \frac{\pi}{4} $$
+onde \( \mu \) é a média. Sugerimos que você consulte a documentação de [thrust::constant_iterator](https://docs.nvidia.com/cuda/archive/10.1/pdf/Thrust_Quick_Start_Guide.pdf) e utilize este iterador para gerar dinamicamente o vetor de médias durante o cálculo, evitando assim o uso excessivo de memória. Isso permite calcular a variância sem precisar alocar espaço adicional na GPU.
 
+## Análise de Variação Diária dos Preços de Ações
 
-$$  \sum_{0}^{\infty} = \frac{(-1)^n}{2n + 1} = \frac{\pi}{4} $$
+Em seguida, vamos trabalhar com o arquivo [stocks-google.txt](../10-thrust/files/stocks-google.txt). A ideia é criar um vetor que contenha a diferença diária entre o preço de um dia e o anterior. Se o vetor original se chama `stocks`, o vetor de saída `ganho_diario` será calculado de forma que:
 
-Essa série converge muito lentamente, o que é bom para nós. 
+\[
+\text{ganho\_diario}[i] = \text{stocks}[i+1] - \text{stocks}[i]
+\]
 
-### Sua tarefa
+Lembre-se que o tamanho de `ganho_diario` será um elemento a menos que `stocks`. Utilize a operação [thrust::transform](https://docs.nvidia.com/cuda/archive/10.1/pdf/Thrust_Quick_Start_Guide.pdf) para calcular essas diferenças, prestando atenção nas condições de tamanho dos vetores.
 
-Implemente a versão serial do cálculo do PI a partir da série infinita de Leibniz. Faça `n = 1000000000`. 
+## Contagem de Dias com Aumento no Preço das Ações
 
+Após calcular as diferenças diárias, vamos descobrir quantas vezes o preço das ações subiu. Para isso, utilize a função [thrust::count_if](https://nvidia.github.io/cccl/thrust/api/function_group__counting_1gae2f8874093d33f3f0f49b51d8b26438c.html) com uma função customizada para contar apenas os elementos positivos de `ganho_diario`. 
 
-Após implementar a versão serial e calcular o tempo de sua execução, implemente a versão em `openmp`. Você deve fazer sua implementação de duas formas:
+## Cálculo do Aumento Médio nos Dias em que o Preço Subiu
 
-a) A primeira implementação você deve trabalhar com `2` threads e a partir do `id` da thread, você deve dividir a soma em duas partes, cada thread executando a sua porção.
+Com a contagem em mãos, vamos calcular o aumento médio, mas apenas nos dias em que o preço subiu. Primeiro, você deve substituir todos os valores negativos de `ganho_diario` por zero, usando a função [thrust::replace_if](https://nvidia.github.io/cccl/thrust/api/function_group__replacing_1ga1e1d314818b9b40f1275b5f55c63c051.html). Depois, calcule a soma desses valores para obter o total dos aumentos, e divida pelo número de aumentos, obtido anteriormente com `count_if`. Isso permitirá calcular a média apenas dos valores positivos, filtrando os dias em que o preço das ações realmente aumentou.
 
-b) A segunda implementação você deve trabalhar com `for` do openmp e tratar como uma `redução` do valor de PI. Calcule o tempo de execução.  
+## Discussão de Resultados
 
+Ao longo desses exercícios, queremos que você reflita sobre a eficiência de usar a GPU para esses cálculos. Observe o tempo de execução e o uso de memória, e considere como iteradores dinâmicos e funções de transformação ajudam a otimizar o processamento. 
 
-O speedup é uma métrica que representa a razão entre o tempo de execução de um programa sequencial e o tempo de execução de sua versão paralela. Por isso, trata-se de uma boa medida para avaliarmos quantitativamente a melhoria trazida pela versão paralela de um programa paralelo em relação à sua versão sequencial. Calcule também o speed up de cada uma das soluções.
-
-## Tasks (tarefas) em OpenMP
-
-Vamos agora criar *tarefas* que podem ser executadas em paralelo.
-
-!!! tip "Definição"
-    Uma **tarefa** é um bloco de código que é rodado de maneira paralela usando OpenMP. *Tarefas* são agendadas para cada uma das *threads* criadas em um região paralela. Não existe uma associação **1-1** entre *threads* e *tarefas*. Posso ter mais *tarefas* que *threads* e mais *threads* que *tarefas*.
-
-Veja abaixo um exemplo de criação de tarefas.
-
-```cpp
-#pragma omp parallel
-{
-    #pragma omp task
-    {
-        std::cout << "Estou rodando na tarefa " << omp_get_thread_num() << "\n";
-    }
-}
-std::cout << "eu só rodo quanto TODAS tarefas acabarem.\n";
-```
-
-!!! question choice
-    O exemplo acima cria quantas tarefas, supondo que `OMP_NUM_THREADS=4`?
-
-    - [ ] 1
-    - [x] 4, uma para cada thread
-    - [ ] Nenhuma das anteriores
-
-
-    !!! details
-        Como cada thread roda o código da região paralela, cada uma cria exatamente um tarefa.
-
-
-Para controlar a criação de tarefas em geral usamos a diretiva `master`, que executa somente na thread de índice `0`. Assim conseguimos criar código legível e que deixa bem claro quantas e quais tarefas são criadas.
-
-```cpp
-#pragma omp parallel
-{
-    #pragma omp master
-    {
-        std::cout << "só roda uma vez na thread:" << omp_get_thread_num() << "\n";
-        #pragma omp task
-        {
-            std::cout << "Estou rodando na thread:" << omp_get_thread_num() << "\n";
-        }
-    }
-}
-```
-
-Somente lendo o código acima, responda as questões abaixo.
-
-!!! question choice
-    Quantas tarefas são criadas no exemplo acima?
-
-    - [x] 1
-    - [ ] N, uma para cada thread
-    - [ ] Nenhuma das anteriores
-
-!!! question choice
-    A(s) tarefa(s) criada(s) roda(m) em qual thread?
-
-    - [ ] 0
-    - [ ] 1
-    - [x] Impossível dizer. Em cada execução rodará em uma thread diferente.
-
-!!! example
-    Complete *exercicio1.cpp* criando duas tarefas. A primeira deverá rodar `funcao1` e a segunda `funcao2`. Salve seus resultados nas variáveis indicadas no código.
-
-!!! question short
-    Leia o código e responda. Quanto tempo o código sequencial demora? E o paralelo? Verifique que sua implementação está de acordo com suas expectativas.
-
-    !!! details
-        Sequencial demora a soma dos tempos das duas funções. Paralelo demora o tempo da maior delas.
+**A atividade deve ser entregue via BlackBoard até as 23h59 de 20/09** 
