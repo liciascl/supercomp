@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/09-heuristica/">
+        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/12-funcoes-customizadas/">
       
       
-        <link rel="prev" href="../08-busca-local/">
+        <link rel="prev" href="../11-iteradores/">
       
       
-        <link rel="next" href="../10-thrust/">
+        <link rel="next" href="../../projetos/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Aula 09: Problema da Mochila com Heurísticas - SuperComputação - 2024/2</title>
+        <title>Aula 12: Funções customizadas e Otimização com Fusion Kernel - SuperComputação - 2024/2</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aula-09-heuristicas" class="md-skip">
+        <a href="#aula-12-funcoes-customizadas-e-otimizacao-com-fusion-kernel" class="md-skip">
           Skip to content
         </a>
       
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Aula 09: Problema da Mochila com Heurísticas
+              Aula 12: Funções customizadas e Otimização com Fusion Kernel
             
           </span>
         </div>
@@ -501,30 +501,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Aula 09: Problema da Mochila com Heurísticas
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../09-heuristica/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -533,53 +513,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#mais-caro-primeiro" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mais caro primeiro
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mais-leve-primeiro" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mais leve primeiro
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#analisando-nossas-heuristicas" class="md-nav__link">
-    <span class="md-ellipsis">
-      Analisando nossas heurísticas
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -631,10 +564,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../12-funcoes-customizadas/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Aula 12: Funções customizadas e Otimização com Fusion Kernel
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -643,6 +596,107 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introducao-a-operacoes-customizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introdução a Operações Customizadas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introdução a Operações Customizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-pratico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício Prático:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transformacoes-unarias-e-binarias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformações Unárias e Binárias
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculando-a-magnitude-de-um-vetor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculando a Magnitude de um Vetor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Calculando a Magnitude de um Vetor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-pratico_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício Prático:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#otimizacao-com-fusion-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Otimização com Fusion Kernel
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Otimização com Fusion Kernel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-pratico_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício Prático:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1144,29 +1198,83 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mais-caro-primeiro" class="md-nav__link">
+  <a href="#introducao-a-operacoes-customizadas" class="md-nav__link">
     <span class="md-ellipsis">
-      Mais caro primeiro
+      Introdução a Operações Customizadas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introdução a Operações Customizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-pratico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício Prático:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transformacoes-unarias-e-binarias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformações Unárias e Binárias
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mais-leve-primeiro" class="md-nav__link">
+  <a href="#calculando-a-magnitude-de-um-vetor" class="md-nav__link">
     <span class="md-ellipsis">
-      Mais leve primeiro
+      Calculando a Magnitude de um Vetor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Calculando a Magnitude de um Vetor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-pratico_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício Prático:
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#analisando-nossas-heuristicas" class="md-nav__link">
+  <a href="#otimizacao-com-fusion-kernel" class="md-nav__link">
     <span class="md-ellipsis">
-      Analisando nossas heurísticas
+      Otimização com Fusion Kernel
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Otimização com Fusion Kernel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-pratico_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício Prático:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1188,71 +1296,117 @@
   
 
 
-<h1 id="aula-09-heuristicas">Aula 09 - Heurísticas<a class="headerlink" href="#aula-09-heuristicas" title="Permanent link">&para;</a></h1>
-<h2 id="mais-caro-primeiro">Mais caro primeiro<a class="headerlink" href="#mais-caro-primeiro" title="Permanent link">&para;</a></h2>
-<p>A ideia desta heurística é não deixar nenhum objeto valioso para trás! Por isso vamos ser ganaciosos e pegar <strong>primeiro os objetos mais caros</strong>! Se um objeto valioso não couber passamos para os mais baratos e prosseguimos até examinar todos objetos.</p>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Qual é a complexidade computacional deste algoritmo? Ele é a melhor implementação possível?</p>
-<details class="details">
-<summary>Resposta</summary>
-<p>Se o algoritmo descrito em sua resposta anterior envolver ordenação, então ele tem complexidade <span class="arithmatex"><span class="MathJax_Preview">\mathcal{O}(n\log n)</span><script type="math/tex">\mathcal{O}(n\log n)</script></span> e é o melhor possível sim (você consegue explicar por que?). Se você fez um loop duplo que procura pelo maior a cada iteração então seu algoritmo é <span class="arithmatex"><span class="MathJax_Preview">\mathcal{O}(n^2)</span><script type="math/tex">\mathcal{O}(n^2)</script></span>.</p>
-</details>
+<h1 id="aula-12-funcoes-customizadas-e-otimizacao-com-fusion-kernel">Aula 12: Funções Customizadas e Otimização com Fusion Kernel<a class="headerlink" href="#aula-12-funcoes-customizadas-e-otimizacao-com-fusion-kernel" title="Permanent link">&para;</a></h1>
+<p>Nesta aula, vamos criar <strong>operações customizadas</strong> usando <strong>functors</strong>, entender como combinar transformações e reduções, e explorar a <strong>otimização com fusion kernel</strong>, uma técnica que melhora o desempenho ao combinar várias operações em uma única execução na GPU.</p>
+<h3 id="introducao-a-operacoes-customizadas">Introdução a Operações Customizadas<a class="headerlink" href="#introducao-a-operacoes-customizadas" title="Permanent link">&para;</a></h3>
+<p>A principal vantagem de trabalhar com Thrust é que podemos criar nossas próprias operações customizadas, conhecidas como <strong>functors</strong>. Functors nada mais são do que structs ou classes que sobrecarregam o operador <code>()</code> para aplicar uma função sobre os elementos de um vetor. Vamos começar com um exemplo clássico, o cálculo <strong>Saxpy</strong>.</p>
+<p>O Saxpy (Single precision A X Plus Y) calcula a seguinte fórmula para cada elemento dos vetores <code>x</code> e <code>y</code>: </p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+z = a \cdot x + y
 </div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Agora que temos um algoritmo, crie uma implementação do programa acima.</p>
-<p><strong>Dicas</strong>:</p>
-<ul>
-<li>C++ já possui um algoritmo de ordenação implementado no cabeçalho <a href="http://cplusplus.com/reference/algorithm/sort/"><code>&lt;algorithm&gt;</code></a>. Use-o.</li>
-<li>Busque por ordenação indireta para entender como ordenar os três vetores ao mesmo tempo.</li>
-<li>Pode ser conveniente organizar os dados usando <code>struct</code>.</li>
-</ul>
+<script type="math/tex; mode=display">
+z = a \cdot x + y
+</script>
 </div>
-<h2 id="mais-leve-primeiro">Mais leve primeiro<a class="headerlink" href="#mais-leve-primeiro" title="Permanent link">&para;</a></h2>
-<p>Vamos testar uma abordagem oposta: <strong>quantidade agora é o foco</strong>. Por isso vamos ser práticos e pegar <strong>o maior número de objetos possível</strong>! Começaremos agora pelos objetos mais leves e vamos torcer para que a quantidade grande de objetos selecionados resulte em uma mochila com alto valor.</p>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Compare esta heurística com a da seção anterior levando em conta a complexidade computacional.</p>
+<p>onde <code>a</code> é uma constante e <code>x</code> e <code>y</code> são vetores. Podemos implementar o Saxpy como um functor da seguinte maneira:</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">saxpy</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">    </span>
+<span class="w">    </span><span class="n">saxpy</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a_</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">a_</span><span class="p">)</span><span class="w"> </span><span class="p">{};</span><span class="w">  </span><span class="c1">// Construtor que inicializa a constante &#39;a&#39;</span>
+
+<span class="w">    </span><span class="n">__host__</span><span class="w"> </span><span class="n">__device__</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w">  </span><span class="c1">// Operação que será aplicada a cada elemento de x e y</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>Criamos um struct chamado <code>saxpy</code> que recebe a constante <code>a</code> no construtor. Dentro do functor, sobrecarregamos o operador <code>()</code> para aplicar a fórmula <span class="arithmatex"><span class="MathJax_Preview"> a \cdot x + y </span><script type="math/tex"> a \cdot x + y </script></span>. A anotação <code>__host__ __device__</code> indica que essa operação pode ser executada tanto na CPU quanto na GPU.</p>
+<p>Uma vez criado o functor, podemos usá-lo em uma função de transformação que processa dois vetores e combina os elementos de forma paralela. Isso é feito com a função <code>thrust::transform</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">thrust</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span><span class="n">d_a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">d_a</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">d_b</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">d_c</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">saxpy</span><span class="p">(</span><span class="n">m</span><span class="p">));</span>
+</code></pre></div>
+<p>Aqui, <code>d_a</code> e <code>d_b</code> são os vetores de entrada, e <code>d_c</code> é o vetor de saída. A operação definida pelo functor <code>saxpy(m)</code> será aplicada a cada par de elementos de <code>d_a</code> e <code>d_b</code>. Esse tipo de operação é chamado de <strong>transformação binária</strong>, pois estamos combinando dois vetores.</p>
+<p>Após a transformação, podemos copiar o vetor <code>d_c</code> de volta para a CPU, e o resultado final de cada operação será armazenado e exibido.</p>
+<h4 id="exercicio-pratico">Exercício Prático:<a class="headerlink" href="#exercicio-pratico" title="Permanent link">&para;</a></h4>
+<p>Implemente o cálculo Saxpy para dois vetores aleatórios, experimente diferentes valores para a constante <code>a</code> e observe os resultados.</p>
+<h3 id="transformacoes-unarias-e-binarias">Transformações Unárias e Binárias<a class="headerlink" href="#transformacoes-unarias-e-binarias" title="Permanent link">&para;</a></h3>
+<p>Nem todas as transformações operam sobre dois vetores. Algumas vezes, queremos realizar uma operação em apenas um vetor, o que chamamos de <strong>transformação unária</strong>. Um exemplo seria elevar cada elemento de um vetor ao quadrado. Para isso, usamos um functor diferente, que aceita apenas um argumento:</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">square</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">__host__</span><span class="w"> </span><span class="n">__device__</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">  </span><span class="c1">// Elevar ao quadrado</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>Com esse functor, podemos aplicar a função <code>thrust::transform</code> para processar cada elemento de um vetor:</p>
+<div class="highlight"><pre><span></span><code><span class="n">thrust</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span><span class="n">d_v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">d_v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">d_v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">square</span><span class="p">());</span>
+</code></pre></div>
+<p>Aqui, <code>d_v</code> é tanto o vetor de entrada quanto de saída. Cada elemento de <code>d_v</code> será elevado ao quadrado.</p>
+<p>Agora que entendemos a ideia de transformar vetores, podemos explorar um problema mais avançado: <strong>calcular a magnitude de um vetor</strong>.</p>
+<h3 id="calculando-a-magnitude-de-um-vetor">Calculando a Magnitude de um Vetor<a class="headerlink" href="#calculando-a-magnitude-de-um-vetor" title="Permanent link">&para;</a></h3>
+<p>A magnitude (ou norma) de um vetor <span class="arithmatex"><span class="MathJax_Preview"> v </span><script type="math/tex"> v </script></span> é uma medida de seu comprimento no espaço. A fórmula para a magnitude é:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\text{magnitude}(v) = \sqrt{\sum{v_i^2}}
 </div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Quais partes do programa da heurística anterior podem ser aproveitadas para implementar a descrita acima?</p>
+<script type="math/tex; mode=display">
+\text{magnitude}(v) = \sqrt{\sum{v_i^2}}
+</script>
 </div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Implemente agora a heurística do mais leve. Chame seu programa de <code>mais_leve</code>, mantendo também o código do anterior.</p>
+<p>Podemos implementar esse cálculo usando dois passos: primeiro, elevamos cada elemento ao quadrado (com uma transformação unária); depois, somamos os resultados (usando uma redução). Em vez de aplicar essas operações separadamente, podemos usar <code>thrust::transform_reduce</code>, que combina a transformação e a redução em uma única operação.</p>
+<p>Um exemplo de como implementar isso:</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">square</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">__host__</span><span class="w"> </span><span class="n">__device__</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">  </span><span class="c1">// Função de elevação ao quadrado</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">float</span><span class="w"> </span><span class="nf">magnitude</span><span class="p">(</span><span class="n">thrust</span><span class="o">::</span><span class="n">device_vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">sum_of_squares</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">thrust</span><span class="o">::</span><span class="n">transform_reduce</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">square</span><span class="p">(),</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="n">thrust</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">());</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_of_squares</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>O <code>thrust::transform_reduce</code> faz duas coisas: aplica o functor <code>square</code> para transformar os elementos e depois usa <code>thrust::plus&lt;float&gt;()</code> para somar os resultados. O valor inicial da soma é <code>0.0f</code>.</p>
+<p>Neste exemplo, calculamos a soma dos quadrados dos elementos do vetor e, em seguida, aplicamos a função <code>std::sqrt()</code> para obter a magnitude.</p>
+<h4 id="exercicio-pratico_1">Exercício Prático:<a class="headerlink" href="#exercicio-pratico_1" title="Permanent link">&para;</a></h4>
+<p>Implemente uma função que calcula a magnitude de um vetor de floats. Compare os resultados com uma implementação em C++ feita na CPU para ver a diferença no tempo de execução.</p>
+<h3 id="otimizacao-com-fusion-kernel">Otimização com Fusion Kernel<a class="headerlink" href="#otimizacao-com-fusion-kernel" title="Permanent link">&para;</a></h3>
+<p>Muitas vezes, quando executamos operações na GPU, estamos gastando mais tempo do que o necessário movendo dados entre a CPU e a GPU, ou entre diferentes partes da GPU. Isso acontece quando realizamos várias operações separadas que poderiam ser combinadas em uma única etapa. A técnica chamada <strong>fusion kernel</strong> resolve esse problema ao combinar múltiplas operações em um único kernel, economizando tempo.</p>
+<p>Em vez de calcular a magnitude de um vetor com duas operações (uma transformação para elevar ao quadrado e outra para somar), podemos fazer isso com uma única chamada de função, combinando tudo com <code>thrust::transform_reduce</code>. A fusão de kernels elimina a necessidade de mover dados entre diferentes operações.</p>
+<p>Para ilustrar o conceito, vamos calcular a variância de um conjunto de dados. A fórmula para a variância é:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\text{Var}(X) = \frac{1}{n} \sum_{i=1}^{n} (x_i - \mu)^2
 </div>
-<h2 id="analisando-nossas-heuristicas">Analisando nossas heurísticas<a class="headerlink" href="#analisando-nossas-heuristicas" title="Permanent link">&para;</a></h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Crie uma entrada em que a heurística do mais valioso seja muito melhor que a do mais leve. Coloque no relatório as saídas de cada programa.</p>
+<script type="math/tex; mode=display">
+\text{Var}(X) = \frac{1}{n} \sum_{i=1}^{n} (x_i - \mu)^2
+</script>
 </div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Crie uma entrada em que a heurística do mais leve seja muito melhor que a do mais valioso. Coloque no relatório as saídas de cada programa.</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Com base nas suas respostas acima, em quais situações a heurística do mais valioso é melhor?</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Com base nas suas respostas acima, em quais situações a heurística do mais leve é melhor?</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Qual a complexidade computacional das abordagens?</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Quando uma é melhor que a outra?</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Alguma consegue obter o melhor valor possível?</p>
-</div>
-<p><strong>Entrega do relatório para 10/09 as 23h59</strong></p>
+<p>onde <span class="arithmatex"><span class="MathJax_Preview"> \mu </span><script type="math/tex"> \mu </script></span> é a média do vetor. Em vez de calcular a média e, em seguida, calcular a variância, podemos usar o fusion kernel para fazer tudo em uma única etapa.</p>
+<p>Um exemplo de como implementar isso:</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">variance_op</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">mean</span><span class="p">;</span>
+<span class="w">    </span><span class="n">variance_op</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">mean_</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">mean_</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">  </span><span class="c1">// Construtor que armazena a média</span>
+
+<span class="w">    </span><span class="n">__host__</span><span class="w"> </span><span class="n">__device__</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mean</span><span class="p">;</span><span class="w">  </span><span class="c1">// Diferença em relação à média</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">diff</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">diff</span><span class="p">;</span><span class="w">  </span><span class="c1">// Elevar ao quadrado a diferença</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">float</span><span class="w"> </span><span class="nf">calculate_variance</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">thrust</span><span class="o">::</span><span class="n">device_vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">d_vec</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">mean</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">thrust</span><span class="o">::</span><span class="n">transform_reduce</span><span class="p">(</span><span class="n">d_vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">d_vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">variance_op</span><span class="p">(</span><span class="n">mean</span><span class="p">),</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="n">thrust</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">d_vec</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Neste código, usamos <code>thrust::transform_reduce</code> para calcular a soma das diferenças ao quadrado em uma única etapa. A operação <code>variance_op</code> subtrai a média de cada elemento e eleva o resultado ao quadrado, e <code>thrust::plus&lt;float&gt;()</code> soma os resultados. Tudo isso ocorre em uma única chamada de kernel, sem necessidade de transferir os dados entre a CPU e a GPU repetidamente.</p>
+<h4 id="exercicio-pratico_2">Exercício Prático:<a class="headerlink" href="#exercicio-pratico_2" title="Permanent link">&para;</a></h4>
+<p>Implemente o cálculo da variância usando a técnica de fusion kernel. Compare o desempenho com a implementação que calcula a média e a variância em etapas separadas. Use diferentes tamanhos de vetor e observe as diferenças de desempenho.</p>
+<p><strong>A atividade deve ser entregue via BlackBoard até as 23h59 de 24/09</strong> </p>
 
 
 
