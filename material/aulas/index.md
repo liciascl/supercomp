@@ -35,4 +35,8 @@ e compreender como pedir recursos ao SLURM.
 - Introdução a Thrust.
 
 **[aula 11: Iteradores e funções customizadas](../aulas/11-iteradores/index.md)** 
+- Introdução a iteradores e funções customizadas.
 
+**[aula 12: Funções Customizadas e Otimização com Fusion Kernel](../aulas/12-funcoes-customizadas/index.md)** 
+- Criar operações customizadas usando functors, entender como combinar transformações e reduções, e explorar a otimização com fusion kernel.
+ 
