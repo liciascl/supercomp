@@ -1,0 +1,1848 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/13-openmp/paralelo/">
+      
+      
+        <link rel="prev" href="../../12-funcoes-customizadas/">
+      
+      
+        <link rel="next" href="../../../projetos/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+    
+    
+      
+        <title>Atividade 13: Trabalhando com Schedulers no OpenMP - SuperComputação - 2024/2</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/printing.css">
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+      <link rel="stylesheet" href="../../../equipe.css">
+    
+      <link rel="stylesheet" href="../../../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../../../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../../../css/pandas-dataframe.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trabalhando-com-schedulers-no-openmp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="SuperComputação - 2024/2" class="md-header__button md-logo" aria-label="SuperComputação - 2024/2" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SuperComputação - 2024/2
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Atividade 13: Trabalhando com Schedulers no OpenMP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/insper/supercomp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SuperComp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="SuperComputação - 2024/2" class="md-nav__button md-logo" aria-label="SuperComputação - 2024/2" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    SuperComputação - 2024/2
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/insper/supercomp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SuperComp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Aulas
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Aulas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entregas e Objetivos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-introducao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 00: Introdução a HPC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-introducao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 01: Introdução ao Cluster Franky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-slurm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 02: Exercicios de SLURM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-cpp/aula-4.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 03 Introdução ao C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-cpp/03-cpp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 04: Exercicios de C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-Profiling/04-Profiling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 05: Profiling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-heuristicas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 06: Problema da Mochila com Busca Exaustiva
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-aleatorizacao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 07: Problema da Mochila com Heurística Aleatória
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-busca-local/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 08: Problema da Mochila com Busca Local e Hill Climb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-heuristica/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 09: Problema da Mochila com Heurísticas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-thrust/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 10: Thrust para programação paralela em GPU
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-iteradores/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 11: Iteradores e funções customizadas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-funcoes-customizadas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 12: Funções customizadas e Otimização com Fusion Kernel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Atividade 13: Trabalhando com Schedulers no OpenMP
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 13: Trabalhando com Schedulers no OpenMP
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#analisando-os-schedulers-no-openmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analisando os Schedulers no OpenMP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paralelizando-codigos-recursivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelizando Códigos Recursivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paralelizando-com-for-parallel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelizando com for parallel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paralelizando-com-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelizando com task
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lidando-com-efeitos-colaterais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lidando com Efeitos Colaterais
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-alocacao-de-memoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pré-Alocação de Memória
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrega-da-atividade-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrega da Atividade 13
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schedules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schedules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculo-do-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculo do PI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-manipulacao-de-efeitos-colaterais-no-vetor" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Manipulação de Efeitos Colaterais no Vetor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-conclusao" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Conclusão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Projeto
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Projeto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../projetos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Projeto da disciplina
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Teoria
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Teoria
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Materiais e Guias para estudo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/contextualizando-hpc/contextualizando-HPC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contextualizando o HPC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/cluster-Franky/cluster-Franky/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cluster Franky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/slurm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SLURM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/comandos-ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transferência de Arquivos entre sua máquina e o Cluster Franky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/introducao/conceitos-basicos-hw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Relembrando conceitos importantes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/conceitos-basicos-C%2B%2B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conceitos básicos de C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/compilar-executar-C%2B%2B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilar/Executar Códigos C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/loops-e-la%C3%A7os/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Loops e Laços
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/funcoes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passagem de Parâmetros
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/uso-de-constantes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Const Correctness em HPC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/memoria-dinamica/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Alocação de Memória Dinâmica
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/sobrecarga-de-funcoes-C%2B%2B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sobrecarga de Funções em C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/classes-e-objetos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Classes e objetos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/manipulacao-vetores/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manipulação de Vetores
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/flags-compilacao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flags de compilação (-O1, -O2, -O3, -Ofast).
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Teoria/profiling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Profiling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#analisando-os-schedulers-no-openmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analisando os Schedulers no OpenMP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paralelizando-codigos-recursivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelizando Códigos Recursivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paralelizando-com-for-parallel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelizando com for parallel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paralelizando-com-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelizando com task
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lidando-com-efeitos-colaterais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lidando com Efeitos Colaterais
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-alocacao-de-memoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pré-Alocação de Memória
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrega-da-atividade-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrega da Atividade 13
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schedules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schedules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculo-do-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculo do PI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-manipulacao-de-efeitos-colaterais-no-vetor" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Manipulação de Efeitos Colaterais no Vetor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-conclusao" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Conclusão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="trabalhando-com-schedulers-no-openmp">Trabalhando com Schedulers no OpenMP<a class="headerlink" href="#trabalhando-com-schedulers-no-openmp" title="Permanent link">&para;</a></h1>
+<p>No OpenMP, schedulers controlam a distribuição de iterações de loops entre threads. A primeira tarefa será entender como diferentes schedulers funcionam.</p>
+<p>Tenha o código abaixo disponível na sua pasta scratch no Cluster Franky</p>
+<p>omp_schedulers.cpp</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">print_iterations</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">description</span><span class="p">,</span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">strings</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">());</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vectors</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">vector</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">vector</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">vector</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">strings</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="k">else</span><span class="w"> </span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span>
+<span class="w">                </span><span class="n">strings</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">strings</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">schedule</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">function</span><span class="p">,</span><span class="w"> </span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">description</span><span class="p">,</span><span class="w"> </span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">vectors</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span>
+<span class="n">function</span><span class="p">(</span><span class="n">vectors</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="n">print_iterations</span><span class="p">(</span><span class="n">description</span><span class="p">,</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">scheduleDefault</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#pragma omp parallel num_threads(4), shared(vectors, n)</span>
+<span class="w">    </span><span class="p">{</span><span class="w">    </span>
+<span class="cp">#pragma omp for </span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vectors</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">scheduleStatic</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#pragma omp parallel num_threads(4), shared(vectors, n)</span>
+<span class="w">    </span><span class="p">{</span><span class="w">    </span>
+<span class="w">        </span><span class="cp">#pragma omp for schedule(static)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vectors</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">scheduleStatic4</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#pragma omp parallel num_threads(4), shared(vectors, n)</span>
+<span class="w">    </span><span class="p">{</span><span class="w">    </span>
+<span class="cp">#pragma omp for schedule(static, 4)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vectors</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">scheduleStatic8</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#pragma omp parallel num_threads(4), shared(vectors, n)</span>
+<span class="w">    </span><span class="p">{</span><span class="w">    </span>
+<span class="cp">#pragma omp for schedule(static, 8)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vectors</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">scheduleDynamic</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#pragma omp parallel num_threads(4), shared(vectors, n)</span>
+<span class="w">    </span><span class="p">{</span><span class="w">    </span>
+<span class="cp">#pragma omp for schedule(dynamic)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vectors</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">scheduleDynamic1</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#pragma omp parallel num_threads(4), shared(vectors, n)</span>
+<span class="w">    </span><span class="p">{</span><span class="w">    </span>
+<span class="cp">#pragma omp for schedule(dynamic, 1)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vectors</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">scheduleDynamic4</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#pragma omp parallel num_threads(4), shared(vectors, n)</span>
+<span class="w">    </span><span class="p">{</span><span class="w">    </span>
+<span class="cp">#pragma omp for schedule(dynamic, 4)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vectors</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">scheduleDynamic8</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#pragma omp parallel num_threads(4), shared(vectors, n)</span>
+<span class="w">    </span><span class="p">{</span><span class="w">    </span>
+<span class="cp">#pragma omp for schedule(dynamic, 8)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vectors</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">scheduleGuided</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#pragma omp parallel num_threads(4), shared(vectors, n)</span>
+<span class="w">    </span><span class="p">{</span><span class="w">    </span>
+<span class="cp">#pragma omp for schedule(guided)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vectors</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">scheduleGuided2</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#pragma omp parallel num_threads(4), shared(vectors, n)</span>
+<span class="w">    </span><span class="p">{</span><span class="w">    </span>
+<span class="cp">#pragma omp for schedule(guided, 2)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vectors</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">scheduleGuided4</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#pragma omp parallel num_threads(4), shared(vectors, n)</span>
+<span class="w">    </span><span class="p">{</span><span class="w">    </span>
+<span class="cp">#pragma omp for schedule(guided, 4)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vectors</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">scheduleGuided8</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#pragma omp parallel num_threads(4), shared(vectors, n)</span>
+<span class="w">    </span><span class="p">{</span><span class="w">    </span>
+<span class="cp">#pragma omp for schedule(guided, 8)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vectors</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">scheduleAuto</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#pragma omp parallel num_threads(4), shared(vectors, n)</span>
+<span class="w">    </span><span class="p">{</span><span class="w">    </span>
+<span class="cp">#pragma omp for schedule(auto)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vectors</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">scheduleRuntime</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vectors</span><span class="p">,</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#pragma omp parallel num_threads(4), shared(vectors, n)</span>
+<span class="w">    </span><span class="p">{</span><span class="w">    </span>
+<span class="cp">#pragma omp for schedule(auto)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">vectors</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">64</span><span class="p">;</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">scheduleDefault</span><span class="p">,</span><span class="w">  </span><span class="s">&quot;default:               &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">scheduleStatic</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;schedule(static):      &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">scheduleStatic4</span><span class="p">,</span><span class="w">  </span><span class="s">&quot;schedule(static, 4):   &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">scheduleStatic8</span><span class="p">,</span><span class="w">  </span><span class="s">&quot;schedule(static, 8):   &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">scheduleDynamic</span><span class="p">,</span><span class="w">  </span><span class="s">&quot;schedule(dynamic):     &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">scheduleDynamic1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;schedule(dynamic, 1):  &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">scheduleDynamic4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;schedule(dynamic, 4):  &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">scheduleDynamic8</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;schedule(dynamic, 8):  &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">scheduleGuided</span><span class="p">,</span><span class="w">   </span><span class="s">&quot;schedule(guided):      &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">scheduleGuided2</span><span class="p">,</span><span class="w">  </span><span class="s">&quot;schedule(guided, 2):   &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">scheduleGuided4</span><span class="p">,</span><span class="w">  </span><span class="s">&quot;schedule(guided, 4):   &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">scheduleGuided8</span><span class="p">,</span><span class="w">  </span><span class="s">&quot;schedule(guided, 8):   &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">scheduleAuto</span><span class="p">,</span><span class="w">     </span><span class="s">&quot;schedule(auto):        &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">scheduleRuntime</span><span class="p">,</span><span class="w">  </span><span class="s">&quot;schedule(runtime):     &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Compile o código no cluster com suporte ao OpenMP:</p>
+<div class="highlight"><pre><span></span><code>g++<span class="w"> </span>-fopenmp<span class="w"> </span>omp_schedulers.cpp<span class="w"> </span>-o<span class="w"> </span>omp_schedulers
+</code></pre></div>
+<p>Crie um arquivo de submissão de job (<code>submit_job.sh</code>) com o seguinte conteúdo:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=omp_scheduler_test</span>
+<span class="c1">#SBATCH --output=output_omp_schedulers.txt</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --cpus-per-task=4</span>
+<span class="c1">#SBATCH --time=00:05:00</span>
+
+./omp_schedulers
+</code></pre></div>
+<p>Submeta o job ao Slurm:</p>
+<div class="highlight"><pre><span></span><code>sbatch<span class="w"> </span>submit_job.sh
+</code></pre></div>
+<p>Verifique os resultados no arquivo <code>output_omp_schedulers.txt</code>. Compare o output obtido com o exemplo fornecido, analisando como cada tipo de <code>scheduler</code> distribui as iterações dos loops.</p>
+<h3 id="analisando-os-schedulers-no-openmp">Analisando os Schedulers no OpenMP<a class="headerlink" href="#analisando-os-schedulers-no-openmp" title="Permanent link">&para;</a></h3>
+<p>Cada scheduler do OpenMP se comporta de maneira diferente, e você deve observar o impacto de cada um:</p>
+<p><strong>static</strong>: As iterações são divididas igualmente entre as threads.</p>
+<p><strong>dynamic</strong>: As threads pegam blocos de iterações conforme terminam o trabalho.</p>
+<p><strong>guided</strong>: Distribui blocos maiores no início e menores no final, equilibrando a carga.</p>
+<p><strong>auto</strong>: Deixa o compilador escolher a melhor estratégia.</p>
+<p><strong>runtime</strong>: Usa a estratégia definida em tempo de execução.</p>
+<h3 id="paralelizando-codigos-recursivos">Paralelizando Códigos Recursivos<a class="headerlink" href="#paralelizando-codigos-recursivos" title="Permanent link">&para;</a></h3>
+<p>Vamos agora focar na paralelização de código recursivo, como o cálculo do Pi.</p>
+<p>Examine o código <code>pi_recursivo.cpp</code> e identifique oportunidades de paralelismo:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">num_steps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1024l</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span>
+
+<span class="cp">#define MIN_BLK  1024*1024*256</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">pi_r</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">Nstart</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">Nfinish</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">step</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="n">iblk</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Nfinish</span><span class="o">-</span><span class="n">Nstart</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MIN_BLK</span><span class="p">){</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Nstart</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Nfinish</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="n">step</span><span class="p">;</span>
+<span class="w">            </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">4.0</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">iblk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Nfinish</span><span class="o">-</span><span class="n">Nstart</span><span class="p">;</span>
+<span class="w">        </span><span class="n">pi_r</span><span class="p">(</span><span class="n">Nstart</span><span class="p">,</span><span class="w">         </span><span class="n">Nfinish</span><span class="o">-</span><span class="n">iblk</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">step</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pi_r</span><span class="p">(</span><span class="n">Nfinish</span><span class="o">-</span><span class="n">iblk</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">Nfinish</span><span class="p">,</span><span class="w">       </span><span class="n">step</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">step</span><span class="p">,</span><span class="w"> </span><span class="n">pi</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">init_time</span><span class="p">,</span><span class="w"> </span><span class="n">final_time</span><span class="p">;</span>
+<span class="w">    </span><span class="n">step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">num_steps</span><span class="p">;</span>
+<span class="w">    </span><span class="n">init_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">omp_get_wtime</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pi_r</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">num_steps</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+<span class="w">    </span><span class="n">final_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">omp_get_wtime</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">init_time</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;for &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">num_steps</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; steps pi = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">pi</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; in &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">final_time</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; secs</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Perguntas Importantes</strong>:
+   1. Existem dependências que dificultam a paralelização?</p>
+<ol>
+<li>
+<p>Quantas chamadas recursivas são feitas?</p>
+</li>
+<li>
+<p>Onde é possível inserir paralelismo no código?</p>
+</li>
+</ol>
+<h3 id="paralelizando-com-for-parallel">Paralelizando com <code>for parallel</code><a class="headerlink" href="#paralelizando-com-for-parallel" title="Permanent link">&para;</a></h3>
+<p>Analise onde o loop pode ser paralelizado e adicione a diretiva <code>#pragma omp parallel for</code>. Meça o tempo de execução com diferentes valores de <code>MIN_BLK</code> e veja o impacto no desempenho.</p>
+<p><strong>Dica</strong>: O valor de <code>MIN_BLK</code> pode influenciar significativamente o desempenho, já que um valor muito baixo aumenta a sobrecarga de criação de tarefas, enquanto um valor muito alto reduz o paralelismo.</p>
+<h3 id="paralelizando-com-task">Paralelizando com <code>task</code><a class="headerlink" href="#paralelizando-com-task" title="Permanent link">&para;</a></h3>
+<p>Adicione a diretiva <code>#pragma omp task</code> para paralelizar as chamadas recursivas no código. Utilize <code>#pragma omp taskwait</code> para garantir que todas as tarefas sejam concluídas antes de seguir em frente.</p>
+<p><strong>Experimente diferentes números de tarefas</strong> e compare os ganhos de desempenho com a versão paralela utilizando <code>for</code>.</p>
+<h3 id="lidando-com-efeitos-colaterais">Lidando com Efeitos Colaterais<a class="headerlink" href="#lidando-com-efeitos-colaterais" title="Permanent link">&para;</a></h3>
+<p>Programas paralelos podem ter efeitos colaterais, como no caso de modificações em estruturas compartilhadas entre threads (por exemplo, o vetor <code>vec</code> no código <code>vetor_insert.cpp</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">conta_complexa</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span><span class="w"> </span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">conta_complexa</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Para evitar conflitos, podemos usar regiões críticas:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#pragma omp critical</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">conta_complexa</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Mas cuidado! Incluir código demais dentro de uma seção crítica pode anular os ganhos de paralelismo. Procure isolar apenas a parte que realmente necessita de exclusividade.</p>
+<h3 id="pre-alocacao-de-memoria">Pré-Alocação de Memória<a class="headerlink" href="#pre-alocacao-de-memoria" title="Permanent link">&para;</a></h3>
+<p>Uma estratégia mais eficiente é alocar memória previamente, evitando o uso de <code>push_back</code> em regiões críticas. Isso pode ser feito da seguinte maneira:</p>
+<div class="highlight"><pre><span></span><code><span class="n">vec</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+<span class="cp">#pragma omp parallel for</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">vec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conta_complexa</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Com isso, você elimina a necessidade de sincronização entre threads, melhorando o desempenho.</p>
+<h3 id="entrega-da-atividade-13">Entrega da Atividade 13<a class="headerlink" href="#entrega-da-atividade-13" title="Permanent link">&para;</a></h3>
+<h3 id="schedules">Schedules<a class="headerlink" href="#schedules" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Execute o código com diferentes schedulers (static, dynamic, guided, auto) e registre o tempo necessário para cada execução, faça ao menos 3 execuções para cada teste.</p>
+</li>
+<li>
+<p>Compare os tempos médios de execução para cada scheduler.</p>
+</li>
+</ol>
+<p><strong>Perguntas de Análise</strong>:</p>
+<ul>
+<li>
+<p>Qual scheduler apresentou o menor tempo médio?</p>
+</li>
+<li>
+<p>Algum scheduler teve variações significativas entre as execuções? Se sim, por quê?</p>
+</li>
+<li>
+<p>Alguma característica específica do trabalho (como carga de dados, balanceamento) parece ter influenciado o comportamento de um scheduler em particular?</p>
+</li>
+</ul>
+<h3 id="calculo-do-pi">Calculo do PI<a class="headerlink" href="#calculo-do-pi" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Paralelize o cálculo recursivo de Pi usando <code>parallel for</code> e meça o tempo de execução. Execute o código pelo menos 3 vezes com diferentes valores de <code>MIN_BLK</code> e registre os tempos.</p>
+</li>
+<li>
+<p>Paralelize o cálculo recursivo de Pi usando <code>#pragma omp task</code> e meça o tempo de execução. Execute o código pelo menos 3 vezes com diferentes números de tarefas e registre os tempos.</p>
+</li>
+</ol>
+<p><strong>Perguntas de Análise</strong>:</p>
+<ul>
+<li>
+<p>Qual abordagem (<code>parallel for</code> ou <code>tasks</code>) apresentou melhor desempenho? </p>
+</li>
+<li>
+<p>O valor de <code>MIN_BLK</code> ou o número de tarefas influenciou significativamente o tempo de execução?</p>
+</li>
+<li>
+<p>Alguma abordagem teve variação maior entre execuções? Por quê?</p>
+</li>
+</ul>
+<h3 id="3-manipulacao-de-efeitos-colaterais-no-vetor">3. Manipulação de Efeitos Colaterais no Vetor<a class="headerlink" href="#3-manipulacao-de-efeitos-colaterais-no-vetor" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Paralelize o código que modifica um vetor com <code>#pragma omp critical</code> para evitar acessos simultâneos ao vetor e registre os tempos de execução. Execute o código pelo menos 3 vezes e registre os tempos.</p>
+</li>
+<li>
+<p>Modifique o código para pré-alocar a memória do vetor, evitando o uso de <code>push_back</code>, e meça o tempo. Execute o código pelo menos 3 vezes e registre os tempos.</p>
+</li>
+</ol>
+<p><strong>Perguntas de Análise</strong>:</p>
+<ul>
+<li>
+<p>Qual abordagem teve melhor desempenho: <code>omp critical</code> ou pré-alocação de memória?</p>
+</li>
+<li>
+<p>O uso de <code>omp critical</code> adicionou muito overhead? Como você pode justificar isso?</p>
+</li>
+<li>
+<p>A ordem dos dados no vetor foi mantida em ambas as abordagens?</p>
+</li>
+</ul>
+<h3 id="4-conclusao">4. Conclusão<a class="headerlink" href="#4-conclusao" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Resuma as principais conclusões com base nos resultados obtidos nos testes.</p>
+</li>
+<li>
+<p>Qual abordagem geral você considera mais eficiente para problemas recursivos e com efeitos colaterais?</p>
+</li>
+<li>
+<p>Alguma técnica apresentou resultados inesperados? O que poderia explicar isso?</p>
+</li>
+</ul>
+<p>Submeta no BlackBoard o link do GitHub contendo os códigos e o relatório com suas análises até as 23h59 de 14/10</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.0.0/js-yaml.min.js"></script>
+      
+        <script src="../../../js/markdown-enhancer.js"></script>
+      
+        <script src="../../../js/slides.js"></script>
+      
+    
+  </body>
+</html>
