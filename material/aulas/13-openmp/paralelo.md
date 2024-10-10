@@ -328,7 +328,8 @@ int main () {
 }
 ```
 
-**Perguntas Importantes**:
+**Para refletir**:
+
    1. Existem dependências que dificultam a paralelização?
 
    2. Quantas chamadas recursivas são feitas?
