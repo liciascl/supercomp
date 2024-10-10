@@ -34,19 +34,21 @@ nav:
 
     - Aulas:
         - "aulas/index.md"
-        - "aulas/00-introducao/index.md"    
-        - "aulas/01-introducao/index.md"
-        - "aulas/02-slurm/index.md"
-        - "Aula 03 Introdução ao C++": aulas/03-cpp/aula-4.pdf
-        - "aulas/03-cpp/03-cpp.md"
-        - "aulas/04-Profiling/04-Profiling.md"
-        - "Aula 06: Problema da Mochila com Busca Exaustiva": aulas/06-heuristicas/index.md
-        - "Aula 07: Problema da Mochila com Heurística Aleatória": aulas/07-aleatorizacao/index.md               
-        - "Aula 08: Problema da Mochila com Busca Local e Hill Climb": aulas/08-busca-local/index.md
-        - "Aula 09: Problema da Mochila com Heurísticas": aulas/09-heuristica/index.md 
-        - "Aula 10: Thrust para programação paralela em GPU": aulas/10-thrust/index.md
-        - "Aula 11: Iteradores e funções customizadas": aulas/11-iteradores/index.md                               
-        - "Aula 12: Funções customizadas e Otimização com Fusion Kernel": aulas/12-funcoes-customizadas/index.md               
+        - "Atividade 00: Introdução a HPC": aulas/00-introducao/index.md    
+        - "Atividade 01: Introdução ao Cluster Franky": aulas/01-introducao/index.md
+        - "Atividade 02: Exercicios de SLURM": aulas/02-slurm/index.md
+        - "Atividade 03 Introdução ao C++": aulas/03-cpp/aula-4.pdf
+        - "Atividade 04: Exercicios de C++": aulas/03-cpp/03-cpp.md
+        - "Atividade 05: Profiling": aulas/04-Profiling/04-Profiling.md
+        - "Atividade 06: Problema da Mochila com Busca Exaustiva": aulas/06-heuristicas/index.md
+        - "Atividade 07: Problema da Mochila com Heurística Aleatória": aulas/07-aleatorizacao/index.md               
+        - "Atividade 08: Problema da Mochila com Busca Local e Hill Climb": aulas/08-busca-local/index.md
+        - "Atividade 09: Problema da Mochila com Heurísticas": aulas/09-heuristica/index.md 
+        - "Atividade 10: Thrust para programação paralela em GPU": aulas/10-thrust/index.md
+        - "Atividade 11: Iteradores e funções customizadas": aulas/11-iteradores/index.md                               
+        - "Atividade 12: Funções customizadas e Otimização com Fusion Kernel": aulas/12-funcoes-customizadas/index.md               
+        - "Atividade 13: Trabalhando com Schedulers no OpenMP": aulas/13-openmp/paralelo.md 
+
 
 #        - "02 e 03 - C++": aulas/02-03-implementacao-c++/index.md
 #        - "04 - Profiling": aulas/04-profiling/index.md
