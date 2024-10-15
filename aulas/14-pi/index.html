@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/14-intro-gpu/">
+        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/14-pi/">
       
       
+        <link rel="prev" href="../13-openmp/paralelo/">
+      
+      
+        <link rel="next" href="../../projetos/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>17 - Introdução a GPU - SuperComputação - 2024/2</title>
+        <title>Atividade 14: Pi pelo método de Monte Carlo - SuperComputação - 2024/2</title>
       
     
     
@@ -80,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#17-introducao-a-gpu" class="md-skip">
+        <a href="#atividade-14-pi-pelo-metodo-de-monte-carlo" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              17 - Introdução a GPU
+              Atividade 14: Pi pelo método de Monte Carlo
             
           </span>
         </div>
@@ -250,17 +254,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -274,7 +280,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Aulas
@@ -591,6 +597,103 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Atividade 14: Pi pelo método de Monte Carlo
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 14: Pi pelo método de Monte Carlo
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parte-1-implementacao-sequencial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 1: Implementação Sequencial
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-2-primeira-tentativa-de-paralelizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 2: Primeira Tentativa de Paralelização
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-3-melhorando-a-paralelizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 3: Melhorando a Paralelização
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusao-e-comparacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusão e Comparação
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1092,45 +1195,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#compilacao-para-gpu" class="md-nav__link">
+  <a href="#parte-1-implementacao-sequencial" class="md-nav__link">
     <span class="md-ellipsis">
-      Compilação para GPU
+      Parte 1: Implementação Sequencial
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#compilacao-para-cpu" class="md-nav__link">
+  <a href="#parte-2-primeira-tentativa-de-paralelizacao" class="md-nav__link">
     <span class="md-ellipsis">
-      Compilação para CPU
+      Parte 2: Primeira Tentativa de Paralelização
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#transferencia-de-dados" class="md-nav__link">
+  <a href="#parte-3-melhorando-a-paralelizacao" class="md-nav__link">
     <span class="md-ellipsis">
-      Transferência de dados
+      Parte 3: Melhorando a Paralelização
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#operacoes-de-reducao" class="md-nav__link">
+  <a href="#conclusao-e-comparacao" class="md-nav__link">
     <span class="md-ellipsis">
-      Operações de redução
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#transformacoes-ponto-a-ponto" class="md-nav__link">
-    <span class="md-ellipsis">
-      Transformações ponto a ponto
+      Conclusão e Comparação
     </span>
   </a>
   
@@ -1154,145 +1248,67 @@
   
 
 
-<h1 id="17-introducao-a-gpu">17 - Introdução a GPU<a class="headerlink" href="#17-introducao-a-gpu" title="Permanent link">&para;</a></h1>
-<p>Como visto em aula, programação para GPU requer ferramentas especializadas capazes de gerar código que rode parte na CPU (chamada de <em>host</em>) e parte na GPU (chamada de <em>target</em>). Nesta parte introdutória usaremos a biblioteca <code>cuda::thrust</code>. Ela possui um pequeno conjunto de operações otimizadas para GPU e que podem ser customizadas para diversos propósitos.</p>
-<div class="admonition note">
-<p class="admonition-title">Documentação oficial</p>
-<p>A documentação oficial da Thrust está disponível no endereço <a href="https://thrust.github.io/doc/modules.html">https://thrust.github.io/doc/modules.html</a>.</p>
+<h1 id="atividade-14-pi-pelo-metodo-de-monte-carlo">Atividade 14 - Pi pelo método de Monte Carlo<a class="headerlink" href="#atividade-14-pi-pelo-metodo-de-monte-carlo" title="Permanent link">&para;</a></h1>
+<p>Na aula de hoje iremos trabalhar com um algoritmo de sorteios aleatórios para calcular o pi. Ele é baseado em uma técnica de Otimização, Simulação e Estimação Paramétrica chamada <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo</a>. Um bom vídeo para compreender essa técnica, <a href="https://www.youtube.com/watch?v=7ESK5SaP-bc">está disponível aqui</a>.</p>
+<p><img alt="pi" src="Pi_30K.gif" /></p>
+<p>O método consiste em sorteios aleatórios de pontos em um quadrado, que a proporção de pontos que caem dentro de um círculo inscrito nesse quadrado é usada para aproximar o valor de pi. </p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\pi \approx 4 \times \frac{\text{número de pontos dentro do círculo}}{\text{número total de pontos}}
 </div>
-<p>Também vamos focar em usar máquinas pré-configuradas.</p>
-<h2 id="compilacao-para-gpu">Compilação para GPU<a class="headerlink" href="#compilacao-para-gpu" title="Permanent link">&para;</a></h2>
-<p>Para compilar programas para rodar na GPU devemos usar o compilador <code>nvcc</code>. Ele identifica quais porções do código deverão ser compiladas para a GPU. O restante do código, que roda exclusivamente na CPU, é passado diretamente para um compilador <em>C++</em> regular e um único executável é gerado contendo o código para CPU e chamadas inseridas pelo <code>nvcc</code> para invocar as funções que rodam na GPU.</p>
-<p>O <code>nvcc</code> e todas as bibliotecas que precisamos estão disponíveis no pacote <code>nvidia-cuda-toolkit</code> pronto para instalação via <em>apt</em>. A versão disponibilizada não é a mais atual, mas tudo funciona de maneira integrada e não é necessário instalar nada manualmente.</p>
-<div class="admonition warning">
-<p class="admonition-title">Se você usar as VMs do Insper então não precisa fazer nada. Todas as ferramentas já estão instaladas lá e a VM já vem pronta para uso.</p>
+<script type="math/tex; mode=display">
+\pi \approx 4 \times \frac{\text{número de pontos dentro do círculo}}{\text{número total de pontos}}
+</script>
 </div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Verifique que sua instalação funciona compilando o arquivo abaixo.</p>
-<blockquote>
-<p>$ nvcc -arch=sm_70 -std=c++14 exemplo1-criacao-iteracao.cu -o exemplo1</p>
-</blockquote>
-</div>
-<p>Se der tudo certo a execução do programa acima deverá gerar um executável <code>exemplo1</code> que roda e produz o seguinte resultado.</p>
-<div class="highlight"><pre><span></span><code>Host vector: 0 0 12 0 35
-Device vector 0 0 0 0 35
-</code></pre></div>
-<h2 id="compilacao-para-cpu">Compilação para CPU<a class="headerlink" href="#compilacao-para-cpu" title="Permanent link">&para;</a></h2>
-<p>Se você ainda não tem uma GPU pode usar o suporte da <code>thrust</code> para OpenMP nas nossas primeiras aulas.</p>
-<div class="admonition danger">
-<p class="admonition-title">Todos os trabalhos serão corrigidos usando GPU usando <code>nvcc</code>. Esta alternativa é importante somente para as primeiras aulas, em que nem todos terão acesso ainda a uma GPU. Usaremos isso somente para facilitar o primeiro contato, mas essa opção não é válida para avaliações.</p>
-</div>
-<ol>
-<li>baixar o código fonte da <code>thrust</code> <a href="https://github.com/NVIDIA/thrust">no github</a>.</li>
-<li>adicionar as seguintes flags no g++<ul>
-<li><code>-DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_OMP</code>: diz que a paralelização de <code>device_vetor</code> será usando OpenMP</li>
-<li><code>-I/home/....</code>: o caminho passado será usado na busca por <code>include</code>s. Coloque o caminho do repositório da <code>thrust</code></li>
-<li><code>-fopenmp</code>: já conhecemos este ;)</li>
-<li><code>-x c++</code>: força a compilação de arquivos <code>.cu</code> como código fonte C++</li>
-</ul>
+<h3 id="parte-1-implementacao-sequencial">Parte 1: Implementação Sequencial<a class="headerlink" href="#parte-1-implementacao-sequencial" title="Permanent link">&para;</a></h3>
+<p>Implemente a <strong>versão sequencial do algoritmo de Monte Carlo</strong>. Escreva um código C++ que gera <span class="arithmatex"><span class="MathJax_Preview">N = 100000</span><script type="math/tex">N = 100000</script></span> pontos aleatórios, calcule quantos caem dentro do círculo, e estime o valor de pi. </p>
+<p>Após implementar, <strong>execute o programa</strong> e anote os resultados. No seu relatório, inclua:</p>
+<ul>
+<li>
+<p>O valor de pi estimado.</p>
 </li>
-</ol>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Verifique que sua instalação funciona compilando o arquivo abaixo.</p>
-<blockquote>
-<p>$ g++ -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_OMP -I/caminho/para/thrust/  -fopenmp -x c++ exemplo1-criacao-iteracao.cu -o exemplo1-cpu</p>
-</blockquote>
-</div>
-<p>Se der tudo certo a execução do programa acima deverá gerar um executável <code>exemplo1-cpu</code> que roda e produz o seguinte resultado.</p>
-<div class="highlight"><pre><span></span><code>Host vector: 0 0 12 0 35
-Device vector 0 0 0 0 35
-</code></pre></div>
-<div class="admonition danger">
-<p class="admonition-title">Nem tudo o que roda usando thrust/OpenMP roda em GPU. Por essa razão, esse recurso será usado somente para testes e nunca para avaliação.</p>
-</div>
-<h2 id="transferencia-de-dados">Transferência de dados<a class="headerlink" href="#transferencia-de-dados" title="Permanent link">&para;</a></h2>
-<p>Como visto na expositiva, a CPU e a GPU possuem espaços de endereçamento completamente distintos. Ou seja, a CPU não consegue acessar os dados na memória da GPU e vice-versa. A <code>thrust</code> disponibiliza somente um tipo de container (<code>vector</code>) e facilita este gerenciamento deixando explícito se ele está alocado na CPU (<code>host</code>) ou na GPU (<code>device</code>).  A cópia CPU<span class="arithmatex"><span class="MathJax_Preview">\leftrightarrow</span><script type="math/tex">\leftrightarrow</script></span> GPU é feita implicitamente quando criamos um <code>device_vector</code> ou quando usamos a operação de atribuição entre <code>host_vector</code> e <code>device_vector</code>. Veja o exemplo abaixo:</p>
-<div class="highlight"><pre><span></span><code><span class="n">thrust</span><span class="o">::</span><span class="n">host_vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec_cpu</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"> </span><span class="c1">// alocado na CPU</span>
+<li>
+<p>O tempo de execução. </p>
+</li>
+</ul>
+<p><strong>Reflexão</strong>: No relatório, reflita sobre a implementação. A sequência de números aleatórios foi gerada corretamente? Houve alguma dificuldade na implementação?</p>
+<h3 id="parte-2-primeira-tentativa-de-paralelizacao">Parte 2: Primeira Tentativa de Paralelização<a class="headerlink" href="#parte-2-primeira-tentativa-de-paralelizacao" title="Permanent link">&para;</a></h3>
+<p>Agora que você tem a versão sequencial, tente <strong>paralelizar o algoritmo</strong>. Use a técnica de <code>for</code> paralelo para distribuir o sorteio de pontos entre várias threads. A paralelização, neste caso, deve focar em garantir que várias threads possam trabalhar simultaneamente no sorteio dos pontos, enquanto a variável <code>sum</code> (número de pontos dentro do círculo) é tratada com uma operação de <strong>redução</strong> para evitar conflitos entre threads.</p>
+<p><strong>Reflexão</strong>: Discuta no relatório por que a geração de números aleatórios pode ser um obstáculo em um ambiente paralelo? Como você resolveu esse problema? A sua solução impactou o desempenho do código?</p>
+<p>Depois de paralelizar o código, rode e compare com a versão sequencial. No seu relatório, inclua:</p>
+<ul>
+<li>
+<p>O valor de pi estimado pela versão paralela.</p>
+</li>
+<li>
+<p>O tempo de execução da versão paralela.</p>
+</li>
+</ul>
+<h3 id="parte-3-melhorando-a-paralelizacao">Parte 3: Melhorando a Paralelização<a class="headerlink" href="#parte-3-melhorando-a-paralelizacao" title="Permanent link">&para;</a></h3>
+<p>Agora, vamos <strong>melhorar a paralelização</strong> abordando o problema da geração de números aleatórios de uma forma mais eficiente. Em vez de usar <code>omp critical</code> para proteger o sorteio de números aleatórios (o que pode ser lento), você pode dar a cada thread o seu próprio gerador de números aleatórios.</p>
+<p>Para isso, baseie o <a href="https://en.cppreference.com/w/cpp/numeric/random"><em>seed</em></a> de cada gerador de números no índice da iteração ou em outra variável única para cada thread. Isso evita que os números sorteados sejam repetidos.</p>
+<p><strong>Reflexão</strong>: No relatório, discuta os efeitos dessa mudança. A geração de números aleatórios foi paralelizada de maneira eficaz? O valor de pi mudou de forma significativa? Houve melhoria no tempo de execução? Registre suas observações.</p>
+<p>Depois de executar essa nova versão do algoritmo, inclua no seu relatório:</p>
+<ul>
+<li>
+<p>O valor de pi estimado com essa melhoria.</p>
+</li>
+<li>
+<p>O tempo de execução da nova versão paralela.</p>
+</li>
+</ul>
+<h3 id="conclusao-e-comparacao">Conclusão e Comparação<a class="headerlink" href="#conclusao-e-comparacao" title="Permanent link">&para;</a></h3>
+<p>No final do seu relatório, inclua uma <strong>tabela comparando</strong> o valor de pi e o tempo de execução de cada versão (sequencial, primeira tentativa paralela, e segunda tentativa paralela). Depois, resposta as perguntas a seguir: </p>
+<div class="codehilite"><pre><span></span><code>1.  Houve uma melhoria significativa no tempo de execução entre a versão sequencial e as versões paralelas?
 
-<span class="n">vec1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
-<span class="n">vec2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">;</span>
+2.  A estimativa de pi permaneceu precisa em todas as versões?
 
-<span class="c1">// aloca vetor na GPU e transfere dados CPU-&gt;GPU</span>
-<span class="n">thrust</span><span class="o">::</span><span class="n">device_vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec_gpu</span><span class="w"> </span><span class="p">(</span><span class="n">vec_cpu</span><span class="p">);</span>
+3.  Quais foram os maiores desafios ao paralelizar o algoritmo, especialmente em relação aos números aleatórios?
 
-<span class="c1">//processa vec_gpu</span>
+4.  O uso de threads trouxe benefícios claros para este problema específico?
+</code></pre></div>
 
-<span class="n">vec_cpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec_gpu</span><span class="p">;</span><span class="w"> </span><span class="c1">// copia dados GPU -&gt; CPU</span>
-</code></pre></div>
-<p>A <code>thrust</code> usa iteradores em todas as suas funções. Pense em um iterador como um ponteiro para os elementos do array. Porém, um iterador é mais esperto: ele guarda também o tipo do vetor original e suporta operações <code>++</code> e <code>*</code> para qualquer tipo de dado iterado de maneira transparente.</p>
-<p>Vetores <code>thrust</code> aceitam os métodos <code>v.begin()</code> para retornar um iterador para o começo do vetor e <code>v.end()</code> para um iterador para o fim (depois do último elemento). Podemos também somar um valor <code>n</code> a um iterador. Isto é equivalente a fazer <code>n</code> vezes a operação <code>++</code>.  Veja abaixo um exemplo de uso das funções <code>fill</code> e <code>sequence</code> para preencher valores em um vetor de maneira eficiente.</p>
-<div class="highlight"><pre><span></span><code><span class="n">thrust</span><span class="o">::</span><span class="n">device_vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// vetor de 5 ints zerado</span>
-<span class="c1">// v = {0, 0, 0, 0, 0}</span>
-<span class="n">thrust</span><span class="o">::</span><span class="n">sequence</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w"> </span><span class="c1">// preenche com 0, 1, 2, ....</span>
-<span class="c1">// v = {0, 1, 2, 3, 4}</span>
-<span class="n">thrust</span><span class="o">::</span><span class="n">fill</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">);</span><span class="w"> </span><span class="c1">// dois primeiros elementos = 13</span>
-<span class="c1">// v = {13, 13, 2, 3, 4}</span>
-</code></pre></div>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Consulte o arquivo <em>exemplo1-criacao-iteracao.cu</em> para um exemplo completo de alocação e transferência de dados e do uso de iteradores.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>O fluxo de trabalho "normal" de aplicações usando GPU é receber os dados em um vetor na CPU e copiá-los para a GPU para fazer processamentos. Crie um programa que lê uma sequência de <code>double</code>s da entrada padrão em um <code>thrust::host_vector</code> e os copia para um <code>thrust::device_vector</code>. Teste seu programa com o arquivo <em>stocks-google.txt</em>, que contém o preço das ações do Google nos últimos 10 anos.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>A criação de um <code>device_vector</code> é demorada. Meça o tempo que a operação de alocação e cópia demora e imprima na saída de erros. (Use <code>std::chrono</code>).</p>
-</div>
-<h2 id="operacoes-de-reducao">Operações de redução<a class="headerlink" href="#operacoes-de-reducao" title="Permanent link">&para;</a></h2>
-<p>Uma operação genérica de <em>redução</em> transforma um vetor em um único valor. Exemplos clássicos de operações de redução incluem <em>soma</em>, <em>média</em> e <em>mínimo/máximo</em> de um vetor.</p>
-<p>A <code>thrust</code> disponibiliza este tipo de operação otimizada em <em>GPU</em> usando a função <code>thrust::reduce</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">thrust</span><span class="o">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">iter_comeco</span><span class="p">,</span><span class="w"> </span><span class="n">iter_fim</span><span class="p">,</span><span class="w"> </span><span class="n">inicial</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">);</span>
-<span class="c1">// iter_comeco: iterador para o começo dos dados</span>
-<span class="c1">// iter_fim: iterador para o fim dos dados</span>
-<span class="c1">// inicial: valor inicial</span>
-<span class="c1">// op: operação a ser feita.</span>
-</code></pre></div>
-<p>Um exemplo de uso de redução para computar o máximo pode ser visto <a href="http://thrust.github.io/doc/group__reductions_ga5e9cef4919927834bec50fc4829f6e6b.html#ga5e9cef4919927834bec50fc4829f6e6b">aqui</a>. A lista completa de funções que podem ser usadas no lugar de <code>op</code> pode ser vista <a href="http://thrust.github.io/doc/group__predefined__function__objects.html">neste link</a>.</p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Continuando o exercício anterior, calcule as seguintes medidas. Não se esqueça de passar o <code>device_vector</code> para a sua função <code>reduce</code></p>
-<ol>
-<li>O preço médio das ações nos últimos 10 anos.</li>
-<li>O preço médio das ações no último ano (365 dias atrás).</li>
-<li>O maior e o menor preço da sequência inteira e do último ano.</li>
-</ol>
-</div>
-<p>Você pode consultar todos os tipos de reduções disponíveis no <a href="https://thrust.github.io/doc/group__reductions.html">site da thrust</a>.</p>
-<h2 id="transformacoes-ponto-a-ponto">Transformações ponto a ponto<a class="headerlink" href="#transformacoes-ponto-a-ponto" title="Permanent link">&para;</a></h2>
-<p>Além de operações de redução também podemos fazer operações ponto a ponto em somente um vetor (como negar todas as componentes ou calcular os quadrados) quanto entre dois vetores (como somar dois vetores componente por componente ou comparar cada elemento com seu correspondente em outro vetor). A <code>thrust</code> dá o nome de <code>transformation</code> para este tipo de operação.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// para operações entre dois vetores iter1 e iter2. resultado armazenado em out</span>
-<span class="n">thrust</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span><span class="n">iter1_comeco</span><span class="p">,</span><span class="w"> </span><span class="n">iter1_fim</span><span class="p">,</span><span class="w"> </span><span class="n">iter2_comeco</span><span class="p">,</span><span class="w"> </span><span class="n">out_comeco</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">);</span>
-<span class="c1">// iter1_comeco: iterador para o começo de iter1</span>
-<span class="c1">// iter1_fim: iterador para o fim de iter1</span>
-<span class="c1">// iter2_comeco: iterador para o começo de iter2</span>
-<span class="c1">// out_comeco: iterador para o começo de out</span>
-<span class="c1">// op: operação a ser realizada.</span>
-</code></pre></div>
-<p>Um exemplo concreto pode ser visto abaixo. O código completo está em <code>exemplo2-transform.cu</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">thrust</span><span class="o">::</span><span class="n">device_vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">V1</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-<span class="n">thrust</span><span class="o">::</span><span class="n">device_vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">V2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-<span class="n">thrust</span><span class="o">::</span><span class="n">device_vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">V3</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-<span class="n">thrust</span><span class="o">::</span><span class="n">device_vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">V4</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-<span class="c1">// inicializa V1 e V2 aqui</span>
-
-<span class="c1">//soma V1 e V2</span>
-<span class="n">thrust</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span><span class="n">V1</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">V1</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">V2</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">V3</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">thrust</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">());</span>
-
-<span class="c1">// multiplica V1 por 0.5</span>
-<span class="n">thrust</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span><span class="n">V1</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">V1</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
-<span class="w">                  </span><span class="n">thrust</span><span class="o">::</span><span class="n">constant_iterator</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span>
-<span class="w">                  </span><span class="n">V4</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">thrust</span><span class="o">::</span><span class="n">multiplies</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">());</span>
-</code></pre></div>
-<p>As operações que foram usadas no <code>reduce</code> também podem ser usadas em um <code>transform</code>. Não se esqueça de consultar <a href="http://thrust.github.io/doc/group__predefined__function__objects.html">a lista de operações</a> para fazer este exercício.</p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Vamos agora trabalhar com o arquivo <code>stocks2.csv</code>. Ele contém a série histórica de ações da Apple e da Microsoft. Seu objetivo é calcular a diferença média entre os preços das ações AAPL e MSFT.</p>
-<p><strong>Dica</strong>: quebre o problema em duas partes. Primeiro calcule a diferença entre os preços e guarde isto em um vetor. Depois compute a média deste vetor.</p>
-</div>
+<p>Submeta no BlackBoard o link do GitHub contendo os códigos e o relatório com suas análises até as 23h59 de 22/10</p>
 
 
 
