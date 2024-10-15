@@ -48,6 +48,7 @@ nav:
         - "Atividade 11: Iteradores e funções customizadas": aulas/11-iteradores/index.md                               
         - "Atividade 12: Funções customizadas e Otimização com Fusion Kernel": aulas/12-funcoes-customizadas/index.md               
         - "Atividade 13: Trabalhando com Schedulers no OpenMP": aulas/13-openmp/paralelo.md 
+        - "Atividade 14: Pi pelo método de Monte Carlo": aulas/14-pi/index.md
 
 
 #        - "02 e 03 - C++": aulas/02-03-implementacao-c++/index.md

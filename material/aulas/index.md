@@ -43,3 +43,7 @@ e compreender como pedir recursos ao SLURM.
 
 **[atividade 13: Trabalhando com Schedulers no OpenMP ](../aulas/13-openmp/paralelo.md)** 
 - Explorar diferentes schedulers do OpenMP, implementar paralelização de loops e recursões usando parallel for e tasks, e analisar estratégias para lidar com efeitos colaterais em regiões paralelas, como o uso de omp critical e pré-alocação de memória. 
+
+
+**[atividade 14: Pi pelo método de Monte Carlo](../aulas/14-pi/index.md)**
+- Explorar o cálculo de pi usando o método Monte Carlo como exemplo de paralelismo. Aplicar diferentes técnicas de paralelismo para otimizar o desempenho. Analisar o impacto dessas técnicas na sincronização de variáveis compartilhadas e na geração de números aleatórios. Comparar os resultados em termos de precisão e ganho de performance ao paralelizar o algoritmo.
