@@ -1,5 +1,7 @@
 .DS_Store
 .vscode
+venv
+.venv
 a.out
 docs/
 projetos-alunos/
