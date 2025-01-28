@@ -11,22 +11,22 @@
         <link rel="canonical" href="https://insper.github.io/supercomp/aulas/01-introducao/">
       
       
-        <link rel="prev" href="../00-introducao/">
+        <link rel="prev" href="../..">
       
       
-        <link rel="next" href="../02-slurm/">
+        <link rel="next" href="../02-introducao/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
     
     
       
-        <title>Atividade 01: Introdução ao Cluster Franky - SuperComputação - 2024/2</title>
+        <title>Atividade 01: Introdução a HPC - SuperComputação - 2025/1</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a40c8224.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -60,7 +60,7 @@
     
       <link rel="stylesheet" href="../../css/pandas-dataframe.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aula-1-acessando-o-cluster-franky" class="md-skip">
+        <a href="#aula-01-a-importancia-da-linguagem" class="md-skip">
           Skip to content
         </a>
       
@@ -100,27 +100,27 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="SuperComputação - 2024/2" class="md-header__button md-logo" aria-label="SuperComputação - 2024/2" data-md-component="logo">
+    <a href="../.." title="SuperComputação - 2025/1" class="md-header__button md-logo" aria-label="SuperComputação - 2025/1" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            SuperComputação - 2024/2
+            SuperComputação - 2025/1
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Atividade 01: Introdução ao Cluster Franky
+              Atividade 01: Introdução a HPC
             
           </span>
         </div>
@@ -134,7 +134,7 @@
     
       <label class="md-header__button md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -143,15 +143,15 @@
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
@@ -174,7 +174,7 @@
         <a href="https://github.com/insper/supercomp" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     SuperComp
@@ -207,20 +207,20 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="SuperComputação - 2024/2" class="md-nav__button md-logo" aria-label="SuperComputação - 2024/2" data-md-component="logo">
+    <a href="../.." title="SuperComputação - 2025/1" class="md-nav__button md-logo" aria-label="SuperComputação - 2025/1" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    SuperComputação - 2024/2
+    SuperComputação - 2025/1
   </label>
   
     <div class="md-nav__source">
       <a href="https://github.com/insper/supercomp" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     SuperComp
@@ -291,48 +291,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Entregas e Objetivos
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../00-introducao/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 00: Introdução a HPC
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -349,7 +307,7 @@
           
   
   <span class="md-ellipsis">
-    Atividade 01: Introdução ao Cluster Franky
+    Atividade 01: Introdução a HPC
   </span>
   
 
@@ -360,7 +318,7 @@
         
   
   <span class="md-ellipsis">
-    Atividade 01: Introdução ao Cluster Franky
+    Atividade 01: Introdução a HPC
   </span>
   
 
@@ -382,60 +340,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#parte-0-configurando-seu-acesso-ao-cluster-franky" class="md-nav__link">
+  <a href="#parte-1-implementacao-basica-em-python" class="md-nav__link">
     <span class="md-ellipsis">
-      Parte 0: Configurando seu acesso ao Cluster Franky
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Parte 0: Configurando seu acesso ao Cluster Franky">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#para-macbook-ou-linux" class="md-nav__link">
-    <span class="md-ellipsis">
-      Para Macbook ou Linux:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#para-windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      Para Windows:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configurar-o-vs-code-para-acesso-remoto-ao-cluster" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configurar o VS Code para Acesso Remoto ao Cluster**
+      Parte 1: Implementação Básica em Python
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#executando-a-atividade-0-no-cluster-franky-usando-slurm" class="md-nav__link">
+  <a href="#parte-2-implementacao-em-c" class="md-nav__link">
     <span class="md-ellipsis">
-      Executando a Atividade 0 no Cluster Franky usando SLURM
+      Parte 2: Implementação em C++
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#parte-2-execucao-das-implementacoes-no-cluster" class="md-nav__link">
+  <a href="#parte-3-paralelismo-em-c" class="md-nav__link">
     <span class="md-ellipsis">
-      Parte 2: Execução das Implementações no Cluster
+      Parte 3: Paralelismo em C++
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrega-atividade-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrega - Atividade 01
     </span>
   </a>
   
@@ -457,263 +391,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../02-slurm/" class="md-nav__link">
+      <a href="../02-introducao/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Atividade 02: Exercicios de SLURM
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../03-cpp/aula-4.pdf" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 03 Introdução ao C++
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../03-cpp/03-cpp/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 04: Exercicios de C++
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../04-Profiling/04-Profiling/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 05: Profiling
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../06-heuristicas/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 06: Problema da Mochila com Busca Exaustiva
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../07-aleatorizacao/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 07: Problema da Mochila com Heurística Aleatória
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../08-busca-local/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 08: Problema da Mochila com Busca Local e Hill Climb
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../09-heuristica/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 09: Problema da Mochila com Heurísticas
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../10-thrust/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 10: Thrust para programação paralela em GPU
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../11-iteradores/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 11: Iteradores e funções customizadas
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../12-funcoes-customizadas/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 12: Funções customizadas e Otimização com Fusion Kernel
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../13-openmp/paralelo/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 13: Trabalhando com Schedulers no OpenMP
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../14-pi/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 14: Pi pelo método de Monte Carlo
+    Atividade 02: Introdução ao Cluster Franky
   </span>
   
 
@@ -1219,60 +901,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#parte-0-configurando-seu-acesso-ao-cluster-franky" class="md-nav__link">
+  <a href="#parte-1-implementacao-basica-em-python" class="md-nav__link">
     <span class="md-ellipsis">
-      Parte 0: Configurando seu acesso ao Cluster Franky
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Parte 0: Configurando seu acesso ao Cluster Franky">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#para-macbook-ou-linux" class="md-nav__link">
-    <span class="md-ellipsis">
-      Para Macbook ou Linux:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#para-windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      Para Windows:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configurar-o-vs-code-para-acesso-remoto-ao-cluster" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configurar o VS Code para Acesso Remoto ao Cluster**
+      Parte 1: Implementação Básica em Python
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#executando-a-atividade-0-no-cluster-franky-usando-slurm" class="md-nav__link">
+  <a href="#parte-2-implementacao-em-c" class="md-nav__link">
     <span class="md-ellipsis">
-      Executando a Atividade 0 no Cluster Franky usando SLURM
+      Parte 2: Implementação em C++
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#parte-2-execucao-das-implementacoes-no-cluster" class="md-nav__link">
+  <a href="#parte-3-paralelismo-em-c" class="md-nav__link">
     <span class="md-ellipsis">
-      Parte 2: Execução das Implementações no Cluster
+      Parte 3: Paralelismo em C++
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrega-atividade-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrega - Atividade 01
     </span>
   </a>
   
@@ -1296,182 +954,205 @@
   
 
 
-<h1 id="aula-1-acessando-o-cluster-franky"><strong>Aula 1: Acessando o Cluster Franky</strong><a class="headerlink" href="#aula-1-acessando-o-cluster-franky" title="Permanent link">&para;</a></h1>
-<p>Na Atividade 1, você irá executar as implementações que foram testadas na Atividade 0, mas agora no ambiente de um cluster HPC usando SLURM. O objetivo é observar como o ambiente de cluster, com sua capacidade de processamento paralelo, pode impactar o desempenho das operações computacionalmente intensivas que você já explorou.</p>
-<h3 id="parte-0-configurando-seu-acesso-ao-cluster-franky"><strong>Parte 0: Configurando seu acesso ao Cluster Franky</strong><a class="headerlink" href="#parte-0-configurando-seu-acesso-ao-cluster-franky" title="Permanent link">&para;</a></h3>
-<p>Para ter acesso ao Cluster Franky você precisa configurar suas credenciais de acesso e realizar acesso remoto via SSH.</p>
-<p>Entre no Blackboard, navegue até a seção de materiais do curso onde a pasta com o par de chaves foi disponibilizada, Faça o download da pasta completa, que contém os arquivos <code>id_rsa</code> (chave privada) e <code>id_rsa.pub</code> (chave pública). Dependendo do sistema operacional que você utiliza, siga as instruções abaixo para configurar  corretamente sua chave privada.</p>
-<h4 id="para-macbook-ou-linux"><strong>Para Macbook ou Linux:</strong><a class="headerlink" href="#para-macbook-ou-linux" title="Permanent link">&para;</a></h4>
-<p>Abra o terminal, navegue até a pasta onde a chave privada (<code>id_rsa</code>) foi baixada, mova a chave para o diretório <code>.ssh</code> em sua home:</p>
-<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>id_rsa<span class="w"> </span>~/.ssh/
+<h1 id="aula-01-a-importancia-da-linguagem"><strong>Aula 01: A importância da linguagem</strong><a class="headerlink" href="#aula-01-a-importancia-da-linguagem" title="Permanent link">&para;</a></h1>
+<p>Nesta atividade, veremos como a escolha da linguagem de programação pode melhorar significativamente o desempenho de operações computacionalmente intensivas. Utilizaremos Python e C++ para implementar e comparar o desempenho na multiplicação de matrizes, uma operação comum em muitas aplicações de IA e visão computacional.</p>
+<h2 id="parte-1-implementacao-basica-em-python">Parte 1: Implementação Básica em Python<a class="headerlink" href="#parte-1-implementacao-basica-em-python" title="Permanent link">&para;</a></h2>
+<p>Execute o código abaixo e observe o tempo de execução. Essa é uma implementação sequencial que processa a multiplicação de matrizes usando uma única thread em python.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>  <span class="c1"># Importa o módulo time, que fornece funções para medir o tempo de execução do código.</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">multiply_matrices</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+    <span class="c1"># Define a função multiply_matrices, que realiza a multiplicação de duas matrizes A e B.</span>
+    <span class="c1"># O resultado é armazenado na matriz result.</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]))]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))]</span>
+    <span class="c1"># Cria uma matriz de zeros com o mesmo número de linhas que A e o mesmo número de colunas que B.</span>
+    <span class="c1"># Esta matriz armazenará os resultados da multiplicação.</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="c1"># Itera sobre as linhas da matriz A.</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+            <span class="c1"># Itera sobre as colunas da matriz B.</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)):</span>
+                <span class="c1"># Itera sobre as colunas de A e as linhas de B para calcular o produto escalar da linha i de A com a coluna j de B.</span>
+                <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+                <span class="c1"># Realiza a multiplicação dos elementos correspondentes de A e B e soma o resultado ao elemento result[i][j].</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+    <span class="c1"># Retorna a matriz result, que contém o produto das matrizes A e B.</span>
+
+<span class="c1"># Gerar duas matrizes de tamanho grande para o teste</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">200</span>  <span class="c1"># Define o tamanho N das matrizes quadradas (200x200).</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+<span class="c1"># Gera a matriz A de tamanho N x N, onde cada elemento A[i][j] é a soma dos índices i e j.</span>
+
+<span class="n">B</span> <span class="o">=</span> <span class="p">[[</span><span class="n">i</span> <span class="o">*</span> <span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+<span class="c1"># Gera a matriz B de tamanho N x N, onde cada elemento B[i][j] é o produto dos índices i e j.</span>
+
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="c1"># Marca o tempo de início da multiplicação das matrizes usando a função time.time().</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">multiply_matrices</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+<span class="c1"># Chama a função multiply_matrices para multiplicar as matrizes A e B, armazenando o resultado em &#39;result&#39;.</span>
+
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="c1"># Marca o tempo de término da multiplicação usando a função time.time().</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tempo de execução para a multiplicação de matrizes: </span><span class="si">{</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> segundos&quot;</span><span class="p">)</span>
+<span class="c1"># Calcula e exibe o tempo de execução da multiplicação de matrizes, subtraindo start_time de end_time.</span>
+<span class="c1"># O tempo é formatado para mostrar duas casas decimais.</span>
 </code></pre></div>
-<p>Garanta que apenas você possa ler o arquivo:</p>
-<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/id_rsa
+<h2 id="parte-2-implementacao-em-c">Parte 2: Implementação em C++<a class="headerlink" href="#parte-2-implementacao-em-c" title="Permanent link">&para;</a></h2>
+<p>Compile e execute o código em C++. Compare o tempo de execução com o resultado obtido na Parte 1. Observe como C++ lida com operações computacionalmente intensivas de forma mais eficiente.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Se precisar de ajuda para instalar um compilador em C++ ou compilar e executar códigos em c++, <a href="../../Teoria/compilar-executar-C%2B%2B/">consulte o material disponível</a>.</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="c1">   // Inclui a biblioteca padrão de entrada e saída do C++ (necessária para usar std::cout).</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="c1">     // Inclui a biblioteca de vetores da STL (Standard Template Library) do C++, usada para criar matrizes dinâmicas.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span><span class="c1">     // Inclui a biblioteca de medição de tempo do C++ (necessária para medir o tempo de execução).</span>
+
+<span class="c1">// Função para multiplicar duas matrizes A e B, armazenando o resultado na matriz &#39;result&#39;.</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">multiply_matrices</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// Loop para iterar sobre as linhas da matriz A.</span>
+<span class="w">   </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Loop para iterar sobre as colunas da matriz B.</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Inicializa o elemento result[i][j] com 0 antes de somar os produtos.</span>
+<span class="w">            </span><span class="c1">// Loop para calcular o produto escalar da linha i de A com a coluna j de B.</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">B</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">               </span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">];</span><span class="w"> </span><span class="c1">// Realiza a multiplicação e soma dos elementos correspondentes de A e B.</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Função principal do programa.</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="kt">size_t</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span><span class="p">;</span><span class="w"> </span><span class="c1">// Define o tamanho N das matrizes quadradas (200x200).</span>
+
+<span class="w">   </span><span class="c1">// Declara e inicializa a matriz A como uma matriz NxN preenchida com zeros.</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="p">));</span>
+
+<span class="w">   </span><span class="c1">// Declara e inicializa a matriz B como uma matriz NxN preenchida com zeros.</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="p">));</span>
+
+<span class="w">   </span><span class="c1">// Declara e inicializa a matriz result como uma matriz NxN preenchida com zeros, que armazenará o resultado da multiplicação.</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">result</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="p">));</span>
+
+<span class="w">   </span><span class="c1">// Loop para preencher as matrizes A e B com valores.</span>
+<span class="w">   </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w"> </span><span class="c1">// Preenche a matriz A com a soma dos índices i e j.</span>
+<span class="w">            </span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w"> </span><span class="c1">// Preenche a matriz B com o produto dos índices i e j.</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+
+<span class="w">   </span><span class="c1">// Marca o tempo de início da multiplicação das matrizes usando o relógio de alta resolução.</span>
+<span class="w">   </span><span class="k">auto</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+
+<span class="w">   </span><span class="c1">// Chama a função multiply_matrices para multiplicar as matrizes A e B, armazenando o resultado em &#39;result&#39;.</span>
+<span class="w">   </span><span class="n">multiply_matrices</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span>
+
+<span class="w">   </span><span class="c1">// Marca o tempo de término da multiplicação.</span>
+<span class="w">   </span><span class="k">auto</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+
+<span class="w">   </span><span class="c1">// Calcula a duração da multiplicação subtraindo o tempo de início do tempo de término, armazenando o resultado em &#39;duration&#39;.</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">;</span>
+
+<span class="w">   </span><span class="c1">// Exibe o tempo de execução da multiplicação de matrizes no console.</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Tempo de execução para a multiplicação de matrizes em C++: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">duration</span><span class="p">.</span><span class="n">count</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; segundos&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Retorna 0, indicando que o programa foi executado com sucesso.</span>
+<span class="p">}</span>
 </code></pre></div>
-<p>Conecte-se ao cluster utilizando o comando SSH:</p>
-<p>Substitua <code>nome_da_pasta</code> pelo nome que está na pasta com as chaves que você baixou no BlackBoard e <code>cluster_endereco</code> pelo endereço de IP fornecido durante a aula.</p>
-<p><div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>nome_da_pasta@ip_do_cluster
-</code></pre></div>
-ou</p>
-<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>nome_da_pasta@ip_do_cluster
-</code></pre></div>
-<h4 id="para-windows"><strong>Para Windows:</strong><a class="headerlink" href="#para-windows" title="Permanent link">&para;</a></h4>
-<p><strong>Usando OpenSSH :</strong></p>
-<p>Abra o PowerShell ou Windows Terminal. Navegue até a pasta onde a chave privada (<code>id_rsa</code>) foi baixada, mova a chave para a pasta <code>.ssh</code> em seu diretório de usuário:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mkdir</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span>
-<span class="nb">mv </span><span class="n">id_rsa</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span>
-</code></pre></div>
-<p>Certifique-se de que as permissões estão corretas:
-<div class="highlight"><pre><span></span><code><span class="n">icacls</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span><span class="n">id_rsa</span> <span class="p">/</span><span class="n">inheritance</span><span class="p">:</span><span class="nb">r </span><span class="p">/</span><span class="n">grant</span><span class="p">:</span><span class="nb">r </span><span class="s2">&quot;</span><span class="p">$(</span><span class="nv">$env:USERNAME</span><span class="p">)</span><span class="s2">:(R)&quot;</span>
-</code></pre></div>
-Conecte-se ao cluster usando o comando:
-<div class="highlight"><pre><span></span><code><span class="n">ssh</span> <span class="n">-i</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span><span class="n">id_rsa</span> <span class="n">seu_usuario_insper</span><span class="nv">@ip_do_cluster</span>
-</code></pre></div></p>
-<h3 id="configurar-o-vs-code-para-acesso-remoto-ao-cluster">Configurar o VS Code para Acesso Remoto ao Cluster**<a class="headerlink" href="#configurar-o-vs-code-para-acesso-remoto-ao-cluster" title="Permanent link">&para;</a></h3>
-<p><strong>Instale a Extensão Remote - SSH</strong>:</p>
-<p>Abra o VS Code, vá para a aba de extensões (ícone de quadrado no lado esquerdo). Pesquise por "Remote - SSH" e instale a extensão oficial da Microsoft.</p>
-<p><strong>Configurar o Acesso Remoto</strong>:</p>
-<p>Pressione <code>Ctrl+Shift+P</code> (ou <code>Cmd+Shift+P</code> no Mac) para abrir o painel de comandos.</p>
-<p>Digite <code>Remote-SSH: Add New SSH Host...</code> e selecione a opção.</p>
-<p>Insira o comando SSH que você utilizou anteriormente:
-<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>nome_da_pasta@ip_do_cluster
-</code></pre></div>
-Escolha o arquivo de configuração padrão (<code>~/.ssh/config</code> para Mac/Linux ou <code>C:\Users\seu_usuario\.ssh\config</code> para Windows).</p>
-<p>Pressione <code>Ctrl+Shift+P</code> (ou <code>Cmd+Shift+P</code> no Mac) novamente e digite <code>Remote-SSH: Connect to Host...</code>. Selecione o host configurado.</p>
-<p>O VS Code abrirá uma nova janela conectada ao ambiente remoto do cluster.</p>
-<p><img alt="ssh" src="imgs/RemoteSSHVsCode.png" /></p>
-<p><strong>Gerenciar Projetos Remotamente</strong>:</p>
-<p>Após a conexão, você pode abrir pastas e arquivos no cluster diretamente pelo VS Code.</p>
-<p>Utilize os recursos do VS Code, como o terminal integrado e o debug para trabalhar no cluster Franky.</p>
-<h3 id="executando-a-atividade-0-no-cluster-franky-usando-slurm">Executando a Atividade 0 no Cluster Franky usando SLURM<a class="headerlink" href="#executando-a-atividade-0-no-cluster-franky-usando-slurm" title="Permanent link">&para;</a></h3>
-<p>Um arquivo .slurm é usado para "lançar jobs" no sistema SLURM, especificando os recursos necessários para a execução, como memória, número de máquinas e núcleos. Nesse arquivo, também definimos como desejamos o output do executável e onde o sistema pode encontrar o arquivo a ser executado. Como a equipe que gerencia o Cluster definiu que os jobs sejam lançados apenas da pasta SCRATCH, podemos omitir o caminho do arquivo nos nossos arquivos .slurm.</p>
+<h2 id="parte-3-paralelismo-em-c">Parte 3: Paralelismo em C++<a class="headerlink" href="#parte-3-paralelismo-em-c" title="Permanent link">&para;</a></h2>
+<p>Compile e execute o código modificado. Observe a diferença no tempo de execução em comparação com as versões anteriores.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>As instruções #SBATCH são tecnicamente consideradas "comentários" pelo interpretador de comandos do shell (bash), mas não são realmente ignoradas. Quando você escreve um script para ser executado pelo SLURM, o bash interpreta as linhas #SBATCH como comentários normais, enquanto o gerenciador de jobs SLURM interpreta essas mesmas linhas como diretivas que definem como o job deve ser executado.</p>
+<p>Lembre-se! Sempre que fizer alterações no seu código em c++, é necessário gerar um novo binário.</p>
 </div>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="c1">   // Inclui a biblioteca padrão de entrada e saída, usada para funções como std::cout.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="c1">     // Inclui a biblioteca de vetores da STL (Standard Template Library) do C++.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span><span class="c1">     // Inclui a biblioteca para medição de tempo, utilizada para calcular a duração de execução.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span><span class="c1">      // Inclui a biblioteca OpenMP, usada para paralelismo em C++.</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">multiply_matrices</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Define a função que realiza a multiplicação de duas matrizes A e B, armazenando o resultado na matriz &#39;result&#39;.</span>
+<span class="w">    </span><span class="cp">#pragma omp parallel for</span>
+<span class="w">    </span><span class="c1">// Diretiva OpenMP que paraleliza o loop &#39;for&#39; que segue. Cada iteração do loop externo será executada em paralelo.</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Itera sobre as linhas da matriz A. &#39;size_t&#39; é um tipo de dado usado para representar tamanhos e índices.</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Itera sobre as colunas da matriz B.</span>
+<span class="w">            </span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// Inicializa o elemento [i][j] da matriz result com 0 antes de somar os produtos.</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">B</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Itera sobre as colunas de A e as linhas de B para calcular o produto escalar da linha i de A com a coluna j de B.</span>
+<span class="w">                </span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+<span class="w">                </span><span class="c1">// Realiza a multiplicação dos elementos correspondentes de A e B, somando o resultado ao elemento result[i][j].</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Define o tamanho N das matrizes quadradas (200x200).</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="p">));</span>
+<span class="w">    </span><span class="c1">// Declara e inicializa a matriz A como uma matriz NxN preenchida com zeros.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="p">));</span>
+<span class="w">    </span><span class="c1">// Declara e inicializa a matriz B como uma matriz NxN preenchida com zeros.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">result</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="p">));</span>
+<span class="w">    </span><span class="c1">// Declara e inicializa a matriz result como uma matriz NxN preenchida com zeros, que armazenará o resultado da multiplicação.</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Itera sobre as linhas da matriz A e B.</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Itera sobre as colunas da matriz A e B.</span>
+<span class="w">            </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// Preenche a matriz A com valores como a soma dos índices i e j.</span>
+<span class="w">            </span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// Preenche a matriz B com valores como o produto dos índices i e j.</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Marca o tempo de início da multiplicação das matrizes usando o relógio de alta resolução.</span>
+<span class="w">    </span><span class="n">multiply_matrices</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Chama a função multiply_matrices para multiplicar as matrizes A e B, armazenando o resultado em &#39;result&#39;.</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Marca o tempo de término da multiplicação.</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Calcula a duração da multiplicação subtraindo o tempo de início do tempo de término, armazenando o resultado em &#39;duration&#39;.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Tempo de execução para a multiplicação de matrizes em C++ com OpenMP: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">duration</span><span class="p">.</span><span class="n">count</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; segundos&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Exibe o tempo de execução da multiplicação de matrizes no console.</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Retorna 0, indicando que o programa foi executado com sucesso.</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Esta atividade demonstrou como a escolha da linguagem de programação pode impactar no desempenho de operações computacionalmente intensivas, como a multiplicação de matrizes. Você viu como Python e C++ lidam com essas operações e como o paralelismo pode ser uma boa opção, dependendo da complexidade do problema. Na próxima atividade, você levará essas implementações para o cluster Franky e essas diferenças ficarão ainda mais visíveis.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Não é necessário neste momento, mas se você quiser transferir arquivos da sua máquina para o cluster e vice versa, você pode usar o comando scp <a href="../../Teoria/comandos-ssh/">mais detalhes aqui</a></p>
+<p>Se quiser <a href="../../Teoria/contextualizando-hpc/contextualizando-HPC/">saber um pouco mais sobre HPC</a>, <a href="../../Teoria/introducao/conceitos-basicos-hw/">relembrar conceitos</a> ou <a href="../../Teoria/conceitos-basicos-C%2B%2B/">aprofundar um pouco em C++</a></p>
 </div>
-<p>Crie um script de submissão .slurm para cada implementação utilizando os exemplos abaixo. Esse script será utilizado para enviar o job ao cluster.</p>
-<p><strong>Script SLURM para o código em Python:</strong></p>
-<p>matriz_mult_python.slurm</p>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="c1">#As instruções SBATCH não devem ser descomentadas</span>
-
-<span class="c1">#SBATCH --job-name=mult_matriz_py</span>
-<span class="c1"># define o nome do job. Esse nome aparece nas listas de jobs e é útil para identificar o job.</span>
-
-<span class="c1">#SBATCH --output=mult_matriz_py.out</span>
-<span class="c1"># Especifica o arquivo onde a saída padrão (stdout) do job será salva.</span>
-
-<span class="c1">#SBATCH --ntasks=1</span>
-<span class="c1"># Define o número de tarefas que o job executará. Neste caso, o job executa uma única tarefa.</span>
-
-<span class="c1">#SBATCH --time=00:10:00</span>
-<span class="c1"># Define o tempo máximo de execução para o job. Neste caso, o job tem um tempo limite de 10 minutos. Se o job exceder esse tempo, ele será automaticamente encerrado.</span>
-
-<span class="c1">#SBATCH --partition=normal</span>
-<span class="c1"># Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila &quot;normal&quot;.</span>
-
-python3<span class="w"> </span>mult_matriz_py.py
-<span class="c1">#Executa o programa python3 dentro do nó de computação.</span>
-</code></pre></div>
-<p><strong>Script SLURM para arquivos C++:</strong></p>
-<p>Como o C++ é uma linguagem que requer compilação, precisamos gerar o executável antes de preparar o arquivo .slurm.</p>
-<p>Dentro da pasta SCRATCH, compile seu código .cpp para gerar o binário.</p>
-<div class="highlight"><pre><span></span><code><span class="n">g</span><span class="o">++</span><span class="w">  </span><span class="n">mult_matriz_cpp</span><span class="p">.</span><span class="n">cpp</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="n">mult_matriz_cpp</span><span class="w"> </span>
-</code></pre></div>
-<p>matriz_mult_cpp.slurm</p>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="c1">#SBATCH --job-name=matriz_mult_cpp</span>
-<span class="c1"># Define o nome do job como &quot;matrix_mult_openmp&quot;. Esse nome aparece nas listas de jobs e é útil para identificar o job.</span>
-
-<span class="c1">#SBATCH --output=matriz_mult_cpp.out</span>
-<span class="c1"># Especifica o arquivo onde a saída padrão (stdout) do job será salva.</span>
-
-<span class="c1">#SBATCH --ntasks=1</span>
-<span class="c1"># Define o número de tarefas que o job executará. Neste caso, o job executa uma única tarefa.</span>
-
-<span class="c1">#SBATCH --time=00:10:00</span>
-<span class="c1"># Define o tempo máximo de execução para o job. Neste caso, o job tem um tempo limite de 10 minutos. Se o job exceder esse tempo, ele será automaticamente encerrado.</span>
-
-<span class="c1">#SBATCH --partition=normal</span>
-<span class="c1"># Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila &quot;normal&quot;.</span>
-
-
-./mult_matriz_cpp
-<span class="c1"># Executa o programa compilado &quot;mult_matriz_cpp&quot; dentro do nó de computação.</span>
-</code></pre></div>
-<p><strong>Script SLURM para arquivos C++ com Paralelismo:</strong></p>
-<p>Ao utilizar o OpenMP para paralelizar códigos em C++, é necessário incluir a flag apropriada durante a compilação. Essa flag informa ao compilador para interpretar corretamente as diretivas OpenMP no código e gerar o binário de forma adequada.</p>
-<div class="highlight"><pre><span></span><code><span class="n">g</span><span class="o">++</span><span class="w"> </span><span class="o">-</span><span class="n">fopenmp</span><span class="w"> </span><span class="n">mult_matriz_paralelo</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="n">mult_matriz_paralelo</span><span class="p">.</span><span class="n">cpp</span>
-</code></pre></div>
-<p>matriz_mult_paralelo.slurm</p>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-
-<span class="c1">#SBATCH --job-name=matriz_mult_paralelo</span>
-<span class="c1"># Define o nome do job como &quot;matrix_mult_paralelo&quot;. Esse nome aparece nas listas de jobs e é útil para identificar o job.</span>
-
-<span class="c1">#SBATCH --output=matriz_mult_paralelo.out</span>
-<span class="c1"># Especifica o arquivo onde a saída padrão (stdout) do job será salva.</span>
-
-<span class="c1">#SBATCH --ntasks=1</span>
-<span class="c1"># Define o número de tarefas que o job executará. Neste caso, o job executa uma única tarefa.</span>
-
-<span class="c1">#SBATCH --cpus-per-task=4</span>
-<span class="c1"># Especifica o número de CPUs que devem ser alocadas para esta tarefa.</span>
-
-<span class="c1">#SBATCH --time=00:10:00</span>
-<span class="c1"># Define o tempo máximo de execução para o job. Neste caso, o job tem um tempo limite de 10 minutos. Se o job exceder esse tempo, ele será automaticamente encerrado.</span>
-
-<span class="c1">#SBATCH --partition=normal</span>
-<span class="c1"># Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila &quot;normal&quot;.</span>
-
-
-./mult_matriz_paralelo
-<span class="c1"># Executa o programa compilado &quot;mult_matriz_paralelo&quot; dentro do nó de computação.</span>
-</code></pre></div>
-<h3 id="parte-2-execucao-das-implementacoes-no-cluster"><strong>Parte 2: Execução das Implementações no Cluster</strong><a class="headerlink" href="#parte-2-execucao-das-implementacoes-no-cluster" title="Permanent link">&para;</a></h3>
-<p><strong>Submissão dos Jobs:</strong></p>
-<p>Utilize o comando <code>sbatch</code> para submeter cada script SLURM ao cluster.</p>
-<p><strong>Exemplo:</strong></p>
-<div class="highlight"><pre><span></span><code>sbatch<span class="w"> </span>matriz_mult_python.slurm
-sbatch<span class="w"> </span>matriz_mult_cpp.slurm
-sbatch<span class="w"> </span>matriz_mult_paralelo.slurm
-</code></pre></div>
-<p><strong>Monitoramento dos Jobs:</strong></p>
-<p>Use o comando <code>squeue</code> para monitorar o status dos jobs.</p>
-<p><strong>Exemplo:</strong></p>
-<div class="highlight"><pre><span></span><code>squeue<span class="w"> </span>
-</code></pre></div>
-<p><strong>Análise dos Resultados:</strong></p>
-<p>Após a execução dos jobs, os resultados estarão disponíveis nos arquivos <code>.out</code>  especificados em cada script SLURM.</p>
+<h2 id="entrega-atividade-01">Entrega - Atividade 01<a class="headerlink" href="#entrega-atividade-01" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p>Compare os tempos de execução dos três métodos (Python, C++, C++ com OpenMP) no cluster.</p>
+<p>Aumente o tamanho das matrizes nos 3 exemplos para 300x300, 900x900 e 1300x1300 </p>
 </li>
 <li>
-<p>Analise como o paralelismo afeta o desempenho no ambiente do cluster, em comparação com sua execução local.</p>
+<p>Elabore um gráfico que relaciona a complexidade do problema (tamanho da matriz) com o tempo de execução para cada implementação.</p>
+</li>
+<li>
+<p>Faça uma análise comparativa sobre o impacto do paralelismo no desempenho de acordo com a complexidade do problema.</p>
+</li>
+<li>
+<p>Comente sobre como você acha que este problema pode ser abordado em um ambiente de HPC.</p>
 </li>
 </ul>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Se quiser explorar mais os comandos do SLURM, <a href="../../Teoria/slurm/">temos uma material aqui que pode te ajudar</a></p>
-</div>
-<p><strong>Entrega Atividade 1 - Relatório de Desempenho:</strong></p>
-<ul>
-<li>
-<p>Prepare um relatório detalhado, incluindo gráficos que mostrem a relação entre o tamanho das matrizes e o tempo de execução para cada implementação.</p>
-</li>
-<li>
-<p>Discuta o impacto do ambiente HPC no desempenho das operações e como o paralelismo pode escalar em um cluster de múltiplos nós.</p>
-</li>
-<li>
-<p>Submeta seu relatório pelo Blackboard até as 23h59 do dia da aula.</p>
-</li>
-</ul>
-<p>Nesta atividade, você explorou como o ambiente de cluster, pode ser utilizado para otimizar e acelerar operações que são intensivas em termos computacionais. Isso oferece uma base sólida para entender como tarefas de grande escala, como o processamento de big data ou o treinamento de modelos de IA, podem ser significativamente aceleradas com HPC.</p>
+<p>Submeta seu relatório até as 23h59 do dia da aula pelo Blackboard.</p>
 
 
 
@@ -1518,10 +1199,10 @@ sbatch<span class="w"> </span>matriz_mult_paralelo.slurm
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
       
