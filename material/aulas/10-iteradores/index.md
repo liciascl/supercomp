@@ -1,4 +1,4 @@
-# Aula 11: Iteradores e funções customizadas 
+# Aula 10: Iteradores e funções customizadas 
 
 Já vimos que, para valer a pena usar a GPU, precisamos tratar grandes volumes de dados ou realizar cálculos complexos. Hoje, nosso foco será calcular a variância e analisar as variações diárias de ações de maneira otimizada, usando iteradores dinâmicos e funções customizadas.
 

@@ -1,4 +1,4 @@
-# Aula 06: Problema da Mochila com Busca Exaustiva
+# Aula 05: Problema da Mochila com Busca Exaustiva
 
 O problema da mochila é um dos problemas clássicos da computação e é amplamente estudado em otimização de algoritmos e computação. 
 
@@ -89,7 +89,7 @@ Se não incluir o item \( i \): resolva o problema para os itens restantes sem a
 
 Retorne a melhor das duas soluções.
 
-### Atividade 06: Problema da Mochila com Busca Exaustiva
+### Atividade 05: Problema da Mochila com Busca Exaustiva
 
 **Objetivo:**
 Implemente uma solução para o problema da mochila usando a técnica de busca exaustiva através de recursão em C++. O objetivo é maximizar o valor dos objetos dentro da mochila sem exceder sua capacidade.

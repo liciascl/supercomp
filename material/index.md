@@ -1,16 +1,16 @@
 # SuperComputação
-Bem-vindo ao curso de SuperComputação 2024/2!
+Bem-vindo ao curso de SuperComputação 2025/1!
 
 Essa página contém os materiais de apoio para o curso de SuperComputação do Insper.
 
 ## Horário das Aulas
 
 !!! info "Horário das Aulas"
-    **Turma 1**  
+    **Turma A**  
     - Terça: 09h45  
     - Sexta: 13h30
     
-    **Turma 2**  
+    **Turma B**  
     - Quarta: 13h30  
     - Sexta: 07h30
 

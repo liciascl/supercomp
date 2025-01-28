@@ -1,4 +1,4 @@
-# Atividade 14 - Pi pelo método de Monte Carlo
+# Atividade 13 - Pi pelo método de Monte Carlo
 Na aula de hoje iremos trabalhar com um algoritmo de sorteios aleatórios para calcular o pi. Ele é baseado em uma técnica de Otimização, Simulação e Estimação Paramétrica chamada [Monte Carlo](https://en.wikipedia.org/wiki/Monte_Carlo_method). Um bom vídeo para compreender essa técnica, [está disponível aqui](https://www.youtube.com/watch?v=7ESK5SaP-bc).
 
 ![pi](Pi_30K.gif)

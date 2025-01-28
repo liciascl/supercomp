@@ -1,268 +1,220 @@
-# **Aula 1: Acessando o Cluster Franky**
+# **Aula 01: A importância da linguagem** 
 
-Na Atividade 1, você irá executar as implementações que foram testadas na Atividade 0, mas agora no ambiente de um cluster HPC usando SLURM. O objetivo é observar como o ambiente de cluster, com sua capacidade de processamento paralelo, pode impactar o desempenho das operações computacionalmente intensivas que você já explorou.
+Nesta atividade, veremos como a escolha da linguagem de programação pode melhorar significativamente o desempenho de operações computacionalmente intensivas. Utilizaremos Python e C++ para implementar e comparar o desempenho na multiplicação de matrizes, uma operação comum em muitas aplicações de IA e visão computacional.
 
-### **Parte 0: Configurando seu acesso ao Cluster Franky**
 
-Para ter acesso ao Cluster Franky você precisa configurar suas credenciais de acesso e realizar acesso remoto via SSH.
+## Parte 1: Implementação Básica em Python 
 
-Entre no Blackboard, navegue até a seção de materiais do curso onde a pasta com o par de chaves foi disponibilizada, Faça o download da pasta completa, que contém os arquivos `id_rsa` (chave privada) e `id_rsa.pub` (chave pública). Dependendo do sistema operacional que você utiliza, siga as instruções abaixo para configurar  corretamente sua chave privada.
+Execute o código abaixo e observe o tempo de execução. Essa é uma implementação sequencial que processa a multiplicação de matrizes usando uma única thread em python.
 
-#### **Para Macbook ou Linux:**
 
-Abra o terminal, navegue até a pasta onde a chave privada (`id_rsa`) foi baixada, mova a chave para o diretório `.ssh` em sua home:
+```python
 
-```bash
-mv id_rsa ~/.ssh/
+import time  # Importa o módulo time, que fornece funções para medir o tempo de execução do código.
+
+def multiply_matrices(A, B):
+    # Define a função multiply_matrices, que realiza a multiplicação de duas matrizes A e B.
+    # O resultado é armazenado na matriz result.
+    result = [[0 for _ in range(len(B[0]))] for _ in range(len(A))]
+    # Cria uma matriz de zeros com o mesmo número de linhas que A e o mesmo número de colunas que B.
+    # Esta matriz armazenará os resultados da multiplicação.
+
+    for i in range(len(A)):
+        # Itera sobre as linhas da matriz A.
+        for j in range(len(B[0])):
+            # Itera sobre as colunas da matriz B.
+            for k in range(len(B)):
+                # Itera sobre as colunas de A e as linhas de B para calcular o produto escalar da linha i de A com a coluna j de B.
+                result[i][j] += A[i][k] * B[k][j]
+                # Realiza a multiplicação dos elementos correspondentes de A e B e soma o resultado ao elemento result[i][j].
+
+    return result
+    # Retorna a matriz result, que contém o produto das matrizes A e B.
+
+# Gerar duas matrizes de tamanho grande para o teste
+N = 200  # Define o tamanho N das matrizes quadradas (200x200).
+
+A = [[i + j for j in range(N)] for i in range(N)]
+# Gera a matriz A de tamanho N x N, onde cada elemento A[i][j] é a soma dos índices i e j.
+
+B = [[i * j for j in range(N)] for i in range(N)]
+# Gera a matriz B de tamanho N x N, onde cada elemento B[i][j] é o produto dos índices i e j.
+
+start_time = time.time()
+# Marca o tempo de início da multiplicação das matrizes usando a função time.time().
+
+result = multiply_matrices(A, B)
+# Chama a função multiply_matrices para multiplicar as matrizes A e B, armazenando o resultado em 'result'.
+
+end_time = time.time()
+# Marca o tempo de término da multiplicação usando a função time.time().
+
+print(f"Tempo de execução para a multiplicação de matrizes: {end_time - start_time:.2f} segundos")
+# Calcula e exibe o tempo de execução da multiplicação de matrizes, subtraindo start_time de end_time.
+# O tempo é formatado para mostrar duas casas decimais.
+
 ```
 
-Garanta que apenas você possa ler o arquivo:
 
-```bash
-chmod 600 ~/.ssh/id_rsa
+
+## Parte 2: Implementação em C++ 
+
+Compile e execute o código em C++. Compare o tempo de execução com o resultado obtido na Parte 1. Observe como C++ lida com operações computacionalmente intensivas de forma mais eficiente.
+
+!!! tip 
+      Se precisar de ajuda para instalar um compilador em C++ ou compilar e executar códigos em c++, [consulte o material disponível](../../Teoria/compilar-executar-C++.md).
+
+
+```cpp
+#include <iostream>   // Inclui a biblioteca padrão de entrada e saída do C++ (necessária para usar std::cout).
+#include <vector>     // Inclui a biblioteca de vetores da STL (Standard Template Library) do C++, usada para criar matrizes dinâmicas.
+#include <chrono>     // Inclui a biblioteca de medição de tempo do C++ (necessária para medir o tempo de execução).
+
+// Função para multiplicar duas matrizes A e B, armazenando o resultado na matriz 'result'.
+void multiply_matrices(const std::vector<std::vector<int>>& A, const std::vector<std::vector<int>>& B, std::vector<std::vector<int>>& result) {
+   // Loop para iterar sobre as linhas da matriz A.
+   for (size_t i = 0; i < A.size(); ++i) {
+      // Loop para iterar sobre as colunas da matriz B.
+      for (size_t j = 0; j < B[0].size(); ++j) {
+            result[i][j] = 0; // Inicializa o elemento result[i][j] com 0 antes de somar os produtos.
+            // Loop para calcular o produto escalar da linha i de A com a coluna j de B.
+            for (size_t k = 0; k < B.size(); ++k) {
+               result[i][j] += A[i][k] * B[k][j]; // Realiza a multiplicação e soma dos elementos correspondentes de A e B.
+            }
+      }
+   }
+}
+
+// Função principal do programa.
+int main() {
+   size_t N = 200; // Define o tamanho N das matrizes quadradas (200x200).
+
+   // Declara e inicializa a matriz A como uma matriz NxN preenchida com zeros.
+   std::vector<std::vector<int>> A(N, std::vector<int>(N));
+
+   // Declara e inicializa a matriz B como uma matriz NxN preenchida com zeros.
+   std::vector<std::vector<int>> B(N, std::vector<int>(N));
+
+   // Declara e inicializa a matriz result como uma matriz NxN preenchida com zeros, que armazenará o resultado da multiplicação.
+   std::vector<std::vector<int>> result(N, std::vector<int>(N));
+
+   // Loop para preencher as matrizes A e B com valores.
+   for (size_t i = 0; i < N; ++i) {
+      for (size_t j = 0; j < N; ++j) {
+            A[i][j] = i + j; // Preenche a matriz A com a soma dos índices i e j.
+            B[i][j] = i * j; // Preenche a matriz B com o produto dos índices i e j.
+      }
+   }
+
+   // Marca o tempo de início da multiplicação das matrizes usando o relógio de alta resolução.
+   auto start = std::chrono::high_resolution_clock::now();
+
+   // Chama a função multiply_matrices para multiplicar as matrizes A e B, armazenando o resultado em 'result'.
+   multiply_matrices(A, B, result);
+
+   // Marca o tempo de término da multiplicação.
+   auto end = std::chrono::high_resolution_clock::now();
+
+   // Calcula a duração da multiplicação subtraindo o tempo de início do tempo de término, armazenando o resultado em 'duration'.
+   std::chrono::duration<double> duration = end - start;
+
+   // Exibe o tempo de execução da multiplicação de matrizes no console.
+   std::cout << "Tempo de execução para a multiplicação de matrizes em C++: " << duration.count() << " segundos" << std::endl;
+
+   return 0; // Retorna 0, indicando que o programa foi executado com sucesso.
+}
+
 ```
 
-Conecte-se ao cluster utilizando o comando SSH:
 
-Substitua `nome_da_pasta` pelo nome que está na pasta com as chaves que você baixou no BlackBoard e `cluster_endereco` pelo endereço de IP fornecido durante a aula.
+## Parte 3: Paralelismo em C++ 
 
-
-```bash
-ssh -i ~/.ssh/id_rsa nome_da_pasta@ip_do_cluster
-```
-ou
-
-```bash
-ssh nome_da_pasta@ip_do_cluster
-```
-
-
-#### **Para Windows:**
-
-**Usando OpenSSH :**
-
-Abra o PowerShell ou Windows Terminal. Navegue até a pasta onde a chave privada (`id_rsa`) foi baixada, mova a chave para a pasta `.ssh` em seu diretório de usuário:
-
-```powershell
-mkdir $env:USERPROFILE\.ssh
-mv id_rsa $env:USERPROFILE\.ssh\
-```
-
-Certifique-se de que as permissões estão corretas:
-```powershell
-icacls $env:USERPROFILE\.ssh\id_rsa /inheritance:r /grant:r "$($env:USERNAME):(R)"
-```
-Conecte-se ao cluster usando o comando:
-```powershell
-ssh -i $env:USERPROFILE\.ssh\id_rsa seu_usuario_insper@ip_do_cluster
-```
-
-### Configurar o VS Code para Acesso Remoto ao Cluster**
-
-**Instale a Extensão Remote - SSH**:
-
-Abra o VS Code, vá para a aba de extensões (ícone de quadrado no lado esquerdo). Pesquise por "Remote - SSH" e instale a extensão oficial da Microsoft.
-
-**Configurar o Acesso Remoto**:
-
-Pressione `Ctrl+Shift+P` (ou `Cmd+Shift+P` no Mac) para abrir o painel de comandos.
-
-Digite `Remote-SSH: Add New SSH Host...` e selecione a opção.
-
-Insira o comando SSH que você utilizou anteriormente:
-```bash
-ssh -i ~/.ssh/id_rsa nome_da_pasta@ip_do_cluster
-```
-Escolha o arquivo de configuração padrão (`~/.ssh/config` para Mac/Linux ou `C:\Users\seu_usuario\.ssh\config` para Windows).
-
-Pressione `Ctrl+Shift+P` (ou `Cmd+Shift+P` no Mac) novamente e digite `Remote-SSH: Connect to Host...`. Selecione o host configurado.
-
-O VS Code abrirá uma nova janela conectada ao ambiente remoto do cluster.
-
-![ssh](imgs/RemoteSSHVsCode.png)
-
-**Gerenciar Projetos Remotamente**:
-
- Após a conexão, você pode abrir pastas e arquivos no cluster diretamente pelo VS Code.
-
- Utilize os recursos do VS Code, como o terminal integrado e o debug para trabalhar no cluster Franky.
-
-
-###  Executando a Atividade 0 no Cluster Franky usando SLURM
-
-Um arquivo .slurm é usado para "lançar jobs" no sistema SLURM, especificando os recursos necessários para a execução, como memória, número de máquinas e núcleos. Nesse arquivo, também definimos como desejamos o output do executável e onde o sistema pode encontrar o arquivo a ser executado. Como a equipe que gerencia o Cluster definiu que os jobs sejam lançados apenas da pasta SCRATCH, podemos omitir o caminho do arquivo nos nossos arquivos .slurm.
+Compile e execute o código modificado. Observe a diferença no tempo de execução em comparação com as versões anteriores.
 
 !!! warning
-      As instruções #SBATCH são tecnicamente consideradas "comentários" pelo interpretador de comandos do shell (bash), mas não são realmente ignoradas. Quando você escreve um script para ser executado pelo SLURM, o bash interpreta as linhas #SBATCH como comentários normais, enquanto o gerenciador de jobs SLURM interpreta essas mesmas linhas como diretivas que definem como o job deve ser executado.
+    Lembre-se! Sempre que fizer alterações no seu código em c++, é necessário gerar um novo binário.
+
+
+```cpp
+#include <iostream>   // Inclui a biblioteca padrão de entrada e saída, usada para funções como std::cout.
+#include <vector>     // Inclui a biblioteca de vetores da STL (Standard Template Library) do C++.
+#include <chrono>     // Inclui a biblioteca para medição de tempo, utilizada para calcular a duração de execução.
+#include <omp.h>      // Inclui a biblioteca OpenMP, usada para paralelismo em C++.
+
+void multiply_matrices(const std::vector<std::vector<int>>& A, const std::vector<std::vector<int>>& B, std::vector<std::vector<int>>& result) {
+    // Define a função que realiza a multiplicação de duas matrizes A e B, armazenando o resultado na matriz 'result'.
+    #pragma omp parallel for
+    // Diretiva OpenMP que paraleliza o loop 'for' que segue. Cada iteração do loop externo será executada em paralelo.
+    for (size_t i = 0; i < A.size(); ++i) {
+        // Itera sobre as linhas da matriz A. 'size_t' é um tipo de dado usado para representar tamanhos e índices.
+        for (size_t j = 0; j < B[0].size(); ++j) {
+            // Itera sobre as colunas da matriz B.
+            result[i][j] = 0;
+            // Inicializa o elemento [i][j] da matriz result com 0 antes de somar os produtos.
+            for (size_t k = 0; k < B.size(); ++k) {
+                // Itera sobre as colunas de A e as linhas de B para calcular o produto escalar da linha i de A com a coluna j de B.
+                result[i][j] += A[i][k] * B[k][j];
+                // Realiza a multiplicação dos elementos correspondentes de A e B, somando o resultado ao elemento result[i][j].
+            }
+        }
+    }
+}
+
+int main() {
+    size_t N = 200;
+    // Define o tamanho N das matrizes quadradas (200x200).
+    std::vector<std::vector<int>> A(N, std::vector<int>(N));
+    // Declara e inicializa a matriz A como uma matriz NxN preenchida com zeros.
+    std::vector<std::vector<int>> B(N, std::vector<int>(N));
+    // Declara e inicializa a matriz B como uma matriz NxN preenchida com zeros.
+    std::vector<std::vector<int>> result(N, std::vector<int>(N));
+    // Declara e inicializa a matriz result como uma matriz NxN preenchida com zeros, que armazenará o resultado da multiplicação.
+
+    for (size_t i = 0; i < N; ++i) {
+        // Itera sobre as linhas da matriz A e B.
+        for (size_t j = 0; j < N; ++j) {
+            // Itera sobre as colunas da matriz A e B.
+            A[i][j] = i + j;
+            // Preenche a matriz A com valores como a soma dos índices i e j.
+            B[i][j] = i * j;
+            // Preenche a matriz B com valores como o produto dos índices i e j.
+        }
+    }
+
+    auto start = std::chrono::high_resolution_clock::now();
+    // Marca o tempo de início da multiplicação das matrizes usando o relógio de alta resolução.
+    multiply_matrices(A, B, result);
+    // Chama a função multiply_matrices para multiplicar as matrizes A e B, armazenando o resultado em 'result'.
+    auto end = std::chrono::high_resolution_clock::now();
+    // Marca o tempo de término da multiplicação.
+
+    std::chrono::duration<double> duration = end - start;
+    // Calcula a duração da multiplicação subtraindo o tempo de início do tempo de término, armazenando o resultado em 'duration'.
+    std::cout << "Tempo de execução para a multiplicação de matrizes em C++ com OpenMP: " << duration.count() << " segundos" << std::endl;
+    // Exibe o tempo de execução da multiplicação de matrizes no console.
+
+    return 0;
+    // Retorna 0, indicando que o programa foi executado com sucesso.
+}
+
+```
+
+Esta atividade demonstrou como a escolha da linguagem de programação pode impactar no desempenho de operações computacionalmente intensivas, como a multiplicação de matrizes. Você viu como Python e C++ lidam com essas operações e como o paralelismo pode ser uma boa opção, dependendo da complexidade do problema. Na próxima atividade, você levará essas implementações para o cluster Franky e essas diferenças ficarão ainda mais visíveis.
 
 !!! tip 
-      Não é necessário neste momento, mas se você quiser transferir arquivos da sua máquina para o cluster e vice versa, você pode usar o comando scp [mais detalhes aqui](../../Teoria/comandos-ssh.md)
+      Se quiser [saber um pouco mais sobre HPC](../../Teoria/contextualizando-hpc/contextualizando-HPC.md), [relembrar conceitos](../../Teoria/introducao/conceitos-basicos-hw.md) ou [aprofundar um pouco em C++](../../Teoria/conceitos-basicos-C++.md)
 
 
+## Entrega - Atividade 01
 
-Crie um script de submissão .slurm para cada implementação utilizando os exemplos abaixo. Esse script será utilizado para enviar o job ao cluster.
+- Aumente o tamanho das matrizes nos 3 exemplos para 300x300, 900x900 e 1300x1300 
 
-**Script SLURM para o código em Python:**
+- Elabore um gráfico que relaciona a complexidade do problema (tamanho da matriz) com o tempo de execução para cada implementação.
 
-matriz_mult_python.slurm
+- Faça uma análise comparativa sobre o impacto do paralelismo no desempenho de acordo com a complexidade do problema.
 
-```bash
-#!/bin/bash
-#As instruções SBATCH não devem ser descomentadas
+- Comente sobre como você acha que este problema pode ser abordado em um ambiente de HPC.
 
-#SBATCH --job-name=mult_matriz_py
-# define o nome do job. Esse nome aparece nas listas de jobs e é útil para identificar o job.
 
-#SBATCH --output=mult_matriz_py.out
-# Especifica o arquivo onde a saída padrão (stdout) do job será salva.
-
-#SBATCH --ntasks=1
-# Define o número de tarefas que o job executará. Neste caso, o job executa uma única tarefa.
-
-#SBATCH --time=00:10:00
-# Define o tempo máximo de execução para o job. Neste caso, o job tem um tempo limite de 10 minutos. Se o job exceder esse tempo, ele será automaticamente encerrado.
-
-#SBATCH --partition=normal
-# Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila "normal".
-
-python3 mult_matriz_py.py
-#Executa o programa python3 dentro do nó de computação.
-```
-
-**Script SLURM para arquivos C++:**
-
-Como o C++ é uma linguagem que requer compilação, precisamos gerar o executável antes de preparar o arquivo .slurm.
-
-Dentro da pasta SCRATCH, compile seu código .cpp para gerar o binário.
-
-```c++
-g++  mult_matriz_cpp.cpp -o mult_matriz_cpp 
-```
-
-
-matriz_mult_cpp.slurm
-
-```bash
-#!/bin/bash
-#SBATCH --job-name=matriz_mult_cpp
-# Define o nome do job como "matrix_mult_openmp". Esse nome aparece nas listas de jobs e é útil para identificar o job.
-
-#SBATCH --output=matriz_mult_cpp.out
-# Especifica o arquivo onde a saída padrão (stdout) do job será salva.
-
-#SBATCH --ntasks=1
-# Define o número de tarefas que o job executará. Neste caso, o job executa uma única tarefa.
-
-#SBATCH --time=00:10:00
-# Define o tempo máximo de execução para o job. Neste caso, o job tem um tempo limite de 10 minutos. Se o job exceder esse tempo, ele será automaticamente encerrado.
-
-#SBATCH --partition=normal
-# Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila "normal".
-
-
-./mult_matriz_cpp
-# Executa o programa compilado "mult_matriz_cpp" dentro do nó de computação.
-
-```
-
-
-**Script SLURM para arquivos C++ com Paralelismo:**
-
-Ao utilizar o OpenMP para paralelizar códigos em C++, é necessário incluir a flag apropriada durante a compilação. Essa flag informa ao compilador para interpretar corretamente as diretivas OpenMP no código e gerar o binário de forma adequada.
-
-```c++
-g++ -fopenmp mult_matriz_paralelo -o mult_matriz_paralelo.cpp
-```
-
-matriz_mult_paralelo.slurm
-
-```bash
-#!/bin/bash
-
-#SBATCH --job-name=matriz_mult_paralelo
-# Define o nome do job como "matrix_mult_paralelo". Esse nome aparece nas listas de jobs e é útil para identificar o job.
-
-#SBATCH --output=matriz_mult_paralelo.out
-# Especifica o arquivo onde a saída padrão (stdout) do job será salva.
-
-#SBATCH --ntasks=1
-# Define o número de tarefas que o job executará. Neste caso, o job executa uma única tarefa.
-
-#SBATCH --cpus-per-task=4
-# Especifica o número de CPUs que devem ser alocadas para esta tarefa.
-
-#SBATCH --time=00:10:00
-# Define o tempo máximo de execução para o job. Neste caso, o job tem um tempo limite de 10 minutos. Se o job exceder esse tempo, ele será automaticamente encerrado.
-
-#SBATCH --partition=normal
-# Especifica a partição (ou fila) onde o job será submetido. Aqui, o job será submetido a fila "normal".
-
-
-./mult_matriz_paralelo
-# Executa o programa compilado "mult_matriz_paralelo" dentro do nó de computação.
-
-```
-
-### **Parte 2: Execução das Implementações no Cluster**
-
-**Submissão dos Jobs:**
-
-Utilize o comando `sbatch` para submeter cada script SLURM ao cluster.
-
-**Exemplo:**
-
-```bash
-sbatch matriz_mult_python.slurm
-sbatch matriz_mult_cpp.slurm
-sbatch matriz_mult_paralelo.slurm
-```
-
-**Monitoramento dos Jobs:**
-
-Use o comando `squeue` para monitorar o status dos jobs.
-
-**Exemplo:**
-
-```bash
-squeue 
-```
-
-**Análise dos Resultados:**
-
-Após a execução dos jobs, os resultados estarão disponíveis nos arquivos `.out`  especificados em cada script SLURM.
-
-  - Compare os tempos de execução dos três métodos (Python, C++, C++ com OpenMP) no cluster.
-
-   - Analise como o paralelismo afeta o desempenho no ambiente do cluster, em comparação com sua execução local.
-
-!!! tip 
-      Se quiser explorar mais os comandos do SLURM, [temos uma material aqui que pode te ajudar](../../Teoria/slurm.md)
-
-
-
-
-**Entrega Atividade 1 - Relatório de Desempenho:**
-   
-   - Prepare um relatório detalhado, incluindo gráficos que mostrem a relação entre o tamanho das matrizes e o tempo de execução para cada implementação.
- 
-   - Discuta o impacto do ambiente HPC no desempenho das operações e como o paralelismo pode escalar em um cluster de múltiplos nós.
-
-   - Submeta seu relatório pelo Blackboard até as 23h59 do dia da aula.
-
-
-Nesta atividade, você explorou como o ambiente de cluster, pode ser utilizado para otimizar e acelerar operações que são intensivas em termos computacionais. Isso oferece uma base sólida para entender como tarefas de grande escala, como o processamento de big data ou o treinamento de modelos de IA, podem ser significativamente aceleradas com HPC.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Submeta seu relatório até as 23h59 do dia da aula pelo Blackboard.
 

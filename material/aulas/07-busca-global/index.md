@@ -1,4 +1,4 @@
-# 08 - Busca exaustiva
+# 07 - Busca exaustiva
 
 ## Pseudo-código
 

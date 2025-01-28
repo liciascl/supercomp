@@ -1,4 +1,4 @@
-# Aula 12: Funções Customizadas e Otimização com Fusion Kernel 
+# Aula 11: Funções Customizadas e Otimização com Fusion Kernel 
 
 Nesta aula, vamos criar **operações customizadas** usando **functors**, entender como combinar transformações e reduções, e explorar a **otimização com fusion kernel**, uma técnica que melhora o desempenho ao combinar várias operações em uma única execução na GPU.
 

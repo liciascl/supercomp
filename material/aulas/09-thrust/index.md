@@ -1,4 +1,4 @@
-# Aula 10 - Thrust para programação paralela em GPU
+# Aula 09 - Thrust para programação paralela em GPU
 
 ### O que é Thrust?
 
@@ -322,7 +322,7 @@ Para entender mais sobre as funcionalidades da Thrust, verifique a documentaçã
 
 
 
-### Atividade 10
+### Atividade 09
 
 Vamos trabalhar com um arquivo que contém os preços das ações do Google nos últimos 10 anos, [stocks-google.txt](files/stocks-google.txt). A ideia é ler esses dados com um `thrust::host_vector`, transferir para a GPU e, em seguida, processá-los. 
 

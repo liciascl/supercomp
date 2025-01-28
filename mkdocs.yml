@@ -1,10 +1,10 @@
-site_name: SuperComputação - 2024/2
+site_name: SuperComputação - 2025/1
 site_author: 
 
 extra:
     materia: SuperComputação
     professor: Michel Fornaciali 
-    semestre: 2024/2
+    semestre: 2025/1
     url_acompanhamentos: http://localhost:8081
     id_curso: 1
 
@@ -33,22 +33,22 @@ nav:
     #- Burocracias: sobre.md
 
     - Aulas:
-        - "aulas/index.md"
-        - "Atividade 00: Introdução a HPC": aulas/00-introducao/index.md    
-        - "Atividade 01: Introdução ao Cluster Franky": aulas/01-introducao/index.md
-        - "Atividade 02: Exercicios de SLURM": aulas/02-slurm/index.md
-        - "Atividade 03 Introdução ao C++": aulas/03-cpp/aula-4.pdf
-        - "Atividade 04: Exercicios de C++": aulas/03-cpp/03-cpp.md
-        - "Atividade 05: Profiling": aulas/04-Profiling/04-Profiling.md
-        - "Atividade 06: Problema da Mochila com Busca Exaustiva": aulas/06-heuristicas/index.md
-        - "Atividade 07: Problema da Mochila com Heurística Aleatória": aulas/07-aleatorizacao/index.md               
-        - "Atividade 08: Problema da Mochila com Busca Local e Hill Climb": aulas/08-busca-local/index.md
-        - "Atividade 09: Problema da Mochila com Heurísticas": aulas/09-heuristica/index.md 
-        - "Atividade 10: Thrust para programação paralela em GPU": aulas/10-thrust/index.md
-        - "Atividade 11: Iteradores e funções customizadas": aulas/11-iteradores/index.md                               
-        - "Atividade 12: Funções customizadas e Otimização com Fusion Kernel": aulas/12-funcoes-customizadas/index.md               
-        - "Atividade 13: Trabalhando com Schedulers no OpenMP": aulas/13-openmp/paralelo.md 
-        - "Atividade 14: Pi pelo método de Monte Carlo": aulas/14-pi/index.md
+#        - "aulas/index.md"
+        - "Atividade 01: Introdução a HPC": aulas/01-introducao/index.md    
+        - "Atividade 02: Introdução ao Cluster Franky": aulas/02-introducao/index.md
+#        - "Atividade 03: Exercicios de SLURM": aulas/02-slurm/index.md
+#        - "Atividade 04 Introdução ao C++": aulas/03-cpp/aula-4.pdf
+#        - "Atividade 05: Exercicios de C++": aulas/03-cpp/03-cpp.md
+#        - "Atividade 06: Profiling": aulas/04-Profiling/04-Profiling.md
+#        - "Atividade 07: Problema da Mochila com Busca Exaustiva": aulas/06-heuristicas/index.md
+#        - "Atividade 08: Problema da Mochila com Heurística Aleatória": aulas/07-aleatorizacao/index.md               
+#        - "Atividade 09: Problema da Mochila com Busca Local e Hill Climb": aulas/08-busca-local/index.md
+#        - "Atividade 10: Problema da Mochila com Heurísticas": aulas/09-heuristica/index.md 
+#        - "Atividade 11: Thrust para programação paralela em GPU": aulas/10-thrust/index.md
+#        - "Atividade 12: Iteradores e funções customizadas": aulas/11-iteradores/index.md                               
+#        - "Atividade 13: Funções customizadas e Otimização com Fusion Kernel": aulas/12-funcoes-customizadas/index.md               
+#        - "Atividade 14: Trabalhando com Schedulers no OpenMP": aulas/13-openmp/paralelo.md 
+#        - "Atividade 15: Pi pelo método de Monte Carlo": aulas/14-pi/index.md
 
 
         

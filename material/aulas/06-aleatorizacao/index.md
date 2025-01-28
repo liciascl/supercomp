@@ -1,4 +1,4 @@
-# 07 - Heurísticas Aleatórias para o Problema da Mochila
+# 06 - Heurísticas Aleatórias para o Problema da Mochila
 
 Nesta aula, vamos experimentar um conjuntos de dados maiores e testar novas heurísticas baseadas em seleção aleatória. O objetivo é comparar a eficiência e a qualidade das soluções geradas pelos diferentes métodos.
 
@@ -28,7 +28,7 @@ Execute a heurística e compare o resultado obtido e o tempo de execução com o
 **3.** Se a probabilidade for maior que um valor limiar definido (por exemplo, 0.5), adicione o item à mochila se ele couber; caso contrário, ignore-o, mesmo que caiba.
 
 
-### Atividade 07 - Heurísticas Aleatórias par ao Problema da Mochila
+### Atividade 06 - Heurísticas Aleatórias par ao Problema da Mochila
 
 **Teste com Novas Entradas:**
 As mochilas da atividade passada eram bem basiconas, vamos testar o código com mochilas computacionalmente mais desafiadoras:
