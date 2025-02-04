@@ -216,5 +216,5 @@ Esta atividade demonstrou como a escolha da linguagem de programação pode impa
 - Comente sobre como você acha que este problema pode ser abordado em um ambiente de HPC.
 
 
-Submeta seu relatório até as 23h59 do dia da aula pelo Blackboard.
+Submeta seu relatório até as 23h59 de 07/02 pelo Classroom, disponível no Blackboard.
 
