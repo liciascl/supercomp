@@ -247,7 +247,7 @@ Após a execução dos jobs, os resultados estarão disponíveis nos arquivos `.
  
    - Discuta o impacto do ambiente HPC no desempenho das operações e como o paralelismo pode escalar em um cluster de múltiplos nós.
 
-   - Submeta seu relatório pelo Blackboard até as 23h59 do dia da aula.
+   - Submeta seu relatório até as 23h59 de 10/02 pelo Classroom, disponível no Blackboard.
 
 
 Nesta atividade, você explorou como o ambiente de cluster, pode ser utilizado para otimizar e acelerar operações que são intensivas em termos computacionais. Isso oferece uma base sólida para entender como tarefas de grande escala, como o processamento de big data ou o treinamento de modelos de IA, podem ser significativamente aceleradas com HPC.
