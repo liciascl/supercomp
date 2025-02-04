@@ -129,10 +129,16 @@ int main() {
 
 ## Parte 3: Paralelismo em C++ 
 
-Compile e execute o código modificado. Observe a diferença no tempo de execução em comparação com as versões anteriores.
+Compile e execute o código modificado usando o comando '-fopenmp' para ter suporte ao paralelismo. Observe a diferença no tempo de execução em comparação com as versões anteriores.
+
+```bash
+g++ -fopenmp -o meu_programa.cpp meu_executavel_paralelo
+
+```
 
 !!! warning
     Lembre-se! Sempre que fizer alterações no seu código em c++, é necessário gerar um novo binário.
+
 
 
 ```cpp
@@ -216,5 +222,5 @@ Esta atividade demonstrou como a escolha da linguagem de programação pode impa
 - Comente sobre como você acha que este problema pode ser abordado em um ambiente de HPC.
 
 
-Submeta seu relatório até as 23h59 de 07/02 pelo Classroom, disponível no Blackboard.
+Submeta seu relatório até as 23h59 de 07/02 pelo [Classroom](https://classroom.github.com/assignment-invitations/2a8299085d884c0a8dc93b3e58fd1bd0), disponível no Blackboard.
 
