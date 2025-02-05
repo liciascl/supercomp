@@ -81,7 +81,7 @@ nav:
         # - aulas/15-efeitos-colaterais/index.md
         # - aulas/16-efeitos-colaterais-II/index.md
 
-    - Projeto:
+    #- Projeto:
     #     - projetos/index.md
     #     - projetos/heuristico.md
     #     - projetos/local.md

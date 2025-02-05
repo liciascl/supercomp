@@ -132,7 +132,7 @@ int main() {
 Compile e execute o código modificado usando o comando '-fopenmp' para ter suporte ao paralelismo. Observe a diferença no tempo de execução em comparação com as versões anteriores.
 
 ```bash
-g++ -fopenmp -o meu_programa.cpp meu_executavel_paralelo
+g++ -fopenmp  meu_programa.cpp -o meu_executavel_paralelo
 
 ```
 
