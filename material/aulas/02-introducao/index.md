@@ -19,7 +19,7 @@ mv id_rsa ~/.ssh/
 Garanta que apenas você possa ler o arquivo:
 
 ```bash
-chmod 600 ~/.ssh/id_rsa
+chmod 400 ~/.ssh/id_rsa
 ```
 
 Conecte-se ao cluster utilizando o comando SSH:
