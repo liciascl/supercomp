@@ -9,16 +9,18 @@ extra:
     id_curso: 1
 
 theme:
-  feature:
-    tabs: true
-  name: 'material'
+  name: material
+  features:
+    - content.code.copy  # Habilita o botão de copiar nos blocos de código
+ #   - navigation.tabs  # Mantém os tabs ativados corretamente
   palette:
-      primary: 'grey'
-      accent: 'red'
+    primary: grey
+    accent: red
   font:
     text: Roboto
     code: Roboto Mono
-#  custom_dir: 'custom_theme'
+
+
 
 docs_dir: material
 site_dir: docs
@@ -36,9 +38,9 @@ nav:
 #        - "aulas/index.md"
         - "Atividade 01: Introdução a HPC": aulas/01-introducao/index.md    
         - "Atividade 02: Introdução ao Cluster Franky": aulas/02-introducao/index.md
-#        - "Atividade 03: Exercicios de SLURM": aulas/02-slurm/index.md
-#        - "Atividade 04 Introdução ao C++": aulas/03-cpp/aula-4.pdf
-#        - "Atividade 05: Exercicios de C++": aulas/03-cpp/03-cpp.md
+        - "Atividade 03: Exercicios de SLURM": aulas/02-slurm/index.md
+        - "Atividade 04.1: Introdução ao C++": aulas/03-cpp/aula-4.pdf
+        - "Atividade 04.2: Exercicios de C++": aulas/03-cpp/03-cpp.md
 #        - "Atividade 06: Profiling": aulas/04-Profiling/04-Profiling.md
 #        - "Atividade 07: Problema da Mochila com Busca Exaustiva": aulas/06-heuristicas/index.md
 #        - "Atividade 08: Problema da Mochila com Heurística Aleatória": aulas/07-aleatorizacao/index.md               
