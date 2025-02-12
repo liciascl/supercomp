@@ -171,7 +171,7 @@ matriz_mult_cpp.slurm
 Ao utilizar o OpenMP para paralelizar códigos em C++, é necessário incluir a flag apropriada durante a compilação. Essa flag informa ao compilador para interpretar corretamente as diretivas OpenMP no código e gerar o binário de forma adequada.
 
 ```c++
-g++ -fopenmp mult_matriz_paralelo -o mult_matriz_paralelo.cpp
+g++ -fopenmp mult_matriz_paralelo.cpp -o mult_matriz_paralelo
 ```
 
 matriz_mult_paralelo.slurm
