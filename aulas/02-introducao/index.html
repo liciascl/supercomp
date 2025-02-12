@@ -1111,7 +1111,7 @@ python3<span class="w"> </span>mult_matriz_py.py
 </code></pre></div>
 <p><strong>Script SLURM para arquivos C++ com Paralelismo:</strong></p>
 <p>Ao utilizar o OpenMP para paralelizar códigos em C++, é necessário incluir a flag apropriada durante a compilação. Essa flag informa ao compilador para interpretar corretamente as diretivas OpenMP no código e gerar o binário de forma adequada.</p>
-<div class="highlight"><pre><span></span><code><span class="n">g</span><span class="o">++</span><span class="w"> </span><span class="o">-</span><span class="n">fopenmp</span><span class="w"> </span><span class="n">mult_matriz_paralelo</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="n">mult_matriz_paralelo</span><span class="p">.</span><span class="n">cpp</span>
+<div class="highlight"><pre><span></span><code><span class="n">g</span><span class="o">++</span><span class="w"> </span><span class="o">-</span><span class="n">fopenmp</span><span class="w"> </span><span class="n">mult_matriz_paralelo</span><span class="p">.</span><span class="n">cpp</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="n">mult_matriz_paralelo</span>
 </code></pre></div>
 <p>matriz_mult_paralelo.slurm</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
