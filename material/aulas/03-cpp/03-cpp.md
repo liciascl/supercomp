@@ -1,4 +1,4 @@
-# Aula 03: Usando o poder do C++ 
+# Usando o poder do C++ 
 
 Em programação de alto desempenho, pequenas otimizações podem resultar em grandes melhorias no tempo de execução e no uso de recursos. Nesta aula, vamos explorar técnicas avançadas de C++ que são essenciais para programar códigos eficientes, seguros e preparados para escalar em aplicações de alta performance.
 
@@ -303,6 +303,5 @@ int main() {
 
 
 
-### Entrega da Atividade 3
-
-Crie um repositório no GitHub com os seus códigos e análises, envie o link pelo BlackBoard até sexta (23/08), as 23h59.
+### Entrega da Atividade 4.2
+A entrega sera pelo Classroom até sexta (21/02), as 23h59.
