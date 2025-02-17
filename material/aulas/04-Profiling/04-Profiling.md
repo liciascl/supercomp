@@ -1,10 +1,6 @@
 # Otimização e Profiling 
 Em ambientes de HPC, dominar técnicas de otimização e profiling pode fazer toda a diferença na execução de programas complexos. Nosso objetivo é capacitar você a identificar gargalos de desempenho em seu código. 
 
-Começaremos explorando as flags de compilação que o GCC oferece para otimizar seu código. Desde ajustes básicos até transformações avançadas, você verá como as diferentes flags podem impactar o desempenho de seu programa.
-
-Após otimizar o código na compilação, vamos entender como as ferramentas de profiling Gprof e Valgrind funcionam. Essas ferramentas são úteis para identificar quais partes do código são as mais exigentes em termos de recursos e onde os maiores ganhos de desempenho podem ser alcançados.
-
 **Objetivo:** Entender como utilizar as flags de compilação e ferramentas de profiling para encontrar gargalos e melhorar o desempenho do código.
 
 **Recursos Necessários:**
@@ -14,6 +10,91 @@ Após otimizar o código na compilação, vamos entender como as ferramentas de 
 - Ferramentas de profiling: `gprof`, `Valgrind`.
   
 - Se você estiver usando Windows, será necessário habilitar o X11 para exibir a interface gráfica do cluster. Há diversos tutoriais disponíveis online, [recomendo esse aqui](https://www.ibm.com/support/pages/system/files/inline-files/Using%20Putty%20with%20Xming%20X11%20Forwarding%20from%20Windows%20to%20display%20a%20remote%20IBM%20MQ%20Explorer%20in%20Linux.pdf) 
+
+
+
+### Configuração e Teste do X11 nos Principais Sistemas Operacionais
+
+#### Linux
+- **Instale um servidor X (se necessário):**
+  ```bash
+  sudo apt install x11-apps xauth  # Debian/Ubuntu
+  sudo dnf install xorg-x11-xauth  # Fedora/RHEL
+  ```
+- **Conecte-se ao cluster com X11 Forwarding:**
+  ```bash
+   ssh -X -i ~/.ssh/id_rsa seu_usuario@ip_do_cluster
+  ```
+- **Teste a exibição gráfica:**
+  ```bash
+  xclock
+  ```
+
+#### macOS
+- **Instale o XQuartz** (servidor X para macOS):
+  ```bash
+  brew install --cask xquartz
+  ```
+  Depois de instalar, abra o XQuartz e rode:
+  ```bash
+  xhost +
+  ```
+- **Conecte-se ao cluster com SSH e X11 Forwarding:**
+  ```bash
+    ssh -X -i ~/.ssh/id_rsa seu_usuario@ip_do_cluster
+ ```
+- **Teste a exibição gráfica:**
+  ```bash
+  xclock
+  ```
+
+#### **Windows**
+
+Siga o tutorial para configurar o PuTTY, depois, vá até **Connection > SSH > X11** e marque **"Enable X11 Forwarding"** antes de conectar.
+
+- **Teste a exibição gráfica:**
+  ```bash
+  xclock
+  ```
+
+### Para conectar ao Cluster com X11 Forwarding e Testar a Configuração
+
+Após configurar o **X11 Forwarding**, conecte-se ao cluster utilizando a flag `-X` ou `-Y` no comando SSH:
+
+```bash
+ssh -X -i ~/.ssh/id_rsa seu_usuario@ip_do_cluster
+
+```
+Se houver problemas com `-X`, tente com `-Y`, que permite conexões X11 menos restritivas:
+```bash
+ssh -Y -i ~/.ssh/id_rsa seu_usuario@ip_do_cluster
+```
+
+### Verificando se o X11 está Funcionando
+
+Após conectar ao cluster via SSH, execute o seguinte comando para verificar se o display foi corretamente encaminhado:
+
+```bash
+echo $DISPLAY
+```
+- **Se o retorno for algo como `localhost:10.0`**, significa que o X11 Forwarding está ativo.  
+- **Se o retorno for vazio**, pode ser necessário revisar a configuração.
+
+Agora, teste a exibição de uma aplicação gráfica simples no cluster:
+
+```bash
+xclock
+```
+Se a configuração estiver correta, um relógio gráfico será exibido na tela do seu computador.
+
+
+Se o **X11 Forwarding** estiver corretamente configurado, o teste com `xclock` abrirá uma janela gráfica no seu computador. Se houver falhas, verifique se o servidor X está rodando na sua máquina local.
+
+![imagem_print](print.png)
+
+Após concluir as configurações, vamos retornar ao guia. Começaremos explorando as flags de compilação que o GCC oferece para otimizar seu código. Desde ajustes básicos até transformações avançadas, você verá como as diferentes flags podem impactar o desempenho de seu programa.
+
+Após otimizar o código na compilação, vamos entender como as ferramentas de profiling Gprof e Valgrind funcionam. Essas ferramentas são úteis para identificar quais partes do código são as mais exigentes em termos de recursos e onde os maiores ganhos de desempenho podem ser alcançados.
 
 #### Flags de Compilação
 - **`-O1`**: Nível básico de otimização que aplica melhorias simples, mantendo o tempo de compilação rápido.
