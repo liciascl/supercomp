@@ -1,4 +1,4 @@
-# Aula 04: Otimização e Profiling 
+# Otimização e Profiling 
 Em ambientes de HPC, dominar técnicas de otimização e profiling pode fazer toda a diferença na execução de programas complexos. Nosso objetivo é capacitar você a identificar gargalos de desempenho em seu código. 
 
 Começaremos explorando as flags de compilação que o GCC oferece para otimizar seu código. Desde ajustes básicos até transformações avançadas, você verá como as diferentes flags podem impactar o desempenho de seu programa.
@@ -12,6 +12,8 @@ Após otimizar o código na compilação, vamos entender como as ferramentas de 
 - Código base do programa de convolução (`convolucao.cpp`) usado na [aula 02](../02-slurm/index.md).
 
 - Ferramentas de profiling: `gprof`, `Valgrind`.
+  
+- Se você estiver usando Windows, será necessário habilitar o X11 para exibir a interface gráfica do cluster. Há diversos tutoriais disponíveis online, [recomendo esse aqui](https://www.ibm.com/support/pages/system/files/inline-files/Using%20Putty%20with%20Xming%20X11%20Forwarding%20from%20Windows%20to%20display%20a%20remote%20IBM%20MQ%20Explorer%20in%20Linux.pdf) 
 
 #### Flags de Compilação
 - **`-O1`**: Nível básico de otimização que aplica melhorias simples, mantendo o tempo de compilação rápido.
@@ -44,7 +46,7 @@ mpic++ -O3 -march=native convolucao.cpp -o convolucao_O3
 
 1. Execute cada versão do programa no cluster usando um script SLURM similar ao usado na aula 02.
 
-Modifique o número de iterações para **30, 50, e 100** para avaliar o impacto da complexidade no tempo de execução, submeta os jobs via SLURM, verifique os tempos de execução e compare o impacto de cada nível de otimização.
+Modifique o número de iterações para **10, 30, e 60** para avaliar o impacto da complexidade no tempo de execução, submeta os jobs via SLURM, verifique os tempos de execução e compare o impacto de cada nível de otimização.
 
 #### Análise dos Resultados
 
@@ -92,7 +94,7 @@ kcachegrind callgrind.out.*
 Analise o uso de CPU e cache. Identifique funções e loops que são candidatos para otimização.
 Compare as saídas do **gprof** e **Callgrind**. 
 
-### Atividade 04 - Profiling
+### Profiling
 
 **Elabore um Relatório que inclua:** 
 
@@ -102,4 +104,4 @@ Compare as saídas do **gprof** e **Callgrind**.
 
    - Sugestões de otimizações adicionais baseadas nos resultados de profiling.
 
-**Submissão**: Envie o relatório pelo Blackboard até a próxima sexta 30/08, 23h59.
+**Submissão**: Envie o relatório pelo Classroom até 24/02, 23h59.
