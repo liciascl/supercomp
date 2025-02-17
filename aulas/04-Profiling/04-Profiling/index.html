@@ -18,7 +18,7 @@
     
     
       
-        <title>Aula 04: Otimização e Profiling - SuperComputação - 2025/1</title>
+        <title>Otimização e Profiling - SuperComputação - 2025/1</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aula-04-otimizacao-e-profiling" class="md-skip">
+        <a href="#otimizacao-e-profiling" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Aula 04: Otimização e Profiling
+              Otimização e Profiling
             
           </span>
         </div>
@@ -888,9 +888,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#atividade-04-profiling" class="md-nav__link">
+  <a href="#profiling" class="md-nav__link">
     <span class="md-ellipsis">
-      Atividade 04 - Profiling
+      Profiling
     </span>
   </a>
   
@@ -914,7 +914,7 @@
   
 
 
-<h1 id="aula-04-otimizacao-e-profiling">Aula 04: Otimização e Profiling<a class="headerlink" href="#aula-04-otimizacao-e-profiling" title="Permanent link">&para;</a></h1>
+<h1 id="otimizacao-e-profiling">Otimização e Profiling<a class="headerlink" href="#otimizacao-e-profiling" title="Permanent link">&para;</a></h1>
 <p>Em ambientes de HPC, dominar técnicas de otimização e profiling pode fazer toda a diferença na execução de programas complexos. Nosso objetivo é capacitar você a identificar gargalos de desempenho em seu código. </p>
 <p>Começaremos explorando as flags de compilação que o GCC oferece para otimizar seu código. Desde ajustes básicos até transformações avançadas, você verá como as diferentes flags podem impactar o desempenho de seu programa.</p>
 <p>Após otimizar o código na compilação, vamos entender como as ferramentas de profiling Gprof e Valgrind funcionam. Essas ferramentas são úteis para identificar quais partes do código são as mais exigentes em termos de recursos e onde os maiores ganhos de desempenho podem ser alcançados.</p>
@@ -926,6 +926,9 @@
 </li>
 <li>
 <p>Ferramentas de profiling: <code>gprof</code>, <code>Valgrind</code>.</p>
+</li>
+<li>
+<p>Se você estiver usando Windows, será necessário habilitar o X11 para exibir a interface gráfica do cluster. Há diversos tutoriais disponíveis online, <a href="https://www.ibm.com/support/pages/system/files/inline-files/Using%20Putty%20with%20Xming%20X11%20Forwarding%20from%20Windows%20to%20display%20a%20remote%20IBM%20MQ%20Explorer%20in%20Linux.pdf">recomendo esse aqui</a> </p>
 </li>
 </ul>
 <h4 id="flags-de-compilacao">Flags de Compilação<a class="headerlink" href="#flags-de-compilacao" title="Permanent link">&para;</a></h4>
@@ -955,7 +958,7 @@ Otimização avançada (<code>-O3</code>):
 <ol>
 <li>Execute cada versão do programa no cluster usando um script SLURM similar ao usado na aula 02.</li>
 </ol>
-<p>Modifique o número de iterações para <strong>30, 50, e 100</strong> para avaliar o impacto da complexidade no tempo de execução, submeta os jobs via SLURM, verifique os tempos de execução e compare o impacto de cada nível de otimização.</p>
+<p>Modifique o número de iterações para <strong>10, 30, e 60</strong> para avaliar o impacto da complexidade no tempo de execução, submeta os jobs via SLURM, verifique os tempos de execução e compare o impacto de cada nível de otimização.</p>
 <h4 id="analise-dos-resultados">Análise dos Resultados<a class="headerlink" href="#analise-dos-resultados" title="Permanent link">&para;</a></h4>
 <p><strong>Gráficos</strong>: Elabore gráficos que relacionam o tempo de execução com o número de iterações para cada nível de otimização.
 <strong>Discussão</strong>: Analise como as diferentes flags de otimização impactaram o desempenho. Identifique quais otimizações trouxeram maiores ganhos e em quais situações.</p>
@@ -982,7 +985,7 @@ Analise o <code>gmon.out</code> gerado:</p>
 </code></pre></div>
 Analise o uso de CPU e cache. Identifique funções e loops que são candidatos para otimização.
 Compare as saídas do <strong>gprof</strong> e <strong>Callgrind</strong>. </p>
-<h3 id="atividade-04-profiling">Atividade 04 - Profiling<a class="headerlink" href="#atividade-04-profiling" title="Permanent link">&para;</a></h3>
+<h3 id="profiling">Profiling<a class="headerlink" href="#profiling" title="Permanent link">&para;</a></h3>
 <p><strong>Elabore um Relatório que inclua:</strong> </p>
 <ul>
 <li>
@@ -995,7 +998,7 @@ Compare as saídas do <strong>gprof</strong> e <strong>Callgrind</strong>. </p>
 <p>Sugestões de otimizações adicionais baseadas nos resultados de profiling.</p>
 </li>
 </ul>
-<p><strong>Submissão</strong>: Envie o relatório pelo Blackboard até a próxima sexta 30/08, 23h59.</p>
+<p><strong>Submissão</strong>: Envie o relatório pelo Classroom até 24/02, 23h59.</p>
 
 
 
