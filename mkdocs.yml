@@ -41,7 +41,7 @@ nav:
         - "Atividade 03: Exercicios de SLURM": aulas/02-slurm/index.md
         - "Atividade 04.1: Introdução ao C++": aulas/03-cpp/aula-4.pdf
         - "Atividade 04.2: Exercicios de C++": aulas/03-cpp/03-cpp.md
-#        - "Atividade 06: Profiling": aulas/04-Profiling/04-Profiling.md
+        - "Atividade 05: Profiling": aulas/04-Profiling/04-Profiling.md
 #        - "Atividade 07: Problema da Mochila com Busca Exaustiva": aulas/06-heuristicas/index.md
 #        - "Atividade 08: Problema da Mochila com Heurística Aleatória": aulas/07-aleatorizacao/index.md               
 #        - "Atividade 09: Problema da Mochila com Busca Local e Hill Climb": aulas/08-busca-local/index.md
