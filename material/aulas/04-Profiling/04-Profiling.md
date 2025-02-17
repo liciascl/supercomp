@@ -187,4 +187,4 @@ Compare as saídas do **gprof** e **Callgrind**.
 
    - Sugestões de otimizações adicionais baseadas nos resultados de profiling.
 
-**Submissão**: Envie o relatório pelo Classroom até 24/02, 23h59.
+**Submissão**: Envie o relatório pelo Classroom até 28/02, 23h59.
