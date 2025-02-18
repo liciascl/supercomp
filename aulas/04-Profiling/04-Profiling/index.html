@@ -1203,45 +1203,58 @@
 <p>Ferramentas de profiling: <code>gprof</code>, <code>Valgrind</code>.</p>
 </li>
 <li>
-<p>Se você estiver usando Windows, será necessário habilitar o X11 para exibir a interface gráfica do cluster. Há diversos tutoriais disponíveis online, <a href="https://www.ibm.com/support/pages/system/files/inline-files/Using%20Putty%20with%20Xming%20X11%20Forwarding%20from%20Windows%20to%20display%20a%20remote%20IBM%20MQ%20Explorer%20in%20Linux.pdf">recomendo esse aqui</a> </p>
+<p>Se você estiver usando Windows, será necessário usar o WSL, se você não tem o WSL configurado, <a href="https://learn.microsoft.com/pt-br/windows/wsl/install">siga esse tutorial antes de começar</a> </p>
 </li>
 </ul>
 <h3 id="configuracao-e-teste-do-x11-nos-principais-sistemas-operacionais">Configuração e Teste do X11 nos Principais Sistemas Operacionais<a class="headerlink" href="#configuracao-e-teste-do-x11-nos-principais-sistemas-operacionais" title="Permanent link">&para;</a></h3>
 <h4 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h4>
-<ul>
-<li><strong>Instale um servidor X (se necessário):</strong>
+<p>Instale o X11 (se necessário):
   <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>x11-apps<span class="w"> </span>xauth<span class="w">  </span><span class="c1"># Debian/Ubuntu</span>
 sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>xorg-x11-xauth<span class="w">  </span><span class="c1"># Fedora/RHEL</span>
-</code></pre></div></li>
-<li><strong>Conecte-se ao cluster com X11 Forwarding:</strong>
+</code></pre></div></p>
+<p>Conecte-se ao cluster com X11 Forwarding:
   <div class="highlight"><pre><span></span><code><span class="w"> </span>ssh<span class="w"> </span>-X<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>seu_usuario@ip_do_cluster
-</code></pre></div></li>
-<li><strong>Teste a exibição gráfica:</strong>
+</code></pre></div>
+Teste a exibição gráfica:
   <div class="highlight"><pre><span></span><code>xclock
-</code></pre></div></li>
-</ul>
+xeyes
+</code></pre></div></p>
 <h4 id="macos">macOS<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h4>
-<ul>
-<li><strong>Instale o XQuartz</strong> (servidor X para macOS):
+<p>Instale o XQuartz (servidor X para macOS):
   <div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>--cask<span class="w"> </span>xquartz
 </code></pre></div>
   Depois de instalar, abra o XQuartz e rode:
   <div class="highlight"><pre><span></span><code>xhost<span class="w"> </span>+
-</code></pre></div></li>
-<li><strong>Conecte-se ao cluster com SSH e X11 Forwarding:</strong>
+</code></pre></div></p>
+<p>Conecte-se ao cluster com SSH e X11 Forwarding:
   <code>bash
-    ssh -X -i ~/.ssh/id_rsa seu_usuario@ip_do_cluster</code></li>
-<li><strong>Teste a exibição gráfica:</strong>
+    ssh -X -i ~/.ssh/id_rsa seu_usuario@ip_do_cluster</code></p>
+<p>Teste a exibição gráfica:
   <div class="highlight"><pre><span></span><code>xclock
-</code></pre></div></li>
-</ul>
+xeyes
+</code></pre></div></p>
 <h4 id="windows"><strong>Windows</strong><a class="headerlink" href="#windows" title="Permanent link">&para;</a></h4>
-<p>Siga o tutorial para configurar o PuTTY, depois, vá até <strong>Connection &gt; SSH &gt; X11</strong> e marque <strong>"Enable X11 Forwarding"</strong> antes de conectar.</p>
-<ul>
-<li><strong>Teste a exibição gráfica:</strong>
+<p>Abra o WSL, instale o X11</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>x11-apps<span class="w"> </span>xauth<span class="w">  </span><span class="c1"># Debian/Ubuntu</span>
+</code></pre></div>
+<p>Teste a exibição gráfica:
   <div class="highlight"><pre><span></span><code>xclock
-</code></pre></div></li>
-</ul>
+xeyes
+</code></pre></div></p>
+<p>Se você nunca acessou o Franky usando o WSL, será necessário configurar as chaves de acesso...</p>
+<p>Instale os pacotes do ssh
+  <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>openssh-server
+
+ssh<span class="w"> </span>localhost
+</code></pre></div>
+Copie as suas chaves para a pasta .ssh em <code>~/.ssh</code></p>
+<p>Certifique-se de que as permissões estão corretas:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>chwon<span class="w"> </span>seu_usuario:seu_usuario<span class="w"> </span>id_rsa*
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">400</span><span class="w"> </span>id_rsa
+</code></pre></div>
+<p>Agora conecte-se ao Franky com o <strong>X11 Forwarding</strong> ativo usando a flag <code>-X</code> ou <code>-Y</code> no comando SSH:</p>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-X<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>seu_usuario@ip_do_cluster
+</code></pre></div>
 <h3 id="para-conectar-ao-cluster-com-x11-forwarding-e-testar-a-configuracao">Para conectar ao Cluster com X11 Forwarding e Testar a Configuração<a class="headerlink" href="#para-conectar-ao-cluster-com-x11-forwarding-e-testar-a-configuracao" title="Permanent link">&para;</a></h3>
 <p>Após configurar o <strong>X11 Forwarding</strong>, conecte-se ao cluster utilizando a flag <code>-X</code> ou <code>-Y</code> no comando SSH:</p>
 <p><div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-X<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>seu_usuario@ip_do_cluster
