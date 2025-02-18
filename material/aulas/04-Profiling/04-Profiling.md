@@ -67,7 +67,7 @@ Teste a exibição gráfica:
   xclock
   xeyes
   ```
-  
+
 Se você nunca acessou o Franky usando o WSL, será necessário configurar as chaves de acesso...
 
 Instale os pacotes do ssh
@@ -220,7 +220,7 @@ Compare as saídas do **gprof** e **Callgrind**.
 
    - Gráficos e análise dos tempos de execução para diferentes otimizações.
 
-   - Discussão sobre os resultados obtidos com o **gprof** e **Callgrind**.
+   - Discussão sobre os resultados obtidos.
 
    - Sugestões de otimizações adicionais baseadas nos resultados de profiling.
 
