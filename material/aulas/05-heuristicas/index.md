@@ -1,4 +1,4 @@
-# Aula 05: Problema da Mochila com Busca Exaustiva
+# Problema da Mochila com Busca Exaustiva
 
 O problema da mochila é um dos problemas clássicos da computação e é amplamente estudado em otimização de algoritmos e computação. 
 
@@ -108,4 +108,4 @@ Compare o tempo de execução para os diferentes arquivos de entrada. Consideran
     
     **Entrada 4 ->** Peso ocupado: 10 Kg, Valor alcançado: 55 dinheiros
 
-Submeta no BlackBoard o link do repositório com o código e as análises até as 23h59 de 30/08. 
+Disponibilize no seu repositório o código e as análises até as 23h59 de 07/03. 

@@ -304,4 +304,4 @@ int main() {
 
 
 ### Entrega da Atividade 4.2
-A entrega sera pelo Classroom até sexta (21/02), as 23h59.
+A entrega sera pelo Classroom até segunda (24/02), as 23h59.
