@@ -11,18 +11,22 @@
         <link rel="canonical" href="https://insper.github.io/supercomp/aulas/06-aleatorizacao/">
       
       
+        <link rel="prev" href="../05-heuristicas/">
+      
+      
+        <link rel="next" href="../../Teoria/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
     
     
       
-        <title>06 - Heurísticas Aleatórias para o Problema da Mochila - SuperComputação - 2025/1</title>
+        <title>Atividade 07: Problema da Mochila com Heurística Aleatória - SuperComputação - 2025/1</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.a40c8224.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -50,12 +54,6 @@
     
       <link rel="stylesheet" href="../../equipe.css">
     
-      <link rel="stylesheet" href="../../css/ansi-colours.css">
-    
-      <link rel="stylesheet" href="../../css/jupyter-cells.css">
-    
-      <link rel="stylesheet" href="../../css/pandas-dataframe.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -80,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#06-heuristicas-aleatorias-para-o-problema-da-mochila" class="md-skip">
+        <a href="#heuristicas-aleatorias-para-o-problema-da-mochila" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              06 - Heurísticas Aleatórias para o Problema da Mochila
+              Atividade 07: Problema da Mochila com Heurística Aleatória
             
           </span>
         </div>
@@ -238,6 +236,7 @@
   
   <span class="md-ellipsis">
     Home
+    
   </span>
   
 
@@ -250,17 +249,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -268,13 +269,14 @@
   
   <span class="md-ellipsis">
     Aulas
+    
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Aulas
@@ -293,6 +295,7 @@
   
   <span class="md-ellipsis">
     Atividade 01: Introdução a HPC
+    
   </span>
   
 
@@ -314,6 +317,7 @@
   
   <span class="md-ellipsis">
     Atividade 02: Introdução ao Cluster Franky
+    
   </span>
   
 
@@ -335,6 +339,7 @@
   
   <span class="md-ellipsis">
     Atividade 03: Exercicios de SLURM
+    
   </span>
   
 
@@ -356,6 +361,7 @@
   
   <span class="md-ellipsis">
     Atividade 04.1: Introdução ao C++
+    
   </span>
   
 
@@ -377,6 +383,7 @@
   
   <span class="md-ellipsis">
     Atividade 04.2: Exercicios de C++
+    
   </span>
   
 
@@ -398,6 +405,7 @@
   
   <span class="md-ellipsis">
     Atividade 05: Profiling
+    
   </span>
   
 
@@ -419,10 +427,110 @@
   
   <span class="md-ellipsis">
     Atividade 06: Problema da Mochila com Busca Exaustiva
+    
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Atividade 07: Problema da Mochila com Heurística Aleatória
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 07: Problema da Mochila com Heurística Aleatória
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#implementacao-de-heuristicas-aleatorias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementação de Heurísticas Aleatórias
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarefa-1-embaralhar-e-preencher-a-mochila" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarefa 1: Embaralhar e Preencher a Mochila:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarefa-2-selecao-aleatoria-baseada-em-probabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarefa 2: Seleção Aleatória Baseada em Probabilidade:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-06-heuristicas-aleatorias-par-ao-problema-da-mochila" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 06 - Heurísticas Aleatórias par ao Problema da Mochila
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -457,6 +565,7 @@
   
   <span class="md-ellipsis">
     Teoria
+    
   </span>
   
 
@@ -482,6 +591,7 @@
   
   <span class="md-ellipsis">
     Materiais e Guias para estudo
+    
   </span>
   
 
@@ -503,6 +613,7 @@
   
   <span class="md-ellipsis">
     Contextualizando o HPC
+    
   </span>
   
 
@@ -524,6 +635,7 @@
   
   <span class="md-ellipsis">
     Cluster Franky
+    
   </span>
   
 
@@ -545,6 +657,7 @@
   
   <span class="md-ellipsis">
     SLURM
+    
   </span>
   
 
@@ -566,6 +679,7 @@
   
   <span class="md-ellipsis">
     Transferência de Arquivos entre sua máquina e o Cluster Franky
+    
   </span>
   
 
@@ -587,6 +701,7 @@
   
   <span class="md-ellipsis">
     Relembrando conceitos importantes
+    
   </span>
   
 
@@ -608,6 +723,7 @@
   
   <span class="md-ellipsis">
     Conceitos básicos de C++
+    
   </span>
   
 
@@ -629,6 +745,7 @@
   
   <span class="md-ellipsis">
     Compilar/Executar Códigos C++
+    
   </span>
   
 
@@ -650,6 +767,7 @@
   
   <span class="md-ellipsis">
     Loops e Laços
+    
   </span>
   
 
@@ -671,6 +789,7 @@
   
   <span class="md-ellipsis">
     Passagem de Parâmetros
+    
   </span>
   
 
@@ -692,6 +811,7 @@
   
   <span class="md-ellipsis">
     Const Correctness em HPC
+    
   </span>
   
 
@@ -713,6 +833,7 @@
   
   <span class="md-ellipsis">
     Alocação de Memória Dinâmica
+    
   </span>
   
 
@@ -734,6 +855,7 @@
   
   <span class="md-ellipsis">
     Sobrecarga de Funções em C++
+    
   </span>
   
 
@@ -755,6 +877,7 @@
   
   <span class="md-ellipsis">
     Classes e objetos
+    
   </span>
   
 
@@ -776,6 +899,7 @@
   
   <span class="md-ellipsis">
     Manipulação de Vetores
+    
   </span>
   
 
@@ -797,6 +921,7 @@
   
   <span class="md-ellipsis">
     Flags de compilação (-O1, -O2, -O3, -Ofast).
+    
   </span>
   
 
@@ -818,6 +943,7 @@
   
   <span class="md-ellipsis">
     Profiling
+    
   </span>
   
 
@@ -910,11 +1036,12 @@
                 
                   
 
+
   
   
 
 
-<h1 id="06-heuristicas-aleatorias-para-o-problema-da-mochila">06 - Heurísticas Aleatórias para o Problema da Mochila<a class="headerlink" href="#06-heuristicas-aleatorias-para-o-problema-da-mochila" title="Permanent link">&para;</a></h1>
+<h1 id="heuristicas-aleatorias-para-o-problema-da-mochila">Heurísticas Aleatórias para o Problema da Mochila<a class="headerlink" href="#heuristicas-aleatorias-para-o-problema-da-mochila" title="Permanent link">&para;</a></h1>
 <p>Nesta aula, vamos experimentar um conjuntos de dados maiores e testar novas heurísticas baseadas em seleção aleatória. O objetivo é comparar a eficiência e a qualidade das soluções geradas pelos diferentes métodos.</p>
 <h3 id="implementacao-de-heuristicas-aleatorias">Implementação de Heurísticas Aleatórias<a class="headerlink" href="#implementacao-de-heuristicas-aleatorias" title="Permanent link">&para;</a></h3>
 <div class="admonition tip">
@@ -944,14 +1071,14 @@ As mochilas da atividade passada eram bem basiconas, vamos testar o código com 
 <p><strong>2.</strong> Execute o algorítimo embaralhado da Tarefa 1 pelo menos 5 vezes para cada entrada.</p>
 <p><strong>3.</strong> Execute o algorítimo probabilístico da Tarefa 2 pelo menos 5 vezes para cada entrada.</p>
 <p><strong>4.</strong> Analise as diferenças nos tempos de execução e na qualidade das soluções encontradas (valores obtidos e pesos das mochilas) das heurísticas aleatórias e da busca exaustiva.</p>
-<p><strong>Submeta no BlackBoard o link do GitHub contendo os códigos e um relatório com suas análises até as 23h59 de 03/09</strong></p>
 <div class="admonition tip">
-<p class="admonition-title">Gabarito</p>
+<p class="admonition-title">Será que você consegue um resultado melhor?</p>
 <p><strong>Entrada 1 -&gt;</strong> Peso ocupado: 373 Kg, Valor alcançado: 601 dinheiros em 27 segundos</p>
 <p><strong>Entrada 2 -&gt;</strong> Peso ocupado: 239 Kg, Valor alcançado: 870 dinheiros em 30 minutos e 48 segundos</p>
 <p><strong>Entrada 3 -&gt;</strong> Peso ocupado: ? Kg, Valor alcançado: ? dinheiros</p>
 <p><strong>Entrada 4 -&gt;</strong> Peso ocupado: 600 Kg, Valor alcançado: 648 dinheiros  em 9 minutos e 54 segundos</p>
 </div>
+<p><strong>Suba no GitHub os códigos e um relatório com suas análises até as 23h59 de 10/03</strong></p>
 
 
 
@@ -1001,7 +1128,7 @@ As mochilas da atividade passada eram bem basiconas, vamos testar o código com 
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
       
