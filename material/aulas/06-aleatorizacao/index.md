@@ -1,4 +1,4 @@
-# 06 - Heurísticas Aleatórias para o Problema da Mochila
+# Heurísticas Aleatórias para o Problema da Mochila
 
 Nesta aula, vamos experimentar um conjuntos de dados maiores e testar novas heurísticas baseadas em seleção aleatória. O objetivo é comparar a eficiência e a qualidade das soluções geradas pelos diferentes métodos.
 
@@ -48,9 +48,8 @@ As mochilas da atividade passada eram bem basiconas, vamos testar o código com 
 
 **4.** Analise as diferenças nos tempos de execução e na qualidade das soluções encontradas (valores obtidos e pesos das mochilas) das heurísticas aleatórias e da busca exaustiva.
 
-**Submeta no BlackBoard o link do GitHub contendo os códigos e um relatório com suas análises até as 23h59 de 03/09**
 
-!!! tip "Gabarito"
+!!! tip "Será que você consegue um resultado melhor?"
     **Entrada 1 ->** Peso ocupado: 373 Kg, Valor alcançado: 601 dinheiros em 27 segundos
     
     **Entrada 2 ->** Peso ocupado: 239 Kg, Valor alcançado: 870 dinheiros em 30 minutos e 48 segundos
@@ -58,3 +57,5 @@ As mochilas da atividade passada eram bem basiconas, vamos testar o código com 
     **Entrada 3 ->** Peso ocupado: ? Kg, Valor alcançado: ? dinheiros
     
     **Entrada 4 ->** Peso ocupado: 600 Kg, Valor alcançado: 648 dinheiros  em 9 minutos e 54 segundos
+
+**Suba no GitHub os códigos e um relatório com suas análises até as 23h59 de 10/03**

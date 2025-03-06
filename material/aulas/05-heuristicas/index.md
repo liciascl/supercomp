@@ -99,7 +99,7 @@ Utilize os arquivos de entrada [Entrada 1](itens/in1.txt), [Entrada 2](itens/in2
 Compare o tempo de execução para os diferentes arquivos de entrada. Considerando que o algoritmo explora todas as combinações possíveis, discuta suas limitações em termos de tempo de execução e uso de memória.
 
 
-!!! tip "Gabarito"
+!!! tip "Será que você consegue um resultado melhor?"
     **Entrada 1 ->** Peso ocupado: 10 Kg, Valor alcançado: 266 dinheiros
     
     **Entrada 2 ->** Peso ocupado: 2 Kg, Valor alcançado: 156 dinheiros
