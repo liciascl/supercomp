@@ -11,10 +11,6 @@
         <link rel="canonical" href="https://insper.github.io/supercomp/aulas/06-aleatorizacao/">
       
       
-        <link rel="prev" href="../05-heuristicas/">
-      
-      
-        <link rel="next" href="../../Teoria/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>Atividade 07: Problema da Mochila com Heurística Aleatória - SuperComputação - 2025/1</title>
+        <title>Heurísticas Aleatórias para o Problema da Mochila - SuperComputação - 2025/1</title>
       
     
     
@@ -53,6 +49,12 @@
       <link rel="stylesheet" href="../../css/extra.css">
     
       <link rel="stylesheet" href="../../equipe.css">
+    
+      <link rel="stylesheet" href="../../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../../css/pandas-dataframe.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -114,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Atividade 07: Problema da Mochila com Heurística Aleatória
+              Heurísticas Aleatórias para o Problema da Mochila
             
           </span>
         </div>
@@ -249,19 +251,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -276,7 +276,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Aulas
@@ -410,127 +410,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05-heuristicas/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 06: Problema da Mochila com Busca Exaustiva
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Atividade 07: Problema da Mochila com Heurística Aleatória
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 07: Problema da Mochila com Heurística Aleatória
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#implementacao-de-heuristicas-aleatorias" class="md-nav__link">
-    <span class="md-ellipsis">
-      Implementação de Heurísticas Aleatórias
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tarefa-1-embaralhar-e-preencher-a-mochila" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tarefa 1: Embaralhar e Preencher a Mochila:
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tarefa-2-selecao-aleatoria-baseada-em-probabilidade" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tarefa 2: Seleção Aleatória Baseada em Probabilidade:
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#atividade-06-heuristicas-aleatorias-par-ao-problema-da-mochila" class="md-nav__link">
-    <span class="md-ellipsis">
-      Atividade 06 - Heurísticas Aleatórias par ao Problema da Mochila
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
