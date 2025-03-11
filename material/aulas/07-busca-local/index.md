@@ -1,4 +1,4 @@
-# Aula 07 - Busca local e Hill Climb
+# Busca local e Hill Climb
 
 Nesta aula trabalharemos com um algoritmo chamado "Busca local", que consiste basicamente em fazer pequenas atualizações que melhoram sucessivamente uma solução.
 
@@ -50,4 +50,4 @@ Utilize as entradas [Entrada_1.txt](itens/Entrada_1.txt), [Entrada_2.txt](itens/
 
 
 
-**Submeta no BlackBoard o link do GitHub contendo os códigos e um relatório com suas análises até as 23h59 de 06/09**
+**Disponibilize no seu repositório o código e as análises até as 23h59 de 14/03. *
