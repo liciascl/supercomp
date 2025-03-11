@@ -1,4 +1,4 @@
-# Aula 08 - Heurísticas
+# Heurísticas
 
 ## Mais caro primeiro
 

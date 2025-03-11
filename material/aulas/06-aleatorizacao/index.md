@@ -28,7 +28,7 @@ Execute a heurística e compare o resultado obtido e o tempo de execução com o
 **3.** Se a probabilidade for maior que um valor limiar definido (por exemplo, 0.5), adicione o item à mochila se ele couber; caso contrário, ignore-o, mesmo que caiba.
 
 
-### Atividade 06 - Heurísticas Aleatórias par ao Problema da Mochila
+### Heurísticas Aleatórias par ao Problema da Mochila
 
 **Teste com Novas Entradas:**
 As mochilas da atividade passada eram bem basiconas, vamos testar o código com mochilas computacionalmente mais desafiadoras:
