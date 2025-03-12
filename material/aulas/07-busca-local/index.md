@@ -9,7 +9,7 @@ Vamos implementar uma busca local para a Mochila seguindo os três algoritmos vi
 ### Mochila cheia
 
 !!! tip
-    você pode utilizar o código embaralhado da [da aula 07](../07-aleatorizacao/index.md)
+    você pode utilizar o código embaralhado da [da aula 07](../06-aleatorizacao/index.md)
 
 Para implementar a *Mochila cheia* iremos adotar a seguinte estratégia:
 
