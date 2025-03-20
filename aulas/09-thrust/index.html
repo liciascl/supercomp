@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://insper.github.io/supercomp/aulas/09-thrust/">
       
       
+        <link rel="prev" href="../08-heuristica/">
+      
+      
+        <link rel="next" href="../../Teoria/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Aula 09 - Thrust para programação paralela em GPU - SuperComputação - 2025/1</title>
+        <title>Atividade 10: Thrust para programação paralela em GPU - SuperComputação - 2025/1</title>
       
     
     
@@ -80,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aula-09-thrust-para-programacao-paralela-em-gpu" class="md-skip">
+        <a href="#thrust-para-programacao-paralela-em-gpu" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Aula 09 - Thrust para programação paralela em GPU
+              Atividade 10: Thrust para programação paralela em GPU
             
           </span>
         </div>
@@ -251,17 +255,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -276,7 +282,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Aulas
@@ -498,6 +504,150 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Atividade 10: Thrust para programação paralela em GPU
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 10: Thrust para programação paralela em GPU
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-e-thrust" class="md-nav__link">
+    <span class="md-ellipsis">
+      O que é Thrust?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-thrust-funciona" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como Thrust Funciona?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vantagens-de-usar-thrust" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vantagens de Usar Thrust
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usando-o-google-colab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando o Google Colab
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compilacao-com-nvcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compilação com NVCC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transformacoes-e-operacoes-matematicas-com-vetores-na-gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformações e Operações Matemáticas com Vetores na GPU
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leitura-de-arquivos-pela-gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leitura de arquivos pela GPU
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operacoes-de-reducao-e-transformacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operações de Redução e Transformações
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade 09
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1053,7 +1203,7 @@
   
 
 
-<h1 id="aula-09-thrust-para-programacao-paralela-em-gpu">Aula 09 - Thrust para programação paralela em GPU<a class="headerlink" href="#aula-09-thrust-para-programacao-paralela-em-gpu" title="Permanent link">&para;</a></h1>
+<h1 id="thrust-para-programacao-paralela-em-gpu">Thrust para programação paralela em GPU<a class="headerlink" href="#thrust-para-programacao-paralela-em-gpu" title="Permanent link">&para;</a></h1>
 <h3 id="o-que-e-thrust">O que é Thrust?<a class="headerlink" href="#o-que-e-thrust" title="Permanent link">&para;</a></h3>
 <p>Thrust é uma biblioteca desenvolvida pela Nvidia para facilitar a programação em GPUs. Ela é inspirada na <a href="https://www.geeksforgeeks.org/the-c-standard-template-library-stl/">biblioteca da STL (Standard Template Library)</a> do C++, mas com um foco em operações paralelas, tanto na GPU quanto na CPU. Thrust permite que o codigo seja executado de forma eficiente em paralelo, sem a complexidade de escrever kernels CUDA.</p>
 <h3 id="como-thrust-funciona">Como Thrust Funciona?<a class="headerlink" href="#como-thrust-funciona" title="Permanent link">&para;</a></h3>
@@ -1329,7 +1479,7 @@ Faça upload <a href="files/stocks-google.txt">deste arquivo</a> no seu colab pa
 <li>Calcule a diferença ponto a ponto entre os dois vetores e armazenem as diferenças em um terceiro vetor.</li>
 <li>Calcule a média das diferenças para entender qual empresa teve, em média, um preço maior.</li>
 </ol>
-<p><strong>Submeta o link do seu repositório no BlackBoard até 17/09 as 23h59</strong></p>
+<p><strong>Entrega do relatório para 24/03 as 23h59</strong></p>
 
 
 
