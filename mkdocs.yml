@@ -45,8 +45,8 @@ nav:
         - "Atividade 06: Problema da Mochila com Busca Exaustiva": aulas/05-heuristicas/index.md
         - "Atividade 07: Problema da Mochila com Heurística Aleatória": aulas/06-aleatorizacao/index.md               
         - "Atividade 08: Problema da Mochila com Busca Local e Hill Climb": aulas/07-busca-local/index.md
-        - "Atividade 09: Problema da Mochila com Heurísticas": aulas/07-busca-global/index.md 
- #       - "Atividade 10: Thrust para programação paralela em GPU": aulas/10-thrust/index.md
+        - "Atividade 09: Problema da Mochila com Heurísticas": aulas/08-heuristica/index.md 
+        - "Atividade 10: Thrust para programação paralela em GPU": aulas/09-thrust/index.md
  #       - "Atividade 11: Iteradores e funções customizadas": aulas/11-iteradores/index.md                               
  #       - "Atividade 12: Funções customizadas e Otimização com Fusion Kernel": aulas/12-funcoes-customizadas/index.md               
  #       - "Atividade 13: Trabalhando com Schedulers no OpenMP": aulas/13-openmp/paralelo.md 

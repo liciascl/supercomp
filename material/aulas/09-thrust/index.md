@@ -1,4 +1,4 @@
-# Aula 09 - Thrust para programação paralela em GPU
+# Thrust para programação paralela em GPU
 
 ### O que é Thrust?
 
@@ -351,4 +351,4 @@ O dataset contém preços simulados das ações da Apple (AAPL) e da Microsoft (
 2. Calcule a diferença ponto a ponto entre os dois vetores e armazenem as diferenças em um terceiro vetor.
 3. Calcule a média das diferenças para entender qual empresa teve, em média, um preço maior.
 
-**Submeta o link do seu repositório no BlackBoard até 17/09 as 23h59**
+**Entrega do relatório para 24/03 as 23h59**
