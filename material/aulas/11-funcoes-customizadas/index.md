@@ -1,4 +1,4 @@
-# Aula 11: Funções Customizadas e Otimização com Fusion Kernel 
+# Funções Customizadas e Otimização com Fusion Kernel 
 
 Nesta aula, vamos criar **operações customizadas** usando **functors**, entender como combinar transformações e reduções, e explorar a **otimização com fusion kernel**, uma técnica que melhora o desempenho ao combinar várias operações em uma única execução na GPU.
 
@@ -144,4 +144,4 @@ Neste código, usamos `thrust::transform_reduce` para calcular a soma das difere
 Implemente o cálculo da variância usando a técnica de fusion kernel. Compare o desempenho com a implementação que calcula a média e a variância em etapas separadas. Use diferentes tamanhos de vetor e observe as diferenças de desempenho.
 
 
-**A atividade deve ser entregue via BlackBoard até as 23h59 de 24/09** 
+**A atividade deve ser entregue até as 23h59 de 07/04** 

@@ -47,8 +47,8 @@ nav:
         - "Atividade 08: Problema da Mochila com Busca Local e Hill Climb": aulas/07-busca-local/index.md
         - "Atividade 09: Problema da Mochila com Heurísticas": aulas/08-heuristica/index.md 
         - "Atividade 10: Thrust para programação paralela em GPU": aulas/09-thrust/index.md
- #       - "Atividade 11: Iteradores e funções customizadas": aulas/11-iteradores/index.md                               
- #       - "Atividade 12: Funções customizadas e Otimização com Fusion Kernel": aulas/12-funcoes-customizadas/index.md               
+        - "Atividade 11: Funções customizadas e Otimização com Fusion Kernel": aulas/11-funcoes-customizadas/index.md                               
+ #       - "Atividade 12: Trabalhando com Schedulers no OpenMP": aulas/12-openmp/paralelo.md               
  #       - "Atividade 13: Trabalhando com Schedulers no OpenMP": aulas/13-openmp/paralelo.md 
  #       - "Atividade 14: Pi pelo método de Monte Carlo": aulas/14-pi/index.md
 
