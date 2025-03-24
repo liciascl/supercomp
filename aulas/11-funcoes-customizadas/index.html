@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://insper.github.io/supercomp/aulas/11-funcoes-customizadas/">
       
       
+        <link rel="prev" href="../09-thrust/">
+      
+      
+        <link rel="next" href="../../Teoria/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Aula 11: Funções Customizadas e Otimização com Fusion Kernel - SuperComputação - 2025/1</title>
+        <title>Atividade 11: Funções customizadas e Otimização com Fusion Kernel - SuperComputação - 2025/1</title>
       
     
     
@@ -80,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aula-11-funcoes-customizadas-e-otimizacao-com-fusion-kernel" class="md-skip">
+        <a href="#funcoes-customizadas-e-otimizacao-com-fusion-kernel" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Aula 11: Funções Customizadas e Otimização com Fusion Kernel
+              Atividade 11: Funções customizadas e Otimização com Fusion Kernel
             
           </span>
         </div>
@@ -251,17 +255,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -276,7 +282,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Aulas
@@ -520,6 +526,150 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Atividade 11: Funções customizadas e Otimização com Fusion Kernel
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 11: Funções customizadas e Otimização com Fusion Kernel
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introducao-a-operacoes-customizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introdução a Operações Customizadas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introdução a Operações Customizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-pratico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício Prático:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transformacoes-unarias-e-binarias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformações Unárias e Binárias
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculando-a-magnitude-de-um-vetor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculando a Magnitude de um Vetor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Calculando a Magnitude de um Vetor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-pratico_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício Prático:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#otimizacao-com-fusion-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Otimização com Fusion Kernel
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Otimização com Fusion Kernel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-pratico_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício Prático:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1075,7 +1225,7 @@
   
 
 
-<h1 id="aula-11-funcoes-customizadas-e-otimizacao-com-fusion-kernel">Aula 11: Funções Customizadas e Otimização com Fusion Kernel<a class="headerlink" href="#aula-11-funcoes-customizadas-e-otimizacao-com-fusion-kernel" title="Permanent link">&para;</a></h1>
+<h1 id="funcoes-customizadas-e-otimizacao-com-fusion-kernel">Funções Customizadas e Otimização com Fusion Kernel<a class="headerlink" href="#funcoes-customizadas-e-otimizacao-com-fusion-kernel" title="Permanent link">&para;</a></h1>
 <p>Nesta aula, vamos criar <strong>operações customizadas</strong> usando <strong>functors</strong>, entender como combinar transformações e reduções, e explorar a <strong>otimização com fusion kernel</strong>, uma técnica que melhora o desempenho ao combinar várias operações em uma única execução na GPU.</p>
 <h3 id="introducao-a-operacoes-customizadas">Introdução a Operações Customizadas<a class="headerlink" href="#introducao-a-operacoes-customizadas" title="Permanent link">&para;</a></h3>
 <p>A principal vantagem de trabalhar com Thrust é que podemos criar nossas próprias operações customizadas, conhecidas como <strong>functors</strong>. Functors nada mais são do que structs ou classes que sobrecarregam o operador <code>()</code> para aplicar uma função sobre os elementos de um vetor. Vamos começar com um exemplo clássico, o cálculo <strong>Saxpy</strong>.</p>
@@ -1185,7 +1335,7 @@ z = a \cdot x + y
 <p>Neste código, usamos <code>thrust::transform_reduce</code> para calcular a soma das diferenças ao quadrado em uma única etapa. A operação <code>variance_op</code> subtrai a média de cada elemento e eleva o resultado ao quadrado, e <code>thrust::plus&lt;float&gt;()</code> soma os resultados. Tudo isso ocorre em uma única chamada de kernel, sem necessidade de transferir os dados entre a CPU e a GPU repetidamente.</p>
 <h4 id="exercicio-pratico_2">Exercício Prático:<a class="headerlink" href="#exercicio-pratico_2" title="Permanent link">&para;</a></h4>
 <p>Implemente o cálculo da variância usando a técnica de fusion kernel. Compare o desempenho com a implementação que calcula a média e a variância em etapas separadas. Use diferentes tamanhos de vetor e observe as diferenças de desempenho.</p>
-<p><strong>A atividade deve ser entregue via BlackBoard até as 23h59 de 24/09</strong> </p>
+<p><strong>A atividade deve ser entregue até as 23h59 de 07/04</strong> </p>
 
 
 
