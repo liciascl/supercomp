@@ -145,10 +145,6 @@
          <lastmod>2025-03-31</lastmod>
     </url>
     <url>
-         <loc>https://insper.github.io/supercomp/aulas/12-openmp/</loc>
-         <lastmod>2025-03-31</lastmod>
-    </url>
-    <url>
          <loc>https://insper.github.io/supercomp/aulas/12-openmp/paralelo/</loc>
          <lastmod>2025-03-31</lastmod>
     </url>
@@ -169,27 +165,19 @@
          <lastmod>2025-03-31</lastmod>
     </url>
     <url>
-         <loc>https://insper.github.io/supercomp/aulas/18-Introducao-mpi/</loc>
-         <lastmod>2025-03-31</lastmod>
-    </url>
-    <url>
-         <loc>https://insper.github.io/supercomp/aulas/19-MPI_REDUCE-mpi/</loc>
-         <lastmod>2025-03-31</lastmod>
-    </url>
-    <url>
-         <loc>https://insper.github.io/supercomp/aulas/19-MPI_REDUCE-mpi/MPI_AULA2/</loc>
-         <lastmod>2025-03-31</lastmod>
-    </url>
-    <url>
-         <loc>https://insper.github.io/supercomp/aulas/20%20-%20Broadcasting-mpi/</loc>
-         <lastmod>2025-03-31</lastmod>
-    </url>
-    <url>
-         <loc>https://insper.github.io/supercomp/aulas/20%20-%20Broadcasting-mpi/MPI_AULA3/</loc>
-         <lastmod>2025-03-31</lastmod>
-    </url>
-    <url>
          <loc>https://insper.github.io/supercomp/aulas/21-SLURM/</loc>
+         <lastmod>2025-03-31</lastmod>
+    </url>
+    <url>
+         <loc>https://insper.github.io/supercomp/aulas/Broadcasting-mpi/</loc>
+         <lastmod>2025-03-31</lastmod>
+    </url>
+    <url>
+         <loc>https://insper.github.io/supercomp/aulas/Broadcasting-mpi/MPI_AULA3/</loc>
+         <lastmod>2025-03-31</lastmod>
+    </url>
+    <url>
+         <loc>https://insper.github.io/supercomp/aulas/Introducao-mpi/</loc>
          <lastmod>2025-03-31</lastmod>
     </url>
     <url>
@@ -198,6 +186,18 @@
     </url>
     <url>
          <loc>https://insper.github.io/supercomp/aulas/MPI-OpenMP/</loc>
+         <lastmod>2025-03-31</lastmod>
+    </url>
+    <url>
+         <loc>https://insper.github.io/supercomp/aulas/MPI-REDUCE/</loc>
+         <lastmod>2025-03-31</lastmod>
+    </url>
+    <url>
+         <loc>https://insper.github.io/supercomp/aulas/MPI-REDUCE/MPI_AULA2/</loc>
+         <lastmod>2025-03-31</lastmod>
+    </url>
+    <url>
+         <loc>https://insper.github.io/supercomp/aulas/efeitos-colaterais-II/</loc>
          <lastmod>2025-03-31</lastmod>
     </url>
     <url>

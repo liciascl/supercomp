@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/20%20-%20Broadcasting-mpi/">
+        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/MPI-REDUCE/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>20 - COMUNICAÇÃO COLETIVA E BROADCASTING - SuperComputação - 2025/1</title>
+        <title>Operações de Redução em MPI - SuperComputação - 2025/1</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#20-comunicacao-coletiva-e-broadcasting" class="md-skip">
+        <a href="#operacoes-de-reducao-em-mpi" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              20 - COMUNICAÇÃO COLETIVA E BROADCASTING
+              Operações de Redução em MPI
             
           </span>
         </div>
@@ -569,72 +569,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../13-pi/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 13: Pi pelo método de Monte Carlo
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../MPI/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 14: MPI
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../OpenMP-MPI/index.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 15: OpenMP-MPI
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -689,7 +623,7 @@
         
   
   <span class="md-ellipsis">
-    Contexto - mineração de criptomoedas
+    Mineração de criptomoedas
     
   </span>
   
@@ -1161,9 +1095,11 @@
   
 
 
-<h1 id="20-comunicacao-coletiva-e-broadcasting">20 - COMUNICAÇÃO COLETIVA E BROADCASTING<a class="headerlink" href="#20-comunicacao-coletiva-e-broadcasting" title="Permanent link">&para;</a></h1>
-<p>Nas aulas passadas, examinamos a comunicação ponto a ponto, que é a comunicação entre dois processos. Nesta aula, estudaremos os mecanismos de comunicação coletiva em MPI. A comunicação coletiva é um método de comunicação que envolve a participação de todos os processos em um comunicador.</p>
-<p><a href="https://colab.research.google.com/drive/1MCI-7-c5wiUtTbE_n_M-Jnal4S0PP3qO?usp=sharing">Broadcasting</a> Dica: Faça uma cópia do notebook para a sua conta do Colab, no menu File (ou Arquivo), opção Save a Copy in Drive (Salvar uma cópia no Drive). </p>
+<h1 id="operacoes-de-reducao-em-mpi">Operações de Redução em MPI<a class="headerlink" href="#operacoes-de-reducao-em-mpi" title="Permanent link">&para;</a></h1>
+<p>Reduzir é um conceito clássico da programação funcional. A redução de dados envolve a redução de um conjunto de números em um conjunto menor de números por meio de uma função. Por exemplo, digamos que temos uma lista de números [1, 2, 3, 4, 5]. Reduzir esta lista de números com a função sum produziria sum([1, 2, 3, 4, 5]) = 15. Da mesma forma, a redução da multiplicação resultaria em multiplicar([1, 2, 3, 4, 5]) = 120.</p>
+<p>Como você deve ter imaginado, pode ser muito complicado aplicar funções de redução em um conjunto de números distribuídos. Junto com isso, é difícil programar de forma eficiente reduções não comutativas, ou seja, reduções que devem ocorrer em uma ordem definida. Felizmente, o MPI tem uma função útil chamada MPI_Reduce que irá lidar com quase todas as reduções comuns que um programador precisa fazer em um aplicativo paralelo.</p>
+<p>Para iniciarmos o nosso estudo de reduções em MPI, abra o seguinte notebook no Google Colab e siga as instruções contidas:</p>
+<p><a href="https://colab.research.google.com/drive/17PYAsKifOgbFmnRnboaZ3WV2hI6bv8pD?usp=sharing">Reduções em MPI</a> Dica: Faça uma cópia do notebook para a sua conta do Colab, no menu File (ou Arquivo), opção Save a Copy in Drive (Salvar uma cópia no Drive). </p>
 
 
 

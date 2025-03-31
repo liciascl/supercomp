@@ -11,10 +11,6 @@
         <link rel="canonical" href="https://insper.github.io/supercomp/aulas/13-pi/">
       
       
-        <link rel="prev" href="../12-openmp/paralelo/">
-      
-      
-        <link rel="next" href="../MPI/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>Atividade 13: Pi pelo método de Monte Carlo - SuperComputação - 2025/1</title>
+        <title>Pi pelo método de Monte Carlo - SuperComputação - 2025/1</title>
       
     
     
@@ -84,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#atividade-13-pi-pelo-metodo-de-monte-carlo" class="md-skip">
+        <a href="#pi-pelo-metodo-de-monte-carlo" class="md-skip">
           Skip to content
         </a>
       
@@ -120,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Atividade 13: Pi pelo método de Monte Carlo
+              Pi pelo método de Monte Carlo
             
           </span>
         </div>
@@ -255,19 +251,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -282,7 +276,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Aulas
@@ -575,149 +569,6 @@
 
               
             
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Atividade 13: Pi pelo método de Monte Carlo
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 13: Pi pelo método de Monte Carlo
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#parte-1-implementacao-sequencial" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parte 1: Implementação Sequencial
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#parte-2-primeira-tentativa-de-paralelizacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parte 2: Primeira Tentativa de Paralelização
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#parte-3-melhorando-a-paralelizacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parte 3: Melhorando a Paralelização
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusao-e-comparacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      Conclusão e Comparação
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../MPI/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 14: MPI
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../OpenMP-MPI/index.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 15: OpenMP-MPI
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -772,7 +623,7 @@
         
   
   <span class="md-ellipsis">
-    Contexto - mineração de criptomoedas
+    Mineração de criptomoedas
     
   </span>
   
@@ -1288,7 +1139,7 @@
   
 
 
-<h1 id="atividade-13-pi-pelo-metodo-de-monte-carlo">Atividade 13 - Pi pelo método de Monte Carlo<a class="headerlink" href="#atividade-13-pi-pelo-metodo-de-monte-carlo" title="Permanent link">&para;</a></h1>
+<h1 id="pi-pelo-metodo-de-monte-carlo">Pi pelo método de Monte Carlo<a class="headerlink" href="#pi-pelo-metodo-de-monte-carlo" title="Permanent link">&para;</a></h1>
 <p>Na aula de hoje iremos trabalhar com um algoritmo de sorteios aleatórios para calcular o pi. Ele é baseado em uma técnica de Otimização, Simulação e Estimação Paramétrica chamada <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo</a>. Um bom vídeo para compreender essa técnica, <a href="https://www.youtube.com/watch?v=7ESK5SaP-bc">está disponível aqui</a>.</p>
 <p><img alt="pi" src="Pi_30K.gif" /></p>
 <p>O método consiste em sorteios aleatórios de pontos em um quadrado, que a proporção de pontos que caem dentro de um círculo inscrito nesse quadrado é usada para aproximar o valor de pi. </p>
@@ -1347,8 +1198,6 @@
 
 4.  O uso de threads trouxe benefícios claros para este problema específico?
 </code></pre></div>
-
-<p>Submeta no BlackBoard o link do GitHub contendo os códigos e o relatório com suas análises até as 23h59 de 22/10</p>
 
 
 

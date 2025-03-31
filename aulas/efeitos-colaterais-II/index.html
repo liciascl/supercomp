@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/19-MPI_REDUCE-mpi/">
+        <link rel="canonical" href="https://insper.github.io/supercomp/aulas/efeitos-colaterais-II/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>19 - Operações de Redução em MPI - SuperComputação - 2025/1</title>
+        <title>Efeitos colaterais II - SuperComputação - 2025/1</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#19-operacoes-de-reducao-em-mpi" class="md-skip">
+        <a href="#efeitos-colaterais-ii" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              19 - Operações de Redução em MPI
+              Efeitos colaterais II
             
           </span>
         </div>
@@ -569,72 +569,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../13-pi/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 13: Pi pelo método de Monte Carlo
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../MPI/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 14: MPI
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../OpenMP-MPI/index.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Atividade 15: OpenMP-MPI
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -689,7 +623,7 @@
         
   
   <span class="md-ellipsis">
-    Contexto - mineração de criptomoedas
+    Mineração de criptomoedas
     
   </span>
   
@@ -1144,6 +1078,56 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#e-possivel-paralelizar-o-problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      É possível paralelizar o problema?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paralelizando-processos-inerentemente-sequenciais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelizando processos inerentemente sequenciais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paralelizando processos inerentemente sequenciais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primeira-tentativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primeira tentativa
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#segunda-tentativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Segunda tentativa
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1161,11 +1145,131 @@
   
 
 
-<h1 id="19-operacoes-de-reducao-em-mpi">19 - Operações de Redução em MPI<a class="headerlink" href="#19-operacoes-de-reducao-em-mpi" title="Permanent link">&para;</a></h1>
-<p>Reduzir é um conceito clássico da programação funcional. A redução de dados envolve a redução de um conjunto de números em um conjunto menor de números por meio de uma função. Por exemplo, digamos que temos uma lista de números [1, 2, 3, 4, 5]. Reduzir esta lista de números com a função sum produziria sum([1, 2, 3, 4, 5]) = 15. Da mesma forma, a redução da multiplicação resultaria em multiplicar([1, 2, 3, 4, 5]) = 120.</p>
-<p>Como você deve ter imaginado, pode ser muito complicado aplicar funções de redução em um conjunto de números distribuídos. Junto com isso, é difícil programar de forma eficiente reduções não comutativas, ou seja, reduções que devem ocorrer em uma ordem definida. Felizmente, o MPI tem uma função útil chamada MPI_Reduce que irá lidar com quase todas as reduções comuns que um programador precisa fazer em um aplicativo paralelo.</p>
-<p>Para iniciarmos o nosso estudo de reduções em MPI, abra o seguinte notebook no Google Colab e siga as instruções contidas:</p>
-<p><a href="https://colab.research.google.com/drive/17PYAsKifOgbFmnRnboaZ3WV2hI6bv8pD?usp=sharing">Reduções em MPI</a> Dica: Faça uma cópia do notebook para a sua conta do Colab, no menu File (ou Arquivo), opção Save a Copy in Drive (Salvar uma cópia no Drive). </p>
+<h1 id="efeitos-colaterais-ii">Efeitos colaterais II<a class="headerlink" href="#efeitos-colaterais-ii" title="Permanent link">&para;</a></h1>
+<p>Na aula de hoje iremos trabalhar com um algoritmo de sorteios aleatórios para calcular o <code>pi</code>. Ele é baseado em uma técnica de Otimização, Simulação e Estimação Paramétrica chamada <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo</a>. Um bom vídeo para compreender essa técnica, está disponível <a href="https://www.youtube.com/watch?v=7ESK5SaP-bc">aqui</a>.</p>
+<p>O algoritmo sequencial se baseia em sorteios de pontos dentro de um quadrado de lado <code>2</code>. Se a distância entre o ponto e o centro do quadrado for menor que 1 então o ponto cai dentro do círculo inscrito no quadrado. A quantidade de pontos que caem dentro do quadrado é proporcional a <span class="arithmatex"><span class="MathJax_Preview">\pi</span><script type="math/tex">\pi</script></span>. Veja abaixo um resumo do algoritmo.</p>
+<p><img alt="https://upload.wikimedia.org/wikipedia/commons/8/84/Pi_30K.gif" src="https://upload.wikimedia.org/wikipedia/commons/8/84/Pi_30K.gif" /></p>
+<ol>
+<li><code>sum = 0</code></li>
+<li>De <code>i=0</code> até <code>N</code>:<ol>
+<li>sorteie pontos <span class="arithmatex"><span class="MathJax_Preview">x,y \in [0,1]</span><script type="math/tex">x,y \in [0,1]</script></span></li>
+<li>se <span class="arithmatex"><span class="MathJax_Preview">x^2 + y^2 \leq 1</span><script type="math/tex">x^2 + y^2 \leq 1</script></span>, <code>sum += 1</code></li>
+</ol>
+</li>
+<li>devolva <code>4 * sum / N</code></li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Faça uma implementação sequencial desse algoritmo. Chama seu programa de <code>pi_montecarlo.cpp</code>. Para fins de <em>debug</em> das próximas versões, mostre o valor de <code>sum</code> na saída de erros. Adote <code>N=100 000</code>.</p>
+</div>
+<h2 id="e-possivel-paralelizar-o-problema">É possível paralelizar o problema?<a class="headerlink" href="#e-possivel-paralelizar-o-problema" title="Permanent link">&para;</a></h2>
+<p>Vamos iniciar pensando um pouco sobre o problema acima.</p>
+<div class="admonition question short">
+<p class="admonition-title">Question</p>
+<p>O algoritmo acima é paralelizável? Qual técnica você utilizaria para paralelizá-lo?</p>
+<div class="admonition details">
+<p class="admonition-title">Resposta</p>
+<p>O <code>for</code> paralelo parece encaixar muito bem neste problema, com a variável <code>sum</code> sendo usada na opção <code>reduction</code></p>
+</div>
+</div>
+<div class="admonition question short">
+<p class="admonition-title">Question</p>
+<p>Além da variável <code>sum</code>, existe outra operação que gera efeitos colaterais no código acima? Qual?</p>
+<div class="admonition details">
+<p class="admonition-title">Resposta</p>
+<p>O sorteio de pontos! Lembramos da aula 06 que a geração de números aleatórios é um processo sequencial que depende dos números anteriormente sorteados.</p>
+</div>
+</div>
+<div class="admonition progress">
+<p class="admonition-title">Progress</p>
+<p>Continuar</p>
+</div>
+<p>Agora que sabemos que gerar números aleatórios é um processo sequencial, vamos considerar o quanto isso atrapalha nosso programa. Nas próximas questões leve em conta que o gerador de números aleatórios é uma variável compartilhada.</p>
+<div class="admonition question short">
+<p class="admonition-title">Question</p>
+<p>Como evitaríamos problemas ao compartilhar o gerador de números aleatórios?</p>
+<div class="admonition details">
+<p class="admonition-title">Resposta</p>
+<p>Podemos envolver o passo <em>2a</em> do algoritmo em uma seção crítica usando <code>omp critical</code></p>
+</div>
+</div>
+<div class="admonition question short">
+<p class="admonition-title">Question</p>
+<p>Se o <code>for</code> acima rodar em uma ordem completamente diferente os resultados se alterarão?</p>
+<div class="admonition details">
+<p class="admonition-title">Resposta</p>
+<p>Desde de que os pares <code>x,y</code> sorteados sejam os mesmos então não haverá problema.</p>
+</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Com base em todas as suas respostas dos exercícios anteriores, faça uma implementação paralela do <code>pi_montecarlo.cpp</code>. Verifique que o valor de <code>sum</code> é igual ao sequencial. Por enquanto, <strong>não se preocupe com o tempo de execução</strong>.</p>
+</div>
+<div class="admonition question short">
+<p class="admonition-title">Question</p>
+<p>Anote o tempo de execução sequencial e paralelo para o programa acima.</p>
+</div>
+<div class="admonition progress">
+<p class="admonition-title">Progress</p>
+<p>Vamos discutir esse resultado juntos!</p>
+</div>
+<h2 id="paralelizando-processos-inerentemente-sequenciais">Paralelizando processos inerentemente sequenciais<a class="headerlink" href="#paralelizando-processos-inerentemente-sequenciais" title="Permanent link">&para;</a></h2>
+<p>Como discutimos agora há pouco, a geração de números aleatórios é um processo inerentemente sequencial. Não é que seja impossível paralelizá-lo eficientemente, é que é impossível paralelizá-lo <em>at all</em>. Vamos tentar contornar isso então usando a resposta da <em>Questão 4</em>:</p>
+<div class="admonition quote">
+<p class="admonition-title">O <code>for</code> do algoritmo depende dos pontos gerados, não da ordem que eles foram gerados.</p>
+</div>
+<p>Vamos então adotar uma solução simples: a cada iteração do <code>for</code> criamos um novo gerador de números aleatórios e sorteamos um par de pontos dele.</p>
+<h3 id="primeira-tentativa">Primeira tentativa<a class="headerlink" href="#primeira-tentativa" title="Permanent link">&para;</a></h3>
+<div class="admonition question short">
+<p class="admonition-title">Question</p>
+<p>Sabemos que um gerador de números aleatórios gera sempre a mesma sequência de números, dado um parâmetro <code>seed</code> fixo. O quê acontece se usarmos o mesmo <code>seed</code> em todas as iterações? Como consertar isso?</p>
+<div class="admonition details">
+<p class="admonition-title">Resposta</p>
+<p>Sortearemos o mesmo ponto em todas as iterações. Para consertar isso podemos fazer o <code>seed</code> ser baseado no <code>i</code> da iteração atual.</p>
+</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Crie uma implementação baseada na ideia acima.</p>
+</div>
+<div class="admonition question short">
+<p class="admonition-title">Question</p>
+<p>Anote abaixo o valor do pi encontrado e o tempo de execução.</p>
+</div>
+<div class="admonition question short">
+<p class="admonition-title">Question</p>
+<p>Os resultados obtidos são idênticos aos do programa original? São próximos?</p>
+</div>
+<div class="admonition progress">
+<p class="admonition-title">Progress</p>
+<p>Vamos discutir esse resultado.</p>
+</div>
+<h3 id="segunda-tentativa">Segunda tentativa<a class="headerlink" href="#segunda-tentativa" title="Permanent link">&para;</a></h3>
+<p>O problema da nossa tentativa anterior é que não temos <em>de verdade</em> sequências de pontos aleatórias. Bom, na verdade nunca temos, mas o problema é que violamos a promessa que o <code>RNG</code> faz. Ele promete que</p>
+<div class="admonition quote">
+<p class="admonition-title">dado um seed fixo, a sequência de números geradas é indistinguível de uma sequência aleatória de verdade</p>
+</div>
+<p>Ele não promete que, se criarmos vários <code>RNG</code>s, <strong>a sequência formada pelo primeiro par de números gerados por cada um será aleatória.</strong></p>
+<p>Vamos agora tentar uma nova ideia:</p>
+<div class="admonition quote">
+<p class="admonition-title">Cada thread irá gerar <code>N/NUM_THREADS</code> números aleatórios, atualizando <code>sum</code> com os pontos dentro do semi-círculo.</p>
+</div>
+<div class="admonition question short">
+<p class="admonition-title">Question</p>
+<p>Como esta ideia melhora o algoritmo acima?</p>
+<div class="admonition details">
+<p class="admonition-title">Resposta</p>
+<p>Agora teremos <code>NUM_THREADS</code> sequências pseudo-aleatórias "válidas" e juntá-las passa a ser um problema menor. Continuamos precisando usar uma <code>seed</code> para cada, mas ao menos agora temos um número pequeno de <code>RNG</code>s.</p>
+</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Faça uma implementação da ideia acima. Você pode usar os comandos do OpenMP que quiser. </p>
+</div>
+<div class="admonition question short">
+<p class="admonition-title">Question</p>
+<p>Anote o tempo de execução e o pi encontrado.</p>
+</div>
 
 
 
