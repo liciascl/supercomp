@@ -1,4 +1,4 @@
-# Atividade 13 - Pi pelo método de Monte Carlo
+# Pi pelo método de Monte Carlo
 Na aula de hoje iremos trabalhar com um algoritmo de sorteios aleatórios para calcular o pi. Ele é baseado em uma técnica de Otimização, Simulação e Estimação Paramétrica chamada [Monte Carlo](https://en.wikipedia.org/wiki/Monte_Carlo_method). Um bom vídeo para compreender essa técnica, [está disponível aqui](https://www.youtube.com/watch?v=7ESK5SaP-bc).
 
 ![pi](Pi_30K.gif)
@@ -66,4 +66,3 @@ No final do seu relatório, inclua uma **tabela comparando** o valor de pi e o t
     4.  O uso de threads trouxe benefícios claros para este problema específico?
 
 
-Submeta no BlackBoard o link do GitHub contendo os códigos e o relatório com suas análises até as 23h59 de 22/10

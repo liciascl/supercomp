@@ -1,5 +1,5 @@
 
-# **Contexto - mineração de criptomoedas**
+# **Mineração de criptomoedas**
 
 A mineração surgiu com o **Bitcoin**, criado por *Satoshi Nakamoto* em 2008. A proposta era descentralizar o controle do dinheiro, permitindo que qualquer pessoa pudesse participar da validação das transações em uma rede pública.
 

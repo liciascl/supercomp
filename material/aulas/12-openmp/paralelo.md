@@ -405,7 +405,7 @@ for (int i = 0; i < N; i++) {
 
 Com isso, você elimina a necessidade de sincronização entre threads, melhorando o desempenho.
 
-### Entrega da Atividade 13
+### Entrega da Atividade 
 
 ### Schedules
 
@@ -459,4 +459,3 @@ Com isso, você elimina a necessidade de sincronização entre threads, melhoran
 
 - Alguma técnica apresentou resultados inesperados? O que poderia explicar isso?
 
-Submeta no BlackBoard o link do GitHub contendo os códigos e o relatório com suas análises até as 23h59 de 14/10
