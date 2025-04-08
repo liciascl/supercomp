@@ -48,7 +48,7 @@ nav:
         - "Atividade 09: Problema da Mochila com Heurísticas": aulas/08-heuristica/index.md 
         - "Atividade 10: Thrust para programação paralela em GPU": aulas/09-thrust/index.md
         - "Atividade 11: Funções customizadas e Otimização com Fusion Kernel": aulas/11-funcoes-customizadas/index.md                               
-        - "Atividade 12: Trabalhando com Schedulers no OpenMP": aulas/12-openmp/paralelo.md               
+        - "Atividade 12: Trabalhando com Schedulers no OpenMP": aulas/12-openmp/schedule.md               
         #- "Atividade 13: Pi pelo método de Monte Carlo": aulas/13-pi/index.md 
         #- "Atividade 14: MPI - Introdução": aulas/Introducao-mpi/index.md
         #- "Atividade 15: MPI Reduce": aulas/MPI-REDUCE/index.md
