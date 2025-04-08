@@ -1,6 +1,9 @@
 
 # **Mineração de criptomoedas**
 
+(Este formulário)[https://forms.gle/oAspsvXnRGALJxLo9] tem como objetivo compreender melhor o seu nível de aprendizagem neste momento do curso. As respostas nos ajudarão a aprimorar as ferramentas e estratégias de ensino utilizadas na sua formação.
+ 
+
 A mineração surgiu com o **Bitcoin**, criado por *Satoshi Nakamoto* em 2008. A proposta era descentralizar o controle do dinheiro, permitindo que qualquer pessoa pudesse participar da validação das transações em uma rede pública.
 
 A validação é feita por meio de um **algoritmo de consenso** chamado **Proof of Work (PoW)**. A PoW exige que os nós da rede (os *mineradores*) resolvam um problema matemático difícil — e quem resolve primeiro, tem o direito de adicionar um novo bloco à blockchain e receber uma recompensa.
