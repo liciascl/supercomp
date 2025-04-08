@@ -79,6 +79,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#paralelizando-codigos-recursivos" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1071,6 +1076,86 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#paralelizando-codigos-recursivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelizando Códigos Recursivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paralelizando-com-for-parallel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelizando com for parallel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paralelizando-com-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelizando com task
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lidando-com-efeitos-colaterais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lidando com Efeitos Colaterais
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-alocacao-de-memoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pré-Alocação de Memória
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculo-do-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculo do PI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-manipulacao-de-efeitos-colaterais-no-vetor" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Manipulação de Efeitos Colaterais no Vetor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-conclusao" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Conclusão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1090,7 +1175,158 @@
 
   <h1>For paralelo</h1>
 
+<h3 id="paralelizando-codigos-recursivos">Paralelizando Códigos Recursivos<a class="headerlink" href="#paralelizando-codigos-recursivos" title="Permanent link">&para;</a></h3>
+<p>Vamos agora focar na paralelização de código recursivo, como o cálculo do Pi.</p>
+<p>Examine o código <code>pi_recursivo.cpp</code> e identifique oportunidades de paralelismo:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">num_steps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1024l</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span>
 
+<span class="cp">#define MIN_BLK  1024*1024*256</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">pi_r</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">Nstart</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">Nfinish</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">step</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="n">iblk</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Nfinish</span><span class="o">-</span><span class="n">Nstart</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MIN_BLK</span><span class="p">){</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Nstart</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Nfinish</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="n">step</span><span class="p">;</span>
+<span class="w">            </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">4.0</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">);</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">iblk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Nfinish</span><span class="o">-</span><span class="n">Nstart</span><span class="p">;</span>
+<span class="w">        </span><span class="n">pi_r</span><span class="p">(</span><span class="n">Nstart</span><span class="p">,</span><span class="w">         </span><span class="n">Nfinish</span><span class="o">-</span><span class="n">iblk</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">step</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pi_r</span><span class="p">(</span><span class="n">Nfinish</span><span class="o">-</span><span class="n">iblk</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">Nfinish</span><span class="p">,</span><span class="w">       </span><span class="n">step</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">step</span><span class="p">,</span><span class="w"> </span><span class="n">pi</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">init_time</span><span class="p">,</span><span class="w"> </span><span class="n">final_time</span><span class="p">;</span>
+<span class="w">    </span><span class="n">step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">num_steps</span><span class="p">;</span>
+<span class="w">    </span><span class="n">init_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">omp_get_wtime</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pi_r</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">num_steps</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+<span class="w">    </span><span class="n">final_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">omp_get_wtime</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">init_time</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;for &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">num_steps</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; steps pi = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">pi</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; in &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">final_time</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; secs</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Para refletir</strong>:</p>
+<ol>
+<li>
+<p>Existem dependências que dificultam a paralelização?</p>
+</li>
+<li>
+<p>Quantas chamadas recursivas são feitas?</p>
+</li>
+<li>
+<p>Onde é possível inserir paralelismo no código?</p>
+</li>
+</ol>
+<h3 id="paralelizando-com-for-parallel">Paralelizando com <code>for parallel</code><a class="headerlink" href="#paralelizando-com-for-parallel" title="Permanent link">&para;</a></h3>
+<p>Analise onde o loop pode ser paralelizado e adicione a diretiva <code>#pragma omp parallel for</code>. Meça o tempo de execução com diferentes valores de <code>MIN_BLK</code> e veja o impacto no desempenho.</p>
+<p><strong>Dica</strong>: O valor de <code>MIN_BLK</code> pode influenciar significativamente o desempenho, já que um valor muito baixo aumenta a sobrecarga de criação de tarefas, enquanto um valor muito alto reduz o paralelismo.</p>
+<h3 id="paralelizando-com-task">Paralelizando com <code>task</code><a class="headerlink" href="#paralelizando-com-task" title="Permanent link">&para;</a></h3>
+<p>Adicione a diretiva <code>#pragma omp task</code> para paralelizar as chamadas recursivas no código. Utilize <code>#pragma omp taskwait</code> para garantir que todas as tarefas sejam concluídas antes de seguir em frente.</p>
+<p><strong>Experimente diferentes números de tarefas</strong> e compare os ganhos de desempenho com a versão paralela utilizando <code>for</code>.</p>
+<h3 id="lidando-com-efeitos-colaterais">Lidando com Efeitos Colaterais<a class="headerlink" href="#lidando-com-efeitos-colaterais" title="Permanent link">&para;</a></h3>
+<p>Programas paralelos podem ter efeitos colaterais, como no caso de modificações em estruturas compartilhadas entre threads (por exemplo, o vetor <code>vec</code> no código <code>vetor_insert.cpp</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">conta_complexa</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span><span class="w"> </span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">conta_complexa</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Para evitar conflitos, podemos usar regiões críticas:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#pragma omp critical</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">conta_complexa</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Mas cuidado! Incluir código demais dentro de uma seção crítica pode anular os ganhos de paralelismo. Procure isolar apenas a parte que realmente necessita de exclusividade.</p>
+<h3 id="pre-alocacao-de-memoria">Pré-Alocação de Memória<a class="headerlink" href="#pre-alocacao-de-memoria" title="Permanent link">&para;</a></h3>
+<p>Uma estratégia mais eficiente é alocar memória previamente, evitando o uso de <code>push_back</code> em regiões críticas. Isso pode ser feito da seguinte maneira:</p>
+<div class="highlight"><pre><span></span><code><span class="n">vec</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+<span class="cp">#pragma omp parallel for</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">vec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conta_complexa</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Com isso, você elimina a necessidade de sincronização entre threads, melhorando o desempenho.</p>
+<h3 id="calculo-do-pi">Calculo do PI<a class="headerlink" href="#calculo-do-pi" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Paralelize o cálculo recursivo de Pi usando <code>parallel for</code> e meça o tempo de execução. Execute o código pelo menos 3 vezes com diferentes valores de <code>MIN_BLK</code> e registre os tempos.</p>
+</li>
+<li>
+<p>Paralelize o cálculo recursivo de Pi usando <code>#pragma omp task</code> e meça o tempo de execução. Execute o código pelo menos 3 vezes com diferentes números de tarefas e registre os tempos.</p>
+</li>
+</ol>
+<p><strong>Perguntas de Análise</strong>:</p>
+<ul>
+<li>
+<p>Qual abordagem (<code>parallel for</code> ou <code>tasks</code>) apresentou melhor desempenho? </p>
+</li>
+<li>
+<p>O valor de <code>MIN_BLK</code> ou o número de tarefas influenciou significativamente o tempo de execução?</p>
+</li>
+<li>
+<p>Alguma abordagem teve variação maior entre execuções? Por quê?</p>
+</li>
+</ul>
+<h3 id="3-manipulacao-de-efeitos-colaterais-no-vetor">3. Manipulação de Efeitos Colaterais no Vetor<a class="headerlink" href="#3-manipulacao-de-efeitos-colaterais-no-vetor" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Paralelize o código que modifica um vetor com <code>#pragma omp critical</code> para evitar acessos simultâneos ao vetor e registre os tempos de execução. Execute o código pelo menos 3 vezes e registre os tempos.</p>
+</li>
+<li>
+<p>Modifique o código para pré-alocar a memória do vetor, evitando o uso de <code>push_back</code>, e meça o tempo. Execute o código pelo menos 3 vezes e registre os tempos.</p>
+</li>
+</ol>
+<p><strong>Perguntas de Análise</strong>:</p>
+<ul>
+<li>
+<p>Qual abordagem teve melhor desempenho: <code>omp critical</code> ou pré-alocação de memória?</p>
+</li>
+<li>
+<p>O uso de <code>omp critical</code> adicionou muito overhead? Como você pode justificar isso?</p>
+</li>
+<li>
+<p>A ordem dos dados no vetor foi mantida em ambas as abordagens?</p>
+</li>
+</ul>
+<h3 id="4-conclusao">4. Conclusão<a class="headerlink" href="#4-conclusao" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Resuma as principais conclusões com base nos resultados obtidos nos testes.</p>
+</li>
+<li>
+<p>Qual abordagem geral você considera mais eficiente para problemas recursivos e com efeitos colaterais?</p>
+</li>
+<li>
+<p>Alguma técnica apresentou resultados inesperados? O que poderia explicar isso?</p>
+</li>
+</ul>
 
 
 
