@@ -126,7 +126,7 @@ Com isso, você elimina a necessidade de sincronização entre threads, melhoran
   
 2. Paralelize o cálculo recursivo de Pi usando `#pragma omp task` e meça o tempo de execução. Execute o código pelo menos 3 vezes com diferentes números de tarefas e registre os tempos.
 
-**Perguntas de Análise**:
+**Para Analisar**:
 
 - Qual abordagem (`parallel for` ou `tasks`) apresentou melhor desempenho? 
 
@@ -142,7 +142,7 @@ Com isso, você elimina a necessidade de sincronização entre threads, melhoran
 
 2. Modifique o código para pré-alocar a memória do vetor, evitando o uso de `push_back`, e meça o tempo. Execute o código pelo menos 3 vezes e registre os tempos.
 
-**Perguntas de Análise**:
+**Para Analisar**:
 
 - Qual abordagem teve melhor desempenho: `omp critical` ou pré-alocação de memória?
 
@@ -151,11 +151,13 @@ Com isso, você elimina a necessidade de sincronização entre threads, melhoran
 - A ordem dos dados no vetor foi mantida em ambas as abordagens?
 
 
-### 4. Conclusão
+### Entrega da Atividade 
 
-- Resuma as principais conclusões com base nos resultados obtidos nos testes.
+- Apresente suas análises com base nos resultados obtidos nos testes.
 
-- Qual abordagem geral você considera mais eficiente para problemas recursivos e com efeitos colaterais?
+- Qual abordagem você considera mais eficiente para problemas recursivos? e com efeitos colaterais?
 
 - Alguma técnica apresentou resultados inesperados? O que poderia explicar isso?
 
+
+** Faça a subimissão do seu relatório  até as 23h59 de 22/04** 
