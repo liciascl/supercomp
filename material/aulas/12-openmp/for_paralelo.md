@@ -160,4 +160,4 @@ Com isso, você elimina a necessidade de sincronização entre threads, melhoran
 - Alguma técnica apresentou resultados inesperados? O que poderia explicar isso?
 
 
-** Faça a subimissão do seu relatório  até as 23h59 de 22/04** 
+**Faça a subimissão do seu relatório  até as 23h59 de 22/04** 
