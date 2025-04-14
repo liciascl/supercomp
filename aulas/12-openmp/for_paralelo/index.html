@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://insper.github.io/supercomp/aulas/12-openmp/for_paralelo/">
       
       
+        <link rel="prev" href="../schedule/">
+      
+      
+        <link rel="next" href="../../../projetos/2025-1/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>For paralelo - SuperComputação - 2025/1</title>
+        <title>Atividade 13: Paralelizando Códigos Recursivos - SuperComputação - 2025/1</title>
       
     
     
@@ -116,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              For paralelo
+              Atividade 13: Paralelizando Códigos Recursivos
             
           </span>
         </div>
@@ -251,17 +255,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -276,7 +282,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Aulas
@@ -564,6 +570,137 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Atividade 13: Paralelizando Códigos Recursivos
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Atividade 13: Paralelizando Códigos Recursivos
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#paralelizando-codigos-recursivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelizando Códigos Recursivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paralelizando-com-for-parallel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelizando com for parallel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paralelizando-com-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelizando com task
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lidando-com-efeitos-colaterais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lidando com Efeitos Colaterais
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-alocacao-de-memoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pré-Alocação de Memória
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculo-do-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculo do PI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-manipulacao-de-efeitos-colaterais-no-vetor" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Manipulação de Efeitos Colaterais no Vetor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrega-da-atividade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrega da Atividade
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1173,7 +1310,7 @@
   
 
 
-  <h1>For paralelo</h1>
+  <h1>Atividade 13: Paralelizando Códigos Recursivos</h1>
 
 <h3 id="paralelizando-codigos-recursivos">Paralelizando Códigos Recursivos<a class="headerlink" href="#paralelizando-codigos-recursivos" title="Permanent link">&para;</a></h3>
 <p>Vamos agora focar na paralelização de código recursivo, como o cálculo do Pi.</p>
