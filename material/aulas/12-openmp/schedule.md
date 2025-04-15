@@ -301,4 +301,4 @@ Cada scheduler do OpenMP se comporta de maneira diferente, e você deve observar
 - Alguma característica específica do trabalho (como carga de dados, balanceamento) parece ter influenciado o comportamento de um scheduler em particular?
 
 
-**Faça um relatório com as suas análises e entregue até as 23h59 de 15/04** 
+**Faça um relatório com as suas análises e entregue até as 23h59 de 24/04** 
