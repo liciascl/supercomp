@@ -1377,79 +1377,57 @@
 <p>Para iniciarmos o nosso estudo de MPI, implemente os desafios abaixo, entendendo como encadear <code>sends</code> e <code>receives</code>, e o impacto nos resultados.</p>
 <h2 id="exercicios-mpi">Exercícios MPI<a class="headerlink" href="#exercicios-mpi" title="Permanent link">&para;</a></h2>
 <h3 id="exercicio-1-comunicacao-entre-dois-processos">Exercício 1: Comunicação entre Dois Processos<a class="headerlink" href="#exercicio-1-comunicacao-entre-dois-processos" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>**Descrição:**  
-Escreva um programa MPI em que o processo de rank 0 envia uma mensagem `&quot;Olá&quot;` para o processo de rank 1, e o processo 1 responde com `&quot;Oi&quot;` ao processo 0.
-
-**Instruções:**
-1. O processo com rank 0 envia uma mensagem `&quot;Olá&quot;` para o processo com rank 1.
-2. O processo com rank 1 responde com `&quot;Oi&quot;` para o processo com rank 0.
-3. Exiba as mensagens trocadas no terminal.
-</code></pre></div>
-
+<p><strong>Descrição:</strong><br />
+Escreva um programa MPI em que o processo de rank 0 envia uma mensagem <code>"Olá"</code> para o processo de rank 1, e o processo 1 responde com <code>"Oi"</code> ao processo 0.</p>
+<p><strong>Instruções:</strong>
+1. O processo com rank 0 envia uma mensagem <code>"Olá"</code> para o processo com rank 1.
+2. O processo com rank 1 responde com <code>"Oi"</code> para o processo com rank 0.
+3. Exiba as mensagens trocadas no terminal.</p>
 <h3 id="exercicio-2-anel-de-processos">Exercício 2: Anel de Processos<a class="headerlink" href="#exercicio-2-anel-de-processos" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>**Descrição:**  
-Crie um programa MPI onde cada processo envia uma mensagem para o próximo processo, formando um anel. O último processo envia a mensagem de volta ao primeiro.
-
-**Instruções:**
-1. Cada processo com rank `i` envia uma mensagem para o processo de rank `i+1`.
+<p><strong>Descrição:</strong><br />
+Crie um programa MPI onde cada processo envia uma mensagem para o próximo processo, formando um anel. O último processo envia a mensagem de volta ao primeiro.</p>
+<p><strong>Instruções:</strong>
+1. Cada processo com rank <code>i</code> envia uma mensagem para o processo de rank <code>i+1</code>.
 2. O último processo (com o maior rank) envia de volta ao processo com rank 0.
 3. O número de processos deve ser maior que 2.
-4. Exiba a mensagem recebida por cada processo no terminal.
-
-**Dicas:**
-- O processo com rank 0 envia e recebe por último para fechar o anel.
-</code></pre></div>
-
+4. Exiba a mensagem recebida por cada processo no terminal.</p>
+<p><strong>Dicas:</strong>
+- O processo com rank 0 envia e recebe por último para fechar o anel.</p>
 <h3 id="exercicio-3-difusao-linear">Exercício 3: Difusão Linear<a class="headerlink" href="#exercicio-3-difusao-linear" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>**Descrição:**  
-O processo com rank 0 inicia enviando uma mensagem para o processo 1. O processo 1, ao receber a mensagem, envia-a para o processo 2, e assim sucessivamente, até que todos os processos tenham recebido a mensagem.
-
-**Instruções:**
+<p><strong>Descrição:</strong><br />
+O processo com rank 0 inicia enviando uma mensagem para o processo 1. O processo 1, ao receber a mensagem, envia-a para o processo 2, e assim sucessivamente, até que todos os processos tenham recebido a mensagem.</p>
+<p><strong>Instruções:</strong>
 1. O processo com rank 0 envia uma mensagem inicial para o processo com rank 1.
 2. Cada processo recebe a mensagem do processo anterior e a envia para o próximo.
-3. O último processo exibe a mensagem no terminal.
-
-**Dicas:**
-- Cada processo (exceto o último) deve executar um `MPI_Recv` seguido de um `MPI_Send`.
-</code></pre></div>
-
+3. O último processo exibe a mensagem no terminal.</p>
+<p><strong>Dicas:</strong>
+- Cada processo (exceto o último) deve executar um <code>MPI_Recv</code> seguido de um <code>MPI_Send</code>.</p>
 <h3 id="exercicio-4-comunicacao-multipla">Exercício 4: Comunicação Múltipla<a class="headerlink" href="#exercicio-4-comunicacao-multipla" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>**Descrição:**
-Implemente um programa MPI onde o processo com rank 0 envia diferentes mensagens para cada um dos outros processos. Cada processo (exceto o 0) recebe sua mensagem e imprime o conteúdo.
-
-**Instruções:**
-1. O processo com rank 0 envia mensagens exclusivas para cada processo, incluindo o número do processo na mensagem (ex: &quot;Mensagem para o processo X&quot;).
+<p><strong>Descrição:</strong>
+Implemente um programa MPI onde o processo com rank 0 envia diferentes mensagens para cada um dos outros processos. Cada processo (exceto o 0) recebe sua mensagem e imprime o conteúdo.</p>
+<p><strong>Instruções:</strong>
+1. O processo com rank 0 envia mensagens exclusivas para cada processo, incluindo o número do processo na mensagem (ex: "Mensagem para o processo X").
 2. Cada processo, ao receber sua mensagem, imprime no terminal o que recebeu.
-3. Use um laço no processo 0 para enviar as mensagens para todos os outros.
-
-**Dicas:**
-- Lembre-se de utilizar tags nas mensagens para diferenciá-las, se necessário.
-</code></pre></div>
-
+3. Use um laço no processo 0 para enviar as mensagens para todos os outros.</p>
+<p><strong>Dicas:</strong>
+- Lembre-se de utilizar tags nas mensagens para diferenciá-las, se necessário.</p>
 <h3 id="exercicio-5-somas-paralelas">Exercício 5: Somas Paralelas<a class="headerlink" href="#exercicio-5-somas-paralelas" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>**Descrição:**
-Crie um programa MPI em que cada processo recebe um valor numérico exclusivo, soma-o ao valor de um processo anterior, e o último processo exibe a soma total de todos os processos.
-
-**Instruções:**
+<p><strong>Descrição:</strong>
+Crie um programa MPI em que cada processo recebe um valor numérico exclusivo, soma-o ao valor de um processo anterior, e o último processo exibe a soma total de todos os processos.</p>
+<p><strong>Instruções:</strong>
 1. O processo 0 inicia com um valor inicial e o envia para o processo 1.
 2. Cada processo soma seu valor ao que recebeu do processo anterior e envia a soma para o próximo processo.
-3. O último processo imprime a soma total.
-
-**Dicas:**
-- Cada processo realiza uma soma antes de enviar o resultado ao próximo.
-</code></pre></div>
-
+3. O último processo imprime a soma total.</p>
+<p><strong>Dicas:</strong>
+- Cada processo realiza uma soma antes de enviar o resultado ao próximo.</p>
 <h3 id="exercicio-6-alternancia-de-mensagens">Exercício 6: Alternância de Mensagens<a class="headerlink" href="#exercicio-6-alternancia-de-mensagens" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>**Descrição:** 
-Escreva um programa em que o processo 0 envia uma mensagem para o processo 1, o qual envia uma mensagem de volta para o processo 0. O processo 0, então, envia uma segunda mensagem para o processo 2, e assim sucessivamente até que todos os processos tenham sido envolvidos na comunicação.
-
-**Instruções:**
+<p><strong>Descrição:</strong> 
+Escreva um programa em que o processo 0 envia uma mensagem para o processo 1, o qual envia uma mensagem de volta para o processo 0. O processo 0, então, envia uma segunda mensagem para o processo 2, e assim sucessivamente até que todos os processos tenham sido envolvidos na comunicação.</p>
+<p><strong>Instruções:</strong>
 1. O processo com rank 0 envia uma mensagem para o processo 1.
 2. O processo 1 responde ao processo 0.
 3. O processo 0 então envia uma segunda mensagem para o processo 2, que responde.
-4. Continue este padrão até o último processo.
-</code></pre></div>
-
+4. Continue este padrão até o último processo.</p>
 <h3 id="entrega">Entrega<a class="headerlink" href="#entrega" title="Permanent link">&para;</a></h3>
 <p>Para cada exercício, entregue:
 - Seu código 
