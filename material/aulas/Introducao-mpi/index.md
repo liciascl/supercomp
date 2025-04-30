@@ -4,6 +4,7 @@ Message Passing Interface (MPI) é um padrão para comunicação de dados em com
 
 Para iniciarmos o nosso estudo de MPI, implemente os desafios abaixo, entendendo como encadear `sends` e `receives`, e o impacto nos resultados.
 
+Os slides da aula estão em [slides.pdf](slides.pdf)
 ## Exercícios MPI
 
 ### Exercício 1: Comunicação entre Dois Processos
@@ -17,6 +18,114 @@ Escreva um programa MPI em que o processo de rank 0 envia uma mensagem `"Olá"` 
 2. O processo com rank 1 responde com `"Oi"` para o processo com rank 0.
 
 3. Exiba as mensagens trocadas no terminal.
+
+
+## Resposta do Exercício 1: `comunicacao.cpp`
+
+
+```cpp
+#include <mpi.h>        // Biblioteca principal do MPI para comunicação entre processos
+#include <iostream>    
+#include <cstring>      
+
+int main(int argc, char** argv) {
+    int rank;               // Variável que armazenará o "rank" (identificador) do processo
+    MPI_Status status;      // Estrutura que armazenará o status da comunicação MPI
+    char mensagem[100];     // Vetor de caracteres para armazenar a mensagem a ser enviada/recebida
+
+    // Inicializa o ambiente MPI (todos os processos são iniciados)
+    MPI_Init(&argc, &argv);
+
+    // Descobre o "rank" do processo atual dentro do comunicador global (MPI_COMM_WORLD)
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+    // Se este for o processo de rank 0 (emissor inicial)
+    if (rank == 0) {
+        // Copia a string "Olá" para a variável mensagem
+        std::strcpy(mensagem, "Olá");
+
+        // Envia a mensagem para o processo de rank 1
+        // Parâmetros: buffer, tamanho, tipo, destino, tag, comunicador
+        MPI_Send(mensagem, std::strlen(mensagem) + 1, MPI_CHAR, 1, 0, MPI_COMM_WORLD);
+
+        // Imprime no terminal que a mensagem foi enviada
+        std::cout << "Processo 0 enviou: " << mensagem << std::endl;
+
+        // Aguarda a resposta do processo 1
+        // Parâmetros: buffer, tamanho máximo, tipo, origem, tag, comunicador, status
+        MPI_Recv(mensagem, 100, MPI_CHAR, 1, 0, MPI_COMM_WORLD, &status);
+
+        // Imprime a mensagem recebida
+        std::cout << "Processo 0 recebeu: " << mensagem << std::endl;
+    }
+
+    // Se este for o processo de rank 1 (receptor inicial)
+    else if (rank == 1) {
+        // Recebe a mensagem enviada pelo processo 0
+        MPI_Recv(mensagem, 100, MPI_CHAR, 0, 0, MPI_COMM_WORLD, &status);
+
+        // Imprime a mensagem recebida
+        std::cout << "Processo 1 recebeu: " << mensagem << std::endl;
+
+        // Prepara a resposta "Oi"
+        std::strcpy(mensagem, "Oi");
+
+        // Envia a resposta de volta ao processo 0
+        MPI_Send(mensagem, std::strlen(mensagem) + 1, MPI_CHAR, 0, 0, MPI_COMM_WORLD);
+
+        // Imprime que a mensagem foi enviada
+        std::cout << "Processo 1 enviou: " << mensagem << std::endl;
+    }
+
+    // Finaliza o ambiente MPI (todos os processos encerram)
+    MPI_Finalize();
+
+    return 0;
+}
+```
+
+### Compile o programa:
+```bash
+mpic++ comunicacao.cpp -o comunicacao
+```
+
+
+### Script SLURM: `comunicacao.slurm`
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=mpi_hello
+#SBATCH --output=saida_hello_%j.txt
+#SBATCH --ntasks=5
+#SBATCH --time=00:01:00
+#SBATCH --partition=normal
+
+
+
+mpirun -np $SLURM_NTASKS ./comunicacao
+```
+
+
+
+
+### Submeta o job com SLURM:
+```bash
+sbatch comunicacao.slurm
+```
+
+### Sua saída deve ser algo como:
+
+    [licias@sms-host MPI]$ cat saida_hello_14091.txt
+    Processo 4 está ocioso neste exercício.
+    Processo 3 está ocioso neste exercício.
+    Processo 0 enviou: Olá para o processo 1
+    Processo 0 recebeu: Oi do processo 1
+    Processo 1 recebeu: Olá do processo 0
+    Processo 1 enviou: Oi para o processo 0
+    Processo 2 está ocioso neste exercício.
+
+
+
 
 ### Exercício 2: Anel de Processos
 **Descrição:**  
