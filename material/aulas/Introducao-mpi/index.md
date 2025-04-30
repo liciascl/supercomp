@@ -77,6 +77,11 @@ int main(int argc, char** argv) {
         std::cout << "Processo 1 enviou: " << mensagem << std::endl;
     }
 
+    else {
+        // Todos os outros processos apenas informam que estão ociosos
+        std::cout << "Processo " << rank << " está ocioso neste exercício." << std::endl;
+    }
+
     // Finaliza o ambiente MPI (todos os processos encerram)
     MPI_Finalize();
 
