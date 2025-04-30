@@ -51,7 +51,7 @@ nav:
         - "Atividade 12: Trabalhando com Schedulers no OpenMP": aulas/12-openmp/schedule.md
         - "Atividade 13: Paralelizando Códigos Recursivos": aulas/12-openmp/for_paralelo.md               
         - "Atividade 14: Pi pelo método de Monte Carlo": aulas/pi/index.md 
-        #- "Atividade 14: MPI - Introdução": aulas/Introducao-mpi/index.md
+        - "Atividade 15: MPI - Introdução": aulas/Introducao-mpi/index.md
         #- "Atividade 15: MPI Reduce": aulas/MPI-REDUCE/index.md
         #- "Atividade 16: MPI - Broadcasting": aulas/Broadcasting-mpi/index.md
         #- "Atividade 17: MPI e OpenMP": aulas/MPI-OpenMP/index.md
