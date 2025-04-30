@@ -692,6 +692,57 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resposta-do-exercicio-1-comunicacaocpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resposta do Exercício 1: comunicacao.cpp
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resposta do Exercício 1: comunicacao.cpp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compile-o-programa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compile o programa:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#script-slurm-comunicacaoslurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Script SLURM: comunicacao.slurm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submeta-o-job-com-slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Submeta o job com SLURM:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sua-saida-deve-ser-algo-como" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sua saída deve ser algo como:
+    </span>
+  </a>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#exercicio-2-anel-de-processos" class="md-nav__link">
     <span class="md-ellipsis">
@@ -1294,6 +1345,57 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resposta-do-exercicio-1-comunicacaocpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resposta do Exercício 1: comunicacao.cpp
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resposta do Exercício 1: comunicacao.cpp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compile-o-programa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compile o programa:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#script-slurm-comunicacaoslurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Script SLURM: comunicacao.slurm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submeta-o-job-com-slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Submeta o job com SLURM:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sua-saida-deve-ser-algo-como" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sua saída deve ser algo como:
+    </span>
+  </a>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#exercicio-2-anel-de-processos" class="md-nav__link">
     <span class="md-ellipsis">
@@ -1375,6 +1477,7 @@
 <h1 id="introducao-a-mpi">Introdução a MPI<a class="headerlink" href="#introducao-a-mpi" title="Permanent link">&para;</a></h1>
 <p>Message Passing Interface (MPI) é um padrão para comunicação de dados em computação paralela. Existem várias modalidades de computação paralela, e dependendo do problema que se está tentando resolver, pode ser necessário passar informações entre os vários processadores ou nós de um cluster, e o MPI oferece uma infraestrutura para essa tarefa.</p>
 <p>Para iniciarmos o nosso estudo de MPI, implemente os desafios abaixo, entendendo como encadear <code>sends</code> e <code>receives</code>, e o impacto nos resultados.</p>
+<p>Os slides da aula estão em <a href="slides.pdf">slides.pdf</a></p>
 <h2 id="exercicios-mpi">Exercícios MPI<a class="headerlink" href="#exercicios-mpi" title="Permanent link">&para;</a></h2>
 <h3 id="exercicio-1-comunicacao-entre-dois-processos">Exercício 1: Comunicação entre Dois Processos<a class="headerlink" href="#exercicio-1-comunicacao-entre-dois-processos" title="Permanent link">&para;</a></h3>
 <p><strong>Descrição:</strong><br />
@@ -1391,6 +1494,95 @@ Escreva um programa MPI em que o processo de rank 0 envia uma mensagem <code>"Ol
 <p>Exiba as mensagens trocadas no terminal.</p>
 </li>
 </ol>
+<h2 id="resposta-do-exercicio-1-comunicacaocpp">Resposta do Exercício 1: <code>comunicacao.cpp</code><a class="headerlink" href="#resposta-do-exercicio-1-comunicacaocpp" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span><span class="c1">        // Biblioteca principal do MPI para comunicação entre processos</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="c1">    </span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstring&gt;</span><span class="c1">      </span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rank</span><span class="p">;</span><span class="w">               </span><span class="c1">// Variável que armazenará o &quot;rank&quot; (identificador) do processo</span>
+<span class="w">    </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">status</span><span class="p">;</span><span class="w">      </span><span class="c1">// Estrutura que armazenará o status da comunicação MPI</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">mensagem</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span><span class="w">     </span><span class="c1">// Vetor de caracteres para armazenar a mensagem a ser enviada/recebida</span>
+
+<span class="w">    </span><span class="c1">// Inicializa o ambiente MPI (todos os processos são iniciados)</span>
+<span class="w">    </span><span class="n">MPI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Descobre o &quot;rank&quot; do processo atual dentro do comunicador global (MPI_COMM_WORLD)</span>
+<span class="w">    </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rank</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Se este for o processo de rank 0 (emissor inicial)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Copia a string &quot;Olá&quot; para a variável mensagem</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">strcpy</span><span class="p">(</span><span class="n">mensagem</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Olá&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Envia a mensagem para o processo de rank 1</span>
+<span class="w">        </span><span class="c1">// Parâmetros: buffer, tamanho, tipo, destino, tag, comunicador</span>
+<span class="w">        </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">mensagem</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">strlen</span><span class="p">(</span><span class="n">mensagem</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_CHAR</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Imprime no terminal que a mensagem foi enviada</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Processo 0 enviou: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mensagem</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Aguarda a resposta do processo 1</span>
+<span class="w">        </span><span class="c1">// Parâmetros: buffer, tamanho máximo, tipo, origem, tag, comunicador, status</span>
+<span class="w">        </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">mensagem</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_CHAR</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Imprime a mensagem recebida</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Processo 0 recebeu: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mensagem</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Se este for o processo de rank 1 (receptor inicial)</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Recebe a mensagem enviada pelo processo 0</span>
+<span class="w">        </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">mensagem</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_CHAR</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Imprime a mensagem recebida</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Processo 1 recebeu: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mensagem</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Prepara a resposta &quot;Oi&quot;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">strcpy</span><span class="p">(</span><span class="n">mensagem</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Oi&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Envia a resposta de volta ao processo 0</span>
+<span class="w">        </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">mensagem</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">strlen</span><span class="p">(</span><span class="n">mensagem</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_CHAR</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Imprime que a mensagem foi enviada</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Processo 1 enviou: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mensagem</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Finaliza o ambiente MPI (todos os processos encerram)</span>
+<span class="w">    </span><span class="n">MPI_Finalize</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="compile-o-programa">Compile o programa:<a class="headerlink" href="#compile-o-programa" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mpic++<span class="w"> </span>comunicacao.cpp<span class="w"> </span>-o<span class="w"> </span>comunicacao
+</code></pre></div>
+<h3 id="script-slurm-comunicacaoslurm">Script SLURM: <code>comunicacao.slurm</code><a class="headerlink" href="#script-slurm-comunicacaoslurm" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=mpi_hello</span>
+<span class="c1">#SBATCH --output=saida_hello_%j.txt</span>
+<span class="c1">#SBATCH --ntasks=5</span>
+<span class="c1">#SBATCH --time=00:01:00</span>
+<span class="c1">#SBATCH --partition=normal</span>
+
+
+
+mpirun<span class="w"> </span>-np<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>./comunicacao
+</code></pre></div>
+<h3 id="submeta-o-job-com-slurm">Submeta o job com SLURM:<a class="headerlink" href="#submeta-o-job-com-slurm" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>sbatch<span class="w"> </span>comunicacao.slurm
+</code></pre></div>
+<h3 id="sua-saida-deve-ser-algo-como">Sua saída deve ser algo como:<a class="headerlink" href="#sua-saida-deve-ser-algo-como" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>[licias@sms-host MPI]$ cat saida_hello_14091.txt
+Processo 4 está ocioso neste exercício.
+Processo 3 está ocioso neste exercício.
+Processo 0 enviou: Olá para o processo 1
+Processo 0 recebeu: Oi do processo 1
+Processo 1 recebeu: Olá do processo 0
+Processo 1 enviou: Oi para o processo 0
+Processo 2 está ocioso neste exercício.
+</code></pre></div>
+
 <h3 id="exercicio-2-anel-de-processos">Exercício 2: Anel de Processos<a class="headerlink" href="#exercicio-2-anel-de-processos" title="Permanent link">&para;</a></h3>
 <p><strong>Descrição:</strong><br />
 Crie um programa MPI onde cada processo envia uma mensagem para o próximo processo, formando um anel. O último processo envia a mensagem de volta ao primeiro.</p>
