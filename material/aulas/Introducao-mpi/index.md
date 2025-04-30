@@ -97,10 +97,7 @@ Escreva um programa em que o processo 0 envia uma mensagem para o processo 1, o 
 
 ### Entrega
 
-Para cada exercício, entregue:
-- Seu código 
-- O arquivo `.slurm`
-- O output do seu resultado
+Para cada exercício, entregue seu código, o arquivo `.slurm`, o output do seu resultado.
 
 
 **Faça a sua subimissão até as 23h59 de 05/05** 
