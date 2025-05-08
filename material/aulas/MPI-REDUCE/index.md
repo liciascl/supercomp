@@ -13,55 +13,60 @@ Como você deve ter imaginado, pode ser muito complicado aplicar funções de re
 Neste exemplo, cada processo MPI (exceto o coordenador) realiza uma simulação de Monte Carlo para estimar o valor de π. Cada processo gera coordenadas aleatórias (x, y) dentro do quadrado unitário e verifica se o ponto está dentro do quarto de círculo. O número de acertos é enviado ao processo coordenador por meio de `MPI_Send`, que os coleta com `MPI_Recv` e calcula π pela fórmula 𝜋 ≈ 4 \* (pontos dentro do círculo / total de pontos).
 
 ```cpp
-#include <stdio.h>
-#include <stdlib.h>
-#include "mpi.h"
-#include <math.h>
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <cmath>
+#include <mpi.h>
+
 #define SEED_MPI 35791246
 
 int main(int argc, char* argv[]) {
-    long niter = 10000000;
-    int myid, nodenum, i, count=0;
+    const long niter = 10000000;
+    int myid, nodenum, count = 0;
     double x, y, z, pi;
 
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &myid);
     MPI_Comm_size(MPI_COMM_WORLD, &nodenum);
 
-    int received[nodenum];
-    long recvniter[nodenum];
-    srand(SEED_MPI + myid);
+    std::vector<int> received(nodenum, 0);
+    std::vector<long> recvniter(nodenum, 0);
+    std::srand(SEED_MPI + myid);
 
     if (myid != 0) {
-        for (i = 0; i < niter; ++i) {
-            x = ((double)rand())/RAND_MAX;
-            y = ((double)rand())/RAND_MAX;
-            z = sqrt(x*x + y*y);
-            if (z <= 1) count++;
+        for (long i = 0; i < niter; ++i) {
+            x = static_cast<double>(std::rand()) / RAND_MAX;
+            y = static_cast<double>(std::rand()) / RAND_MAX;
+            z = std::sqrt(x * x + y * y);
+            if (z <= 1.0) count++;
         }
-        for (i = 0; i < nodenum; ++i) {
+
+        for (int i = 0; i < nodenum; ++i) {
             MPI_Send(&count, 1, MPI_INT, 0, 1, MPI_COMM_WORLD);
             MPI_Send(&niter, 1, MPI_LONG, 0, 2, MPI_COMM_WORLD);
         }
     } else {
-        for (i = 0; i < nodenum; ++i) {
-            MPI_Recv(&received[i], nodenum, MPI_INT, MPI_ANY_SOURCE, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            MPI_Recv(&recvniter[i], nodenum, MPI_LONG, MPI_ANY_SOURCE, 2, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        for (int i = 1; i < nodenum; ++i) {
+            MPI_Recv(&received[i], 1, MPI_INT, i, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Recv(&recvniter[i], 1, MPI_LONG, i, 2, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         }
+
         int finalcount = 0;
         long finalniter = 0;
-        for (i = 0; i < nodenum; ++i) {
+        for (int i = 1; i < nodenum; ++i) {
             finalcount += received[i];
             finalniter += recvniter[i];
         }
-        pi = ((double)finalcount / (double)finalniter) * 4.0;
-        printf("Pi: %f
-", pi);
+
+        pi = static_cast<double>(finalcount) / finalniter * 4.0;
+        std::cout << "Pi: " << pi << std::endl;
     }
 
     MPI_Finalize();
     return 0;
 }
+
 ```
 O programa `pi_send_receive.cpp` distribui o cálculo da aproximação de π entre múltiplos processos MPI. Cada processo-executor realiza um número fixo de iterações e envia os resultados para o processo rank 0 usando `MPI_Send`. O rank 0 coleta esses dados com `MPI_Recv` e realiza a agregação final.
 
@@ -98,56 +103,60 @@ sbatch job_pi.sh
 Neste segundo exemplo, cada processo gera números aleatórios e calcula a soma local. Em vez de enviar esses valores individualmente ao rank 0, todos os processos participam de uma operação de redução coletiva com `MPI_Reduce`. A operação soma (`MPI_SUM`) os valores locais e entrega o total apenas ao rank 0, que então calcula a média global.
 
 ```cpp
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+#include <cassert>
 #include <mpi.h>
-#include <assert.h>
-#include <time.h>
 
-float *create_rand_nums(int num_elements) {
-  float *rand_nums = (float *)malloc(sizeof(float) * num_elements);
-  assert(rand_nums != NULL);
-  for (int i = 0; i < num_elements; i++) {
-    rand_nums[i] = (rand() / (float)RAND_MAX);
-  }
-  return rand_nums;
+std::vector<float> create_rand_nums(int num_elements) {
+    std::vector<float> rand_nums(num_elements);
+    for (int i = 0; i < num_elements; ++i) {
+        rand_nums[i] = static_cast<float>(std::rand()) / RAND_MAX;
+    }
+    return rand_nums;
 }
 
 int main(int argc, char** argv) {
-  if (argc != 2) {
-    fprintf(stderr, "Usage: avg num_elements_per_proc
-");
-    exit(1);
-  }
+    if (argc != 2) {
+        std::cerr << "Usage: avg num_elements_per_proc" << std::endl;
+        return 1;
+    }
 
-  int num_elements_per_proc = atoi(argv[1]);
+    int num_elements_per_proc = std::atoi(argv[1]);
 
-  MPI_Init(NULL, NULL);
-  int world_rank, world_size;
-  MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
-  MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+    MPI_Init(nullptr, nullptr);
+    int world_rank, world_size;
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
-  srand(time(NULL) * world_rank);
-  float *rand_nums = create_rand_nums(num_elements_per_proc);
+    std::srand(static_cast<unsigned int>(std::time(nullptr)) * (world_rank + 1));
+    std::vector<float> rand_nums = create_rand_nums(num_elements_per_proc);
 
-  float local_sum = 0;
-  for (int i = 0; i < num_elements_per_proc; i++) local_sum += rand_nums[i];
+    float local_sum = 0.0f;
+    for (float val : rand_nums) {
+        local_sum += val;
+    }
 
-  printf("Local sum for process %d - %f, avg = %f
-", world_rank, local_sum, local_sum / num_elements_per_proc);
+    std::cout << "Local sum for process " << world_rank
+              << " = " << local_sum
+              << ", avg = " << (local_sum / num_elements_per_proc) << std::endl;
 
-  float global_sum;
-  MPI_Reduce(&local_sum, &global_sum, 1, MPI_FLOAT, MPI_SUM, 0, MPI_COMM_WORLD);
+    float global_sum = 0.0f;
+    MPI_Reduce(&local_sum, &global_sum, 1, MPI_FLOAT, MPI_SUM, 0, MPI_COMM_WORLD);
 
-  if (world_rank == 0) {
-    printf("Total sum = %f, avg = %f
-", global_sum, global_sum / (world_size * num_elements_per_proc));
-  }
+    if (world_rank == 0) {
+        float global_avg = global_sum / (world_size * num_elements_per_proc);
+        std::cout << "Total sum = " << global_sum
+                  << ", global avg = " << global_avg << std::endl;
+    }
 
-  free(rand_nums);
-  MPI_Barrier(MPI_COMM_WORLD);
-  MPI_Finalize();
+    MPI_Barrier(MPI_COMM_WORLD);
+    MPI_Finalize();
+    return 0;
 }
+
 ```
 
 #### O que são primitivas coletivas?
@@ -168,63 +177,63 @@ A função `MPI_Reduce` permite que cada processo envie seus dados diretamente p
 Este proximo exemplo estende o uso das primitivas coletivas para um cenário em que **todos os processos** precisam conhecer o resultado global. Utilizamos `MPI_Allreduce` para calcular a média global e, em seguida, `MPI_Reduce` para somar os desvios quadráticos ao redor da média. O desvio padrão é calculado no rank0 a partir desses valores.
 
 ```cpp
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <cmath>
+#include <ctime>
+#include <cassert>
 #include <mpi.h>
-#include <math.h>
-#include <assert.h>
 
-float *create_rand_nums(int num_elements) {
-  float *rand_nums = malloc(sizeof(float) * num_elements);
-  assert(rand_nums != NULL);
-  for (int i = 0; i < num_elements; i++) {
-    rand_nums[i] = (rand() / (float)RAND_MAX);
-  }
-  return rand_nums;
+std::vector<float> create_rand_nums(int num_elements) {
+    std::vector<float> rand_nums(num_elements);
+    for (int i = 0; i < num_elements; ++i) {
+        rand_nums[i] = static_cast<float>(std::rand()) / RAND_MAX;
+    }
+    return rand_nums;
 }
 
 int main(int argc, char** argv) {
-  if (argc != 2) {
-    fprintf(stderr, "Usage: avg num_elements_per_proc
-");
-    exit(1);
-  }
+    if (argc != 2) {
+        std::cerr << "Usage: avg num_elements_per_proc" << std::endl;
+        return 1;
+    }
 
-  int num_elements_per_proc = atoi(argv[1]);
+    int num_elements_per_proc = std::atoi(argv[1]);
 
-  MPI_Init(NULL, NULL);
-  int world_rank, world_size;
-  MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
-  MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+    MPI_Init(nullptr, nullptr);
+    int world_rank, world_size;
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
-  srand(time(NULL) * world_rank);
-  float *rand_nums = create_rand_nums(num_elements_per_proc);
+    std::srand(static_cast<unsigned int>(std::time(nullptr)) * (world_rank + 1));
+    std::vector<float> rand_nums = create_rand_nums(num_elements_per_proc);
 
-  float local_sum = 0;
-  for (int i = 0; i < num_elements_per_proc; i++)
-    local_sum += rand_nums[i];
+    float local_sum = 0.0f;
+    for (float num : rand_nums)
+        local_sum += num;
 
-  float global_sum;
-  MPI_Allreduce(&local_sum, &global_sum, 1, MPI_FLOAT, MPI_SUM, MPI_COMM_WORLD);
-  float mean = global_sum / (num_elements_per_proc * world_size);
+    float global_sum = 0.0f;
+    MPI_Allreduce(&local_sum, &global_sum, 1, MPI_FLOAT, MPI_SUM, MPI_COMM_WORLD);
+    float mean = global_sum / (num_elements_per_proc * world_size);
 
-  float local_sq_diff = 0;
-  for (int i = 0; i < num_elements_per_proc; i++)
-    local_sq_diff += (rand_nums[i] - mean) * (rand_nums[i] - mean);
+    float local_sq_diff = 0.0f;
+    for (float num : rand_nums)
+        local_sq_diff += (num - mean) * (num - mean);
 
-  float global_sq_diff;
-  MPI_Reduce(&local_sq_diff, &global_sq_diff, 1, MPI_FLOAT, MPI_SUM, 0, MPI_COMM_WORLD);
+    float global_sq_diff = 0.0f;
+    MPI_Reduce(&local_sq_diff, &global_sq_diff, 1, MPI_FLOAT, MPI_SUM, 0, MPI_COMM_WORLD);
 
-  if (world_rank == 0) {
-    float stddev = sqrt(global_sq_diff / (num_elements_per_proc * world_size));
-    printf("Mean = %f, Standard deviation = %f
-", mean, stddev);
-  }
+    if (world_rank == 0) {
+        float stddev = std::sqrt(global_sq_diff / (num_elements_per_proc * world_size));
+        std::cout << "Mean = " << mean << ", Standard deviation = " << stddev << std::endl;
+    }
 
-  free(rand_nums);
-  MPI_Barrier(MPI_COMM_WORLD);
-  MPI_Finalize();
+    MPI_Barrier(MPI_COMM_WORLD);
+    MPI_Finalize();
+    return 0;
 }
+
 ```
 
 Enquanto `MPI_Reduce` entrega o resultado da operação ao processo rank0, `MPI_Allreduce` entrega o mesmo resultado a todos os processos. Isso é útil quando todos os nós precisam do valor reduzido, como ao calcular desvios padrão, médias globais e sincronizações de estado.
