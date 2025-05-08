@@ -69,7 +69,7 @@ O programa `pi_send_receive.cpp` distribui o cálculo da aproximação de π ent
 Use `mpicc` para compilar seus programas:
 
 ```bash
-mpicc pi_send_receive.c -o pi_send_receive -lm
+mpicc pi_send_receive.cpp -o pi_send_receive 
 ```
 
 Script de Submissão SLURM (exemplo: `job_pi.sh`)
