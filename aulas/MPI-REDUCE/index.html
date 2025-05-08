@@ -1527,12 +1527,11 @@ mpirun<span class="w"> </span>-np<span class="w"> </span><span class="nv">$SLURM
 <p>Enquanto <code>MPI_Reduce</code> entrega o resultado da operação ao processo rank0, <code>MPI_Allreduce</code> entrega o mesmo resultado a todos os processos. Isso é útil quando todos os nós precisam do valor reduzido, como ao calcular desvios padrão, médias globais e sincronizações de estado.</p>
 <p>O código para cálculo do desvio padrão utiliza duas reduções: uma com <code>MPI_Allreduce</code> para obter a média global e outra com <code>MPI_Reduce</code> para calcular a soma dos desvios quadráticos.</p>
 <h3 id="sua-vez">Sua vez!<a class="headerlink" href="#sua-vez" title="Permanent link">&para;</a></h3>
-<p>1-  Refatore <code>pi_send_receive.c</code> para utilizar <code>MPI_Reduce</code> ao invés de <code>MPI_Send</code> e <code>MPI_Recv</code>.</p>
-<p>2- Produza um código híbrido MPI + OpenMP:</p>
-<ul>
-<li>O processo Rank0 calcula o número de pontos com 16 threads OpenMP.</li>
-<li>Os resultados dos outros processos são coletados via <code>MPI_Reduce</code>.</li>
-</ul>
+<p>1-  Refatore o código do primeiro exemplo para utilizar <code>MPI_Reduce</code> ao invés de <code>MPI_Send</code> e <code>MPI_Recv</code>.</p>
+<p>2- Faça um código que utilize MPI e OpenMP em que:
+    * O processo Rank0 calcula o número de pontos com 16 threads OpenMP.
+    * Os resultados dos outros processos são coletados via <code>MPI_Reduce</code>.</p>
+<p><strong>Faça a sua subimissão até as 23h59 de 19/05</strong> </p>
 
 
 
