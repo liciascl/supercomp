@@ -72,7 +72,7 @@ Use `mpic++` para compilar seus programas:
 mpic++ pi_send_receive.cpp -o pi_send_receive
 ```
 
-Script de Submissão SLURM (exemplo: `job_pi.sh`)
+Script de Submissão SLURM 
 
 ```bash
 #!/bin/bash
