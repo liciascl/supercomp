@@ -244,11 +244,13 @@ O código para cálculo do desvio padrão utiliza duas reduções: uma com `MPI_
 
 ### Sua vez!
 
-1-  Refatore `pi_send_receive.c` para utilizar `MPI_Reduce` ao invés de `MPI_Send` e `MPI_Recv`.
+1-  Refatore o código do primeiro exemplo para utilizar `MPI_Reduce` ao invés de `MPI_Send` e `MPI_Recv`.
 
-2- Produza um código híbrido MPI + OpenMP:
+2- Faça um código que utilize MPI e OpenMP em que:
+    * O processo Rank0 calcula o número de pontos com 16 threads OpenMP.
+    * Os resultados dos outros processos são coletados via `MPI_Reduce`.
 
-* O processo Rank0 calcula o número de pontos com 16 threads OpenMP.
-* Os resultados dos outros processos são coletados via `MPI_Reduce`.
 
+
+**Faça a sua subimissão até as 23h59 de 19/05** 
 
