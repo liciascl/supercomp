@@ -12,7 +12,7 @@ Como você deve ter imaginado, pode ser muito complicado aplicar funções de re
 
 Neste exemplo, cada processo MPI (exceto o coordenador) realiza uma simulação de Monte Carlo para estimar o valor de π. Cada processo gera coordenadas aleatórias (x, y) dentro do quadrado unitário e verifica se o ponto está dentro do quarto de círculo. O número de acertos é enviado ao processo coordenador por meio de `MPI_Send`, que os coleta com `MPI_Recv` e calcula π pela fórmula 𝜋 ≈ 4 \* (pontos dentro do círculo / total de pontos).
 
-```c
+```cpp
 #include <stdio.h>
 #include <stdlib.h>
 #include "mpi.h"
@@ -66,10 +66,10 @@ int main(int argc, char* argv[]) {
 O programa `pi_send_receive.cpp` distribui o cálculo da aproximação de π entre múltiplos processos MPI. Cada processo-executor realiza um número fixo de iterações e envia os resultados para o processo rank 0 usando `MPI_Send`. O rank 0 coleta esses dados com `MPI_Recv` e realiza a agregação final.
 
 
-Use `mpicc` para compilar seus programas:
+Use `mpic++` para compilar seus programas:
 
 ```bash
-mpicc pi_send_receive.cpp -o pi_send_receive 
+mpic++ pi_send_receive.cpp -o pi_send_receive
 ```
 
 Script de Submissão SLURM (exemplo: `job_pi.sh`)
