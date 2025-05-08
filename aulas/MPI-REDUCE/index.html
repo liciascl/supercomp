@@ -1379,8 +1379,8 @@
 <span class="p">}</span>
 </code></pre></div>
 O programa <code>pi_send_receive.cpp</code> distribui o cálculo da aproximação de π entre múltiplos processos MPI. Cada processo-executor realiza um número fixo de iterações e envia os resultados para o processo rank 0 usando <code>MPI_Send</code>. O rank 0 coleta esses dados com <code>MPI_Recv</code> e realiza a agregação final.</p>
-<p>Use <code>mpicc</code> para compilar seus programas:</p>
-<div class="highlight"><pre><span></span><code>mpicc<span class="w"> </span>pi_send_receive.cpp<span class="w"> </span>-o<span class="w"> </span>pi_send_receive<span class="w"> </span>
+<p>Use <code>mpic++</code> para compilar seus programas:</p>
+<div class="highlight"><pre><span></span><code>mpic++<span class="w"> </span>pi_send_receive.cpp<span class="w"> </span>-o<span class="w"> </span>pi_send_receive
 </code></pre></div>
 <p>Script de Submissão SLURM (exemplo: <code>job_pi.sh</code>)</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
