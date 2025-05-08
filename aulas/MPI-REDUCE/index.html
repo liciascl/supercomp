@@ -1144,6 +1144,56 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aproximacao-de-pi-com-comunicacao-ponto-a-ponto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aproximação de PI com Comunicação Ponto-a-Ponto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agregacao-com-mpi_reduce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agregação com MPI_Reduce
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agregação com MPI_Reduce">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-sao-primitivas-coletivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      O que são primitivas coletivas?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sua-vez" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sua vez!
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1162,10 +1212,210 @@
 
 
 <h1 id="operacoes-de-reducao-em-mpi">Operações de Redução em MPI<a class="headerlink" href="#operacoes-de-reducao-em-mpi" title="Permanent link">&para;</a></h1>
+<p>Nesta aula, exploraremos o conceito de <strong>redução distribuída de dados</strong> em ambientes de computação paralela utilizando a biblioteca <strong>MPI (Message Passing Interface)</strong>. Nosso objetivo é compreender como distribuir tarefas entre múltiplos processos, coletar os resultados parciais e, por fim, consolidar esses resultados de forma eficiente.</p>
 <p>Reduzir é um conceito clássico da programação funcional. A redução de dados envolve a redução de um conjunto de números em um conjunto menor de números por meio de uma função. Por exemplo, digamos que temos uma lista de números [1, 2, 3, 4, 5]. Reduzir esta lista de números com a função sum produziria sum([1, 2, 3, 4, 5]) = 15. Da mesma forma, a redução da multiplicação resultaria em multiplicar([1, 2, 3, 4, 5]) = 120.</p>
 <p>Como você deve ter imaginado, pode ser muito complicado aplicar funções de redução em um conjunto de números distribuídos. Junto com isso, é difícil programar de forma eficiente reduções não comutativas, ou seja, reduções que devem ocorrer em uma ordem definida. Felizmente, o MPI tem uma função útil chamada MPI_Reduce que irá lidar com quase todas as reduções comuns que um programador precisa fazer em um aplicativo paralelo.</p>
-<p>Para iniciarmos o nosso estudo de reduções em MPI, abra o seguinte notebook no Google Colab e siga as instruções contidas:</p>
-<p><a href="https://colab.research.google.com/drive/17PYAsKifOgbFmnRnboaZ3WV2hI6bv8pD?usp=sharing">Reduções em MPI</a> Dica: Faça uma cópia do notebook para a sua conta do Colab, no menu File (ou Arquivo), opção Save a Copy in Drive (Salvar uma cópia no Drive). </p>
+<h3 id="aproximacao-de-pi-com-comunicacao-ponto-a-ponto">Aproximação de PI com Comunicação Ponto-a-Ponto<a class="headerlink" href="#aproximacao-de-pi-com-comunicacao-ponto-a-ponto" title="Permanent link">&para;</a></h3>
+<p>Neste exemplo, cada processo MPI (exceto o coordenador) realiza uma simulação de Monte Carlo para estimar o valor de π. Cada processo gera coordenadas aleatórias (x, y) dentro do quadrado unitário e verifica se o ponto está dentro do quarto de círculo. O número de acertos é enviado ao processo coordenador por meio de <code>MPI_Send</code>, que os coleta com <code>MPI_Recv</code> e calcula π pela fórmula 𝜋 ≈ 4 * (pontos dentro do círculo / total de pontos).</p>
+<p><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mpi.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+<span class="cp">#define SEED_MPI 35791246</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">niter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000000</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">myid</span><span class="p">,</span><span class="w"> </span><span class="n">nodenum</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">pi</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">MPI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span>
+<span class="w">    </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">myid</span><span class="p">);</span>
+<span class="w">    </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nodenum</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">received</span><span class="p">[</span><span class="n">nodenum</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">recvniter</span><span class="p">[</span><span class="n">nodenum</span><span class="p">];</span>
+<span class="w">    </span><span class="n">srand</span><span class="p">(</span><span class="n">SEED_MPI</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">myid</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">myid</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">niter</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="n">rand</span><span class="p">())</span><span class="o">/</span><span class="n">RAND_MAX</span><span class="p">;</span>
+<span class="w">            </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="n">rand</span><span class="p">())</span><span class="o">/</span><span class="n">RAND_MAX</span><span class="p">;</span>
+<span class="w">            </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">z</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nodenum</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+<span class="w">            </span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">niter</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_LONG</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nodenum</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">received</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">nodenum</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_ANY_SOURCE</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span>
+<span class="w">            </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">recvniter</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">nodenum</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_LONG</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_ANY_SOURCE</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">finalcount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">finalniter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nodenum</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">finalcount</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">received</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">            </span><span class="n">finalniter</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">recvniter</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="n">finalcount</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">finalniter</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">4.0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Pi: %f</span>
+<span class="s">&quot;, pi);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+O programa <code>pi_send_receive.cpp</code> distribui o cálculo da aproximação de π entre múltiplos processos MPI. Cada processo-executor realiza um número fixo de iterações e envia os resultados para o processo rank 0 usando <code>MPI_Send</code>. O rank 0 coleta esses dados com <code>MPI_Recv</code> e realiza a agregação final.</p>
+<p>Use <code>mpicc</code> para compilar seus programas:</p>
+<div class="highlight"><pre><span></span><code>mpicc<span class="w"> </span>pi_send_receive.c<span class="w"> </span>-o<span class="w"> </span>pi_send_receive<span class="w"> </span>-lm
+</code></pre></div>
+<p>Script de Submissão SLURM (exemplo: <code>job_pi.sh</code>)</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=mpi_pi</span>
+<span class="c1">#SBATCH --output=output_pi.txt</span>
+<span class="c1">#SBATCH --ntasks=16</span>
+<span class="c1">#SBATCH --time=00:05:00</span>
+<span class="c1">#SBATCH --partition=normal</span>
+
+mpirun<span class="w"> </span>-np<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>./pi_send_receive
+</code></pre></div>
+<p>Submeta com:</p>
+<div class="highlight"><pre><span></span><code>sbatch<span class="w"> </span>job_pi.sh
+</code></pre></div>
+<h3 id="agregacao-com-mpi_reduce">Agregação com MPI_Reduce<a class="headerlink" href="#agregacao-com-mpi_reduce" title="Permanent link">&para;</a></h3>
+<p>Neste segundo exemplo, cada processo gera números aleatórios e calcula a soma local. Em vez de enviar esses valores individualmente ao rank 0, todos os processos participam de uma operação de redução coletiva com <code>MPI_Reduce</code>. A operação soma (<code>MPI_SUM</code>) os valores locais e entrega o total apenas ao rank 0, que então calcula a média global.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;assert.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;time.h&gt;</span>
+
+<span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="nf">create_rand_nums</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">num_elements</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">rand_nums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">num_elements</span><span class="p">);</span>
+<span class="w">  </span><span class="n">assert</span><span class="p">(</span><span class="n">rand_nums</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_elements</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">rand_nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">RAND_MAX</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">rand_nums</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Usage: avg num_elements_per_proc</span>
+<span class="s">&quot;);</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">num_elements_per_proc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="n">MPI_Init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">world_rank</span><span class="p">,</span><span class="w"> </span><span class="n">world_size</span><span class="p">;</span>
+<span class="w">  </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">world_rank</span><span class="p">);</span>
+<span class="w">  </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">world_size</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">srand</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">world_rank</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">rand_nums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">create_rand_nums</span><span class="p">(</span><span class="n">num_elements_per_proc</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">local_sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_elements_per_proc</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">local_sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">rand_nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Local sum for process %d - %f, avg = %f</span>
+<span class="s">&quot;, world_rank, local_sum, local_sum / num_elements_per_proc);</span>
+
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">global_sum</span><span class="p">;</span>
+<span class="w">  </span><span class="n">MPI_Reduce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_sum</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">global_sum</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_FLOAT</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_SUM</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">world_rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Total sum = %f, avg = %f</span>
+<span class="s">&quot;, global_sum, global_sum / (world_size * num_elements_per_proc));</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">rand_nums</span><span class="p">);</span>
+<span class="w">  </span><span class="n">MPI_Barrier</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+<span class="w">  </span><span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="o-que-sao-primitivas-coletivas">O que são primitivas coletivas?<a class="headerlink" href="#o-que-sao-primitivas-coletivas" title="Permanent link">&para;</a></h4>
+<p>Primitivas coletivas são funções da biblioteca MPI que envolvem todos os processos de um grupo (geralmente <code>MPI_COMM_WORLD</code>) de forma coordenada. Ao contrário das comunicações ponto-a-ponto, em que processos individuais trocam mensagens diretamente entre si (<code>MPI_Send</code> e <code>MPI_Recv</code>), as primitivas coletivas realizam operações em grupo — como distribuição de dados, coleta de resultados ou sincronização.</p>
+<p>Entre as principais primitivas coletivas, temos:</p>
+<ul>
+<li><code>MPI_Bcast</code>: envio de dados de um processo para todos os outros</li>
+<li><code>MPI_Gather</code> / <code>MPI_Scatter</code>: coleta ou distribuição de dados entre processos</li>
+<li><code>MPI_Reduce</code> / <code>MPI_Allreduce</code>: agregação (redução) de valores de todos os processos</li>
+<li><code>MPI_Barrier</code>: sincronização de todos os processos</li>
+</ul>
+<p>Essas funções são otimizadas internamente para oferecer alto desempenho em ambientes paralelos e facilitam a implementação de algoritmos distribuídos.</p>
+<p>A função <code>MPI_Reduce</code> permite que cada processo envie seus dados diretamente para uma operação de redução (como soma, mínimo, máximo) que é executada automaticamente no processo raiz. Isso elimina a necessidade de <code>MPI_Send</code> e <code>MPI_Recv</code> manuais, tornando o código mais limpo e eficiente.</p>
+<p>Este proximo exemplo estende o uso das primitivas coletivas para um cenário em que <strong>todos os processos</strong> precisam conhecer o resultado global. Utilizamos <code>MPI_Allreduce</code> para calcular a média global e, em seguida, <code>MPI_Reduce</code> para somar os desvios quadráticos ao redor da média. O desvio padrão é calculado no rank0 a partir desses valores.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;assert.h&gt;</span>
+
+<span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="nf">create_rand_nums</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">num_elements</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">rand_nums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">num_elements</span><span class="p">);</span>
+<span class="w">  </span><span class="n">assert</span><span class="p">(</span><span class="n">rand_nums</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_elements</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">rand_nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">RAND_MAX</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">rand_nums</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Usage: avg num_elements_per_proc</span>
+<span class="s">&quot;);</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">num_elements_per_proc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="n">MPI_Init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">world_rank</span><span class="p">,</span><span class="w"> </span><span class="n">world_size</span><span class="p">;</span>
+<span class="w">  </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">world_rank</span><span class="p">);</span>
+<span class="w">  </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">world_size</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">srand</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">world_rank</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">rand_nums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">create_rand_nums</span><span class="p">(</span><span class="n">num_elements_per_proc</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">local_sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_elements_per_proc</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="n">local_sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">rand_nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">global_sum</span><span class="p">;</span>
+<span class="w">  </span><span class="n">MPI_Allreduce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_sum</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">global_sum</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_FLOAT</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_SUM</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">global_sum</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">num_elements_per_proc</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">world_size</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">local_sq_diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_elements_per_proc</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="n">local_sq_diff</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">rand_nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mean</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">rand_nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mean</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">global_sq_diff</span><span class="p">;</span>
+<span class="w">  </span><span class="n">MPI_Reduce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_sq_diff</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">global_sq_diff</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_FLOAT</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_SUM</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">world_rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">stddev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">global_sq_diff</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">num_elements_per_proc</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">world_size</span><span class="p">));</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Mean = %f, Standard deviation = %f</span>
+<span class="s">&quot;, mean, stddev);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">rand_nums</span><span class="p">);</span>
+<span class="w">  </span><span class="n">MPI_Barrier</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+<span class="w">  </span><span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Enquanto <code>MPI_Reduce</code> entrega o resultado da operação ao processo rank0, <code>MPI_Allreduce</code> entrega o mesmo resultado a todos os processos. Isso é útil quando todos os nós precisam do valor reduzido, como ao calcular desvios padrão, médias globais e sincronizações de estado.</p>
+<p>O código para cálculo do desvio padrão utiliza duas reduções: uma com <code>MPI_Allreduce</code> para obter a média global e outra com <code>MPI_Reduce</code> para calcular a soma dos desvios quadráticos.</p>
+<h3 id="sua-vez">Sua vez!<a class="headerlink" href="#sua-vez" title="Permanent link">&para;</a></h3>
+<p>1-  Refatore <code>pi_send_receive.c</code> para utilizar <code>MPI_Reduce</code> ao invés de <code>MPI_Send</code> e <code>MPI_Recv</code>.</p>
+<p>2- Produza um código híbrido MPI + OpenMP:</p>
+<ul>
+<li>O processo Rank0 calcula o número de pontos com 16 threads OpenMP.</li>
+<li>Os resultados dos outros processos são coletados via <code>MPI_Reduce</code>.</li>
+</ul>
 
 
 
