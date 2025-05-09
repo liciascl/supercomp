@@ -1528,9 +1528,20 @@ mpirun<span class="w"> </span>-np<span class="w"> </span><span class="nv">$SLURM
 <p>O código para cálculo do desvio padrão utiliza duas reduções: uma com <code>MPI_Allreduce</code> para obter a média global e outra com <code>MPI_Reduce</code> para calcular a soma dos desvios quadráticos.</p>
 <h3 id="sua-vez">Sua vez!<a class="headerlink" href="#sua-vez" title="Permanent link">&para;</a></h3>
 <p>1-  Refatore o código do primeiro exemplo para utilizar <code>MPI_Reduce</code> ao invés de <code>MPI_Send</code> e <code>MPI_Recv</code>.</p>
-<p>2- Faça um código que utilize MPI e OpenMP em que:
-    * O processo Rank0 calcula o número de pontos com 16 threads OpenMP.
-    * Os resultados dos outros processos são coletados via <code>MPI_Reduce</code>.</p>
+<p>2- Faça um código que utilize MPI e OpenMP em que:</p>
+<div class="codehilite"><pre><span></span><code>- O processo Rank0 calcula o número de pontos com 16 threads OpenMP.
+
+- Os resultados dos outros processos são coletados via `MPI_Reduce`.
+</code></pre></div>
+
+<p>3 - Cálculo Distribuído da Média de um Array</p>
+<p>Objetivo: Usar MPI_Scatter para distribuir partes de um array entre os processos, calcular a média local em cada processo e, em seguida, usar MPI_Gather para coletar as médias locais no processo raiz para calcular a média global.</p>
+<p>4- Distribuição de Configuração para Cálculos Paralelos</p>
+<p>Objetivo: Utilizar MPI_Bcast para enviar uma configuração inicial (por exemplo, o número de iterações para um cálculo) do processo raiz para todos os outros processos.</p>
+<p>5- Normalização de um Array em Paralelo</p>
+<p>Objetivo: Normalizar um array grande em paralelo. O processo raiz calcula o valor máximo do array e o transmite para todos os outros processos usando MPI_Bcast. Cada processo então usa MPI_Scatter para receber seu segmento do array, normaliza-o, e os resultados são reunidos de volta usando MPI_Gather.</p>
+<p>6- Cálculo Distribuído de Desvio Padrão</p>
+<p>Objetivo: Calcular o desvio padrão de um conjunto de dados distribuído. O processo raiz distribui o conjunto de dados usando MPI_Scatter, cada processo calcula a média e a variação de sua parte do conjunto, e os resultados são coletados com MPI_Gather para calcular o desvio padrão global.</p>
 <p><strong>Faça a sua subimissão até as 23h59 de 19/05</strong> </p>
 
 
