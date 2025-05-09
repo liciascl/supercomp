@@ -234,3 +234,5 @@ Terá acesso aos recursos habilitados para uso com o seu login:
     - Discussão sobre os recursos solicitados via SLURM
     
     - Comparação entre ambientes
+
+**A entrega do projeto está para as 23h59 de 06/06** 
