@@ -268,5 +268,4 @@ Objetivo: Normalizar um array grande em paralelo. O processo raiz calcula o valo
 
 Objetivo: Calcular o desvio padrão de um conjunto de dados distribuído. O processo raiz distribui o conjunto de dados usando MPI_Scatter, cada processo calcula a média e a variação de sua parte do conjunto, e os resultados são coletados com MPI_Gather para calcular o desvio padrão global.
 
-**Faça a sua subimissão até as 23h59 de 19/05** 
 
