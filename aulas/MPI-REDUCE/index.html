@@ -1542,6 +1542,7 @@ mpirun<span class="w"> </span>-np<span class="w"> </span><span class="nv">$SLURM
 <p>Objetivo: Normalizar um array grande em paralelo. O processo raiz calcula o valor máximo do array e o transmite para todos os outros processos usando MPI_Bcast. Cada processo então usa MPI_Scatter para receber seu segmento do array, normaliza-o, e os resultados são reunidos de volta usando MPI_Gather.</p>
 <p>6- Cálculo Distribuído de Desvio Padrão</p>
 <p>Objetivo: Calcular o desvio padrão de um conjunto de dados distribuído. O processo raiz distribui o conjunto de dados usando MPI_Scatter, cada processo calcula a média e a variação de sua parte do conjunto, e os resultados são coletados com MPI_Gather para calcular o desvio padrão global.</p>
+<p><strong>A entrega da atividade está para as 23h59 de 16/05</strong> </p>
 
 
 
