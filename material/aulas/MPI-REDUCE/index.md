@@ -246,25 +246,19 @@ O código para cálculo do desvio padrão utiliza duas reduções: uma com `MPI_
 
 1-  Refatore o código do primeiro exemplo para utilizar `MPI_Reduce` ao invés de `MPI_Send` e `MPI_Recv`.
 
-2- Faça um código que utilize MPI e OpenMP em que:
-    
-    - O processo Rank0 calcula o número de pontos com 16 threads OpenMP.
-    
-    - Os resultados dos outros processos são coletados via `MPI_Reduce`.
-
-3 - Cálculo Distribuído da Média de um Array
+2 - Cálculo Distribuído da Média de um Array
 
 Objetivo: Usar MPI_Scatter para distribuir partes de um array entre os processos, calcular a média local em cada processo e, em seguida, usar MPI_Gather para coletar as médias locais no processo raiz para calcular a média global.
 
-4- Distribuição de Configuração para Cálculos Paralelos
+3- Distribuição de Configuração para Cálculos Paralelos
 
 Objetivo: Utilizar MPI_Bcast para enviar uma configuração inicial (por exemplo, o número de iterações para um cálculo) do processo raiz para todos os outros processos.
 
-5- Normalização de um Array em Paralelo
+4- Normalização de um Array em Paralelo
 
 Objetivo: Normalizar um array grande em paralelo. O processo raiz calcula o valor máximo do array e o transmite para todos os outros processos usando MPI_Bcast. Cada processo então usa MPI_Scatter para receber seu segmento do array, normaliza-o, e os resultados são reunidos de volta usando MPI_Gather.
 
-6- Cálculo Distribuído de Desvio Padrão
+5- Cálculo Distribuído de Desvio Padrão
 
 Objetivo: Calcular o desvio padrão de um conjunto de dados distribuído. O processo raiz distribui o conjunto de dados usando MPI_Scatter, cada processo calcula a média e a variação de sua parte do conjunto, e os resultados são coletados com MPI_Gather para calcular o desvio padrão global.
 
