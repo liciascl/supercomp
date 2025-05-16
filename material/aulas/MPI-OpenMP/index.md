@@ -65,3 +65,6 @@ Os Slides estão [disponíveis aqui](slides_reais.pdf)
 1. Distribuir o vetor entre os processos MPI.
 2. Utilizar OpenMP para realizar a busca paralela em cada subvetor.
 3. Retornar todas as posições encontradas do valor buscado.
+
+
+**A entrega da atividade está para as 23h59 de 23/05** 
