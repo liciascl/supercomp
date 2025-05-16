@@ -1184,6 +1184,53 @@
 
 
 <h1 id="mpi-e-openmp">MPI e OpenMP<a class="headerlink" href="#mpi-e-openmp" title="Permanent link">&para;</a></h1>
+<p>Agora que vocês aprenderam sobre <strong>MPI</strong> e já trabalharam bastante com <strong>OpenMP</strong>, vamos juntar o melhor dos dois mundos!</p>
+<p>Combinar essas duas abordagens é uma estratégia poderosa em computação de alto desempenho. Enquanto o <strong>OpenMP</strong> permite paralelizar tarefas de forma simples e eficiente dentro de uma mesma máquina (memória compartilhada), o <strong>MPI</strong> possibilita distribuir o trabalho entre várias máquinas (memória distribuída).</p>
+<p>Ao usar <strong>MPI + OpenMP juntos</strong>, conseguimos:</p>
+<ul>
+<li><strong>Aproveitar ao máximo os recursos de clusters de alto desempenho</strong>, que possuem múltiplos nós (com MPI) e múltiplos núcleos por nó (com OpenMP).</li>
+<li><strong>Reduzir o overhead de comunicação</strong>, evitando o uso excessivo de mensagens MPI quando podemos usar threads locais com OpenMP.</li>
+<li><strong>Escalar aplicações de forma mais eficiente</strong>, especialmente em tarefas intensivas como simulações científicas, análise de dados em larga escala e modelagem computacional.</li>
+</ul>
+<h1 id="exercicios-mpi-openmp">Exercícios MPI + OpenMP<a class="headerlink" href="#exercicios-mpi-openmp" title="Permanent link">&para;</a></h1>
+<p>A seguir, você encontrará uma série de exercícios que combinam MPI e OpenMP para explorar os conceitos de paralelismo distribuído e local.</p>
+<p>Os Slides estão <a href="slides.pdf">disponíveis aqui</a></p>
+<hr />
+<h2 id="exercicio-1-calculo-do-quadrado-de-cada-elemento-da-matriz">Exercício 1: Cálculo do Quadrado de cada Elemento da Matriz<a class="headerlink" href="#exercicio-1-calculo-do-quadrado-de-cada-elemento-da-matriz" title="Permanent link">&para;</a></h2>
+<p><strong>Objetivo:</strong> Compreender os efeitos da paralelização com MPI e OpenMP.</p>
+<p><strong>Descrição:</strong></p>
+<ol>
+<li>Volte ao exercício do slide e execute com tamanhos diferentes da matriz (cada vez maiores) e observe o tempo necessário para rodar:</li>
+<li>a. Mantendo a paralelização local com OpenMP;</li>
+<li>b. Removendo a paralelização local com OpenMP;</li>
+</ol>
+<hr />
+<h2 id="exercicio-2-calculo-do-quadrado-de-cada-elemento-da-matriz">Exercício 2: Cálculo do Quadrado de cada Elemento da Matriz<a class="headerlink" href="#exercicio-2-calculo-do-quadrado-de-cada-elemento-da-matriz" title="Permanent link">&para;</a></h2>
+<p><strong>Objetivo:</strong> Compreender os efeitos colaterais da paralelização com MPI.</p>
+<p><strong>Descrição:</strong></p>
+<ol>
+<li>Volte ao exercício do slide e execute com diferentes quantidades de máquinas.</li>
+<li>Observe a divisão dos dados realizada com <code>MPI_Scatter</code>.</li>
+<li>Reflita: como proteger o código contra efeitos colaterais de separações “estranhas” dos dados?</li>
+</ol>
+<hr />
+<h2 id="exercicio-3-calculo-distribuido-da-media-de-um-array">Exercício 3: Cálculo Distribuído da Média de um Array<a class="headerlink" href="#exercicio-3-calculo-distribuido-da-media-de-um-array" title="Permanent link">&para;</a></h2>
+<p><strong>Objetivo:</strong> Usar MPI e OpenMP para distribuir o cálculo da média de um vetor de N valores.</p>
+<p><strong>Descrição:</strong></p>
+<ol>
+<li>A inicialização do vetor pode ocorrer no <code>rank=0</code> ou localmente em cada máquina.</li>
+<li>Cada máquina realiza a soma de sua parte do vetor, usando OpenMP para paralelizar esse cálculo.</li>
+<li>O <code>rank=0</code> recebe as somas parciais de cada processo, calcula a soma total e divide por <code>N</code> para obter a média.</li>
+</ol>
+<hr />
+<h2 id="exercicio-4-busca-em-vetor-distribuido">Exercício 4: Busca em Vetor Distribuído<a class="headerlink" href="#exercicio-4-busca-em-vetor-distribuido" title="Permanent link">&para;</a></h2>
+<p><strong>Objetivo:</strong> Implementar uma busca em paralelo para encontrar um valor em um vetor distribuído. Divida o vetor entre os nós MPI e use OpenMP para realizar a busca em cada parte do vetor. Retorne todas as posições encontradas.</p>
+<p><strong>Descrição:</strong></p>
+<ol>
+<li>Distribuir o vetor entre os processos MPI.</li>
+<li>Utilizar OpenMP para realizar a busca paralela em cada subvetor.</li>
+<li>Retornar todas as posições encontradas do valor buscado.</li>
+</ol>
 
 
 
