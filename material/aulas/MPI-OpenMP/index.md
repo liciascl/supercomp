@@ -16,7 +16,7 @@ Ao usar **MPI + OpenMP juntos**, conseguimos:
 A seguir, você encontrará uma série de exercícios que combinam MPI e OpenMP para explorar os conceitos de paralelismo distribuído e local.
 
 
-Os Slides estão [disponíveis aqui](slides.pdf)
+Os Slides estão [disponíveis aqui](slides_reais.pdf)
 
 ---
 
