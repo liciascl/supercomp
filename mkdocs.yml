@@ -54,7 +54,7 @@ nav:
         - "Atividade 15: MPI - Introdução": aulas/Introducao-mpi/index.md
         - "Atividade 16: MPI Reduce": aulas/MPI-REDUCE/index.md
         #- "Atividade 17: MPI - Broadcasting": aulas/Broadcasting-mpi/index.md
-        #- "Atividade 18: MPI e OpenMP": aulas/MPI-OpenMP/index.md
+        - "Atividade 17: MPI e OpenMP": aulas/MPI-OpenMP/index.md
         #- "Atividade 18: Efeitos Colaterais": aulas/efeitos-colaterais/index.md
 
 
